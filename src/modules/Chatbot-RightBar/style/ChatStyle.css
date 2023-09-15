@@ -1,0 +1,17 @@
+.user, .bot {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.user img, .bot img {
+    margin: 0 10px;
+}
+
+.user {
+    justify-content: flex-start;
+}
+
+.bot {
+    justify-content: flex-end;
+}

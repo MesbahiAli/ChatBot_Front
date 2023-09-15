@@ -1,0 +1,11 @@
+.link-voucher {
+    color: #fff;
+    font-style: italic;
+    text-decoration: none;
+}
+.application-title {
+    display: flex ;
+    justify-content: center ;
+    align-items: center;
+    color: #5687ff
+}
