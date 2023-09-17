@@ -75,7 +75,7 @@ function Chat_Right() {
     }
 
     return (
-        <div className="chat-container">
+        <Box className="chat-container" sx={{display: { xs: 'none', md: 'flex' }}}>
          <Box className="messages">
                 {messages.map((msg, index) => (
                     <div key={msg.id || index} className={`message-wrapper ${msg.sender} fade-in`}>
@@ -123,7 +123,7 @@ function Chat_Right() {
                     />
                 </Box>
             </form>
-        </div>
+        </Box>
     );
 }
 

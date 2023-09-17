@@ -38,7 +38,6 @@
     border: 1px solid #ccc;
     border-radius: 10px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-    display: flex;
     flex-direction: column;
     background-color: #fff;
 }
@@ -47,7 +46,8 @@
     flex: 1;
     padding: 10px;
     overflow-y: auto;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #e0e0e0; 
+    gap: 12px;
 }
 
 @keyframes fadeInEffect {
@@ -67,6 +67,8 @@
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    background-color: #f4f4f4;
+
 }
 .user {
     display: flex;
@@ -76,32 +78,36 @@
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    background-color: #e1e9ff;
+
 }
 
-.bot:hover { background-color: #d0d0d0; }
+.bot:hover {background-color: #e8e8e8;}
 
-.user:hover { background-color: #1c87e6; }
+.user:hover { background-color: #d0d8f0;  }
 
 .message-bubble {
     padding: 10px 15px;
     margin: 0 10px;
     border-radius: 15px;
     text-align: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    font-size: 0.9em;
+    color: #2b242b;
 }
 
 .bot .message-bubble {
-    background-color: #e0e0e0;
     order: 2;
     align-self: flex-end;
-
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #e8e8e8; 
 }
 
 .user .message-bubble {
-    background-color: #2196F3;
     color: white;
     order: 1;
-    align-self: center;
-
+    align-self: flex-start;
+    background-color: #5c5c5c; 
 }
 
 .message-wrapper {
