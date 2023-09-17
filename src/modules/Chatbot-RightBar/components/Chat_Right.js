@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import TextField from '@mui/material/TextField';
@@ -6,98 +6,127 @@ import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import RobotLogo from "../../../assets/images/pngegg.png";
 import RobotLogo1 from "../../../assets/images/pngegg (2).png";
+import ChatSpinner from './Chat_Spinner';
+import '../style/ChatStyle.css';
+
+const SEND_MESSAGE_SUCCESS = 'SEND_MESSAGE_SUCCESS';
+const SEND_MESSAGE_REQUEST = 'SEND_MESSAGE_REQUEST';
 
 function Chat_Right() {
-  const dispatch = useDispatch();
-  const messages = useSelector((state) => state.chat.messages);
+    const dispatch = useDispatch();
+    const messages = useSelector((state) => state.chat.messages);
+    const isLoading = useSelector((state) => state.chat.isLoading);
 
-  useEffect(() => {
-    dispatch({
-      type: 'SEND_MESSAGE_SUCCESS',
-      payload: {
-          sender: 'bot',
-          text: 'Hello! How can I assist you today?',
-      },
-  });
-}, []);
+    const [showSpinner, setShowSpinner] = useState(false);
+    const [userIsTyping, setUserIsTyping] = useState(false);
+    const messagesEndRef = useRef(null);  // To auto-scroll
 
-
-  const formik = useFormik({
-    initialValues: {
-      user_input: '',
-    },
-    onSubmit: (values) => {
-      if (values.user_input.trim()) {
+    useEffect(() => {
         dispatch({
-          type: 'SEND_MESSAGE_SUCCESS',
-          payload: {
-              sender: 'user',
-              text: values.user_input,
-              image: '/path-to-user-image.jpg',
-          },
-      });
-    
-        dispatch({ type: 'SEND_MESSAGE_REQUEST', payload: { user_input: values.user_input } });
+            type: SEND_MESSAGE_SUCCESS,
+            payload: {
+                sender: 'bot',
+                text: 'Hello! How can I assist you today?',
+            },
+        });
+    }, [dispatch]);
 
-        formik.resetForm();
-      }
-    },
-  });
+    useEffect(() => {
+        if (messagesEndRef.current) {
+            messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
+        }
+    }, [messages]);
 
-  const containerStyles = {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "space-between"
-  };
+    useEffect(() => {
+        if (isLoading) {
+            const timer = setTimeout(() => {
+                setShowSpinner(true);
+            }, 200);
+            return () => clearTimeout(timer);
+        }
+        setShowSpinner(false);
+    }, [isLoading]);
 
+    const formik = useFormik({
+        initialValues: {
+            user_input: '',
+        },
+        onSubmit: (values) => {
+            if (values.user_input.trim()) {
+                setUserIsTyping(false);
+                dispatch({
+                    type: SEND_MESSAGE_SUCCESS,
+                    payload: {
+                        sender: 'user',
+                        text: values.user_input,
+                        image: '/path-to-user-image.jpg',
+                    },
+                });
 
-  
-  return (
-    <div className="chat-container" style={containerStyles}>
-<Box className="messages" style={{ padding: '20px 0', maxWidth: '390px', overflowY: 'auto' }}>
-    {messages.map((msg, index) => (
-        <div key={index} className={msg.sender}>
-            {msg.sender === 'bot' ? (
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
-                    <span>{msg.text}</span>
-                    <img 
-                        src={RobotLogo1} 
-                        alt="Robot Logo" 
-                        style={{ width: "44px", marginLeft: '10px' }}
-                    />
-                </div>
-            ) : (
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
-                    <img 
-                        src={RobotLogo} 
-                        alt="User Logo" 
-                        style={{ width: "44px", marginRight: '10px' }}
-                    />
-                    <span>{msg.text}</span>
-                </div>
-            )}
-            <div style={{ fontSize: '10px', textAlign: msg.sender === 'bot' ? 'right' : 'left', marginTop: '5px' }}>
+                dispatch({ type: SEND_MESSAGE_REQUEST, payload: { user_input: values.user_input } });
+                formik.resetForm();
+            }
+        },
+    });
+
+    const handleInputChange = (e) => {
+        formik.handleChange(e);
+        setUserIsTyping(e.target.value.trim() !== "");
+    }
+
+    return (
+        <div className="chat-container">
+            <Box className="messages">
+                {messages.map((msg, index) => (
+                    <div key={msg.id || index} className={`${msg.sender} fade-in`}>
+                        <div className={`message-flex-${msg.sender}`}>
+                            {msg.sender === 'bot' ? (
+                                <>
+                                    <span className="message-bubble-bot">{msg.text}</span>
+                                    <img src={RobotLogo1} alt="Robot Logo" className="message-logo" />
+                                </>
+                            ) : (
+                                <>
+                                    <img src={RobotLogo} alt="User Logo" className="message-logo" />
+                                    <span className="message-bubble-user">{msg.text}</span>
+                                </>
+                            )}
+                        </div>
+                        <div style={{ fontSize: '10px', textAlign: msg.sender === 'bot' ? 'right' : 'left', marginTop: '5px' }}>
                 {new Date().toLocaleTimeString()}
-            </div>
+            </div>  
+                    </div>
+                ))}
+                {showSpinner && (
+                    <div className="message-loading">
+                        <ChatSpinner />
+                        <img src={RobotLogo1} alt="Robot Logo" className="message-logo" />
+                    </div>
+                )}
+                {!isLoading && userIsTyping && <div>User is typing...</div>}
+                <div ref={messagesEndRef}></div>
+            </Box>
+
+            <form onSubmit={formik.handleSubmit}>
+                <Box display="flex" alignItems="center">
+                    <TextField
+                        fullWidth
+                        variant="outlined"
+                        {...formik.getFieldProps('user_input')}
+                        onChange={handleInputChange}
+                        placeholder="Type your message..."
+                    />
+                    <Button 
+                        type="submit" 
+                        variant="contained" 
+                        color="primary" 
+                        className="send-button"
+                        aria-label="Send Message"  
+                    />
+                </Box>
+            </form>
         </div>
-    ))}
-</Box>      <form onSubmit={formik.handleSubmit}>
-        <Box display="flex" alignItems="center">
-          <TextField
-            fullWidth
-            variant="outlined"
-            name="user_input"
-            value={formik.values.user_input}
-            onChange={formik.handleChange}
-            placeholder="Type your message..."
-          />
-          <Button type="submit" variant="contained" color="primary" style={{ marginLeft: '10px' }}>
-            Send
-          </Button>
-        </Box>
-      </form>
-    </div>
-  );
+    );
 }
 
 export default Chat_Right;

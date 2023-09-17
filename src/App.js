@@ -23,7 +23,9 @@ function App() {
   const state = useSelector(state => state);
 
   let loadingProps;
-  let reducerHasLoading = _.pickBy(state, { isLoading: true });
+  let reducerHasLoading = _.pickBy(state, (value, key) => {
+    return value.isLoading === true && key !== "chat";
+});
   if (reducerHasLoading) {
     const target = _.keys(reducerHasLoading)[0];
     let nextProps = reducerHasLoading[target];

@@ -1,13 +1,11 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { frFR } from "@mui/material/locale";
- import Navbar from "./Navbar";
+import { Stack } from '@mui/material';
 import config from "../Config";
-import Sidebar from "../../modules/Chatbot-SlideBar/components/SideBar";
-import Feed from "../../modules/Chatbot-Feed/components/Feed";
-import {Container, Stack} from '@mui/material';
-import Chat from "../../modules/Chatbot-RightBar/ui/Chat";
-
+import Sidebar from '../../modules/Chatbot-SlideBar/components/SideBar';
+import Chat_Right from '../../modules/Chatbot-RightBar/components/Chat_Right';
+import Feed from './../../modules/Chatbot-Feed/components/Feed';
 
 class Layout extends Component {
   render() {
@@ -43,16 +41,14 @@ class Layout extends Component {
               }
         }
       >
-      <Stack direction="row" spacing={2} justifyContent="space-between" height="100vh">
-        <Sidebar/>
-        <Feed/>
-        <Chat/>
+<Stack direction="row" spacing={2} justifyContent="space-between" alignItems="stretch" height="100vh">
+          <Sidebar />
+          <Feed/>
+          <Chat_Right />
         </Stack>
-        {/* <main style={{ paddingBottom: "1.5rem" }}>
-          <ThemeProvider theme={theme}>{this.props.children}</ThemeProvider>
-        </main> */}
       </div>
     );
   }
 }
-export default Layout;  
+
+export default Layout;

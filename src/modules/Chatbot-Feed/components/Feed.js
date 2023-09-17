@@ -1,11 +1,10 @@
-import { Box, Stack, Skeleton } from "@mui/material";
-import React, { useState } from "react";
+import React from 'react';
+import { Box } from "@mui/material";
 
 const Feed = () => {
   return (
-    <Box style={{backgroundColor:"greenyellow"}} flex={4} p={{ xs: 0, md: 2 }}>
-     Test123
-
+    <Box bgcolor="greenyellow" flex={4} p={{ xs: 0, md: 2 }}>
+      Test123
     </Box>
   );
 };
