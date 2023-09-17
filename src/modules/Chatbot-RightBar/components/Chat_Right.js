@@ -76,25 +76,23 @@ function Chat_Right() {
 
     return (
         <div className="chat-container">
-            <Box className="messages">
+         <Box className="messages">
                 {messages.map((msg, index) => (
-                    <div key={msg.id || index} className={`${msg.sender} fade-in`}>
-                        <div className={`message-flex-${msg.sender}`}>
-                            {msg.sender === 'bot' ? (
-                                <>
-                                    <span className="message-bubble-bot">{msg.text}</span>
-                                    <img src={RobotLogo1} alt="Robot Logo" className="message-logo" />
-                                </>
-                            ) : (
-                                <>
-                                    <img src={RobotLogo} alt="User Logo" className="message-logo" />
-                                    <span className="message-bubble-user">{msg.text}</span>
-                                </>
-                            )}
+                    <div key={msg.id || index} className={`message-wrapper ${msg.sender} fade-in`}>
+                        {msg.sender === 'bot' ? (
+                            <>
+                                <span className="message-bubble">{msg.text}</span>
+                                <img src={RobotLogo1} alt="Robot Logo" className="message-logo" />
+                            </>
+                        ) : (
+                            <>
+                                <img src={RobotLogo} alt="User Logo" className="message-logo" />
+                                <span className="message-bubble">{msg.text}</span>
+                            </>
+                        )}
+                        <div className={`timestamp timestamp-${msg.sender}`}>
+                            {new Date().toLocaleTimeString()}
                         </div>
-                        <div style={{ fontSize: '10px', textAlign: msg.sender === 'bot' ? 'right' : 'left', marginTop: '5px' }}>
-                {new Date().toLocaleTimeString()}
-            </div>  
                     </div>
                 ))}
                 {showSpinner && (
