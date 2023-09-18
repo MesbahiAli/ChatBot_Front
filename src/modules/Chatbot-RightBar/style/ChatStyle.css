@@ -135,7 +135,6 @@ img.message-logo {
 }
 
 form {
-    width: 100%;
     padding: 10px;
     border-top: 1px solid #ccc;
     background-color: #f9f9f9;
@@ -190,4 +189,17 @@ form {
 .messages::-webkit-scrollbar-track {
     background: #f1f1f1;
     border-radius: 4px;
+}
+
+.chat-container1{
+    margin-left:0px;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    bottom: 0;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    flex-direction: column;
+    background-color: #fff;
 }
