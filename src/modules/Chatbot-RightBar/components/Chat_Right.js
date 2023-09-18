@@ -130,9 +130,6 @@ function Chat_Right() {
                                         <span className="message-bubble">{msg.text}</span>
                                     </>
                                 )}
-                                <div className={`timestamp timestamp-${msg.sender}`}>
-                                    {new Date().toLocaleTimeString()}
-                                </div>
                             </div>
                         ))}
                         {showSpinner && (
@@ -204,9 +201,6 @@ function Chat_Right() {
                                 <span className="message-bubble">{msg.text}</span>
                             </>
                         )}
-                        <div className={`timestamp timestamp-${msg.sender}`}>
-                            {new Date().toLocaleTimeString()}
-                        </div>
                     </div>
                 ))}
                 {showSpinner && (

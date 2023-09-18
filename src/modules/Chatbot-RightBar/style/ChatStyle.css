@@ -61,7 +61,7 @@
 
 .bot{
     display: flex;
-    align-items: left;
+    align-items: end;
     padding: 10px;
     margin: 5px 0;
     border-radius: 5px;
@@ -72,7 +72,7 @@
 }
 .user {
     display: flex;
-    align-items: end;
+    align-items: start;
     padding: 10px;
     margin: 5px 0;
     border-radius: 5px;
@@ -87,7 +87,7 @@
 .user:hover { background-color: #d0d8f0;  }
 
 .message-bubble {
-    padding: 10px 15px;
+    padding: 9px 15px;
     margin: 0 10px;
     border-radius: 15px;
     text-align: center;
@@ -98,7 +98,7 @@
 
 .bot .message-bubble {
     order: 2;
-    align-self: flex-end;
+    align-self: flex-start;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     background-color: #e8e8e8; 
 }
@@ -106,7 +106,7 @@
 .user .message-bubble {
     color: white;
     order: 1;
-    align-self: flex-start;
+    align-self: flex-end;
     background-color: #5c5c5c; 
 }
 
