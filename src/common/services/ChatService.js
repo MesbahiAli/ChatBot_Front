@@ -13,5 +13,4 @@ export const ChatApi = (payload) => {
         console.log(error);
         throw error;
       });
-  }
-  
+}

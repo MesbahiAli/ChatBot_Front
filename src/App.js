@@ -7,6 +7,7 @@ import _ from "lodash";
 import Spinner from "./common/components/SpinnerCustomized";
 import { useSelector } from "react-redux";
 import ForbiddenComponent from './routing/ForbiddenComponent';
+//import LoginContainer from './modules/Authentication/containers/LoginContainer';
 
 // import * as roles from "./routing/roles";
 // import HomeBeforeLogin from './common/components/HomeBeforeLogin';
@@ -25,7 +26,7 @@ function App() {
   let loadingProps;
   let reducerHasLoading = _.pickBy(state, (value, key) => {
     return value.isLoading === true && key !== "chat";
-});
+  });
   if (reducerHasLoading) {
     const target = _.keys(reducerHasLoading)[0];
     let nextProps = reducerHasLoading[target];
@@ -84,6 +85,7 @@ function App() {
       {routes}
     </div>
   );
+
 }
 
 export default App;

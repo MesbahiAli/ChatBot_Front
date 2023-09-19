@@ -42,7 +42,7 @@ class Layout extends Component {
               }
         }
       >
-<Stack direction="row" justifyContent="space-between" alignItems="stretch" height="100vh">
+        <Stack direction="row" justifyContent="space-between" alignItems="stretch" height="100vh">
           <Sidebar />
           <Feed/>
           <Chat_Right />

@@ -91,7 +91,7 @@ function Chat_Right() {
         width: '60px',
         height: '60px',
         position: 'fixed',
-        bottom: '20px',    
+        bottom: '20px',
         right: '20px',     
         zIndex: 1000,
         color: '#FFF',
