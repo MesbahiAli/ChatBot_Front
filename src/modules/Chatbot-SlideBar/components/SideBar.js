@@ -1,68 +1,57 @@
-import React, { useState } from 'react';
-import { Box, Button, Stack, Typography, IconButton } from "@mui/material";
-import { Delete, Update, Publish } from "@mui/icons-material";
+import React from 'react';
+import { Button, IconButton, List, ListItem, ListItemText, ListItemSecondaryAction } from '@mui/material';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import DeleteIcon from '@mui/icons-material/Delete';
+import SendIcon from '@mui/icons-material/Send';
+import { useDispatch, useSelector } from 'react-redux';
+import { uploadFiles, deleteFile } from '../state/UploadActions';
 
-const Sidebar = ({ mode, setMode }) => {
-  const [file, setFile] = useState(null);
-  const [selectedFiles, setSelectedFiles] = useState([]);
-
-  const handleFileUpload = (event) => {
-    const uploadedFile = event.target.files[0];
-    setFile(uploadedFile);
-    setSelectedFiles([...selectedFiles, uploadedFile.name]);
+const UploadComponent = () => {
+  const dispatch = useDispatch();
+  const files = useSelector(state => state.upload.files);
+console.log(files)
+  const handleFileChange = (e) => {
+    const selectedFiles = Array.from(e.target.files);
+    dispatch(uploadFiles(selectedFiles));
   };
 
-  const handleDelete = () => {
-    if (file) {
-      const updatedFiles = selectedFiles.filter(fileName => fileName !== file.name);
-      setSelectedFiles(updatedFiles);
-      setFile(null);
-    }
-  };
-
-  const handleSelectFiles = () => {
-    console.log('Selected Files:', selectedFiles);
+  const handleDelete = (fileName) => {
+    dispatch(deleteFile(fileName));
   };
 
   return (
-    <Box 
-      flex={1} p={2} 
-      sx={{ display: { xs: "none", sm: "block" } }}
-    >
-      <Stack direction="row" spacing={1} mt={2}>
-        <input
-          accept=".pdf,.txt"
-          style={{ display: 'none' }}
-          id="upload-button-file"
-          type="file"
-          onChange={handleFileUpload}
-        />
-        <label htmlFor="upload-button-file">
-          <Button variant="contained" color="primary" component="span" startIcon={<Publish />}>
-            Upload
-          </Button>
-        </label>
-
-        <IconButton onClick={handleDelete} color="error">
-          <Delete />
-        </IconButton>
-
-        <Button variant="outlined" color="primary" startIcon={<Update />} onClick={handleSelectFiles}>
-          Select
+    <div>
+      <input
+        style={{ display: 'none' }}
+        id="file-input"
+        multiple
+        type="file"
+        onChange={handleFileChange}
+      />
+      <label htmlFor="file-input">
+        <Button component="span" startIcon={<CloudUploadIcon />} variant="contained">
+          Upload
         </Button>
-      </Stack>
+      </label>
 
-      {file && <Typography mt={2}>Selected file: {file.name}</Typography>}
-      {selectedFiles.length > 0 && 
-        <Box mt={3}>
-          <Typography variant="h6">Selected Files:</Typography>
-          <ul>
-            {selectedFiles.map(fileName => <li key={fileName}>{fileName}</li>)}
-          </ul>
-        </Box>
-      }
-    </Box>
+      <List>
+        {files.map((file, index) => (
+          <ListItem key={index}>
+            <ListItemText primary={file.name} />
+            <ListItemSecondaryAction>
+              <IconButton edge="end" onClick={() => handleDelete(file.name)}>
+                <DeleteIcon />
+              </IconButton>
+            </ListItemSecondaryAction>
+          </ListItem>
+        ))}
+      </List>
+
+      <Button startIcon={<SendIcon />} variant="contained">
+        Send to Server
+      </Button>
+    </div>
   );
 };
 
-export default Sidebar;
+export default UploadComponent;

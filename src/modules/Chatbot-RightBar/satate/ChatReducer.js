@@ -23,11 +23,11 @@ const chatReducer = (state = initialState, action) => {
         };
       
     case 'SEND_MESSAGE_FAILURE':
-      return {
-        ...state,
-        isLoading: false,
-        error: action.error.message,
-      };
+          return {
+            ...state,
+            isLoading: false,
+            error: action.error,
+          };
     default:
       return state;
   }

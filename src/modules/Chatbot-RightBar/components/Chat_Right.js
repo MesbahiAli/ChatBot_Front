@@ -11,6 +11,9 @@ import '../style/ChatStyle.css';
 import Slide from '@mui/material/Slide';
 import CloseIcon from '@mui/icons-material/Close';
 import IconButton from '@mui/material/IconButton';
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
+
 
 
 const SEND_MESSAGE_SUCCESS = 'SEND_MESSAGE_SUCCESS';
@@ -80,8 +83,45 @@ function Chat_Right() {
         setUserIsTyping(e.target.value.trim() !== "");
     }
 
+
+    const [snackbarState, setSnackbarState] = useState({
+        open: false,
+        message: "",
+        severity: "error", // can be 'success', 'info', 'warning', or 'error'
+      });
+
+      const handleSnackbarClose = (event, reason) => {
+        if (reason === 'clickaway') {
+          return;
+        }
+        setSnackbarState((prev) => ({ ...prev, open: false }));
+      };
+
+      const error = useSelector((state) => state.chat.error);
+
+      useEffect(() => {
+        if (error) {
+          setSnackbarState({
+            open: true,
+            message: error,
+            severity: "error",
+          });
+        }
+      }, [error]);
     return (
 <>
+
+<Snackbar 
+  open={snackbarState.open} 
+  autoHideDuration={6000} 
+  onClose={handleSnackbarClose}
+  anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+>
+  <Alert onClose={handleSnackbarClose} severity={snackbarState.severity} variant="filled">
+    {snackbarState.message}
+  </Alert>
+</Snackbar>
+
 {!isChatOpen?
 <IconButton 
     onClick={() => setIsChatOpen(!isChatOpen)}
@@ -116,7 +156,7 @@ function Chat_Right() {
 
 <Slide direction="up" in={isChatOpen} mountOnEnter unmountOnExit>
         <Box className="chat-container1" sx={{ display: { xs: 'flex', md: 'none' } }}> 
-        <Box className="messages">
+        <Box className="messages1">
                         {messages.map((msg, index) => (
                             <div key={msg.id || index} className={`message-wrapper ${msg.sender} fade-in`}>
                                 {msg.sender === 'bot' ? (
@@ -191,24 +231,27 @@ function Chat_Right() {
         </Slide>
         <Box className="chat-container" sx={{display: { xs: 'none', md: 'flex' }}}>
          <Box className="messages">
-                {messages.map((msg, index) => (
-                    <div key={msg.id || index} className={`message-wrapper ${msg.sender} fade-in`}>
-                        {msg.sender === 'bot' ? (
-                            <>
-                                <span className="message-bubble">{msg.text}</span>
-                                <img src={RobotLogo1} alt="Robot Logo" className="message-logo" />
-                            </>
-                        ) : (
-                            <>
-                                <img src={RobotLogo} alt="User Logo" className="message-logo" />
-                                <span className="message-bubble">{msg.text}</span>
-                            </>
-                        )}
-                        <div className={`timestamp timestamp-${msg.sender}`}>
-                            {new Date().toLocaleTimeString()}
-                        </div>
-                    </div>
-                ))}
+         {messages.map((msg, index) => (
+    <div key={msg.id || index} className={`message-wrapper ${msg.sender} fade-in`}>
+        {msg.sender === 'bot' ? (
+            <>
+                <div className={`timestamp timestamp-${msg.sender}`}>
+                    {new Date().toLocaleTimeString()}
+                </div>
+                <span className="message-bubble">{msg.text}</span>
+                <img src={RobotLogo1} alt="Robot Logo" className="message-logo" />
+            </>
+        ) : (
+            <>
+                <img src={RobotLogo} alt="User Logo" className="message-logo" />
+                <span className="message-bubble">{msg.text}</span>
+                <div className={`timestamp timestamp-${msg.sender}`}>
+                    {new Date().toLocaleTimeString()}
+                </div>
+            </>
+        )}
+    </div>
+))}
                 {showSpinner && (
                     <div className="message-loading">
                         <ChatSpinner />
