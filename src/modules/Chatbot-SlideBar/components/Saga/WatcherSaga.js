@@ -1,9 +1,9 @@
 import { takeEvery, call } from 'redux-saga/effects';
-import { sendFilesToServer } from './Saga';
-import { UPLOAD_FILES } from '../../../../common/state/StatesConstants';
+import sendFilesToServerSaga, { sendFilesToServer } from './Saga';
+import { SEND_FILES_TO_SERVER } from '../../../../common/state/StatesConstants';
 
 function* watchUploadFiles() {
-  yield takeEvery(UPLOAD_FILES, sendFilesToServer);
+  yield takeEvery(SEND_FILES_TO_SERVER, sendFilesToServerSaga);
 }
 
 export default watchUploadFiles;

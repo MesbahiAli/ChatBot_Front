@@ -4,12 +4,12 @@ import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import DeleteIcon from '@mui/icons-material/Delete';
 import SendIcon from '@mui/icons-material/Send';
 import { useDispatch, useSelector } from 'react-redux';
-import { uploadFiles, deleteFile } from '../state/UploadActions';
+import { uploadFiles, deleteFile, sendFilesToServer } from '../state/UploadActions';
 
 const UploadComponent = () => {
   const dispatch = useDispatch();
   const files = useSelector(state => state.upload.files);
-console.log(files)
+
   const handleFileChange = (e) => {
     const selectedFiles = Array.from(e.target.files);
     dispatch(uploadFiles(selectedFiles));
@@ -17,6 +17,10 @@ console.log(files)
 
   const handleDelete = (fileName) => {
     dispatch(deleteFile(fileName));
+  };
+
+  const handleUploadButtonClick = () => {
+    dispatch(sendFilesToServer());
   };
 
   return (
@@ -47,7 +51,7 @@ console.log(files)
         ))}
       </List>
 
-      <Button startIcon={<SendIcon />} variant="contained">
+      <Button startIcon={<SendIcon />} variant="contained" onClick={handleUploadButtonClick}>
         Send to Server
       </Button>
     </div>

@@ -1,4 +1,4 @@
-import { DELETE_FILE, UPLOAD_FILES } from "../../../common/state/StatesConstants";
+import { DELETE_FILE, UPLOAD_FILES, SEND_FILES_TO_SERVER } from "../../../common/state/StatesConstants";
 
 export const uploadFiles = (files) => ({
   type: UPLOAD_FILES,
@@ -8,4 +8,8 @@ export const uploadFiles = (files) => ({
 export const deleteFile = (fileName) => ({
   type: DELETE_FILE,
   payload: fileName
+});
+
+export const sendFilesToServer = () => ({
+  type: SEND_FILES_TO_SERVER
 });

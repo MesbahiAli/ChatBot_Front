@@ -6,6 +6,7 @@ import config from "../Config";
 import Sidebar from '../../modules/Chatbot-SlideBar/components/SideBar';
 import Chat_Right from '../../modules/Chatbot-RightBar/components/Chat_Right';
 import Feed from './../../modules/Chatbot-Feed/components/Feed';
+import Auth from '../../modules/Authentification/ui/Auth';
 
 class Layout extends Component {
   
@@ -43,9 +44,10 @@ class Layout extends Component {
         }
       >
 <Stack direction="row" justifyContent="space-between" alignItems="stretch" height="100vh">
-          <Sidebar />
-          <Feed/>
-          <Chat_Right />
+            <Sidebar />
+          {/* <Feed/>  */}
+          <Chat_Right /> 
+          <Auth/>
         </Stack>
       </div>
     );

@@ -7,5 +7,7 @@ export const SEND_MESSAGE_REQUEST = 'SEND_MESSAGE_REQUEST';
 export const SEND_MESSAGE_SUCCESS = 'SEND_MESSAGE_SUCCESS';
 export const SEND_MESSAGE_FAILURE = 'SEND_MESSAGE_FAILURE';
  //*****************upload *******************/
-export const UPLOAD_FILES = 'UPLOAD_FILES';
 export const DELETE_FILE = 'DELETE_FILE';
+export const SEND_FILES_TO_SERVER = 'SEND_FILES_TO_SERVER';
+export const UPLOAD_FILES = 'UPLOAD_FILES';
+

@@ -13,7 +13,7 @@ const config = {
 
   // config for local backend
 
-    url: "https://flaskbot-9p6j.onrender.com/get_response.js",
+    url: "https://flasktest-zcyt.onrender.com",
     appVersion: "1.0.0",
     primaryColor: "#232A56",
     secondaryColor: "#575756",
