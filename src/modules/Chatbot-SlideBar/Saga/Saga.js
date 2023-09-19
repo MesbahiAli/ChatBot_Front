@@ -1,5 +1,5 @@
-import { put, call, select } from 'redux-saga/effects';
-import { UploadServer } from '../../../../common/services/UploadService';
+import {call, select } from 'redux-saga/effects';
+ import { UploadServer } from '../../../common/services/UploadService';
 
 function* sendFilesToServerSaga(action) {
   try {
