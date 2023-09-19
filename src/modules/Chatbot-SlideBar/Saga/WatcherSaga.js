@@ -1,5 +1,5 @@
 import { takeEvery, call } from 'redux-saga/effects';
-import sendFilesToServerSaga from '../Saga/Saga';
+import sendFilesToServerSaga from './Saga';
 import { SEND_FILES_TO_SERVER } from '../../../common/state/StatesConstants';
 
 function* watchUploadFiles() {

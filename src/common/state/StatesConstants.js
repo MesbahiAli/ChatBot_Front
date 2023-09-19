@@ -10,4 +10,12 @@ export const SEND_MESSAGE_FAILURE = 'SEND_MESSAGE_FAILURE';
 export const DELETE_FILE = 'DELETE_FILE';
 export const SEND_FILES_TO_SERVER = 'SEND_FILES_TO_SERVER';
 export const UPLOAD_FILES = 'UPLOAD_FILES';
+//////////////////fetchFiles//////////////////
+export const FETCH_DATA_REQUEST = 'FETCH_DATA_REQUEST';
+export const FETCH_DATA_SUCCESS = 'FETCH_DATA_SUCCESS';
+export const FETCH_DATA_FAILURE = 'FETCH_DATA_FAILURE';
 
+//////////////////SEND_FILE//////////////////
+export const SEND_FILE_NAMES_REQUEST = 'SEND_FILE_NAMES_REQUEST';
+export const SEND_FILE_NAMES_SUCCESS = 'SEND_FILE_NAMES_SUCCESS';
+export const SEND_FILE_NAMES_FAILURE = 'SEND_FILE_NAMES_FAILURE';
