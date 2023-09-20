@@ -6,6 +6,7 @@ import dataReducer from "../../modules/files/State/ReducerFile";
 import { fileReducer } from "../../modules/Chatbot-SlideBar/SlectedFile/State/ReducerSlect";
 import { toggleReducer } from "../../modules/Chatbot-RightBar/components/Togle/State/TogleReducer";
 import { summarizeReducer } from "../../modules/Chatbot-RightBar/components/Summarize/State/SummarizeReducers";
+import pdfReducer from "../../modules/Chatbot-SlideBar/components/FileView.js/State/ViewReducer";
 
 const rootReducer = combineReducers({
   Auth: AuthReducer,
@@ -14,7 +15,8 @@ const rootReducer = combineReducers({
   Files:dataReducer,
   Selected:fileReducer,
   Togle:toggleReducer,
-  Summarize:summarizeReducer
+  Summarize:summarizeReducer,
+  Pdf:pdfReducer,
 
   
 });

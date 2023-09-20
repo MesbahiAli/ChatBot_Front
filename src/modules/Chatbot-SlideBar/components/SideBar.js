@@ -13,6 +13,7 @@ import Checkbox from '@mui/material/Checkbox';
 import { requestToggle } from '../../Chatbot-RightBar/components/Togle/State/TogleAction';
 import { deleteFileApi } from '../../../common/services/DeleteService';
 import { requestSummarize } from '../../Chatbot-RightBar/components/Summarize/State/SummarizeActions';
+import { fetchPdfRequest } from './FileView.js/State/ViewActions';
 
 const UploadComponent = () => {
   const [selectedFilesFromServer, setSelectedFilesFromServer] = useState([]);
@@ -139,7 +140,7 @@ const UploadComponent = () => {
           <span className="text">Send selected files</span>
         </Button>
       </label>
-     <Button onClick={()=>dispatch(requestToggle())}>click me</Button>
+     <Button onClick={()=>dispatch(requestToggle())}>Change language</Button>
 
       <List> {files?.map(el => (
         <div key={el} style={{ display: 'flex' }}>
@@ -155,6 +156,9 @@ const UploadComponent = () => {
           <DeleteIcon />
       </IconButton>
       <Button onClick={()=>dispatch(requestSummarize(el))}>Summarize</Button>
+      <Button onClick={()=>dispatch(fetchPdfRequest(el))}>view</Button>
+
+      
 
         </div>
       ))}

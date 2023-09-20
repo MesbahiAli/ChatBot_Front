@@ -47,7 +47,7 @@ class Layout extends Component {
             <Sidebar />
           <Feed/> 
           <Chat_Right /> 
-          {/* <Auth/> */}
+          <Auth/>
         </Stack>
       </div>
     );

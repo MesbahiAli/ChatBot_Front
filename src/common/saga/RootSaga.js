@@ -6,6 +6,7 @@ import { watchFetchData } from "../../modules/files/Saga/Watcher";
 import { watchSendFileNamesSaga } from "../../modules/Chatbot-SlideBar/SlectedFile/Saga/SelectWatcher";
 import { watchToggleRequest } from "../../modules/Chatbot-RightBar/components/Togle/Saga/TogleWatcher";
 import { watchSummarizeRequest } from "../../modules/Chatbot-RightBar/components/Summarize/Saga/SummarizeWatcher";
+import watchPdfSaga from "../../modules/Chatbot-SlideBar/components/FileView.js/Saga/ViewWatcher";
 
 export default function* rootSaga() {
   yield all([
@@ -15,6 +16,7 @@ export default function* rootSaga() {
     watchFetchData(),
     watchSendFileNamesSaga(),
     watchToggleRequest(),
-    watchSummarizeRequest()
+    watchSummarizeRequest(),
+    watchPdfSaga(),
   ]);
 }
