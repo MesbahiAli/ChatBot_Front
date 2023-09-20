@@ -35,7 +35,8 @@
     "sockjs-client": "^1.5.1",
     "web-vitals": "^2.1.4",
     "websocket": "^1.0.34",
-    "yup": "^0.32.11"
+    "yup": "^0.32.11",
+    "framer-motion": "^4.1.16"
   },
   "scripts": {
     "start": "set SET NODE_OPTIONS=--openssl-legacy-provider && react-scripts start --port=8090",

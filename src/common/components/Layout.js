@@ -8,7 +8,7 @@ import Chat_Right from '../../modules/Chatbot-RightBar/components/Chat_Right';
 import Auth from '../../modules/Authentification/ui/Auth';
 
 class Layout extends Component {
-  
+
   render() {
     const theme = createTheme(
       {
@@ -32,21 +32,23 @@ class Layout extends Component {
         style={
           this.props.backgroundColor
             ? {
-                position: "relative",
-                minHeight: "100vh",
-                backgroundColor: this.props.backgroundColor,
-              }
+              position: "relative",
+              minHeight: "100vh",
+              width: "100vw",
+              backgroundColor: this.props.backgroundColor,
+            }
             : {
-                position: "relative",
-                minHeight: "100vh",
-              }
+              position: "relative",
+              minHeight: "100vh",
+              width: "100vw",
+            }
         }
       >
-<Stack direction="row" justifyContent="space-between" alignItems="stretch" height="100vh">
-            <Sidebar />
+        <Stack direction="row" justifyContent="space-between" alignItems="stretch" height="100vh">
+          <Auth />
+          {/* <Sidebar /> */}
           {/* <Feed/>  */}
-          <Chat_Right /> 
-          <Auth/>
+          {/* <Chat_Right />  */}
         </Stack>
       </div>
     );
