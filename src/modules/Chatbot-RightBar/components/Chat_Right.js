@@ -149,7 +149,7 @@ function Chat_Right() {
         right: '20px',     
         zIndex: 1000,
         color: '#FFF',
-        backgroundColor: '#343e8b', /* ------ HERE ----- */
+        backgroundColor: '#121212', /* ------ HERE ----- */
         boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.2)', 
         transition: 'background-color 0.3s, transform 0.3s', // Smooth color and size transition
         '&:hover': {
