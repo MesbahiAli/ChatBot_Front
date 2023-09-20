@@ -3,8 +3,8 @@ import { Box } from "@mui/material";
 
 const Feed = () => {
   return (
-    <Box bgcolor="greenyellow" flex={4} p={{ xs: 0, md: 2 }}>
-      Test123
+    /* ------ HERE ----- */ <Box bgcolor="#212229" color="#fff" flex={4} p={{ xs: 0, md: 2 }}>
+      
     </Box>
   );
 };

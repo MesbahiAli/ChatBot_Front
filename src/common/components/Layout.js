@@ -4,6 +4,7 @@ import { frFR } from "@mui/material/locale";
 import { Stack } from '@mui/material';
 import config from "../Config";
 import Sidebar from '../../modules/Chatbot-SlideBar/components/SideBar';
+//import Sidebar from '../../modules/Sidebar/Sidebar';
 import Chat_Right from '../../modules/Chatbot-RightBar/components/Chat_Right';
 import Feed from './../../modules/Chatbot-Feed/components/Feed';
 
