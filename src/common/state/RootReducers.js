@@ -4,6 +4,8 @@ import UploadReducer from "../../modules/Chatbot-SlideBar/state/UploadReducer";
 import AuthReducer from "../../modules/Authentification/state/AuthReducer";
 import dataReducer from "../../modules/files/State/ReducerFile";
 import { fileReducer } from "../../modules/Chatbot-SlideBar/SlectedFile/State/ReducerSlect";
+import { toggleReducer } from "../../modules/Chatbot-RightBar/components/Togle/State/TogleReducer";
+import { summarizeReducer } from "../../modules/Chatbot-RightBar/components/Summarize/State/SummarizeReducers";
 
 const rootReducer = combineReducers({
   Auth: AuthReducer,
@@ -11,6 +13,9 @@ const rootReducer = combineReducers({
   upload:UploadReducer,
   Files:dataReducer,
   Selected:fileReducer,
+  Togle:toggleReducer,
+  Summarize:summarizeReducer
+
   
 });
 

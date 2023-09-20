@@ -10,6 +10,9 @@ import { sendFileNamesRequest } from '../SlectedFile/State/actionSlect';
 
 import '../style/Sidebar.css';
 import Checkbox from '@mui/material/Checkbox';
+import { requestToggle } from '../../Chatbot-RightBar/components/Togle/State/TogleAction';
+import { deleteFileApi } from '../../../common/services/DeleteService';
+import { requestSummarize } from '../../Chatbot-RightBar/components/Summarize/State/SummarizeActions';
 
 const UploadComponent = () => {
   const [selectedFilesFromServer, setSelectedFilesFromServer] = useState([]);
@@ -18,18 +21,12 @@ const UploadComponent = () => {
     dispatch(uploadFiles(selectedFiles));
   };
 
-  const handleUploadButtonClick = () => {
-    if (filesUpload.length > 0) {
-      dispatch(sendFilesToServer());
-      dispatch(fetchDataRequest());
-    }
-  };
-
-
+  
+  
   const buttonStyle = {
     color: '#fff'
   };
-
+  
   const checkStyle = {
     color: '#fff',
     margin: 0,
@@ -52,18 +49,24 @@ const UploadComponent = () => {
   const docStyle = {
     color: 'white',
   };
-
+  
   const docDeleteStyle = {
     color: '#888'
   };
-
+  
   const dispatch = useDispatch();
- 
-
+  
+  
   const filesUpload = useSelector(state => state.upload.files);
   const files = useSelector(state => state.Files.data);
-
-
+  
+  
+  const handleUploadButtonClick = () => {
+    if (filesUpload.length > 0) {
+      dispatch(sendFilesToServer());
+      dispatch(fetchDataRequest());
+    }
+  };
   const handleServerFileSelect = (file) => {
     setSelectedFilesFromServer(prev => {
       if (prev.includes(file)) {
@@ -83,6 +86,17 @@ const UploadComponent = () => {
     dispatch(fetchDataRequest());
   }, []);
 
+
+  const handleDelete = (filename) => {
+    deleteFileApi(filename)
+      .then(response => {
+        dispatch(fetchDataRequest());  
+      })
+      .catch(error => {
+        console.error("Error deleting file:", error);
+      });
+  };
+  
   return (
     <div className='SidebarDev'>
       <input
@@ -122,19 +136,26 @@ const UploadComponent = () => {
 
       <label id='sendServerLabel'>
         <Button  onClick={handleSendSelectedFilesFromServer} id='sendBtn' style={sendServerButton} endIcon={<SendIcon />} >
-          <span className="text">Send Selected to Server File</span>
+          <span className="text">Send selected files</span>
         </Button>
       </label>
-     
+     <Button onClick={()=>dispatch(requestToggle())}>click me</Button>
+
       <List> {files?.map(el => (
         <div key={el} style={{ display: 'flex' }}>
+                    {el}
+
           <Checkbox 
             style={checkStyle}
             edge="start"
             checked={selectedFilesFromServer.includes(el)}
             onChange={() => handleServerFileSelect(el)}
           />
-          {el}
+          <IconButton style={checkStyle} edge="end" onClick={() => handleDelete(el)} id='deleteIcon'>
+          <DeleteIcon />
+      </IconButton>
+      <Button onClick={()=>dispatch(requestSummarize(el))}>Summarize</Button>
+
         </div>
       ))}
       </List>

@@ -38,11 +38,9 @@ function Chat_Right() {
     const isLoading = useSelector((state) => state.chat.isLoading);
     const [isChatOpen, setIsChatOpen] = useState(false);
 
-
     const [showSpinner, setShowSpinner] = useState(false);
     const [userIsTyping, setUserIsTyping] = useState(false);
     const messagesEndRef = useRef(null);  // To auto-scroll
-
     useEffect(() => {
         dispatch({
             type: SEND_MESSAGE_SUCCESS,
@@ -52,6 +50,7 @@ function Chat_Right() {
                 text: "Hell On sait depuis longtemps que travailler On sait depuis longtemps que travaillerOn sait depuis longtemps que travaillerOn sait depuis longtemps que travaillerOn sait depuis longtemps que travailler"
             },
         });
+   
     }, [dispatch]);
 
     useEffect(() => {
