@@ -1,0 +1,188 @@
+.SidebarDev {
+    color: white;
+    padding: 25px 20px;
+    border-right: 0.5px solid #3a3a3a;
+    background-color: #121212; /* ------ HERE ----- */
+    width: 15%;
+}
+
+.SidebarDev label {
+    padding: 10px;
+    padding-bottom: 12px;
+    border-radius: 5px;
+    margin-top: 50px;
+    border: 1px solid #343e8b;
+    border-radius: 4px;
+}
+
+.SidebarDev label:hover {
+    background-color: #343e8b;
+    color: #121212;
+}
+
+.sidebar-button {
+    width: 90%;
+    margin: 0 auto;
+    display: block;
+    padding: 25px 0px;
+
+}
+
+#sendServerLabel {
+    background-color: #343e8b;
+}
+
+#sendServerLabel button {
+    width: 90%;
+    margin: 0 auto;
+}
+
+
+#sendServerLabel:hover {
+    background-color: #202970;
+}
+
+#listItem {
+    border-bottom: 1px solid #212229;
+}
+
+#listItem:hover {
+    background-color: #151515;
+}
+
+#deleteIcon {
+    opacity: 0.7;
+}
+
+#deleteIcon:hover {
+    opacity: 1;
+}
+
+@media (max-width: 1250px) {
+
+    #sendBtn > span.text {
+        display: none; /* Hide the text on small screens */
+    }
+
+    .sidebar-button .text {
+        display: none; /* Hide the text on small screens */
+    }
+
+    #sendBtn > span{
+        margin: 0;
+        padding: 0;
+    }
+    
+    #uploadLabel{
+        margin: 0;
+    }
+
+    #uploadLabel > span > span{
+        margin: 0;
+    }
+
+    
+
+    #sendBtn{
+        margin: 0;
+        padding: 0;
+    }
+}
+
+@media (max-width: 900px) {
+
+    label#sendServerLabel{
+        margin: -5px;
+    }
+
+
+    .sidebar-button .text {
+        display: none; /* Hide the text on small screens */
+    }
+
+    #uploadLabel > span{
+        padding: 20px;
+    }
+
+    #uploadLabel{
+        background-color: transparent;
+    }
+    
+
+    .sidebar-button {
+        padding: 15px;
+        margin: 15px;
+    }
+
+    .SidebarDev {
+        margin: 0;
+        padding: 0px;
+    }
+
+    #uploadLabel {
+        margin: 0 auto;
+        padding: 0;
+        border: none;
+        margin-left: 5px;
+    }
+
+    #sendServerLabel #sendBtn {
+        border: none;
+    }
+
+    #sendBtn{
+        background-color: none;
+        border: none;
+    }
+}
+
+.file-list-container {
+    max-height: 800px; /* Adjust the maximum height as needed */
+    overflow-y: auto; /* Enable vertical scrolling when content exceeds the height */
+    margin: 10px 0;
+}
+
+/* styles.css or your preferred stylesheet */
+
+/* Default styles for list items */
+#listItem {
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Style for file name */
+  #listItemPrimaryText {
+    flex: 1; /* Allow the file name to take up all available space */
+    white-space: nowrap; /* Prevent text from wrapping to the next line */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Display ellipsis (...) for truncated text */
+  }
+  
+  /* Style for checkbox and delete icon */
+  #listItemSecondaryAction {
+    /* Add your desired styles for checkbox and delete icon */
+    /* Example styles, you can adjust these as needed */
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Media query for small screens (adjust the breakpoint as needed) */
+  @media (max-width: 768px) {
+    /* Stack the elements vertically on small screens */
+    #listItem {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    /* Reset file name styles to wrap text */
+    #listItemPrimaryText {
+      white-space: normal;
+      overflow: visible;
+      text-overflow: inherit;
+    }
+  
+    /* Adjust spacing as needed */
+    #listItemSecondaryAction {
+      margin-top: 4px; /* Add spacing between the file name and checkbox/delete icon */
+    }
+}
