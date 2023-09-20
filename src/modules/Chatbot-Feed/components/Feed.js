@@ -13,11 +13,11 @@ console.log(pdfData)
      {summarize}
 
 {pdfData && <embed 
-                    src={`data:application/pdf;base64,${pdfData.pdf}`} 
-                    type="application/pdf" 
-                    width="100%" 
-                    height="600px"
-                />
+    src={`data:application/pdf;base64,${pdfData.pdf}#toolbar=0`} 
+    type="application/pdf" 
+    width="100%" 
+    height="600px"
+/>
             }
         </div>
     </Box>
