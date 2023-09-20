@@ -45,6 +45,15 @@
 
 #listItem {
     border-bottom: 1px solid #212229;
+
+    /* -------- */
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    /* ------- */
+
 }
 
 #listItem:hover {
@@ -144,6 +153,8 @@
 .file-list-container {
     max-height: 800px; /* Adjust the maximum height as needed */
     overflow-y: auto; /* Enable vertical scrolling when content exceeds the height */
+    overflow-x: auto; /* Enable horizontal scrolling when content overflows */
+    white-space: wrap; /* Prevent line breaks in list items */
     margin: 10px 0;
 }
 
@@ -161,6 +172,16 @@
     white-space: nowrap; /* Prevent text from wrapping to the next line */
     overflow: hidden;
     text-overflow: ellipsis; /* Display ellipsis (...) for truncated text */
+
+    /* ----------- */
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex: 1;
+
+    /* ------------ */
+
   }
 
   /* Style for checkbox and delete icon */
@@ -169,6 +190,16 @@
     /* Example styles, you can adjust these as needed */
     display: flex;
     align-items: center;
+
+    margin-right: -90%;
+
+    /* ---------------*/
+
+    display: flex;
+    gap: 8px;
+
+    /* --------------*/
+
   }
   
   /* Media query for small screens (adjust the breakpoint as needed) */
@@ -189,8 +220,25 @@
     /* Adjust spacing as needed */
     #listItemSecondaryAction {
       margin-top: 4px; /* Add spacing between the file name and checkbox/delete icon */
+    margin-right: -90%;
+
     }
 }
+
+/* ----------------------- */
+
+@media (max-width: 1500px) {  
+    #listItemPrimaryText {
+      font-size: 12px;
+    }
+  
+    #listItemSecondaryAction#checkIcon {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+/* ----------------------- */
 
 /* 20/09/23 ---- */
 
@@ -228,6 +276,20 @@
         display: block;
         width: 100%; /* Restore the original width or set your preferred width */
     }
+
+    .file-list-container {
+        max-height: 75%;
+        margin-bottom: 25px;
+    }
+    
+    #listItemSecondaryAction {
+        margin-right: -90%;
+    }
+
+    #listItemSecondaryAction > span {
+        flex-direction: row;
+    }
+
   }
 
   #root > div > div > div > div.SidebarDev.open > div + #root > div > div > div > div.SidebarDev.open > div > ul{
@@ -236,4 +298,18 @@
         width: 90%;
     }
 
+    @media (min-width: 900px) {
+        #listItemPrimaryText{
+            color: red;
+            background-color: #fff;
+            margin-left: 35%;
+            font-size: small;
+        }
+
+        #listItemPrimaryText > span{
+            font-size: 6px;
+            font-size: small;
+            word-wrap: break-word;
+        }
+    }
 /* ---- 20/09/23 */

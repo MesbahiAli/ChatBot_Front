@@ -52,7 +52,9 @@ const UploadComponent = () => {
 
   const listItemStyle = {
     padding: 0,
-    margin: 0
+    margin: 0,
+    marginRight: '-80%',
+    
   };
 
   const docDeleteStyle = {
@@ -124,13 +126,13 @@ const UploadComponent = () => {
               {files.map((file, index) => (
                 <ListItem id='listItem' style={docStyle} key={index}>
                   <ListItemText id='listItemSecondaryAction' style={listItemStyle}>
-                    <Checkbox style={checkStyle} />
+                    <Checkbox style={checkStyle} id='checkIcon' />
                     <IconButton style={checkStyle} edge="end" onClick={() => handleDelete(file.name)} id='deleteIcon'>
                       <DeleteIcon />
                     </IconButton>
                   </ListItemText>
                   <ListItemText primary={file.name} id='listItemPrimaryText'/>
-                </ListItem> 
+                </ListItem>
               ))}
             </List>
           </div>
