@@ -12,13 +12,21 @@ console.log(pdfData)
 <div>
      {summarize}
 
-{pdfData && <embed 
+{/* {pdfData && <embed 
                     src={`data:application/pdf;base64,${pdfData.pdf}`} 
                     type="application/pdf" 
                     width="100%" 
                     height="600px"
                 />
-            }
+            } */}
+
+
+{pdfData &&<iframe 
+          src={`data:application/pdf;base64,${pdfData.pdf}`}           
+          title="application/pdf"
+          style={{ width: '100%', height: '600px', border: 'none' }} 
+        ></iframe>
+        }
         </div>
     </Box>
   );
