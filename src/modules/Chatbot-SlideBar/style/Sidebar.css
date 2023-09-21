@@ -157,10 +157,6 @@
     white-space: nowrap; /* Prevent text from wrapping to the next line */
     overflow: hidden;
     text-overflow: ellipsis; /* Display ellipsis (...) for truncated text */
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    flex: 1;
 }
   
   /* Style for checkbox and delete icon */
