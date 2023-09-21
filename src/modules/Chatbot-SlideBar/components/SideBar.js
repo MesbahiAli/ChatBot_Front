@@ -16,6 +16,21 @@ import { fetchPdfRequest } from './FileView.js/State/ViewActions';
 import CloudDoneIcon from '@mui/icons-material/CloudDone';
 // 20/09/23
 
+
+// Mouad Doadi - 21/09/23 >
+
+import SummarizeIcon from '@mui/icons-material/Summarize';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+
+// toggle >
+
+import ToggleButton from '@mui/lab/ToggleButton';
+import ToggleButtonGroup from '@mui/lab/ToggleButtonGroup';
+
+// < toggle
+
+// < 21/09/23
+
 import MenuIcon from '@mui/icons-material/Menu'; 
 const UploadComponent = () => {
 
@@ -95,8 +110,15 @@ const UploadComponent = () => {
 
   //
 
+  // Mouad Doadi - 21/09/23 >
+
+  const [selected, setSelected] = useState(false);
+
+  // < 21/09/23
+
   const dispatch = useDispatch();
   const filesUpload = useSelector(state => state.upload.files);
+  console.log(filesUpload)
   const files = useSelector(state => state.Files.data);
 
   useEffect(() => {
@@ -169,36 +191,52 @@ const UploadComponent = () => {
               <span className="text">Upload</span>
             </Button>
           </label>
+
+          <br />
+          <hr style={ { height: '1px', border: 'none' } }/>
     
-          <label id='sendServerLabel'>
-        <Button  onClick={handleSendSelectedFilesFromServer} id='sendBtn' style={sendServerButton} endIcon={<SendIcon />} >
-          <span className="text">Send selected files</span>
-        </Button>
-      </label>
-    
-          <Button onClick={()=>dispatch(requestToggle())}>Change language</Button>
-          <List> {files?.map(el => (
-        <div key={el} style={{ display: 'flex' }}>
+          {/*<Button onClick={()=>dispatch(requestToggle())}>Change language</Button> 
+          <ToggleButtonGroup
+            value={selected}
+            exclusive
+            onChange={() => setSelected(!selected)}
+            onClick={()=>dispatch(requestToggle())}
+            aria-label="toggle button"
+          >
+            <ToggleButton value={true} aria-label="summarize" style={{ color: 'white'}}>
+              {selected ? <img src="https://www.svgrepo.com/show/248851/united-states.svg" alt="EN" width="30" /> : <img src="https://www.svgrepo.com/show/248840/netherlands.svg" alt="Dutch" width="30" />}
+            </ToggleButton>
+          </ToggleButtonGroup>*/}
+
+          <List className="second-list file-list-container"> {files?.map(el => (
+            <div key={el} style={{ display: 'flex' }} className='li-container'>
                     {el}
 
-          <Checkbox 
-            style={checkStyle}
-            edge="start"
-            checked={selectedFilesFromServer.includes(el)}
-            onChange={() => handleServerFileSelect(el)}
-          />
-          <IconButton style={checkStyle} edge="end" onClick={() => handleDelete(el)} id='deleteIcon'>
-          <DeleteIcon />
-      </IconButton>
-      <Button onClick={()=>dispatch(requestSummarize(el))}>Summarize</Button>
-      <Button onClick={()=>dispatch(fetchPdfRequest(el))}>view</Button>
+              <div className='icon-container'>
+              <Checkbox 
+                style={checkStyle}
+                edge="start"
+                checked={selectedFilesFromServer.includes(el)}
+                onChange={() => handleServerFileSelect(el)}
+              />
+              <IconButton style={checkStyle} edge="end" onClick={() => handleDelete(el)} id='deleteIcon'>
+              <DeleteIcon />
+              </IconButton>
+              <Button onClick={()=>dispatch(requestSummarize(el))} id='summarizeIcon' title="Summarize the document"><SummarizeIcon/></Button>
+            <Button onClick={()=>dispatch(fetchPdfRequest(el))} id='viewIcon' title="View the document"><VisibilityIcon /></Button>
+              </div>
 
-      
+            </div>
+            ))}
+          </List>
 
-        </div>
-      ))}
-      </List>
-    </div>
+          <label id='sendServerLabel'>
+            <Button  onClick={handleSendSelectedFilesFromServer} id='sendBtn' style={sendServerButton} endIcon={<SendIcon />} >
+              <span className="text">Send selected files</span>
+            </Button>
+          </label>
+
+          </div>
     </>
   );
 };

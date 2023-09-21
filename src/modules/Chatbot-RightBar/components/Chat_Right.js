@@ -13,13 +13,31 @@ import CloseIcon from '@mui/icons-material/Close';
 import IconButton from '@mui/material/IconButton';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
+import { requestToggle } from './Togle/State/TogleAction';
+import { ToggleButton, ToggleButtonGroup } from '@mui/material';
 
+
+// 21/09/23
+
+// toggle >
+import ToggleButtond from '@mui/lab/ToggleButton';
+import ToggleButtonGroupd from '@mui/lab/ToggleButtonGroup';
+
+// < toggle
+
+// ----------- 21/09/23
 
 
 const SEND_MESSAGE_SUCCESS = 'SEND_MESSAGE_SUCCESS';
 const SEND_MESSAGE_REQUEST = 'SEND_MESSAGE_REQUEST';
 
 function Chat_Right() {
+
+    // Mouad Doadi - 21/09/23 >
+
+  const [selected, setSelected] = useState(false);
+
+  // < 21/09/23
 
     /* ----- HERE ----- */
 
@@ -243,6 +261,7 @@ function Chat_Right() {
         </Box>
         </Slide>
         <Box className="chat-container" sx={{display: { xs: 'none', md: 'flex' }}}>
+        
          <Box className="messages" width="90%">
          {messages.map((msg, index) => (
     <div key={msg.id || index} className={`message-wrapper ${msg.sender} fade-in`}>
@@ -279,6 +298,17 @@ function Chat_Right() {
 
             <form onSubmit={formik.handleSubmit}>
                 <Box display="flex" alignItems="center">
+                <ToggleButtonGroupd
+            value={selected}
+            exclusive
+            onChange={() => setSelected(!selected)}
+            onClick={()=>dispatch(requestToggle())}
+            aria-label="toggle button"
+          >
+            <ToggleButtond value={true} aria-label="summarize" style={{ color: 'white'}}>
+              {selected ? <img src="https://www.svgrepo.com/show/248851/united-states.svg" alt="EN" width="30" /> : <img src="https://www.svgrepo.com/show/248840/netherlands.svg" alt="Dutch" width="30" />}
+            </ToggleButtond>
+          </ToggleButtonGroupd>
                     <TextField id='textFieldd'
                         fullWidth
                         variant="outlined"
