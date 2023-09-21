@@ -4,8 +4,6 @@ import { styled } from '@mui/material/styles';
 import { Button, Typography, Container, Box } from '@mui/material';
 import image from "../../assets/images/NotFound.png";
 
-// ----------------------------------------------------------------------
-
 const ContentStyle = styled('div')(({ theme }) => ({
   height: '80vh',
   maxWidth: '50%',
@@ -17,8 +15,6 @@ const ContentStyle = styled('div')(({ theme }) => ({
   overflow: 'hidden'
 }));
 
-
-// ----------------------------------------------------------------------
 
 export default function NotFound() {
   return (
