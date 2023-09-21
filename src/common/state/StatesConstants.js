@@ -7,9 +7,12 @@ export const SEND_MESSAGE_REQUEST = 'SEND_MESSAGE_REQUEST';
 export const SEND_MESSAGE_SUCCESS = 'SEND_MESSAGE_SUCCESS';
 export const SEND_MESSAGE_FAILURE = 'SEND_MESSAGE_FAILURE';
  //*****************upload *******************/
-export const DELETE_FILE = 'DELETE_FILE';
-export const SEND_FILES_TO_SERVER = 'SEND_FILES_TO_SERVER';
-export const UPLOAD_FILES = 'UPLOAD_FILES';
+ export const DELETE_FILE = 'DELETE_FILE';
+ export const SEND_FILES_TO_SERVER = 'SEND_FILES_TO_SERVER';
+ export const UPLOAD_FILES = 'UPLOAD_FILES';
+ export const CLEAR_UPLOADED_FILES = 'CLEAR_UPLOADED_FILES';
+
+
 //////////////////fetchFiles//////////////////
 export const FETCH_DATA_REQUEST = 'FETCH_DATA_REQUEST';
 export const FETCH_DATA_SUCCESS = 'FETCH_DATA_SUCCESS';

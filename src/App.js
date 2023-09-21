@@ -6,17 +6,19 @@ import ProtectedRoute from './routing/ProtectedRoute';
 import _ from "lodash";
 import Spinner from "./common/components/SpinnerCustomized";
 import { useSelector } from "react-redux";
-import ForbiddenComponent from './routing/ForbiddenComponent';
-import Auth from './modules/Authentification/ui/Auth';
 import Chat from './modules/Chatbot-RightBar/ui/Chat';
 import Dashboard from "./common/components/dashboard/ui/Dashboard";
-import NotFound from "./common/components/NotFound";
+import Login from './modules/Authentification/components/Login';
+import NotFound from "./routing/NotFound";
+
 
 const protectedRoutes = {
-  homeAfterLogin: { path: "/homeafterlogin", requiredRoles: [], component: Auth },
+  // chatbot: { path: "/Chatbot45", requiredRoles: [], component: Login },
 };
-let isAuthenticated = localStorage.getItem("token"); 
+
+
 function App() {
+  let isAuthenticated = localStorage.getItem("token"); 
   const state = useSelector(state => state);
 
   let loadingProps;
@@ -31,19 +33,21 @@ function App() {
     }
   }
 
+  // les  route  de hors Authentication
   let routes = (
     <Layout>
       <Switch>
-        <Route exact path="/homebeforelogin" component={Auth} />
-        <Route exact path="/" render={() => <Redirect to="/homebeforelogin" />} />
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/" render={() => <Redirect to="/login" />} />
         <Route path="*" component={NotFound} />
       </Switch>
     </Layout>
   );
+
   //After login
   let content = (
     <Switch>
-      <Route exact path="/homeafterlogin" component={Chat} />
+      <Route exact path="/Chatbot" component={Chat} />
       {protectedRoutes && Object.entries(protectedRoutes).map(([routeKey, routeProps]) => (
         <ProtectedRoute
           key={routeKey}
@@ -52,11 +56,10 @@ function App() {
           component={routeProps.component}
         />
       ))}
-      <Route exact path="/" render={() => <Redirect to="/homeafterlogin" />} />
+      <Route exact path="/" render={() => <Redirect to="/Chatbot" />} />
       <Route path="*" component={NotFound} />
     </Switch>
   );
-
   if (isAuthenticated) {
     routes = (
       <Layout>

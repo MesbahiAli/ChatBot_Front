@@ -1,10 +1,14 @@
-import * as ActionTypes from "../../../common/state/StatesConstants";
+import { UPLOAD_FILES, SEND_FILES_TO_SERVER, CLEAR_UPLOADED_FILES } from "../../../common/state/StatesConstants";
 
 export const uploadFiles = (files) => ({
-  type: ActionTypes.UPLOAD_FILES,
+  type: UPLOAD_FILES,
   payload: files
 });
 
 export const sendFilesToServer = () => ({
-  type: ActionTypes.SEND_FILES_TO_SERVER
+  type: SEND_FILES_TO_SERVER
+});
+
+export const clearUploadedFiles = () => ({
+  type: CLEAR_UPLOADED_FILES
 });

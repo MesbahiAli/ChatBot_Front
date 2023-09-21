@@ -17,6 +17,7 @@ import CloudDoneIcon from '@mui/icons-material/CloudDone';
 // 20/09/23
 
 import MenuIcon from '@mui/icons-material/Menu'; 
+import JwtUtils from '../../../routing/JwtUtils';
 const UploadComponent = () => {
 
   const [selectedFilesFromServer, setSelectedFilesFromServer] = useState([]);
@@ -112,8 +113,8 @@ const UploadComponent = () => {
   const handleUploadButtonClick = () => {
     if (filesUpload.length > 0) {
       dispatch(sendFilesToServer());
-      dispatch(fetchDataRequest());
     }
+    dispatch(fetchDataRequest());
   };
 
   const handleServerFileSelect = (file) => {
@@ -138,7 +139,10 @@ const UploadComponent = () => {
         console.error("Error deleting file:", error);
       });
   };
-  return (
+   const handleLogout = () => {
+    JwtUtils.logOut();
+  };
+    return (
     <>
     <IconButton style={{ color: '#000', backgroundColor: '#343e8f', margin: 0, padding: '5px', borderRadius: 0 }} onClick={toggleSidebar} className="hamburger-icon" sx={{ display: { xs: 'flex', md: 'none', xl: 'none' } }}>
         <MenuIcon style={{ color: '#aaa', margin: 0, padding: 0 }} />
@@ -204,6 +208,7 @@ const UploadComponent = () => {
         </div>
       ))}
       </List>
+      {JwtUtils.isActif()?<Button onClick={handleLogout}>logout</Button>:null}
     </div>
     </>
   );
