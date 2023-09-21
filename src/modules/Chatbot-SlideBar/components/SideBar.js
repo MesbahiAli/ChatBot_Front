@@ -15,6 +15,8 @@ import { requestSummarize } from '../../Chatbot-RightBar/components/Summarize/St
 import { fetchPdfRequest } from './FileView.js/State/ViewActions';
 import CloudDoneIcon from '@mui/icons-material/CloudDone';
 
+import MoreVertIcon from '@mui/icons-material/MoreVert';
+
 import LogoutIcon from '@mui/icons-material/Logout';
 
 // 20/09/23
@@ -36,6 +38,7 @@ import ToggleButtonGroup from '@mui/lab/ToggleButtonGroup';
 
 import MenuIcon from '@mui/icons-material/Menu'; 
 import JwtUtils from '../../../routing/JwtUtils'; /* TAHA */
+import SettingsPanel from './SettingsPanel';
 
 const UploadComponent = () => {
 
@@ -54,7 +57,9 @@ const UploadComponent = () => {
   const checkStyle = {
     color: '#fff',
     margin: 0,
-    padding: 0
+    padding: 0,
+    position:'relative'
+
   };
 
   const sendServerButton = {
@@ -81,12 +86,14 @@ const UploadComponent = () => {
     color: 'white',
     display: 'flex',
     alignItems: 'center',
+    justifyContent: "flex-start"
+
   };
 
   const listItemStyle = {
     padding: 0,
     margin: 0,
-    marginRight: '-80%',
+    // marginRight: '-80%',
     
   };
 
@@ -97,6 +104,7 @@ const UploadComponent = () => {
   // ---------------------------
 
   // 20/09/23
+  const [open,setOpen] = useState(false);
 
   const [isSidebarOpen, setIsSidebarOpen] = React.useState(true);
   
@@ -231,7 +239,7 @@ const UploadComponent = () => {
     
           {/* <Button onClick={()=>dispatch(requestToggle())}>Change language</Button> */}
           <List className="second-list file-list-container"> {files?.map(el => (
-        <div key={el} style={{ display: 'flex' }}>
+        <div key={el} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '5px 3px', paddingLeft: '5px', marginBottom: '10px', backgroundColor: '#212229', borderRadius: '8px' }}>
                     {el}
 
               <div className='icon-container'>
@@ -241,11 +249,13 @@ const UploadComponent = () => {
                 checked={selectedFilesFromServer.includes(el)}
                 onChange={() => handleServerFileSelect(el)}
               />
-              <IconButton style={checkStyle} edge="end" onClick={() => handleDelete(el)} id='deleteIcon'>
+              <SettingsPanel el={el}/>
+
+              {/* <IconButton style={checkStyle} edge="end" onClick={() => handleDelete(el)} id='deleteIcon'>
               <DeleteIcon />
               </IconButton>
               <Button onClick={()=>dispatch(requestSummarize(el))} id='summarizeIcon' title="Summarize the document"><SummarizeIcon/></Button>
-            <Button onClick={()=>dispatch(fetchPdfRequest(el))} id='viewIcon' title="View the document"><VisibilityIcon /></Button>
+            <Button onClick={()=>dispatch(fetchPdfRequest(el))} id='viewIcon' title="View the document"><VisibilityIcon /></Button> */}
               </div>
 
             </div>
@@ -255,7 +265,8 @@ const UploadComponent = () => {
 
 
           <label id='sendServerLabel' style={isSelected ? sendServerButton : disabledButton}>
-            <Button  onClick={handleSendSelectedFilesFromServer} id='sendBtn' disabled={isSelected ? false : true} style={isSelected ? sendServerButton : disabledButton} endIcon={<SendIcon />} >
+
+            <Button onClick={handleSendSelectedFilesFromServer} id='sendBtn' disabled={isSelected ? false : true} style={isSelected ? sendServerButton : disabledButton} endIcon={<SendIcon />} >
               <span className="text">Send selected files</span>
             </Button>
           </label>

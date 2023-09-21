@@ -145,6 +145,7 @@ input[id^="mui-"]{
 
     background-color: #6f7588; /* --------- HERE ------------ */
     &:hover { background-color: #636c8b; } /* --------- HERE ------------ */
+    flex-direction: row-reverse;
 }
 
 .message-bubble {
@@ -153,6 +154,10 @@ input[id^="mui-"]{
     text-align: center;
     font-size: 0.9em;
     width: 90%;
+    word-wrap: break-word;
+        overflow: hidden;
+        overflow-wrap: break-word;
+    
 }
 
 .bot .message-bubble {
@@ -160,6 +165,7 @@ input[id^="mui-"]{
     align-self: flex-end;
     color: #ffffff; /* --------- HERE ------------ */
     text-align: justify;
+    margin-bottom: 8px
 }
 
 .user .message-bubble {
@@ -167,7 +173,12 @@ input[id^="mui-"]{
     order: 2;
     align-self: flex-end;
     color: white; /* --------- HERE ------------ */
-    text-align: justify;
+    padding: 10px 15px;
+    margin: 0 10px;
+    font-size: 0.9em;
+    width: 90%;
+    text-align: justify;        margin-bottom: 8px;
+    margin-left:-4px
 }
 
 /* Timestamp and Avatar */

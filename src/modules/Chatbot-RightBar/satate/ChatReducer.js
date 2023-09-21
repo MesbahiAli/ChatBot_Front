@@ -28,6 +28,14 @@ const chatReducer = (state = initialState, action) => {
             isLoading: false,
             error: action.error,
           };
+    case 'SEND_CHATBOT_MESSAGE':
+            return {
+                ...state,
+                messages: [...state.messages, {
+                    sender: 'bot',
+                    text: action.payload,
+                }]
+            };
     default:
       return state;
   }
