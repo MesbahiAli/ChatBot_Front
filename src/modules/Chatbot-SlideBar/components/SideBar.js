@@ -200,7 +200,10 @@ const UploadComponent = () => {
           <IconButton style={checkStyle} edge="end" onClick={() => handleDelete(el)} id='deleteIcon'>
           <DeleteIcon />
       </IconButton>
-      <Button onClick={()=>dispatch(requestSummarize(el))}>Summarize</Button>
+      <Button onClick={() => dispatch(requestSummarize(el))}>
+            Summarize
+        </Button>
+      
       <Button onClick={()=>dispatch(fetchPdfRequest(el))}>view</Button>
 
       
