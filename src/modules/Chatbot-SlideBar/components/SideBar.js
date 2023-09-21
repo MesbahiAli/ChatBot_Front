@@ -41,6 +41,10 @@ const UploadComponent = () => {
   const sendServerButton = {
     color: '#fff'
   };
+  const disabledButton = {
+    backgroundColor:"grey",
+    cursor:""
+  };
 
   const sendServerLabel = {
     display: 'flex',
@@ -100,6 +104,8 @@ const UploadComponent = () => {
   const filesUpload = useSelector(state => state.upload.files);
   const files = useSelector(state => state.Files.data);
 
+  const isUploaded = filesUpload?.length !== 0;
+  const isSelected = selectedFilesFromServer?.length !== 0;
   useEffect(() => {
     dispatch(fetchDataRequest());
   }, []);
@@ -133,14 +139,10 @@ const UploadComponent = () => {
         console.error("Error deleting file:", error);
       });
   };
-
-
-  const handleLogout = () => {
+   const handleLogout = () => {
     JwtUtils.logOut();
   };
-
-
-  return (
+    return (
     <>
     <IconButton style={{ color: '#000', backgroundColor: '#343e8f', margin: 0, padding: '5px', borderRadius: 0 }} onClick={toggleSidebar} className="hamburger-icon" sx={{ display: { xs: 'flex', md: 'none', xl: 'none' } }}>
         <MenuIcon style={{ color: '#aaa', margin: 0, padding: 0 }} />
@@ -173,13 +175,13 @@ const UploadComponent = () => {
           </div>
 
           <label id='sendServerLabel'>
-            <Button onClick={()=>handleUploadButtonClick()} id='sendBtn' style={sendServerButton} endIcon={<CloudUploadIcon />}>
+            <Button onClick={handleUploadButtonClick} id='sendBtn' disabled={isUploaded ? false : true} style={isUploaded ? sendServerButton : disabledButton}  endIcon={<CloudUploadIcon />}>
               <span className="text">Upload</span>
             </Button>
           </label>
     
           <label id='sendServerLabel'>
-        <Button  onClick={handleSendSelectedFilesFromServer} id='sendBtn' style={sendServerButton} endIcon={<SendIcon />} >
+        <Button  onClick={handleSendSelectedFilesFromServer} id='sendBtn' disabled={isSelected ? false : true} style={isSelected ? sendServerButton : disabledButton} endIcon={<SendIcon />} >
           <span className="text">Send selected files</span>
         </Button>
       </label>
@@ -200,12 +202,14 @@ const UploadComponent = () => {
       </IconButton>
       <Button onClick={()=>dispatch(requestSummarize(el))}>Summarize</Button>
       <Button onClick={()=>dispatch(fetchPdfRequest(el))}>view</Button>
+
+      
+
         </div>
       ))}
       </List>
-    {JwtUtils.isActif()?<Button onClick={handleLogout}>logout</Button>:null}
+      {JwtUtils.isActif()?<Button onClick={handleLogout}>logout</Button>:null}
     </div>
-
     </>
   );
 };

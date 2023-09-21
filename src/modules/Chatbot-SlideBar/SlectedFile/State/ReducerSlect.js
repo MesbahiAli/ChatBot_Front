@@ -6,6 +6,7 @@ import { SEND_FILE_NAMES_FAILURE, SEND_FILE_NAMES_REQUEST, SEND_FILE_NAMES_SUCCE
   
   const initialState = {
     isLoading: false,
+    isSuccess:false,
     error: null,
   };
   
@@ -21,12 +22,14 @@ import { SEND_FILE_NAMES_FAILURE, SEND_FILE_NAMES_REQUEST, SEND_FILE_NAMES_SUCCE
         return {
           ...state,
           isLoading: false,
+          isSuccess:true
         };
       case SEND_FILE_NAMES_FAILURE:
         return {
           ...state,
           isLoading: false,
           error: action.payload,
+          isSuccess:false
         };
       default:
         return state;
