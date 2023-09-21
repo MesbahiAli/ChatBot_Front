@@ -40,6 +40,10 @@ const UploadComponent = () => {
   const sendServerButton = {
     color: '#fff'
   };
+  const disabledButton = {
+    backgroundColor:"grey",
+    cursor:""
+  };
 
   const sendServerLabel = {
     display: 'flex',
@@ -99,6 +103,8 @@ const UploadComponent = () => {
   const filesUpload = useSelector(state => state.upload.files);
   const files = useSelector(state => state.Files.data);
 
+  const isUploaded = filesUpload?.length !== 0;
+  const isSelected = selectedFilesFromServer?.length !== 0;
   useEffect(() => {
     dispatch(fetchDataRequest());
   }, []);
@@ -165,13 +171,13 @@ const UploadComponent = () => {
           </div>
 
           <label id='sendServerLabel'>
-            <Button onClick={handleUploadButtonClick} id='sendBtn' style={sendServerButton} endIcon={<CloudUploadIcon />}>
+            <Button onClick={handleUploadButtonClick} id='sendBtn' disabled={isUploaded ? false : true} style={isUploaded ? sendServerButton : disabledButton}  endIcon={<CloudUploadIcon />}>
               <span className="text">Upload</span>
             </Button>
           </label>
     
           <label id='sendServerLabel'>
-        <Button  onClick={handleSendSelectedFilesFromServer} id='sendBtn' style={sendServerButton} endIcon={<SendIcon />} >
+        <Button  onClick={handleSendSelectedFilesFromServer} id='sendBtn' disabled={isSelected ? false : true} style={isSelected ? sendServerButton : disabledButton} endIcon={<SendIcon />} >
           <span className="text">Send selected files</span>
         </Button>
       </label>

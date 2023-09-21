@@ -204,6 +204,11 @@ form #textFieldd {
     color: #eee;
 }
 
+textarea.MuiInputBase-input.MuiOutlinedInput-input.MuiInputBase-inputMultiline.css-1sqnrkk-MuiInputBase-input-MuiOutlinedInput-input
+{
+    /* min-height: 20px!important; */
+    padding:  5px;
+}
 form #textFieldd::placeholder {
     color: #fff;
 }
