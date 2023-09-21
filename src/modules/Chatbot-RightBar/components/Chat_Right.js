@@ -102,7 +102,18 @@ function Chat_Right() {
         }
         return
     }
-
+    useEffect(()=>{//for key down input form
+        const enter = (event) => {
+            if (event.keyCode === 13 && !event.shiftKey ) {
+                event.preventDefault(); // Prevent the default form submission
+                formik.handleSubmit(event);
+            }
+        }
+        document.getElementById("textFieldd").addEventListener("keydown",enter);
+        return () =>{
+            document.getElementById("textFieldd").removeEventListener("keydown",enter);
+        }
+    },[])
 
     const [snackbarState, setSnackbarState] = useState({
         open: false,
@@ -128,6 +139,11 @@ function Chat_Right() {
             });
         }
     }, [error]);
+    useEffect(()=>{
+        if (isSendFileSuccess) {
+            document.getElementById("textFieldd").focus();
+        }
+    },[isSendFileSuccess])
     let chatInput;
     if (isSendFileSuccess) {
         chatInput = <TextField id='textFieldd'
@@ -143,21 +159,17 @@ function Chat_Right() {
     } else {
         chatInput = <TextField id='textFieldd'
             fullWidth
-            label={!isSendFileSuccess && "please send a file first"}
             variant="outlined"
             {...formik.getFieldProps('user_input')}
             onChange={handleInputChange}
-            placeholder="Type your message..."
+            placeholder={"please send a file first"}
             style={inputStyle}
             multiline
             maxRows={4}
-            InputLabelProps={{
-                style: { color: 'white' },
-            }}
+            
+            
         />
     }
-
-    
     return (
         <>
 
