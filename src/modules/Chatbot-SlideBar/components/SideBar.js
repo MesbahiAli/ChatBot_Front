@@ -107,8 +107,8 @@ const UploadComponent = () => {
   const handleUploadButtonClick = () => {
     if (filesUpload.length > 0) {
       dispatch(sendFilesToServer());
-      dispatch(fetchDataRequest());
     }
+    dispatch(fetchDataRequest());
   };
 
   const handleServerFileSelect = (file) => {
