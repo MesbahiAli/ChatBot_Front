@@ -27,14 +27,16 @@ class Layout extends Component {
         style={
           this.props.backgroundColor
             ? {
-                position: "relative",
-                minHeight: "100vh",
-                backgroundColor: this.props.backgroundColor,
-              }
+              position: "relative",
+              minHeight: "100vh",
+              width: "100vw",
+              backgroundColor: this.props.backgroundColor,
+            }
             : {
-                position: "relative",
-                minHeight: "100vh",
-              }
+              position: "relative",
+              minHeight: "100vh",
+              width: "100vw",
+            }
         }
       >
         <main >

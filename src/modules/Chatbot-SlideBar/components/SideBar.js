@@ -173,7 +173,7 @@ const UploadComponent = () => {
           </div>
 
           <label id='sendServerLabel'>
-            <Button onClick={handleUploadButtonClick} id='sendBtn' style={sendServerButton} endIcon={<CloudUploadIcon />}>
+            <Button onClick={()=>handleUploadButtonClick()} id='sendBtn' style={sendServerButton} endIcon={<CloudUploadIcon />}>
               <span className="text">Upload</span>
             </Button>
           </label>

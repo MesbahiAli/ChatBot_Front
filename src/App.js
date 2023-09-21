@@ -8,19 +8,23 @@ import Spinner from "./common/components/SpinnerCustomized";
 import { useSelector } from "react-redux";
 import Chat from './modules/Chatbot-RightBar/ui/Chat';
 import Dashboard from "./common/components/dashboard/ui/Dashboard";
-import NotFound from "./common/components/NotFound";
 import Login from './modules/Authentification/components/Login';
+import NotFound from "./routing/NotFound";
+
 
 const protectedRoutes = {
   // chatbot: { path: "/Chatbot45", requiredRoles: [], component: Login },
 };
+
 
 function App() {
   let isAuthenticated = localStorage.getItem("token"); 
   const state = useSelector(state => state);
 
   let loadingProps;
-  let reducerHasLoading = _.pickBy(state, { isLoading: true });
+  let reducerHasLoading = _.pickBy(state, (value, key) => {
+    return value.isLoading === true && key !== "chat";
+});
   if (reducerHasLoading) {
     const target = _.keys(reducerHasLoading)[0];
     let nextProps = reducerHasLoading[target];
@@ -56,7 +60,6 @@ function App() {
       <Route path="*" component={NotFound} />
     </Switch>
   );
-
   if (isAuthenticated) {
     routes = (
       <Layout>
