@@ -16,8 +16,24 @@ import { fetchPdfRequest } from './FileView.js/State/ViewActions';
 import CloudDoneIcon from '@mui/icons-material/CloudDone';
 // 20/09/23
 
+
+// Mouad Doadi - 21/09/23 >
+
+import SummarizeIcon from '@mui/icons-material/Summarize';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+
+// toggle >
+
+import ToggleButton from '@mui/lab/ToggleButton';
+import ToggleButtonGroup from '@mui/lab/ToggleButtonGroup';
+
+// < toggle
+
+// < 21/09/23
+
 import MenuIcon from '@mui/icons-material/Menu'; 
-import JwtUtils from '../../../routing/JwtUtils';
+import JwtUtils from '../../../routing/JwtUtils'; /* TAHA */
+
 const UploadComponent = () => {
 
   const [selectedFilesFromServer, setSelectedFilesFromServer] = useState([]);
@@ -41,6 +57,9 @@ const UploadComponent = () => {
   const sendServerButton = {
     color: '#fff'
   };
+
+  /* TAHA */
+
   const disabledButton = {
     backgroundColor:"grey",
     cursor:""
@@ -100,12 +119,22 @@ const UploadComponent = () => {
 
   //
 
+  // Mouad Doadi - 21/09/23 >
+
+  const [selected, setSelected] = useState(false);
+
+  // < 21/09/23
+
   const dispatch = useDispatch();
   const filesUpload = useSelector(state => state.upload.files);
+  console.log(filesUpload)
   const files = useSelector(state => state.Files.data);
+
+  /* TAHA */
 
   const isUploaded = filesUpload?.length !== 0;
   const isSelected = selectedFilesFromServer?.length !== 0;
+
   useEffect(() => {
     dispatch(fetchDataRequest());
   }, []);
@@ -139,10 +168,10 @@ const UploadComponent = () => {
         console.error("Error deleting file:", error);
       });
   };
-   const handleLogout = () => {
+  /* TAHA */ const handleLogout = () => {
     JwtUtils.logOut();
   };
-    return (
+  return (
     <>
     <IconButton style={{ color: '#000', backgroundColor: '#343e8f', margin: 0, padding: '5px', borderRadius: 0 }} onClick={toggleSidebar} className="hamburger-icon" sx={{ display: { xs: 'flex', md: 'none', xl: 'none' } }}>
         <MenuIcon style={{ color: '#aaa', margin: 0, padding: 0 }} />
@@ -175,12 +204,23 @@ const UploadComponent = () => {
           </div>
 
           <label id='sendServerLabel'>
+            {/* <Button onClick={handleUploadButtonClick} id='sendBtn' style={sendServerButton} endIcon={<CloudUploadIcon />}>  TAHA */}
             <Button onClick={handleUploadButtonClick} id='sendBtn' disabled={isUploaded ? false : true} style={isUploaded ? sendServerButton : disabledButton}  endIcon={<CloudUploadIcon />}>
               <span className="text">Upload</span>
             </Button>
           </label>
+
+              
+
+          {/* <br />
+          <hr style={ { height: '1px', border: 'none' } }/>
     
-          <label id='sendServerLabel'>
+          
+
+          <List className="second-list file-list-container"> {files?.map(el => (
+            <div key={el} style={{ display: 'flex' }} className='li-container'>
+                    {el} */}
+                    <label id='sendServerLabel'>
         <Button  onClick={handleSendSelectedFilesFromServer} id='sendBtn' disabled={isSelected ? false : true} style={isSelected ? sendServerButton : disabledButton} endIcon={<SendIcon />} >
           <span className="text">Send selected files</span>
         </Button>
@@ -191,25 +231,34 @@ const UploadComponent = () => {
         <div key={el} style={{ display: 'flex' }}>
                     {el}
 
-          <Checkbox 
-            style={checkStyle}
-            edge="start"
-            checked={selectedFilesFromServer.includes(el)}
-            onChange={() => handleServerFileSelect(el)}
-          />
-          <IconButton style={checkStyle} edge="end" onClick={() => handleDelete(el)} id='deleteIcon'>
-          <DeleteIcon />
-      </IconButton>
-      <Button onClick={()=>dispatch(requestSummarize(el))}>Summarize</Button>
-      <Button onClick={()=>dispatch(fetchPdfRequest(el))}>view</Button>
+              <div className='icon-container'>
+              <Checkbox 
+                style={checkStyle}
+                edge="start"
+                checked={selectedFilesFromServer.includes(el)}
+                onChange={() => handleServerFileSelect(el)}
+              />
+              <IconButton style={checkStyle} edge="end" onClick={() => handleDelete(el)} id='deleteIcon'>
+              <DeleteIcon />
+              </IconButton>
+              <Button onClick={()=>dispatch(requestSummarize(el))} id='summarizeIcon' title="Summarize the document"><SummarizeIcon/></Button>
+            <Button onClick={()=>dispatch(fetchPdfRequest(el))} id='viewIcon' title="View the document"><VisibilityIcon /></Button>
+              </div>
 
-      
+            </div>
+            ))}
+          </List>
 
-        </div>
-      ))}
-      </List>
       {JwtUtils.isActif()?<Button onClick={handleLogout}>logout</Button>:null}
-    </div>
+
+
+          <label id='sendServerLabel'>
+            <Button  onClick={handleSendSelectedFilesFromServer} id='sendBtn' disabled={isSelected ? false : true} style={isSelected ? sendServerButton : disabledButton} endIcon={<SendIcon />} >
+              <span className="text">Send selected files</span>
+            </Button>
+          </label>
+
+          </div>
     </>
   );
 };

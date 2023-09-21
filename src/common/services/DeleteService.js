@@ -3,7 +3,7 @@ import { instance } from "../Axios";
 
 export const deleteFileApi = (filename) => {
   return instance
-    .get(`/delete/${filename}`)
+    .delete(`/delete/${filename}`)
     .then((response) => {
       return response.data;
     })

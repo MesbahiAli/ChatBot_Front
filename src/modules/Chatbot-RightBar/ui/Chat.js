@@ -5,6 +5,8 @@ import { Stack } from '@mui/material';
 import Feed from "../../Chatbot-Feed/components/Feed";
 import ChatRight from './../components/Chat_Right';
 import Sidebar from "../../Chatbot-SlideBar/components/SideBar"
+import Auth from "../../Authentification/ui/Auth";
+
 export default function Chat() {
   
   return (
@@ -12,6 +14,7 @@ export default function Chat() {
     <Stack direction="row" justifyContent="space-between" alignItems="stretch" height="100vh">
           <Sidebar/> 
           <Feed/> 
+          {/* <Auth/> */}
           <ChatRight />
     </Stack>
   </>      
