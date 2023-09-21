@@ -10,8 +10,8 @@
 
 .wave-spinner {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: left;
+    align-items: left;
     margin: 10px 0;
 }
 
@@ -19,6 +19,7 @@
     width: 6px;
     height: 6px;
     background-color: #666; /* Mild gray color for subtlety */
+    
     border-radius: 50%;
     display: inline-block;
     margin: 0 2.5px; /* Slightly reduced margin */

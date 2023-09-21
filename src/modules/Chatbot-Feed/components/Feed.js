@@ -6,14 +6,15 @@ const Feed = () => {
   const dispatch = useDispatch();
   const summarize =useSelector((state) => state.Summarize.data);
   const pdfData = useSelector(state => state.Pdf.pdf);
-console.log(pdfData)
+  console.log(pdfData)
   return (
    <Box bgcolor="#212229" color="#fff" flex={4} p={{ xs: 0, md: 2 }}>   
 <div>
-  <h1>summarize</h1>
+  <h1 style={{ textAlign: 'center' }}>summarize</h1>
      {summarize}
 
-     <h1>View</h1>
+  <hr />
+     <h1 style={{ textAlign: 'center' }}>View</h1>
 {pdfData &&<iframe 
           src={`data:application/pdf;base64,${pdfData.pdf}`}           
           title="application/pdf"
