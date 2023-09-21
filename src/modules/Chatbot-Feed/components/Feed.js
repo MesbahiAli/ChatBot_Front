@@ -10,11 +10,12 @@ const Feed = () => {
   return (
    <Box bgcolor="#212229" color="#fff" flex={4} p={{ xs: 0, md: 2 }}>   
 <div>
-  <h1 style={{ textAlign: 'center' }}>summarize</h1>
+  {/* <h1 style={{ textAlign: 'center' }}>summarize</h1>
      {summarize}
 
-  <hr />
+  <hr /> */}
      <h1 style={{ textAlign: 'center' }}>View</h1>
+     <hr />
 {pdfData &&<iframe 
           src={`data:application/pdf;base64,${pdfData.pdf}`}           
           title="application/pdf"

@@ -17,6 +17,7 @@ import { requestToggle } from './Togle/State/TogleAction';
 import { ToggleButton, ToggleButtonGroup } from '@mui/material';
 
 
+
 // 21/09/23
 
 // toggle >
@@ -271,12 +272,12 @@ function Chat_Right() {
                     <form onSubmit={formik.handleSubmit} >
                     <Box display="flex" alignItems="center" justifyContent="space-between" style={{ position: 'relative' }}>
                     <TextField
-            style={{ width: "100%" }}
-            variant="outlined"
-            {...formik.getFieldProps('user_input')}
-            onChange={handleInputChange}
-            placeholder="Type your message..."
-        />
+                        style={{ width: "100%" }}
+                        variant="outlined"
+                        {...formik.getFieldProps('user_input')}
+                        onChange={handleInputChange}
+                        placeholder="Type your message..."
+                    />
                             <Button
                                 type="submit"
                                 variant="contained"
@@ -351,7 +352,6 @@ function Chat_Right() {
             <form onSubmit={formik.handleSubmit}>
                 <Box display="flex" alignItems="center">
                 {/* TAHA */}
-                {chatInput}
                 <ToggleButtonGroupd
             value={selected}
             exclusive
@@ -360,17 +360,18 @@ function Chat_Right() {
             aria-label="toggle button"
           >
             <ToggleButtond value={true} aria-label="summarize" style={{ color: 'white'}}>
-              {selected ? <img src="https://www.svgrepo.com/show/248851/united-states.svg" alt="EN" width="30" /> : <img src="https://www.svgrepo.com/show/248840/netherlands.svg" alt="Dutch" width="30" />}
+              {selected ? <img className='langImg' src="https://www.svgrepo.com/show/248851/united-states.svg" alt="EN" width="30" /> : <img className='langImg' src="https://www.svgrepo.com/show/248840/netherlands.svg" alt="Dutch" width="30" />}
             </ToggleButtond>
           </ToggleButtonGroupd>
-                    <TextField id='textFieldd'
+                {chatInput}
+                    {/* <TextField id='textFieldd'
                         fullWidth
                         variant="outlined"
                         {...formik.getFieldProps('user_input')}
                         onChange={handleInputChange}
                         placeholder="Type your message..."
                         style={inputStyle}
-                    />
+                    /> */}
                     <Button id='submitButton'
                         type="submit" 
                         variant="contained" 

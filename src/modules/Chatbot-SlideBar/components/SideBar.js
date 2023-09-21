@@ -14,6 +14,9 @@ import { deleteFileApi } from '../../../common/services/DeleteService';
 import { requestSummarize } from '../../Chatbot-RightBar/components/Summarize/State/SummarizeActions';
 import { fetchPdfRequest } from './FileView.js/State/ViewActions';
 import CloudDoneIcon from '@mui/icons-material/CloudDone';
+
+import LogoutIcon from '@mui/icons-material/Logout';
+
 // 20/09/23
 
 
@@ -203,7 +206,7 @@ const UploadComponent = () => {
             </List>
           </div>
 
-          <label id='sendServerLabel'>
+          <label id='sendServerLabel' style={isUploaded ? sendServerButton : disabledButton}>
             {/* <Button onClick={handleUploadButtonClick} id='sendBtn' style={sendServerButton} endIcon={<CloudUploadIcon />}>  TAHA */}
             <Button onClick={handleUploadButtonClick} id='sendBtn' disabled={isUploaded ? false : true} style={isUploaded ? sendServerButton : disabledButton}  endIcon={<CloudUploadIcon />}>
               <span className="text">Upload</span>
@@ -220,14 +223,14 @@ const UploadComponent = () => {
           <List className="second-list file-list-container"> {files?.map(el => (
             <div key={el} style={{ display: 'flex' }} className='li-container'>
                     {el} */}
-                    <label id='sendServerLabel'>
+                    {/* <label id='sendServerLabel'>
         <Button  onClick={handleSendSelectedFilesFromServer} id='sendBtn' disabled={isSelected ? false : true} style={isSelected ? sendServerButton : disabledButton} endIcon={<SendIcon />} >
           <span className="text">Send selected files</span>
         </Button>
-      </label>
+      </label> */}
     
-          <Button onClick={()=>dispatch(requestToggle())}>Change language</Button>
-          <List> {files?.map(el => (
+          {/* <Button onClick={()=>dispatch(requestToggle())}>Change language</Button> */}
+          <List className="second-list file-list-container"> {files?.map(el => (
         <div key={el} style={{ display: 'flex' }}>
                     {el}
 
@@ -249,14 +252,16 @@ const UploadComponent = () => {
             ))}
           </List>
 
-      {JwtUtils.isActif()?<Button onClick={handleLogout}>logout</Button>:null}
 
 
-          <label id='sendServerLabel'>
+          <label id='sendServerLabel' style={isSelected ? sendServerButton : disabledButton}>
             <Button  onClick={handleSendSelectedFilesFromServer} id='sendBtn' disabled={isSelected ? false : true} style={isSelected ? sendServerButton : disabledButton} endIcon={<SendIcon />} >
               <span className="text">Send selected files</span>
             </Button>
           </label>
+            <div id='logoutButton'>
+              {JwtUtils.isActif()?<Button onClick={handleLogout}><LogoutIcon style={ { color: 'white' } } /> Logout</Button>:null}
+            </div>
 
           </div>
     </>
