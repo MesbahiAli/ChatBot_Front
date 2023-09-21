@@ -169,6 +169,13 @@ const UploadComponent = () => {
               <span className="text">Upload</span>
             </Button>
           </label>
+    
+          <label id='sendServerLabel'>
+        <Button  onClick={handleSendSelectedFilesFromServer} id='sendBtn' style={sendServerButton} endIcon={<SendIcon />} >
+          <span className="text">Send selected files</span>
+        </Button>
+      </label>
+    
           <Button onClick={()=>dispatch(requestToggle())}>Change language</Button>
           <List> {files?.map(el => (
         <div key={el} style={{ display: 'flex' }}>

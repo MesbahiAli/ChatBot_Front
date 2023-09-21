@@ -10,24 +10,10 @@ console.log(pdfData)
   return (
    <Box bgcolor="#212229" color="#fff" flex={4} p={{ xs: 0, md: 2 }}>   
 <div>
+  <h1>summarize</h1>
      {summarize}
 
-{pdfData && <embed 
-    src={`data:application/pdf;base64,${pdfData.pdf}#toolbar=0`} 
-    type="application/pdf" 
-    width="100%" 
-    height="600px"
-/>
-            }
-{/* {pdfData && <embed 
-                    src={`data:application/pdf;base64,${pdfData.pdf}`} 
-                    type="application/pdf" 
-                    width="100%" 
-                    height="600px"
-                />
-            } */}
-
-
+     <h1>View</h1>
 {pdfData &&<iframe 
           src={`data:application/pdf;base64,${pdfData.pdf}`}           
           title="application/pdf"

@@ -12,8 +12,6 @@ import Chat from './modules/Chatbot-RightBar/ui/Chat';
 import Dashboard from "./common/components/dashboard/ui/Dashboard";
 import NotFound from "./common/components/NotFound";
 
-// import * as roles from "./routing/roles";
-
 const protectedRoutes = {
   homeAfterLogin: { path: "/homeafterlogin", requiredRoles: [], component: Auth },
 };
@@ -33,7 +31,6 @@ function App() {
     }
   }
 
-  // Routes for non-authenticated users
   let routes = (
     <Layout>
       <Switch>
