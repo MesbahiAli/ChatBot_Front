@@ -16,13 +16,14 @@ const protectedRoutes = {
   homeAfterLogin: { path: "/homeafterlogin", requiredRoles: [], component: Auth },
 };
 let isAuthenticated = localStorage.getItem("token"); 
+
 function App() {
   const state = useSelector(state => state);
 
   let loadingProps;
   let reducerHasLoading = _.pickBy(state, (value, key) => {
     return value.isLoading === true && key !== "chat";
-});
+  });
   if (reducerHasLoading) {
     const target = _.keys(reducerHasLoading)[0];
     let nextProps = reducerHasLoading[target];
@@ -56,7 +57,6 @@ function App() {
       <Route path="*" component={NotFound} />
     </Switch>
   );
-
   if (isAuthenticated) {
     routes = (
       <Layout>
