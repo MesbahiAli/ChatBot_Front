@@ -7,6 +7,7 @@ import _ from "lodash";
 import Spinner from "./common/components/SpinnerCustomized";
 import { useSelector } from "react-redux";
 import ForbiddenComponent from './routing/ForbiddenComponent';
+import NotFound from './routing/NotFound';
 
 // import * as roles from "./routing/roles";
 // import HomeBeforeLogin from './common/components/HomeBeforeLogin';
@@ -18,14 +19,14 @@ import ForbiddenComponent from './routing/ForbiddenComponent';
 //   homeAfterLogin: { path: "/homeafterlogin", requiredRoles: [], component: HomeAfterLogin },
 // };
 
- let isAuthenticated = localStorage.getItem("token"); 
+let isAuthenticated = localStorage.getItem("token");
 function App() {
   const state = useSelector(state => state);
 
   let loadingProps;
   let reducerHasLoading = _.pickBy(state, (value, key) => {
     return value.isLoading === true && key !== "chat";
-});
+  });
   if (reducerHasLoading) {
     const target = _.keys(reducerHasLoading)[0];
     let nextProps = reducerHasLoading[target];
@@ -36,15 +37,13 @@ function App() {
 
   // Routes for non-authenticated users
   let routes = (
-    <Layout>
-      <Switch>
-        <Route exact path="/homebeforelogin" component={Layout} />
-        <Route exact path="/" render={() => <Redirect to="/homebeforelogin" />} />
-        <Route path="*" component={ForbiddenComponent} />
-      </Switch>
-    </Layout>
+    <Switch>
+      <Route exact path="/homebeforelogin" component={Layout} />
+      <Route exact path="/" render={() => <Redirect to="/homebeforelogin" />} />
+      <Route path="*" component={NotFound} />
+    </Switch>
   );
-  
+
   // Routes for authenticated users
   // let content = (
   //   <Switch>
@@ -54,7 +53,7 @@ function App() {
   //         key={routeKey}
   //         roles={routeProps.requiredRoles}
   //         path={routeProps.path}
-  //         component={routeProps.component}
+  //         component={routeProps.component} 
   //       />
   //     ))}
   //     <Route exact path="/" render={() => <Redirect to="/homeafterlogin" />} />

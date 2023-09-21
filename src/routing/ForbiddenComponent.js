@@ -6,6 +6,7 @@ import { withRouter } from "react-router";
 function ForbiddenComponent({ history }) {
   const goBackHome = () => {
     history.push("/");
+    
   };
   return (
     <div

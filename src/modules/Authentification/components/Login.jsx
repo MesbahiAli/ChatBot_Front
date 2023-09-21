@@ -4,8 +4,7 @@ import {
 } from "@mui/material";
 import logo from "../../../assets/images/logo .png";
 import "../Style/login.css"
-import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import {  useState } from "react";
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { FormikProvider, useFormik } from "formik/dist";
@@ -14,6 +13,8 @@ import * as Yup from "yup";
 import * as AuthAction from "../state/AuthAction";
 import ErrorOutlineOutlinedIcon from '@mui/icons-material/ErrorOutlineOutlined';
 import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutlineOutlined';
+import {  motion } from "framer-motion/dist/framer-motion";
+
 const Login = () => {
 
 
@@ -127,12 +128,12 @@ const Login = () => {
                                 }}
                                 error={Boolean(touched.password && errors.password)}
                                 helperText={touched.password && errors.password} />
-                            <Button type="submit" variant="outlined" sx={{ color: "#343e8b", borderColor: "#343e8b", fontSize: "1rem", fontWeight: "bold" }}>Login</Button>
+                            <Button type="submit" variant="outlined" sx={{ color: "#343e8b", borderColor: "#343e8b", fontSize: "1rem", fontWeight: "bold",letterSpacing:".2rem",":hover":{color:"#f9f1fe",bgcolor:"#343e8b",scale:"1.1"},transition:"all .3s ease" }}>Login</Button>
                         </motion.form>
                     </FormikProvider>
                 </motion.div>
             </div>
-            <div class="copyright">&copy; 2023 AiAutomationAgency. All rights reserved.</div>
+            <div className="copyright">&copy; 2023 AiAutomationAgency. All rights reserved.</div>
         </div>
     )
 }

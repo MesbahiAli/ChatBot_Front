@@ -15,6 +15,7 @@
     "axios": "^0.27.2",
     "firebase": "^9.23.0",
     "formik": "^2.2.9",
+    "framer-motion": "^4.1.17",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.21",
     "moment": "^2.29.4",
@@ -35,8 +36,7 @@
     "sockjs-client": "^1.5.1",
     "web-vitals": "^2.1.4",
     "websocket": "^1.0.34",
-    "yup": "^0.32.11",
-    "framer-motion": "^4.1.16"
+    "yup": "^0.32.11"
   },
   "scripts": {
     "start": "set SET NODE_OPTIONS=--openssl-legacy-provider && react-scripts start --port=8090",
