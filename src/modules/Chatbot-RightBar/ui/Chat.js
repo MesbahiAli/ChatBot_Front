@@ -1,15 +1,19 @@
 import { Box } from "@mui/system";
 import React from "react";
 import Chat_Right from "../components/Chat_Right";
-
+import { Stack } from '@mui/material';
+import Feed from "../../Chatbot-Feed/components/Feed";
+import ChatRight from './../components/Chat_Right';
+import Sidebar from "../../Chatbot-SlideBar/components/SideBar"
 export default function Chat() {
   
   return (
-    <Box 
-    flex={1} p={2} 
-    sx={{ display: { xs: "none", sm: "block" }, backgroundColor: "blue" }}
-  >
-    <Chat_Right />
-  </Box>      
+    <>
+    <Stack direction="row" justifyContent="space-between" alignItems="stretch" height="100vh">
+          <Sidebar/> 
+          <Feed/> 
+          <ChatRight />
+    </Stack>
+  </>      
   );
 }

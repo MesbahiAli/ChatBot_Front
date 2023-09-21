@@ -13,7 +13,7 @@ import { requestToggle } from '../../Chatbot-RightBar/components/Togle/State/Tog
 import { deleteFileApi } from '../../../common/services/DeleteService';
 import { requestSummarize } from '../../Chatbot-RightBar/components/Summarize/State/SummarizeActions';
 import { fetchPdfRequest } from './FileView.js/State/ViewActions';
-
+import CloudDoneIcon from '@mui/icons-material/CloudDone';
 // 20/09/23
 
 import MenuIcon from '@mui/icons-material/Menu'; 
@@ -146,7 +146,7 @@ const UploadComponent = () => {
             onChange={handleFileChange}
           />
           <label id='uploadLabel' htmlFor="file-input">
-            <Button className="sidebar-button" component="span" startIcon={<CloudUploadIcon />} style={buttonStyle} >
+            <Button className="sidebar-button" component="span" startIcon={<CloudDoneIcon />} style={buttonStyle} >
               <span className="text">Select Files</span>
             </Button>
           </label>
