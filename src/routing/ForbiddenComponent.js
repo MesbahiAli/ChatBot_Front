@@ -11,6 +11,7 @@ function ForbiddenComponent({ history }) {
   return (
     <div
       style={{
+        height: 'auto',
         paddingTop:100,
         display: "flex",
         alignItems: "center",

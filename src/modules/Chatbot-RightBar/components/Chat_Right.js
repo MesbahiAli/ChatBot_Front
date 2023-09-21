@@ -20,24 +20,37 @@ const SEND_MESSAGE_SUCCESS = 'SEND_MESSAGE_SUCCESS';
 const SEND_MESSAGE_REQUEST = 'SEND_MESSAGE_REQUEST';
 
 function Chat_Right() {
+
+    /* ----- HERE ----- */
+
+    const inputStyle = {
+        color: 'green',
+        fontSize: '25px'
+    };
+
+    const userIsTypingStyle = {
+        color: '#aaa',
+        paddingLeft: '25px'
+    };
+
     const dispatch = useDispatch();
     const messages = useSelector((state) => state.chat.messages);
     const isLoading = useSelector((state) => state.chat.isLoading);
     const [isChatOpen, setIsChatOpen] = useState(false);
 
-
     const [showSpinner, setShowSpinner] = useState(false);
     const [userIsTyping, setUserIsTyping] = useState(false);
     const messagesEndRef = useRef(null);  // To auto-scroll
-
     useEffect(() => {
         dispatch({
             type: SEND_MESSAGE_SUCCESS,
             payload: {
                 sender: 'bot',
-                text: 'Hello! How can I assist you today?',
+                //text: "On sait depuis longtemps que travailler avec du texte lisible et contenant du sens est source de distractions, et empêche de se concentrer sur la mise en page elle-même. L'avantage du Lorem Ipsum sur un texte générique comme 'Du texte. Du texte. Du texte.' est qu'il possède une distribution de lettres plus ou moins normale, et en tout cas comparable avec celle du français standard. De nombreuses suites logicielles de mise en page ou éditeurs de sites Web ont fait du Lorem Ipsum leur faux texte par défaut, et une recherche pour 'Lorem Ipsum' vous conduira vers de nombreux sites qui n'en sont encore qu'à leur phase de construction. Plusieurs versions sont apparues avec le temps, parfois par accident, souvent intentionnellement (histoire d'y rajouter de petits clins d'oeil, voire des phrases embarassantes).",
+                text: "Hell On sait depuis longtemps que travailler On sait depuis longtemps que travaillerOn sait depuis longtemps que travaillerOn sait depuis longtemps que travaillerOn sait depuis longtemps que travailler"
             },
         });
+   
     }, [dispatch]);
 
     useEffect(() => {
@@ -135,11 +148,11 @@ function Chat_Right() {
         right: '20px',     
         zIndex: 1000,
         color: '#FFF',
-        backgroundColor: '#333',
+        backgroundColor: '#121212',  /* ------ HERE ----- */
         boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.2)', 
         transition: 'background-color 0.3s, transform 0.3s', // Smooth color and size transition
         '&:hover': {
-            backgroundColor: '#555',
+            backgroundColor: '#343e8b', /* ------ HERE ----- */
             transform: 'scale(1.05)', // Slightly enlarges the button on hover
         }
     }}
@@ -181,7 +194,7 @@ function Chat_Right() {
                                 <img src={RobotLogo1} alt="Robot Logo" className="message-logo" />
                             </div>
                         )}
-                        {!isLoading && userIsTyping && <div>User is typing...</div>}
+                        {!isLoading && userIsTyping && <div id='userIsTyping' style={userIsTypingStyle}>User is typing...</div>}
                         <div ref={messagesEndRef}></div>
                     </Box>
 
@@ -209,11 +222,11 @@ function Chat_Right() {
                                    width: '40px',
                                    height: '40px',
                                    color: '#FFF',
-                                   backgroundColor: '#333',
+                                   backgroundColor: '#343e8b', /* ------ HERE ----- */
                                    boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.2)', 
                                    transition: 'background-color 0.3s, transform 0.3s', // Smooth color and size transition
                                    '&:hover': {
-                                       backgroundColor: '#555',
+                                       backgroundColor: '#232A5E', /* ------ HERE ----- */
                                        transform: 'scale(1.05)', // Slightly enlarges the button on hover
                                    }
                                }}
@@ -230,7 +243,7 @@ function Chat_Right() {
         </Box>
         </Slide>
         <Box className="chat-container" sx={{display: { xs: 'none', md: 'flex' }}}>
-         <Box className="messages">
+         <Box className="messages" width="90%">
          {messages.map((msg, index) => (
     <div key={msg.id || index} className={`message-wrapper ${msg.sender} fade-in`}>
         {msg.sender === 'bot' ? (
@@ -266,14 +279,15 @@ function Chat_Right() {
 
             <form onSubmit={formik.handleSubmit}>
                 <Box display="flex" alignItems="center">
-                    <TextField
+                    <TextField id='textFieldd'
                         fullWidth
                         variant="outlined"
                         {...formik.getFieldProps('user_input')}
                         onChange={handleInputChange}
                         placeholder="Type your message..."
+                        style={inputStyle}
                     />
-                    <Button 
+                    <Button id='submitButton'
                         type="submit" 
                         variant="contained" 
                         color="primary" 

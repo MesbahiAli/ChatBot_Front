@@ -7,19 +7,16 @@ import _ from "lodash";
 import Spinner from "./common/components/SpinnerCustomized";
 import { useSelector } from "react-redux";
 import ForbiddenComponent from './routing/ForbiddenComponent';
-import NotFound from './routing/NotFound';
+import Auth from './modules/Authentification/ui/Auth';
+import Chat from './modules/Chatbot-RightBar/ui/Chat';
+import Dashboard from "./common/components/dashboard/ui/Dashboard";
+import NotFound from "./common/components/NotFound";
 
-// import * as roles from "./routing/roles";
-// import HomeBeforeLogin from './common/components/HomeBeforeLogin';
-// import HomeAfterLogin from './common/components/HomeAfterLogin';
+const protectedRoutes = {
+  homeAfterLogin: { path: "/homeafterlogin", requiredRoles: [], component: Auth },
+};
+let isAuthenticated = localStorage.getItem("token"); 
 
-
-
-// const protectedRoutes = {
-//   homeAfterLogin: { path: "/homeafterlogin", requiredRoles: [], component: HomeAfterLogin },
-// };
-
-let isAuthenticated = localStorage.getItem("token");
 function App() {
   const state = useSelector(state => state);
 
@@ -35,43 +32,41 @@ function App() {
     }
   }
 
-  // Routes for non-authenticated users
   let routes = (
+    <Layout>
+      <Switch>
+        <Route exact path="/homebeforelogin" component={Auth} />
+        <Route exact path="/" render={() => <Redirect to="/homebeforelogin" />} />
+        <Route path="*" component={NotFound} />
+      </Switch>
+    </Layout>
+  );
+  //After login
+  let content = (
     <Switch>
-      <Route exact path="/homebeforelogin" component={Layout} />
-      <Route exact path="/" render={() => <Redirect to="/homebeforelogin" />} />
+      <Route exact path="/homeafterlogin" component={Chat} />
+      {protectedRoutes && Object.entries(protectedRoutes).map(([routeKey, routeProps]) => (
+        <ProtectedRoute
+          key={routeKey}
+          roles={routeProps.requiredRoles}
+          path={routeProps.path}
+          component={routeProps.component}
+        />
+      ))}
+      <Route exact path="/" render={() => <Redirect to="/homeafterlogin" />} />
       <Route path="*" component={NotFound} />
     </Switch>
   );
-
-  // Routes for authenticated users
-  // let content = (
-  //   <Switch>
-  //     <Route exact path="/homeafterlogin" component={HomeAfterLogin} />
-  //     {protectedRoutes && Object.entries(protectedRoutes).map(([routeKey, routeProps]) => (
-  //       <ProtectedRoute
-  //         key={routeKey}
-  //         roles={routeProps.requiredRoles}
-  //         path={routeProps.path}
-  //         component={routeProps.component} 
-  //       />
-  //     ))}
-  //     <Route exact path="/" render={() => <Redirect to="/homeafterlogin" />} />
-
-  //     <Route path="*" component={NotFound} />
-  //   </Switch>
-  // );
-
-  // if (isAuthenticated) {
-  //   routes = (
-  //     <Layout>
-  //       <Dashboard
-  //         roles={protectedRoutes}
-  //         content={content}
-  //       />
-  //     </Layout>
-  //   );
-  // }
+  if (isAuthenticated) {
+    routes = (
+      <Layout>
+        <Dashboard
+          roles={protectedRoutes}
+          content={content}
+        />
+      </Layout>
+    );
+  }
 
   return (
     <div>

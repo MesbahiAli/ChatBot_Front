@@ -1,0 +1,270 @@
+.SidebarDev {
+    color: white;
+    padding: 25px 20px;
+    border-right: 0.5px solid #3a3a3a;
+    background-color: #121212; /* ------ HERE ----- */
+    width: 15%;
+}
+
+.SidebarDev label {
+    padding: 10px;
+    padding-bottom: 12px;
+    border-radius: 5px;
+    margin-top: 50px;
+    border: 1px solid #343e8b;
+    border-radius: 4px;
+}
+
+.SidebarDev label:hover {
+    background-color: #343e8b;
+    color: #121212;
+}
+
+.sidebar-button {
+    width: 90%;
+    margin: 0 auto;
+    display: block;
+    padding: 25px 0px;
+
+}
+
+#sendServerLabel {
+    background-color: #343e8b;
+}
+
+#sendServerLabel button {
+    width: 90%;
+    margin: 0 auto;
+}
+
+
+#sendServerLabel:hover {
+    background-color: #202970;
+}
+
+#listItem {
+    border-bottom: 1px solid #212229;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#listItem:hover {
+    background-color: #151515;
+}
+
+#deleteIcon {
+    opacity: 0.7;
+}
+
+#deleteIcon:hover {
+    opacity: 1;
+}
+
+@media (max-width: 1250px) {
+
+    #sendBtn > span.text {
+        display: none; /* Hide the text on small screens */
+    }
+
+    .sidebar-button .text {
+        display: none; /* Hide the text on small screens */
+    }
+
+    #sendBtn > span{
+        margin: 0;
+        padding: 0;
+    }
+    
+    #uploadLabel{
+        margin: 0;
+    }
+
+    #uploadLabel > span > span{
+        margin: 0;
+    }
+}
+
+@media (max-width: 900px) {
+
+    .SidebarDev{
+        display: none; 
+        
+    }
+    label#sendServerLabel{
+        margin: 2.5%;
+        }
+
+
+    .sidebar-button .text {
+        display: none; /* Hide the text on small screens */
+    }
+
+    #uploadLabel > span{
+        padding: 20px;
+        margin: 0 4.4%;
+    }
+
+    #uploadLabel{
+        background-color: transparent;
+    }
+    
+
+    .sidebar-button {
+        padding: 15px;
+        margin: 15px;
+    }
+
+    .SidebarDev {
+        margin: 0;
+        padding: 0px;
+    }
+
+    #uploadLabel {
+        margin: 0 auto;
+        padding: 0;
+        border: none;
+        margin-left: 5px;
+    }
+
+    #sendServerLabel #sendBtn {
+        border: none;
+    }
+
+    #sendBtn{
+        background-color: none;
+        border: none;
+    }
+}
+
+.file-list-container {
+    max-height: 800px; /* Adjust the maximum height as needed */
+    overflow-y: auto; /* Enable vertical scrolling when content exceeds the height */
+    overflow-x: auto; /* Enable horizontal scrolling when content overflows */
+    white-space: wrap;}
+
+/* styles.css or your preferred stylesheet */
+
+/* Default styles for list items */
+#listItem {
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Style for file name */
+  #listItemPrimaryText {
+    flex: 1; /* Allow the file name to take up all available space */
+    white-space: nowrap; /* Prevent text from wrapping to the next line */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Display ellipsis (...) for truncated text */
+}
+  
+  /* Style for checkbox and delete icon */
+  #listItemSecondaryAction {
+    /* Add your desired styles for checkbox and delete icon */
+    /* Example styles, you can adjust these as needed */
+    display: flex;
+    align-items: center;
+    margin-right: -90%;
+    display: flex;
+    gap: 8px;
+  }
+  
+  /* Media query for small screens (adjust the breakpoint as needed) */
+  @media (max-width: 768px) {
+    /* Stack the elements vertically on small screens */
+    #listItem {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    /* Reset file name styles to wrap text */
+    #listItemPrimaryText {
+      white-space: normal;
+      overflow: visible;
+      text-overflow: inherit;
+    }
+  
+    /* Adjust spacing as needed */
+    #listItemSecondaryAction {
+      margin-top: 4px; /* Add spacing between the file name and checkbox/delete icon */
+      margin-right: -90%;
+    
+    }
+
+    @media (max-width: 1500px) {  
+        #listItemPrimaryText {
+          font-size: 12px;
+        }
+      
+        #listItemSecondaryAction#checkIcon {
+          width: 20px;
+          height: 20px;
+        }
+      }
+    
+      .hamburger-icon {
+        display: none; /* Hide by default */
+        color: white; /* Color to match your theme */
+      }
+
+      .SidebarDev.closed {
+        width: 0; /* Or display: none, but using width allows for animation */
+        overflow: hidden;
+      }
+      
+      /* Breakpoint for the hamburger menu */
+      @media (max-width: 900px) {
+        /* Show the hamburger icon on smaller screens */
+        .hamburger-icon {
+          display: block;
+        }
+      
+        /* By default, set the sidebar to closed on smaller screens */
+        .SidebarDev {
+          display: none;
+        }
+      
+        /* Show the sidebar when it's in open state */
+        .SidebarDev.open {
+            display: block;
+            width: 100%; /* Restore the original width or set your preferred width */
+        }
+    
+        .file-list-container {
+            max-height: 75%;
+            margin-bottom: 25px;
+        }
+        
+        #listItemSecondaryAction {
+            margin-right: -90%;
+        }
+    
+        #listItemSecondaryAction > span {
+            flex-direction: row;
+        }
+    
+      }
+    
+      #root > div > div > div > div.SidebarDev.open > div + #root > div > div > div > div.SidebarDev.open > div > ul{
+            margin: 0;
+            padding: 0;
+            width: 90%;
+        }
+    
+        @media (min-width: 900px) {
+            #listItemPrimaryText{
+                color: red;
+                background-color: #fff;
+                margin-left: 35%;
+                font-size: small;
+            }
+    
+            #listItemPrimaryText > span{
+                font-size: 6px;
+                font-size: small;
+                word-wrap: break-word;
+            }
+        }
+    /* ---- 20/09/23 */
+}
