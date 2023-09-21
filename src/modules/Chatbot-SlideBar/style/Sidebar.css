@@ -167,6 +167,7 @@
     padding: 7.5px;
     background-color: #1f1f1f;
     margin-bottom: 15px;
+    margin-top: 15px;
 }
 
 /* styles.css or your preferred stylesheet */
@@ -386,5 +387,29 @@
     /* or any preferred gap between icons */
 }
 
+
+#logoutButton {
+    background-color: #343e8b;
+    width: 15%;
+    padding: 5px 20px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    border-radius: 0 5px 0 0;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    margin: 0 auto;
+    display: flex;
+}
+
+#logoutButton:hover {
+    background-color: #252f79;
+    cursor: pointer;
+}
+
+#logoutButton button{
+    color: white;
+}
 
 /* < 21/09/23 */

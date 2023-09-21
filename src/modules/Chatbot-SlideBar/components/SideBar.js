@@ -14,6 +14,7 @@ import { deleteFileApi } from '../../../common/services/DeleteService';
 import { requestSummarize } from '../../Chatbot-RightBar/components/Summarize/State/SummarizeActions';
 import { fetchPdfRequest } from './FileView.js/State/ViewActions';
 import CloudDoneIcon from '@mui/icons-material/CloudDone';
+
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 
 import LogoutIcon from '@mui/icons-material/Logout';
@@ -264,6 +265,7 @@ const UploadComponent = () => {
 
 
           <label id='sendServerLabel' style={isSelected ? sendServerButton : disabledButton}>
+
             <Button onClick={handleSendSelectedFilesFromServer} id='sendBtn' disabled={isSelected ? false : true} style={isSelected ? sendServerButton : disabledButton} endIcon={<SendIcon />} >
               <span className="text">Send selected files</span>
             </Button>

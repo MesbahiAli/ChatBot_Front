@@ -205,15 +205,17 @@ img.message-logo {
 }
 
 form {
-    padding: 10px;
     border-top: 1px solid #212229; /* --------- HERE ------------ */
     background-color: #121212; /* --------- HERE ------------ */
+    padding: 0;
+    margin: 0;
 }
 
 form #textFieldd {
     background-color: #212229; /* --------- HERE ------------ */
-    border-radius: 5px; /* --------- HERE ------------ */
+    border-radius: 3px; /* --------- HERE ------------ */
     color: #eee;
+    padding: 0;
 }
 
 textarea.MuiInputBase-input.MuiOutlinedInput-input.MuiInputBase-inputMultiline.css-1sqnrkk-MuiInputBase-input-MuiOutlinedInput-input
@@ -272,5 +274,17 @@ form #submitButton:hover {
     gap: 10px; /* Optional: this adds space between the items */
     justify-content: right;
   }  
+
+form > div > div.MuiFormControl-root.MuiFormControl-fullWidth.MuiTextField-root.css-wb57ya-MuiFormControl-root-MuiTextField-root > div{
+    background-color: #212229;
+}
+
+.langImg{
+    opacity: 0.75;
+}
+
+.langImg:hover{
+    opacity: 1;
+}
 
 /* */
