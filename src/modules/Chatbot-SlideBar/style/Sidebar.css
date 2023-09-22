@@ -155,7 +155,7 @@
     margin-bottom: 15px;
     margin-top: 15px;
     border: 1px solid #343e8b;
-    background-color: #1f1f1f;
+    background-color: #1f1f2f;
     border-radius: 5px;
     padding: 7.5px;
     width: 92%;
@@ -165,7 +165,7 @@
     border: 1px solid #343e8b;
     border-radius: 5px;
     padding: 7.5px;
-    background-color: #1f1f1f;
+    background-color: #1f1f2f;
     margin-bottom: 15px;
     margin-top: 15px;
     height: 200px;
@@ -392,7 +392,7 @@
 #logoutButton {
     background-color: #343e8b;
     width: 15%;
-    padding: 5px 20px;
+    padding: 0.1px 20px;
     position: fixed;
     bottom: 0;
     left: 0;
@@ -411,6 +411,11 @@
 
 #logoutButton button{
     color: white;
+    padding: 10px 100%;
+}
+
+#SidebarDev, #logoutButton button {
+    width: 100%;
 }
 
 /* < 21/09/23 */
