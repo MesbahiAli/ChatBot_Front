@@ -88,7 +88,7 @@ const Login = () => {
                             animate={{ opacity: 1 }} // Animate to this state (visible)
                             transition={{ duration: 0.5, delay: 0.4, ease: "easeIn" }} // Animation duration
                             className="login-form-flex" onSubmit={handleSubmit}>
-                            <AccountCircleOutlinedIcon sx={{ fontSize: "4rem", color: "#343e8b" }} />
+                            <AccountCircleOutlinedIcon sx={{ fontSize: "4rem", color: "#343e8b" }} className="icon-login" />
                             <p className="lf-text">SIGN IN</p>
                             {responseError && <p className="lf-text-error"><ErrorOutlineOutlinedIcon sx={{ color: "red" }} />{responseError}</p>}
                             {/* {responseSuccess && <p className="lf-text-success"><CheckCircleOutlineOutlinedIcon sx={{ color: "green" }} />{responseSuccess}</p>} */}

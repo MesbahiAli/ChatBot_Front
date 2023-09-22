@@ -97,7 +97,20 @@
     color: whitesmoke;
     width: max-content;
 }
+/* 2k r(esolutions */
+@media screen and (min-width: 2048px) {
+    .login-container{
+        zoom: 1.7;
+    }
 
+}
+
+/* For 4K resolutions (3840 x 2160, 4096 x 2160) */
+@media screen and (min-width: 3840px) {
+    .login-container{
+        zoom: 2.1;
+    }
+}
 @media screen and (max-width:820px){
     .login-container {
         height: 70vh;

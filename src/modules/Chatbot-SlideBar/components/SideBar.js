@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Button, IconButton, List, ListItem, ListItemText, ListItemSecondaryAction } from '@mui/material';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -36,7 +36,7 @@ import ToggleButtonGroup from '@mui/lab/ToggleButtonGroup';
 
 // < 21/09/23
 
-import MenuIcon from '@mui/icons-material/Menu'; 
+import MenuIcon from '@mui/icons-material/Menu';
 import JwtUtils from '../../../routing/JwtUtils'; /* TAHA */
 import SettingsPanel from './SettingsPanel';
 
@@ -58,7 +58,7 @@ const UploadComponent = () => {
     color: '#fff',
     margin: 0,
     padding: 0,
-    position:'relative'
+    position: 'relative'
 
   };
 
@@ -69,8 +69,8 @@ const UploadComponent = () => {
   /* TAHA */
 
   const disabledButton = {
-    backgroundColor:"grey",
-    cursor:""
+    backgroundColor: "grey",
+    cursor: ""
   };
 
   const sendServerLabel = {
@@ -80,7 +80,7 @@ const UploadComponent = () => {
     width: '100%',  // Take full width of its parent.
     height: '100%', // Take full height of its parent.
   };
-  
+
 
   const docStyle = {
     color: 'white',
@@ -94,7 +94,7 @@ const UploadComponent = () => {
     padding: 0,
     margin: 0,
     // marginRight: '-80%',
-    
+
   };
 
   const docDeleteStyle = {
@@ -104,10 +104,10 @@ const UploadComponent = () => {
   // ---------------------------
 
   // 20/09/23
-  const [open,setOpen] = useState(false);
+  const [open, setOpen] = useState(false);
 
   const [isSidebarOpen, setIsSidebarOpen] = React.useState(true);
-  
+
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
@@ -132,13 +132,10 @@ const UploadComponent = () => {
 
   // Mouad Doadi - 21/09/23 >
 
-  const [selected, setSelected] = useState(false);
-
   // < 21/09/23
 
   const dispatch = useDispatch();
   const filesUpload = useSelector(state => state.upload.files);
-  console.log(filesUpload)
   const files = useSelector(state => state.Files.data);
 
   /* TAHA */
@@ -173,7 +170,7 @@ const UploadComponent = () => {
   const handleDelete = (filename) => {
     deleteFileApi(filename)
       .then(response => {
-        dispatch(fetchDataRequest());  
+        dispatch(fetchDataRequest());
       })
       .catch(error => {
         console.error("Error deleting file:", error);
@@ -184,46 +181,46 @@ const UploadComponent = () => {
   };
   return (
     <>
-    <IconButton style={{ color: '#000', backgroundColor: '#343e8f', margin: 0, padding: '5px', borderRadius: 0 }} onClick={toggleSidebar} className="hamburger-icon" sx={{ display: { xs: 'flex', md: 'none', xl: 'none' } }}>
+      <IconButton style={{ color: '#000', backgroundColor: '#343e8f', margin: 0, padding: '5px', borderRadius: 0 }} onClick={toggleSidebar} className="hamburger-icon" sx={{ display: { xs: 'flex', md: 'none', xl: 'none' } }}>
         <MenuIcon style={{ color: '#aaa', margin: 0, padding: 0 }} />
       </IconButton>
-    <div className={isSidebarOpen ? "SidebarDev open" : "SidebarDev closed"} sx={{ display: { xs: 'none', sm: 'block' } }}>
+      <div className={isSidebarOpen ? "SidebarDev open" : "SidebarDev closed"} sx={{ display: { xs: 'none', sm: 'block' } }}>
         <input
-            style={{ display: 'none' }}
-            id="file-input"
-            multiple
-            type="file"
-            onChange={handleFileChange}
-          />
-          <label id='uploadLabel' htmlFor="file-input">
-            <Button className="sidebar-button" component="span" startIcon={<CloudDoneIcon />} style={buttonStyle} >
-              <span className="text">Select Files</span>
-            </Button>
-          </label>
+          style={{ display: 'none' }}
+          id="file-input"
+          multiple
+          type="file"
+          onChange={handleFileChange}
+        />
+        <label id='uploadLabel' htmlFor="file-input">
+          <Button className="sidebar-button" component="span" startIcon={<CloudDoneIcon />} style={buttonStyle} >
+            <span className="text">Select Files</span>
+          </Button>
+        </label>
 
-          <div className="file-list-container">
-            <List>
+        <div className="file-list-container">
+          <List>
 
-              {filesUpload.map((file, index) => (
-                <ListItem id='listItem' style={docStyle} key={index}>
-                  <ListItemText primary={file.name} id='listItemSecondaryAction' style={listItemStyle}>
-                  </ListItemText>
-                  {/* <ListItemText primary={file.name} id='listItemPrimaryText'/> */}
-                </ListItem>
-              ))}
-            </List>
-          </div>
+            {filesUpload.map((file, index) => (
+              <ListItem id='listItem' style={docStyle} key={index}>
+                <ListItemText primary={file.name} id='listItemSecondaryAction' style={listItemStyle}>
+                </ListItemText>
+                {/* <ListItemText primary={file.name} id='listItemPrimaryText'/> */}
+              </ListItem>
+            ))}
+          </List>
+        </div>
 
-          <label id='sendServerLabel' style={isUploaded ? sendServerButton : disabledButton}>
-            {/* <Button onClick={handleUploadButtonClick} id='sendBtn' style={sendServerButton} endIcon={<CloudUploadIcon />}>  TAHA */}
-            <Button onClick={handleUploadButtonClick} id='sendBtn' disabled={isUploaded ? false : true} style={isUploaded ? sendServerButton : disabledButton}  endIcon={<CloudUploadIcon />}>
-              <span className="text">Upload</span>
-            </Button>
-          </label>
+        <label id='sendServerLabel' style={isUploaded ? sendServerButton : disabledButton}>
+          {/* <Button onClick={handleUploadButtonClick} id='sendBtn' style={sendServerButton} endIcon={<CloudUploadIcon />}>  TAHA */}
+          <Button onClick={handleUploadButtonClick} id='sendBtn' disabled={isUploaded ? false : true} style={isUploaded ? sendServerButton : disabledButton} endIcon={<CloudUploadIcon />}>
+            <span className="text">Upload</span>
+          </Button>
+        </label>
 
-              
 
-          {/* <br />
+
+        {/* <br />
           <hr style={ { height: '1px', border: 'none' } }/>
     
           
@@ -231,50 +228,50 @@ const UploadComponent = () => {
           <List className="second-list file-list-container"> {files?.map(el => (
             <div key={el} style={{ display: 'flex' }} className='li-container'>
                     {el} */}
-                    {/* <label id='sendServerLabel'>
+        {/* <label id='sendServerLabel'>
         <Button  onClick={handleSendSelectedFilesFromServer} id='sendBtn' disabled={isSelected ? false : true} style={isSelected ? sendServerButton : disabledButton} endIcon={<SendIcon />} >
           <span className="text">Send selected files</span>
         </Button>
       </label> */}
-    
-          {/* <Button onClick={()=>dispatch(requestToggle())}>Change language</Button> */}
-          <List className="second-list file-list-container"> {files?.map(el => (
-        <div key={el} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '5px 3px', paddingLeft: '5px', marginBottom: '10px', backgroundColor: '#212229', borderRadius: '8px' }}>
-                    {el}
 
-              <div className='icon-container'>
-              <Checkbox 
+        {/* <Button onClick={()=>dispatch(requestToggle())}>Change language</Button> */}
+        <List  className="second-list file-list-container"> {files?.map(el => (
+          <div key={el} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '5px 3px', paddingLeft: '5px', marginBottom: '10px', backgroundColor: '#212229', borderRadius: '8px', }} className='uploaded-item-container'>
+            {el}
+
+            <div className='icon-container'>
+              <Checkbox
                 style={checkStyle}
                 edge="start"
                 checked={selectedFilesFromServer.includes(el)}
                 onChange={() => handleServerFileSelect(el)}
               />
-              <SettingsPanel el={el}/>
+              <SettingsPanel el={el} />
 
               {/* <IconButton style={checkStyle} edge="end" onClick={() => handleDelete(el)} id='deleteIcon'>
               <DeleteIcon />
               </IconButton>
               <Button onClick={()=>dispatch(requestSummarize(el))} id='summarizeIcon' title="Summarize the document"><SummarizeIcon/></Button>
             <Button onClick={()=>dispatch(fetchPdfRequest(el))} id='viewIcon' title="View the document"><VisibilityIcon /></Button> */}
-              </div>
-
-            </div>
-            ))}
-          </List>
-
-
-
-          <label id='sendServerLabel' style={isSelected ? sendServerButton : disabledButton}>
-
-            <Button onClick={handleSendSelectedFilesFromServer} id='sendBtn' disabled={isSelected ? false : true} style={isSelected ? sendServerButton : disabledButton} endIcon={<SendIcon />} >
-              <span className="text">Send selected files</span>
-            </Button>
-          </label>
-            <div id='logoutButton'>
-              {JwtUtils.isActif()?<Button onClick={handleLogout}><LogoutIcon style={ { color: 'white' } } /> Logout</Button>:null}
             </div>
 
           </div>
+        ))}
+        </List>
+
+
+
+        <label id='sendServerLabel' style={isSelected ? sendServerButton : disabledButton}>
+
+          <Button onClick={handleSendSelectedFilesFromServer} id='sendBtn' disabled={isSelected ? false : true} style={isSelected ? sendServerButton : disabledButton} endIcon={<SendIcon />} >
+            <span className="text">Send selected files</span>
+          </Button>
+        </label>
+        <div id='logoutButton'>
+          {JwtUtils.isActif() ? <Button onClick={handleLogout}><LogoutIcon style={{ color: 'white' }} /> Logout</Button> : null}
+        </div>
+
+      </div>
     </>
   );
 };
