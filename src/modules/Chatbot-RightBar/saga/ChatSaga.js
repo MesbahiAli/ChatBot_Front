@@ -10,6 +10,7 @@ export function* sendMessageSaga(action) {
 
     yield put(actions.sendMessageSuccess({ sender: 'bot', text: botMessage }));
   } catch (error) {
-    yield put(actions.sendMessageFailure(error));
-  }
+    const errorMessage = error.message || "An unknown error occurred.";
+    yield put(actions.sendMessageFailure(errorMessage));
+}
 }

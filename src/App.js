@@ -6,21 +6,23 @@ import ProtectedRoute from './routing/ProtectedRoute';
 import _ from "lodash";
 import Spinner from "./common/components/SpinnerCustomized";
 import { useSelector } from "react-redux";
-import ForbiddenComponent from './routing/ForbiddenComponent';
-
-// import * as roles from "./routing/roles";
-// import HomeBeforeLogin from './common/components/HomeBeforeLogin';
-// import HomeAfterLogin from './common/components/HomeAfterLogin';
-
+import Chat from './modules/Chatbot-RightBar/ui/Chat';
+import Dashboard from "./common/components/dashboard/ui/Dashboard";
+import Login from './modules/Authentification/components/Login';
+import NotFound from "./routing/NotFound";
 
 
-// const protectedRoutes = {
-//   homeAfterLogin: { path: "/homeafterlogin", requiredRoles: [], component: HomeAfterLogin },
-// };
+const protectedRoutes = {
+  chatbot: { path: "/Chatbot", requiredRoles: [], component: Chat }
+};
 
- let isAuthenticated = localStorage.getItem("token"); 
+
 function App() {
+  let isAuthenticated = localStorage.getItem("token"); 
   const state = useSelector(state => state);
+
+  const isLoading = useSelector(state => state.Summarize.loading);
+  // const uploading = useSelector(state => state);
 
   let loadingProps;
   let reducerHasLoading = _.pickBy(state, (value, key) => {
@@ -34,45 +36,42 @@ function App() {
     }
   }
 
-  // Routes for non-authenticated users
+  // les  route  de hors Authentication
   let routes = (
     <Layout>
       <Switch>
-        <Route exact path="/homebeforelogin" component={Layout} />
-        <Route exact path="/" render={() => <Redirect to="/homebeforelogin" />} />
-        <Route path="*" component={ForbiddenComponent} />
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/" render={() => <Redirect to="/login" />} />
+        <Route path="*" component={NotFound} />
       </Switch>
     </Layout>
   );
-  
-  // Routes for authenticated users
-  // let content = (
-  //   <Switch>
-  //     <Route exact path="/homeafterlogin" component={HomeAfterLogin} />
-  //     {protectedRoutes && Object.entries(protectedRoutes).map(([routeKey, routeProps]) => (
-  //       <ProtectedRoute
-  //         key={routeKey}
-  //         roles={routeProps.requiredRoles}
-  //         path={routeProps.path}
-  //         component={routeProps.component}
-  //       />
-  //     ))}
-  //     <Route exact path="/" render={() => <Redirect to="/homeafterlogin" />} />
 
-  //     <Route path="*" component={NotFound} />
-  //   </Switch>
-  // );
-
-  // if (isAuthenticated) {
-  //   routes = (
-  //     <Layout>
-  //       <Dashboard
-  //         roles={protectedRoutes}
-  //         content={content}
-  //       />
-  //     </Layout>
-  //   );
-  // }
+  //After login
+  let content = (
+    <Switch>
+      {protectedRoutes && Object.entries(protectedRoutes).map(([routeKey, routeProps]) => (
+        <ProtectedRoute
+          key={routeKey}
+          roles={routeProps.requiredRoles}
+          path={routeProps.path}
+          component={routeProps.component}
+        />
+      ))}
+      <Route exact path="/" render={() => <Redirect to="/Chatbot" />} />
+      <Route path="*" component={NotFound} />
+    </Switch>
+  );
+  if (isAuthenticated) {
+    routes = (
+      <Layout>
+        <Dashboard
+          roles={protectedRoutes}
+          content={content}
+        />
+      </Layout>
+    );
+  }
 
   return (
     <div>
@@ -81,6 +80,7 @@ function App() {
       ) : (
         <></>
       )}
+      {isLoading ? <Spinner /> : null}
       {routes}
     </div>
   );

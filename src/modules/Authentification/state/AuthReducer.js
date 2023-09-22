@@ -2,44 +2,46 @@ import { updateObject } from "../../../common/utils/UpdateObjectUtility";
 import * as ActionsTypes from "../../../common/state/StatesConstants";
 
 const initialState = {
-  messages: [],
+  token: null,
   error: null,
   isLoading: false,
 };
 
-const sendMessageStart = (state) => {
+const AuthStart = (state, action) => {
   return updateObject(state, {
+    token: null,
     error: null,
     isLoading: true,
   });
 };
 
-const sendMessageSuccess = (state, action) => {
+const AuthSuccess = (state, action) => {
   return updateObject(state, {
-    messages: [...state.messages, { sender: 'bot', text: action.response }],
+    token: action.response.data.access_token,
     isLoading: false,
     error: null,
   });
 };
 
-const sendMessageFail = (state, action) => {
+const AuthFail = (state, action) => {
   return updateObject(state, {
+    token: null,
     isLoading: false,
-    error: action.error.message,
+    error:action.error.message,
   });
 };
 
-const chatReducer = (state = initialState, action) => {
+const AuthReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ActionsTypes.SEND_MESSAGE_REQUEST:
-      return sendMessageStart(state, action);
-    case ActionsTypes.SEND_MESSAGE_SUCCESS:
-      return sendMessageSuccess(state, action);
-    case ActionsTypes.SEND_MESSAGE_FAILURE:
-      return sendMessageFail(state, action);
+    case ActionsTypes.AUTH_START:
+      return AuthStart(state, action);
+    case ActionsTypes.AUTH_SUCCESS:
+      return AuthSuccess(state, action);
+    case ActionsTypes.AUTH_FAIL:
+      return AuthFail(state, action);
     default:
       return state;
   }
 };
 
-export default chatReducer;
+export default AuthReducer;

@@ -1,11 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { frFR } from "@mui/material/locale";
-import { Stack } from '@mui/material';
 import config from "../Config";
-import Sidebar from '../../modules/Chatbot-SlideBar/components/SideBar';
-import Chat_Right from '../../modules/Chatbot-RightBar/components/Chat_Right';
-import Feed from './../../modules/Chatbot-Feed/components/Feed';
 
 class Layout extends Component {
   render() {
@@ -31,24 +27,23 @@ class Layout extends Component {
         style={
           this.props.backgroundColor
             ? {
-                position: "relative",
-                minHeight: "100vh",
-                backgroundColor: this.props.backgroundColor,
-              }
+              position: "relative",
+              minHeight: "100vh",
+              width: "100vw",
+              backgroundColor: this.props.backgroundColor,
+            }
             : {
-                position: "relative",
-                minHeight: "100vh",
-              }
+              position: "relative",
+              minHeight: "100vh",
+              width: "100vw",
+            }
         }
       >
-<Stack direction="row" spacing={2} justifyContent="space-between" alignItems="stretch" height="100vh">
-          <Sidebar />
-          <Feed/>
-          <Chat_Right />
-        </Stack>
+        <main >
+          <ThemeProvider theme={theme}>{this.props.children}</ThemeProvider>
+        </main>
       </div>
     );
   }
 }
-
-export default Layout;
+export default Layout;  

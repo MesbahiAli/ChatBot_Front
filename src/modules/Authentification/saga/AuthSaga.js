@@ -4,14 +4,14 @@ import { AuthApi } from "../../../common/services/AuthService";
 
 export function * AuthSaga(action) {
   const request = action.request;
- try {
-    const response =  yield call(AuthApi, request.payload);
-    console.log(response)
-    yield put(actions.AUTH_SUCCESS(response));
-    yield call(request.successCallBack, response);
-
+  try {
+    const response = yield call(AuthApi, request.payload);
+    if (request) {
+      yield put(actions.AuthSuccess(response));
+      yield call(request.successCallBack, response);
+    }
   } catch (error) {
-    yield put(actions.AUTH_FAIL(error));
+    yield put(actions.AuthFail(error));
     yield call(request.failCallBack, error);
   }
 }

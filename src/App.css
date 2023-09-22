@@ -9,3 +9,44 @@
     align-items: center;
     color: #5687ff
 }
+
+/* not found page styles */
+
+.not-found{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: #1f265c;
+    position: relative;
+}
+
+.not-found-img{
+    height: 90vh;
+    width: 70vw;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+@media screen and (max-width:1000px) {
+    .not-found-img{
+        height: 80vh;
+        width: 90vw;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+    }
+}
+@media screen and (max-width:680px) {
+    .not-found-img{
+        height: 60vh;
+        width: 100vw;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+    }
+}
+
+/* end of not found page styles */
