@@ -43,3 +43,6 @@ export const SUMMARIZE_FAILURE = 'SUMMARIZE_FAILURE';
 export const FETCH_PDF_REQUEST = 'FETCH_PDF_REQUEST';
 export const FETCH_PDF_SUCCESS = 'FETCH_PDF_SUCCESS';
 export const FETCH_PDF_FAILURE = 'FETCH_PDF_FAILURE';
+
+//////////////////Side_bar//////////////////
+export const TOGGLE_SIDEBAR = "TOGGLE_SIDEBAR";

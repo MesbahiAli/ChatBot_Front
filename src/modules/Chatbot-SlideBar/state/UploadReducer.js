@@ -1,7 +1,8 @@
-import { CLEAR_UPLOADED_FILES, DELETE_FILE, UPLOAD_FILES } from "../../../common/state/StatesConstants";
+import { CLEAR_UPLOADED_FILES, DELETE_FILE, TOGGLE_SIDEBAR, UPLOAD_FILES } from "../../../common/state/StatesConstants";
 
 const initialState = {
-  files: []
+  files: [],
+  isSidebarOpened: true
 };
 
 const UploadReducer = (state = initialState, action) => {
@@ -12,6 +13,12 @@ const UploadReducer = (state = initialState, action) => {
       return { ...state, files: state.files.filter(file => file.name !== action.payload) };
     case CLEAR_UPLOADED_FILES:
       return { ...state, files: [] };
+      case TOGGLE_SIDEBAR:
+        return {
+          ...state,
+          isSidebarOpened: !state.isSidebarOpened
+        };
+    
     default:
       return state;
   }
