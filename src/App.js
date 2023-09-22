@@ -10,6 +10,7 @@ import Chat from './modules/Chatbot-RightBar/ui/Chat';
 import Dashboard from "./common/components/dashboard/ui/Dashboard";
 import Login from './modules/Authentification/components/Login';
 import NotFound from "./routing/NotFound";
+import config from './common/Config';
 
 
 const protectedRoutes = {
@@ -37,9 +38,9 @@ function App() {
   let routes = (
     <Layout>
       <Switch>
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/" render={() => <Redirect to="/login" />} />
-        <Route path="*" component={NotFound} />
+        <Route exact path={config.frontRouting+"/login"} component={Login} />
+        <Route exact path={config.frontRouting+"/"} render={() => <Redirect to={config.frontRouting+"/login"} />} />
+        <Route path={config.frontRouting+"/*"} component={NotFound} />
       </Switch>
     </Layout>
   );
@@ -47,7 +48,7 @@ function App() {
   //After login
   let content = (
     <Switch>
-      <Route exact path="/Chatbot" component={Chat} />
+      <Route exact path={config.frontRouting+"/chatBot"} component={Chat} />
       {protectedRoutes && Object.entries(protectedRoutes).map(([routeKey, routeProps]) => (
         <ProtectedRoute
           key={routeKey}
@@ -56,8 +57,8 @@ function App() {
           component={routeProps.component}
         />
       ))}
-      <Route exact path="/" render={() => <Redirect to="/Chatbot" />} />
-      <Route path="*" component={NotFound} />
+      <Route exact path={config.frontRouting+"/"} render={() => <Redirect to={config.frontRouting+"/chatBot"} />} />
+      <Route path={config.frontRouting+"/*"} component={NotFound} />
     </Switch>
   );
   if (isAuthenticated) {

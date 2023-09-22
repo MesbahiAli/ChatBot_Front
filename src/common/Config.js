@@ -17,6 +17,7 @@ const config = {
     appVersion: "1.0.0",
     primaryColor: "#232A56",
     secondaryColor: "#575756",
+    frontRouting: '/ChatBot_Front'
   
   
 };
