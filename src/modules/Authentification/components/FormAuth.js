@@ -97,7 +97,6 @@ const FormAuth = () => {
             message: "Login successful!",
             openSnackBar: true,
         });
-        console.log(response.data.access_token)
            localStorage.setItem("token", response.data.access_token);
           // window.location.href = "/Balisage";
         },

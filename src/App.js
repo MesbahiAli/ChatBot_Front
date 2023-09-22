@@ -21,6 +21,9 @@ function App() {
   let isAuthenticated = localStorage.getItem("token"); 
   const state = useSelector(state => state);
 
+  const isLoading = useSelector(state => state.Summarize.loading);
+  // const uploading = useSelector(state => state);
+
   let loadingProps;
   let reducerHasLoading = _.pickBy(state, (value, key) => {
     return value.isLoading === true && key !== "chat";
@@ -78,6 +81,7 @@ function App() {
       ) : (
         <></>
       )}
+      {isLoading ? <Spinner /> : null}
       {routes}
     </div>
   );

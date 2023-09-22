@@ -47,7 +47,6 @@ const Login = () => {
             const request = {
                 payload: values,
                 successCallBack: (response) => {
-                    console.log(response.data.access_token)
                     localStorage.setItem("token", response.data.access_token);
                     window.location.href = "/";
                     setResponseSuccess("you logged In successfully");

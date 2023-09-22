@@ -6,7 +6,6 @@ const Feed = () => {
   const dispatch = useDispatch();
   const summarize =useSelector((state) => state.Summarize.data);
   const pdfData = useSelector(state => state.Pdf.pdf);
-  console.log(pdfData)
   return (
    <Box bgcolor="#212229" color="#fff" flex={4} p={{ xs: 0, md: 2 }}>   
 <div>
