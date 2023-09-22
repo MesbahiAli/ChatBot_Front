@@ -13,7 +13,7 @@ import NotFound from "./routing/NotFound";
 
 
 const protectedRoutes = {
-  // chatbot: { path: "/Chatbot45", requiredRoles: [], component: Login },
+  chatbot: { path: "/Chatbot", requiredRoles: [], component: Chat }
 };
 
 
@@ -50,7 +50,6 @@ function App() {
   //After login
   let content = (
     <Switch>
-      <Route exact path="/Chatbot" component={Chat} />
       {protectedRoutes && Object.entries(protectedRoutes).map(([routeKey, routeProps]) => (
         <ProtectedRoute
           key={routeKey}
