@@ -2,6 +2,7 @@
   "name": "Project-LT",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://MesbahiAli.github.io/ChatBot_Front",
   "dependencies": {
     "@emotion/react": "^11.10.0",
     "@emotion/styled": "^11.10.0",
@@ -44,7 +45,9 @@
     "start": "set SET NODE_OPTIONS=--openssl-legacy-provider && react-scripts start --port=8090",
     "build": "react-scripts build --openssl-legacy-provider",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pag"
   },
   "eslintConfig": {
     "extends": [
@@ -66,6 +69,7 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "gh-pages": "^6.0.0",
     "react-router-dom": "^5.3.4"
   }
 }
