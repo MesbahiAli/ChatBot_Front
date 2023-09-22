@@ -13,13 +13,16 @@ import NotFound from "./routing/NotFound";
 
 
 const protectedRoutes = {
-  // chatbot: { path: "/Chatbot45", requiredRoles: [], component: Login },
+  chatbot: { path: "/Chatbot", requiredRoles: [], component: Chat }
 };
 
 
 function App() {
   let isAuthenticated = localStorage.getItem("token"); 
   const state = useSelector(state => state);
+
+  const isLoading = useSelector(state => state.Summarize.loading);
+  // const uploading = useSelector(state => state);
 
   let loadingProps;
   let reducerHasLoading = _.pickBy(state, (value, key) => {
@@ -47,7 +50,6 @@ function App() {
   //After login
   let content = (
     <Switch>
-      <Route exact path="/Chatbot" component={Chat} />
       {protectedRoutes && Object.entries(protectedRoutes).map(([routeKey, routeProps]) => (
         <ProtectedRoute
           key={routeKey}
@@ -78,6 +80,7 @@ function App() {
       ) : (
         <></>
       )}
+      {isLoading ? <Spinner /> : null}
       {routes}
     </div>
   );

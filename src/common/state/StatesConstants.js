@@ -9,6 +9,9 @@ export const SEND_MESSAGE_FAILURE = 'SEND_MESSAGE_FAILURE';
  //*****************upload *******************/
  export const DELETE_FILE = 'DELETE_FILE';
  export const SEND_FILES_TO_SERVER = 'SEND_FILES_TO_SERVER';
+ export const UPLOAD_FILES_REQUEST = 'UPLOAD_FILES_REQUEST';
+ export const UPLOAD_FILES_FAILURE = 'UPLOAD_FILES_FAILURE';
+
  export const UPLOAD_FILES = 'UPLOAD_FILES';
  export const CLEAR_UPLOADED_FILES = 'CLEAR_UPLOADED_FILES';
 

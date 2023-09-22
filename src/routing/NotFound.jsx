@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import "./style/not-found.css";
 import img from "../assets/images/ghost-img.png";
-import { Button } from '@mui/material';
 
 const NotFound = ({history}) => {
     const [hovered, setHovered] = useState(false);
