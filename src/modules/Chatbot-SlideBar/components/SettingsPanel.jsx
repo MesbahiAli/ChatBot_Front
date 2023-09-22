@@ -12,51 +12,89 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import { useDispatch } from 'react-redux';
 import { IconButton } from '@mui/material';
 
-const SettingsPanel = ({el}) => {
-    const checkStyle = {
-        color: '#fff',
-        margin: 0,
-        padding: 0,
-        position:'relative'
-      };
-    const dispatch = useDispatch();
-    const [open,setOpen]= useState(false);
-    const settingsPanelRef = useRef(null);
-    const handleClickOutside = (event) => {
-        if (settingsPanelRef.current && (!settingsPanelRef.current.contains(event.target) )) {
-            setOpen(false);
-        }else{
-            setTimeout(()=>{
-                setOpen(false);
-              },[800])
+const SettingsPanel = ({ el }) => {
+  const checkStyle = {
+    color: '#fff',
+    margin: 0,
+    padding: 0,
+    position: 'relative'
+  };
+  const dispatch = useDispatch();
+  const [open, setOpen] = useState(false);
+  const settingsPanelRef = useRef(null);
+  const settingsButtonsRef = useRef(null);
+
+  useEffect(() => {
+    if (open && settingsPanelRef.current && settingsButtonsRef.current) {
+      const buttonRect = settingsButtonsRef.current.getBoundingClientRect();
+      const panelRect = settingsPanelRef.current.getBoundingClientRect();
+      const scrollY = window.scrollY || window.pageYOffset;
+
+      // Calculate the position
+      const left = buttonRect.right + 10; // Adjust as needed
+      const top = buttonRect.top + scrollY;
+
+      // Apply the position to the panel
+      settingsPanelRef.current.style.left = `${left}px`;
+      settingsPanelRef.current.style.top = `${top}px`;
+
+      // Ensure the panel stays within the viewport
+      if (top + panelRect.height > window.innerHeight) {
+        settingsPanelRef.current.style.top = `${window.innerHeight - panelRect.height}px`;
+      }
+    }
+  }, [open]);
+
+
+  const handleClickOutside = (event) => {
+    if (settingsPanelRef.current.classList.contains('close')) {
+      if (settingsButtonsRef.current.contains(event.target)) {
+        setOpen(true);
+      }
+      return
+    } else {
+      if (settingsButtonsRef.current.contains(event.target)) {
+        setOpen(false)
+      } else {
+        if (settingsPanelRef.current.contains(event.target)) {
+          setTimeout(() => {
+            setOpen(false)
+          }, [300]);
+        } else {
+          setOpen(false)
         }
-      };
-    
-      useEffect(() => {
-        document.addEventListener('mousedown', handleClickOutside);
-        return () => {
-          document.removeEventListener('mousedown', handleClickOutside);
-        };
-      }, []);
-    const handleDelete = (filename) => {
-        deleteFileApi(filename)
-          .then(response => {
-            dispatch(fetchDataRequest());
-          })
-          .catch(error => {
-            console.error("Error deleting file:", error);
-          });
-      };
-    return (
-        <IconButton style={checkStyle} onClick={() => { setOpen(prev => !prev) }}  >
-            <MoreVertIcon />
-            <div ref={settingsPanelRef} className={open ? "settings-panel open" : "settings-panel close"}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', color: "black", fontSize: "16px",padding:'5px',marginBottom:'5px' }} className='setting-items' onClick={() => {setOpen(false); dispatch(requestSummarize(el));  }}  ><SummarizeIcon sx={{mr:'5px'}} />Summarize</div>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', color: "black", fontSize: "16px",padding:'5px',marginBottom:'5px' }} className='setting-items' onClick={() => {setOpen(false); dispatch(fetchPdfRequest(el));  }}  ><VisibilityIcon sx={{mr:'5px'}}/>View</div>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', color: "black", fontSize: "16px",padding:'5px' }} className='setting-items' onClick={() => { handleDelete(el); setOpen(false) }}  ><DeleteIcon sx={{mr:'5px'}}/>Delete</div>
-            </div>
-        </IconButton>
-    )
+      }
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside);
+
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  const handleDelete = (filename) => {
+    deleteFileApi(filename)
+      .then(response => {
+        dispatch(fetchDataRequest());
+      })
+      .catch(error => {
+        console.error("Error deleting file:", error);
+      });
+  };
+  return (
+    <IconButton style={checkStyle}   >
+      <MoreVertIcon ref={settingsButtonsRef} />
+      <div ref={settingsPanelRef} className={open ? "settings-panel open" : "settings-panel close"}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', color: "black", fontSize: "16px", padding: '5px', marginBottom: '5px' }} className='setting-items' onClick={() => { dispatch(requestSummarize(el)); }}  ><SummarizeIcon sx={{ mr: '5px' }} />Summarize</div>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', color: "black", fontSize: "16px", padding: '5px', marginBottom: '5px' }} className='setting-items' onClick={() => { dispatch(fetchPdfRequest(el)); }}  ><VisibilityIcon sx={{ mr: '5px' }} />View</div>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', color: "black", fontSize: "16px", padding: '5px' }} className='setting-items' onClick={() => { handleDelete(el) }}  ><DeleteIcon sx={{ mr: '5px' }} />Delete</div>
+      </div>
+    </IconButton>
+  )
 }
 
 export default SettingsPanel

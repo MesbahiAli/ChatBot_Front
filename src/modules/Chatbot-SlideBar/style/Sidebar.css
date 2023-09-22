@@ -168,7 +168,7 @@
     background-color: #1f1f1f;
     margin-bottom: 15px;
     margin-top: 15px;
-    height: 200px;
+    min-height: 200px;
 }
 
 /* styles.css or your preferred stylesheet */
@@ -202,11 +202,24 @@
 }
 
 /* setting panel style */
+.uploaded-item-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 5px;
+    margin-bottom: 10px;
+    background: #212229;
+    border-radius: 8px;
+    /* Radial gradient from black to gray */
+    box-shadow:   0 2px 5px #000;
+    /* Dark drop shadow */
+}
 
 .settings-panel {
-    position: absolute;
+    position: fixed;
+    width: fit-content;
     display: none;
-    top:35px;
+    top: 35px;
     /* Adjust as needed */
     right: 0px;
     /* Adjust as needed */
@@ -214,7 +227,7 @@
     border: 1px solid #ccc;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     padding: 10px;
-    z-index: 1;
+    z-index: 500000;
     border-radius: 5px;
 }
 
@@ -222,10 +235,12 @@
     display: flex;
     flex-direction: column;
 }
+
 .settings-panel.close {
     display: none;
 }
-.setting-items:hover{
+
+.setting-items:hover {
     cursor: pointer;
     background: lightgray;
     border-radius: 3px;
@@ -409,7 +424,7 @@
     cursor: pointer;
 }
 
-#logoutButton button{
+#logoutButton button {
     color: white;
 }
 
