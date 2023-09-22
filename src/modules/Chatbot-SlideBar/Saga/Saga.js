@@ -7,7 +7,6 @@ function* sendFilesToServerSaga(action) {
       const files = yield select(state => state.upload.files);
       const response = yield call(UploadServer, files);
       yield put(fetchDataRequest());
-
   } catch (error) {
       console.error('Error uploading files:', error.response ? error.response : error);
   }
