@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { instance } from "../Axios";
 
 export const AuthApi = (payload) => {

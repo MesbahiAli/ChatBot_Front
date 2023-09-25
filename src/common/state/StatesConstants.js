@@ -46,3 +46,16 @@ export const FETCH_PDF_FAILURE = 'FETCH_PDF_FAILURE';
 
 //////////////////Side_bar//////////////////
 export const TOGGLE_SIDEBAR = "TOGGLE_SIDEBAR";
+
+//////////////////SEND_FILE//////////////////
+export const SEND_FILE_AND_DATA_REQUEST = 'SEND_FILE_AND_DATA_REQUEST';
+export const SEND_FILE_AND_DATA_SUCCESS = 'SEND_FILE_AND_DATA_SUCCESS';
+export const SEND_FILE_AND_DATA_FAILURE = 'SEND_FILE_AND_DATA_FAILURE';
+
+
+
+//////////////////GET_CATEGORY//////////////////
+export const GET_CATEGORY_REQUEST = 'GET_CATEGORY_REQUEST';
+export const GET_CATEGORY_SUCCESS = 'GET_CATEGORY_SUCCESS';
+export const GET_CATEGORY_FAILURE = 'GET_CATEGORY_FAILURE';
+

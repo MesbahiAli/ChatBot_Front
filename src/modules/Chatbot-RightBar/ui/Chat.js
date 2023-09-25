@@ -13,7 +13,7 @@ export default function Chat() {
     <>
     <Stack direction="row" justifyContent="space-between" alignItems="stretch" height="100vh">
           <Sidebar/> 
-          <Feed/> 
+          {/* <Feed/>  */}
           {/* <Auth/> */}
           <ChatRight />
     </Stack>
