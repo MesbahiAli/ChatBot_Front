@@ -205,36 +205,17 @@ const UploadComponent = () => {
               <ListItem id='listItem' style={docStyle} key={index}>
                 <ListItemText primary={file.name} id='listItemSecondaryAction' style={listItemStyle}>
                 </ListItemText>
-                {/* <ListItemText primary={file.name} id='listItemPrimaryText'/> */}
               </ListItem>
             ))}
           </List>
         </div>
 
         <label id='sendServerLabel' style={isUploaded ? sendServerButton : disabledButton}>
-          {/* <Button onClick={handleUploadButtonClick} id='sendBtn' style={sendServerButton} endIcon={<CloudUploadIcon />}>  TAHA */}
           <Button onClick={handleUploadButtonClick} id='sendBtn' disabled={isUploaded ? false : true} style={isUploaded ? sendServerButton : disabledButton} endIcon={<CloudUploadIcon />}>
             <span className="text">Upload</span>
           </Button>
         </label>
 
-
-
-        {/* <br />
-          <hr style={ { height: '1px', border: 'none' } }/>
-    
-          
-
-          <List className="second-list file-list-container"> {files?.map(el => (
-            <div key={el} style={{ display: 'flex' }} className='li-container'>
-                    {el} */}
-        {/* <label id='sendServerLabel'>
-        <Button  onClick={handleSendSelectedFilesFromServer} id='sendBtn' disabled={isSelected ? false : true} style={isSelected ? sendServerButton : disabledButton} endIcon={<SendIcon />} >
-          <span className="text">Send selected files</span>
-        </Button>
-      </label> */}
-
-        {/* <Button onClick={()=>dispatch(requestToggle())}>Change language</Button> */}
         <List  className="second-list file-list-container"> {files?.map(el => (
           <div key={el} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '5px 3px', paddingLeft: '5px', marginBottom: '10px', backgroundColor: '#212229', borderRadius: '8px', }} className='uploaded-item-container'>
             {el}
@@ -247,12 +228,6 @@ const UploadComponent = () => {
                 onChange={() => handleServerFileSelect(el)}
               />
               <SettingsPanel el={el} />
-
-              {/* <IconButton style={checkStyle} edge="end" onClick={() => handleDelete(el)} id='deleteIcon'>
-              <DeleteIcon />
-              </IconButton>
-              <Button onClick={()=>dispatch(requestSummarize(el))} id='summarizeIcon' title="Summarize the document"><SummarizeIcon/></Button>
-            <Button onClick={()=>dispatch(fetchPdfRequest(el))} id='viewIcon' title="View the document"><VisibilityIcon /></Button> */}
             </div>
 
           </div>

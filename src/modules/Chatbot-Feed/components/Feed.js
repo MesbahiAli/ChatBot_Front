@@ -13,8 +13,8 @@ const Feed = () => {
      {summarize}
 
   <hr /> */}
-     <h1 style={{ textAlign: 'center' }}>View</h1>
-     <hr />
+     {/* <h1 style={{ textAlign: 'center' }}>View</h1> */}
+     {/* <hr /> */}
 {pdfData &&<iframe 
           src={`data:application/pdf;base64,${pdfData.pdf}`}           
           title="application/pdf"

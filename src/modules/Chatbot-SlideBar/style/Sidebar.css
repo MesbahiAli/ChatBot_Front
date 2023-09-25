@@ -63,16 +63,14 @@
     opacity: 1;
 }
 
-@media (max-width: 1250px) {
+/* @media (max-width: 1250px) {
 
     #sendBtn>span.text {
         display: none;
-        /* Hide the text on small screens */
     }
 
     .sidebar-button .text {
         display: none;
-        /* Hide the text on small screens */
     }
 
     #sendBtn>span {
@@ -87,9 +85,9 @@
     #uploadLabel>span>span {
         margin: 0;
     }
-}
+} */
 
-@media (max-width: 900px) {
+/* @media (max-width: 900px) {
 
     .SidebarDev {
         display: none;
@@ -103,7 +101,6 @@
 
     .sidebar-button .text {
         display: none;
-        /* Hide the text on small screens */
     }
 
     #uploadLabel>span {
@@ -141,16 +138,12 @@
         background-color: none;
         border: none;
     }
-}
+} */
 
 .file-list-container {
-    /* max-height: 800px;   TAHA */
     max-height: 30%;
-    /* Adjust the maximum height as needed */
     overflow-y: auto;
-    /* Enable vertical scrolling when content exceeds the height */
     overflow-x: auto;
-    /* Enable horizontal scrolling when content overflows */
     white-space: wrap;
     margin-bottom: 15px;
     margin-top: 15px;
@@ -168,12 +161,10 @@
     background-color: #1f1f2f;
     margin-bottom: 15px;
     margin-top: 15px;
-    min-height: 200px;
+    height: 200px;
 }
 
-/* styles.css or your preferred stylesheet */
 
-/* Default styles for list items */
 #listItem {
     display: flex;
     align-items: center;
@@ -202,24 +193,11 @@
 }
 
 /* setting panel style */
-.uploaded-item-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-left: 5px;
-    margin-bottom: 10px;
-    background: #212229;
-    border-radius: 8px;
-    /* Radial gradient from black to gray */
-    box-shadow:   0 2px 5px #000;
-    /* Dark drop shadow */
-}
 
 .settings-panel {
-    position: fixed;
-    width: fit-content;
+    position: absolute;
     display: none;
-    top: 35px;
+    top:35px;
     /* Adjust as needed */
     right: 0px;
     /* Adjust as needed */
@@ -227,7 +205,7 @@
     border: 1px solid #ccc;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     padding: 10px;
-    z-index: 500000;
+    z-index: 1;
     border-radius: 5px;
 }
 
@@ -235,12 +213,10 @@
     display: flex;
     flex-direction: column;
 }
-
 .settings-panel.close {
     display: none;
 }
-
-.setting-items:hover {
+.setting-items:hover{
     cursor: pointer;
     background: lightgray;
     border-radius: 3px;
@@ -259,25 +235,21 @@
 
 
 /* Media query for small screens (adjust the breakpoint as needed) */
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
 
-    /* Stack the elements vertically on small screens */
     #listItem {
         flex-direction: column;
         align-items: flex-start;
     }
 
-    /* Reset file name styles to wrap text */
     #listItemPrimaryText {
         white-space: normal;
         overflow: visible;
         text-overflow: inherit;
     }
 
-    /* Adjust spacing as needed */
     #listItemSecondaryAction {
         margin-top: 4px;
-        /* Add spacing between the file name and checkbox/delete icon */
         margin-right: -90%;
 
     }
@@ -295,36 +267,28 @@
 
     .hamburger-icon {
         display: none;
-        /* Hide by default */
         color: white;
-        /* Color to match your theme */
     }
 
     .SidebarDev.closed {
         width: 0;
-        /* Or display: none, but using width allows for animation */
         overflow: hidden;
     }
 
-    /* Breakpoint for the hamburger menu */
     @media (max-width: 900px) {
 
-        /* Show the hamburger icon on smaller screens */
         .hamburger-icon {
             display: block;
         }
 
-        /* By default, set the sidebar to closed on smaller screens */
         .SidebarDev {
             display: none;
         }
 
-        /* Show the sidebar when it's in open state */
         .SidebarDev.open {
             display: block;
 
             width: 100%;
-            /* Restore the original width or set your preferred width */
         }
 
         .file-list-container {
@@ -363,8 +327,7 @@
         }
     }
 
-    /* ---- 20/09/23 */
-}
+} */
 
 /* Mouad Doadi - 21/09/23 > */
 
@@ -424,7 +387,7 @@
     cursor: pointer;
 }
 
-#logoutButton button {
+#logoutButton button{
     color: white;
     padding: 10px 57%;
 }
@@ -434,3 +397,58 @@
 }
 
 /* < 21/09/23 */
+
+/* Mouad Doadi - 25/09/23 > */
+
+@media (max-width: 768px) {
+
+    .SidebarDev{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+    }
+
+    /* #root > div > div > main > div > main > div > div.SidebarDev.open{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+
+    } */
+    
+    .file-list-container{
+        margin: 10px auto;
+    }
+
+    
+}
+
+/* ------------- */
+
+/* Styles when the screen width goes under 768px */
+@media (max-width: 768px) {
+    .SidebarDev {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Centers children horizontally */
+    }
+
+    #uploadLabel, 
+    .file-list-container, 
+    #sendServerLabel, 
+    .second-list, 
+    #sendServerLabel, 
+    #logoutButton {
+        width: 90%; /* Makes these elements take 90% of the sidebar width */
+        box-sizing: border-box; /* Ensures padding and border are included in the element's total width */
+    }
+}
+
+
+/* --------------- */
+
+/* < */
