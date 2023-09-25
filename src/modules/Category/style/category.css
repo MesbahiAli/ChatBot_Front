@@ -1,0 +1,87 @@
+.category-container{
+    min-height: 100vh;
+    width: 100vw;
+    background: #212229;
+    color: white;
+    display: block;
+    flex-direction: column;
+}
+
+.form-dialogue{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 80px;
+    border-bottom: 1px solid white;
+    padding: 0 20px;
+}
+.fd-buttons{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.css-1fzxgu2-MuiButtonBase-root-MuiButton-root.fd-btn:hover{
+    border-color: #343e8b;
+    color: #343e8b;
+}
+
+.fd-table-container{
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.fdm-header{
+    font-size: 25px;
+    color: white;
+    text-align: center;
+}
+
+.fdm-form{
+    flex: 1;
+    background: transparent;
+    color: white;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.fdmf-top{
+    display: flex;
+    /* align-items: center; */
+    /* justify-content: space-around; */
+    gap: 20px;
+}
+  
+.fdmf-right{
+    flex: .5;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.fdmf-left{
+    flex: .5;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+}
+
+.fdmf-buttons{
+    display: flex;
+    flex-direction: column; 
+    gap: 20px;
+}
+
+@media screen and (max-width:820px) {
+    .fdmf-top{
+        flex-direction: column;
+        gap: 10px;
+    }
+    .fdmf-right,.fdmf-left{
+        flex: 1;
+    }
+}
