@@ -6,15 +6,12 @@ import {
 import { sendFileAndDataApi } from '../../../common/services/CategoryService';
 
 function* sendFileAndDataSaga(action) {
+  console.log(action.payload);
   try {
     const formData = new FormData();
-    for (const key in action.payload.data) {
-      formData.append(key, action.payload.data[key]);
+    for (const key in action.payload) {
+      formData.append(key, action.payload[key]);
     }
-    if (action.payload.file) {
-      formData.append('file', action.payload.file);
-    }
-
     for (let [key, value] of formData.entries()) {
       console.log(key, value);
     }
@@ -24,7 +21,5 @@ function* sendFileAndDataSaga(action) {
     yield put({ type: SEND_FILE_AND_DATA_FAILURE, payload: error.message });
   }
 }
-
-
 
 export default sendFileAndDataSaga;
