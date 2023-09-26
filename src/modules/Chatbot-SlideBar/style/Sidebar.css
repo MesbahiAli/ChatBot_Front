@@ -4,7 +4,7 @@
     border-right: 0.5px solid #3a3a3a;
     background-color: #121212;
     /* ------ HERE ----- */
-    width: 15%;
+    width: 50%;
 }
 
 .SidebarDev label {
@@ -93,7 +93,6 @@
 
     .SidebarDev {
         display: none;
-
     }
 
     label#sendServerLabel {
@@ -119,11 +118,6 @@
     .sidebar-button {
         padding: 15px;
         margin: 15px;
-    }
-
-    .SidebarDev {
-        margin: 0;
-        padding: 0px;
     }
 
     #uploadLabel {
@@ -259,7 +253,7 @@
 
 
 /* Media query for small screens (adjust the breakpoint as needed) */
-@media (max-width: 768px) {
+@media (max-width: 989px) {
 
     /* Stack the elements vertically on small screens */
     #listItem {
