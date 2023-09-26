@@ -5,7 +5,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import SendIcon from '@mui/icons-material/Send';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchDataRequest } from '../../files/State/ActionsFile';
-import { uploadFiles, sendFilesToServer, clearUploadedFiles } from '../state/UploadActions';
+import { uploadFiles, sendFilesToServer, clearUploadedFiles, toggleSidebarClick } from '../state/UploadActions';
 import { sendFileNamesRequest } from '../SlectedFile/State/actionSlect';
 import '../style/Sidebar.css';
 import Checkbox from '@mui/material/Checkbox';
@@ -110,6 +110,7 @@ const UploadComponent = () => {
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
+    dispatch(toggleSidebarClick())
   };
 
   useEffect(() => {
@@ -179,12 +180,15 @@ const UploadComponent = () => {
   /* TAHA */ const handleLogout = () => {
     JwtUtils.logOut();
   };
+
+  const isSidebarOpened = useSelector(state => state.upload.isSidebarOpened);
+
   return (
     <>
       <IconButton style={{ color: '#000', backgroundColor: '#343e8f', margin: 0, padding: '5px', borderRadius: 0 }} onClick={toggleSidebar} className="hamburger-icon" sx={{ display: { xs: 'flex', md: 'none', xl: 'none' } }}>
         <MenuIcon style={{ color: '#aaa', margin: 0, padding: 0 }} />
       </IconButton>
-      <div className={isSidebarOpen ? "SidebarDev open" : "SidebarDev closed"} sx={{ display: { xs: 'none', sm: 'block' } }}>
+      <div className={isSidebarOpened ? "SidebarDev open" : "SidebarDev closed"}>
         <input
           style={{ display: 'none' }}
           id="file-input"
