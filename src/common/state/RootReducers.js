@@ -19,7 +19,7 @@ const rootReducer = combineReducers({
   Togle:toggleReducer,
   Summarize:summarizeReducer,
   Pdf:pdfReducer,
-  Files:fileReducer,
+  FilCategory:fileReducer,
   Category:categoryReducer
 
   
