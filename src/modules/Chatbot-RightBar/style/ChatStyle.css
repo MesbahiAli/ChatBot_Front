@@ -115,11 +115,11 @@
     opacity: 1;
 }
 
-input[id^="mui-"]{
-    background-color: #212229; /* --------- HERE ------------ */
-    border-radius: 5px; /* --------- HERE ------------ */
+/* input[id^="mui-"]{
+    background-color: #212229; 
+    border-radius: 5px; 
     color: #eee;
-}
+} */
 
 /* Message Styles */
 .message-wrapper { display: flex; align-items: center; margin-bottom: 10px;flex-direction: row-reverse; word-wrap: break-word;}

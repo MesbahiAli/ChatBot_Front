@@ -17,7 +17,7 @@ import { useDispatch } from "react-redux";
 import * as AuthAction from "../state/AuthAction";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import * as Yup from "yup";
-import image from "../../../assets/images/logo3.png";
+// import image from "../../../assets/images/logo3.png";
 
 const FormAuth = () => {
   const [stateSnackBar, setStateSnackBar] = useState({
@@ -121,7 +121,7 @@ const FormAuth = () => {
     <Grid>
       <Paper elevation={10} style={paperStyle}>
         <Grid align="center">
-          <img alt="" src={image} style={{ width: "227px" }} />
+          {/* <img alt="" src={image} style={{ width: "227px" }} /> */}
           <Typography
             sx={{
               fontSize: "28px",

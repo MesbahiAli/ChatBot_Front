@@ -10,13 +10,12 @@ import Chat from './modules/Chatbot-RightBar/ui/Chat';
 import Dashboard from "./common/components/dashboard/ui/Dashboard";
 import Login from './modules/Authentification/components/Login';
 import NotFound from "./routing/NotFound";
+
 import Categorie from './modules/CategoryForm/components/Categorie';
 
 const protectedRoutes = {
   chatbot: { path: "/chatbot", requiredRoles: [], component: Chat },
   Category: { path: "/category", requiredRoles: [], component: Categorie },
-
-
 };
 
 

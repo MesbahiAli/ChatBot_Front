@@ -10,7 +10,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import SummarizeIcon from '@mui/icons-material/Summarize';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { useDispatch } from 'react-redux';
-import { IconButton } from '@mui/material';
+import { IconButton, useMediaQuery } from '@mui/material';
 
 const SettingsPanel = ({ el }) => {
   const checkStyle = {
@@ -20,6 +20,7 @@ const SettingsPanel = ({ el }) => {
     position: 'relative'
   };
   const dispatch = useDispatch();
+  const matches = useMediaQuery('(max-width:600px)');
   const [open, setOpen] = useState(false);
   const settingsPanelRef = useRef(null);
   const settingsButtonsRef = useRef(null);
@@ -31,10 +32,14 @@ const SettingsPanel = ({ el }) => {
       const scrollY = window.scrollY || window.pageYOffset;
 
       // Calculate the position
-      const left = buttonRect.right + 10; // Adjust as needed
-      const top = buttonRect.top + scrollY;
+      let left = buttonRect.right + 10; // Adjust as needed
+      let top = buttonRect.top + scrollY;
 
       // Apply the position to the panel
+      if (matches) {
+        left = left - 150;
+        top = top + 30;
+      }
       settingsPanelRef.current.style.left = `${left}px`;
       settingsPanelRef.current.style.top = `${top}px`;
 
@@ -43,7 +48,7 @@ const SettingsPanel = ({ el }) => {
         settingsPanelRef.current.style.top = `${window.innerHeight - panelRect.height}px`;
       }
     }
-  }, [open]);
+  }, [open,matches]);
 
 
   const handleClickOutside = (event) => {
