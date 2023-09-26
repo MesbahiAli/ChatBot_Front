@@ -11,7 +11,7 @@
     padding: 10px;
     padding-bottom: 12px;
     border-radius: 5px;
-    margin-top: 50px;
+    /* margin-top: 50px; */
     border: 1px solid #343e8b;
     border-radius: 4px;
 }
@@ -407,8 +407,8 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        align-items: center;
-        align-content: center;
+        align-items: flex-start;
+        /* align-content: center; */
     }
 
     /* #root > div > div > main > div > main > div > div.SidebarDev.open{
@@ -446,6 +446,40 @@
         width: 90%; /* Makes these elements take 90% of the sidebar width */
         box-sizing: border-box; /* Ensures padding and border are included in the element's total width */
     }
+
+    /* Mouad Doadi - 26/09/23 */
+
+    #uploadLabel, #sendServerLabel{
+        width: 90%;
+        box-sizing: border-box;
+        display: flex;          /* Turn this into a flex container */
+        justify-content: center; /* Center the child items horizontally */
+        align-items: center;    /* Center the child items vertically */
+    }
+
+    /* ----------------------------- */
+
+    .SidebarDev.open {
+        display: block;
+
+        width: 100%;
+    }
+
+    .SidebarDev.closed {
+        width: 0;
+        overflow: hidden;
+    }
+
+    #root > div > div > main > div > main > div > div.SidebarDev.open{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+
+    }
+
+    /* < 26/09/23 */
 }
 
 
