@@ -115,11 +115,12 @@
     opacity: 1;
 }
 
-/* input[id^="mui-"]{
+input[id^="mui-"]{
     background-color: #212229; 
     border-radius: 5px; 
     color: #eee;
-} */
+    margin: 10px;
+}
 
 /* Message Styles */
 .message-wrapper { display: flex; align-items: center; margin-bottom: 10px;flex-direction: row-reverse; word-wrap: break-word;}
@@ -251,6 +252,12 @@ form #submitButton:hover {
     border: none !important;
     text-transform: none !important;
     box-shadow: none !important;
+
+    opacity: 0.7;
+}
+
+.send-button:hover {
+    opacity: 1;    
 }
 
 #root > div > div > div > div.chat-container.MuiBox-root.css-1guk29 > div{
