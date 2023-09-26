@@ -162,19 +162,12 @@ const FormDialog = ({ history }) => {
             category: "",
             file: null
         },
-        // validationSchema: Yup.object().shape({
-        //     nameOfTender: Yup.string().required('Name of Tender is required'),
-        //     submissionDate: Yup.date().nullable().required('Submission Date is required'),
-        //     client: Yup.string().required('Client is required'),
-        //     contractType: Yup.string().required('Contract Type is required'),
-        //     status: Yup.string().required('Status is required'),
-        //     results: Yup.string().required('Results is required'),
-        //     category: Yup.string().required('Category is required'),
-        //     file: Yup.mixed().nullable().required('File is required'),
-        // }),
+        validationSchema: Yup.object().shape({
+        }),
         onSubmit: (values) => {
             dispatch(sendFileAndData(values));
             formik.resetForm(); 
+            handleClose()
         },
     });
     const { errors, touched, handleSubmit, handleChange, values, handleBlur, setFieldValue } = formik;
