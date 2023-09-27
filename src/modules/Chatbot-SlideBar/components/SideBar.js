@@ -69,7 +69,8 @@ const UploadComponent = () => {
   /* TAHA */
 
   const disabledButton = {
-    backgroundColor: "grey",
+    backgroundColor: "#BDD4F2",
+    color: '#F2F2F2',
     cursor: ""
   };
 
@@ -201,7 +202,7 @@ const UploadComponent = () => {
 
         { /* CHILD #01 */ }
         <label id='selectFilesLabel' htmlFor="file-input">
-          <Button className="sidebar-button" component="span" startIcon={<CloudDoneIcon />} style={buttonStyle} >
+          <Button className="sidebar-button" component="span" startIcon={<CloudDoneIcon style={{ color: '#3B74BF' }} />} style={buttonStyle} >
             <span className="text">Select Files</span>
           </Button>
         </label>
@@ -223,7 +224,7 @@ const UploadComponent = () => {
         <label id='uploadLabel' style={isUploaded ? sendServerButton : disabledButton}>
           {/* <Button onClick={handleUploadButtonClick} id='sendBtn' style={sendServerButton} endIcon={<CloudUploadIcon />}>  TAHA */}
           <Button onClick={handleUploadButtonClick} id='sendBtn' disabled={isUploaded ? false : true} style={isUploaded ? sendServerButton : disabledButton} endIcon={<CloudUploadIcon />}>
-            <span className="text">Upload</span>
+            <span className="text" style={isUploaded ? sendServerButton : disabledButton}>Upload</span>
           </Button>
         </label>
 
@@ -250,7 +251,7 @@ const UploadComponent = () => {
         { /* CHILD #05 */ }
         <label id='sendServerLabel' style={isSelected ? sendServerButton : disabledButton}>
           <Button onClick={handleSendSelectedFilesFromServer} id='sendBtn' disabled={isSelected ? false : true} style={isSelected ? sendServerButton : disabledButton} endIcon={<SendIcon />} >
-            <span className="text">Send selected files</span>
+            <span className="text" style={isUploaded ? sendServerButton : disabledButton}>Send selected files</span>
           </Button>
         </label>
 

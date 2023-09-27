@@ -16,8 +16,6 @@ import Alert from '@mui/material/Alert';
 import { requestToggle } from './Togle/State/TogleAction';
 import { ToggleButton, ToggleButtonGroup } from '@mui/material';
 
-
-
 // 21/09/23
 
 // toggle >
@@ -43,10 +41,11 @@ function Chat_Right() {
     /* ----- HERE ----- */
 
     const inputStyle = {
-        color: 'green',
+        color: 'red',
         fontSize: '25px', /* TAHA */
         padding: 0,
-        margin: 0
+        margin: 0,
+        // borderRadius: '50px',
     };
 
     const userIsTypingStyle = {
@@ -70,7 +69,7 @@ function Chat_Right() {
             payload: {
                 sender: 'bot',
                 //text: "On sait depuis longtemps que travailler avec du texte lisible et contenant du sens est source de distractions, et empêche de se concentrer sur la mise en page elle-même. L'avantage du Lorem Ipsum sur un texte générique comme 'Du texte. Du texte. Du texte.' est qu'il possède une distribution de lettres plus ou moins normale, et en tout cas comparable avec celle du français standard. De nombreuses suites logicielles de mise en page ou éditeurs de sites Web ont fait du Lorem Ipsum leur faux texte par défaut, et une recherche pour 'Lorem Ipsum' vous conduira vers de nombreux sites qui n'en sont encore qu'à leur phase de construction. Plusieurs versions sont apparues avec le temps, parfois par accident, souvent intentionnellement (histoire d'y rajouter de petits clins d'oeil, voire des phrases embarassantes).",
-                text: "Hello, How can I assist you today ?"
+                text: "Hello, How can I assist you todayyyyy ? "
             },
         });
    
@@ -188,8 +187,6 @@ function Chat_Right() {
             style={inputStyle}
             multiline
             maxRows={4}
-            
-            
         />
     }
     return (
@@ -272,14 +269,14 @@ function Chat_Right() {
                     <form onSubmit={formik.handleSubmit} >
                     <Box display="flex" alignItems="center" justifyContent="space-between" style={{ position: 'relative' }}>
 
-                    <ToggleButtonGroupd
+                <ToggleButtonGroupd
                     value={selected}
                     exclusive
                     onChange={() => setSelected(!selected)}
                     onClick={()=>dispatch(requestToggle())}
                     aria-label="toggle button"
                 >
-                    <ToggleButtond value={true} aria-label="summarize" style={{ color: 'white'}}>
+                    <ToggleButtond value={true} aria-label="summarize" style={{ border: 'none' }}>
                         {selected ? <img className='langImg' src="https://www.svgrepo.com/show/248851/united-states.svg" alt="EN" width="30" /> : <img className='langImg' src="https://www.svgrepo.com/show/248840/netherlands.svg" alt="Dutch" width="30" />}
                     </ToggleButtond>
                 </ToggleButtonGroupd>
@@ -365,7 +362,6 @@ function Chat_Right() {
 
             <form onSubmit={formik.handleSubmit}>
                 <Box display="flex" alignItems="center">
-                {/* TAHA */}
                 <ToggleButtonGroupd
                     value={selected}
                     exclusive
@@ -373,19 +369,11 @@ function Chat_Right() {
                     onClick={()=>dispatch(requestToggle())}
                     aria-label="toggle button"
                 >
-                    <ToggleButtond value={true} aria-label="summarize" style={{ color: 'white'}}>
+                    <ToggleButtond value={true} aria-label="summarize" style={{ border: 'none' }}>
                         {selected ? <img className='langImg' src="https://www.svgrepo.com/show/248851/united-states.svg" alt="EN" width="30" /> : <img className='langImg' src="https://www.svgrepo.com/show/248840/netherlands.svg" alt="Dutch" width="30" />}
                     </ToggleButtond>
                 </ToggleButtonGroupd>
                 {chatInput}
-                    {/* <TextField id='textFieldd'
-                        fullWidth
-                        variant="outlined"
-                        {...formik.getFieldProps('user_input')}
-                        onChange={handleInputChange}
-                        placeholder="Type your message..."
-                        style={inputStyle}
-                    /> */}
                     <Button id='submitButton'
                         type="submit" 
                         variant="contained" 
