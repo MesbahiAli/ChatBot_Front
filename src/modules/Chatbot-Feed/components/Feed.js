@@ -9,7 +9,7 @@ const Feed = () => {
   const dispatch = useDispatch();
   const summarize = useSelector((state) => state.Summarize.data);
   const pdfData = useSelector(state => state.Pdf.pdf);
-
+  const isSidebarOpened = useSelector(state => state.upload.isSidebarOpened);
   return (
     <Box className="feed-container" p={{ xs: 0, md: 2 }}>
       <div>

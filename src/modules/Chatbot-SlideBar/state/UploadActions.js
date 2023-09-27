@@ -1,4 +1,4 @@
-import { UPLOAD_FILES, SEND_FILES_TO_SERVER, CLEAR_UPLOADED_FILES } from "../../../common/state/StatesConstants";
+import { UPLOAD_FILES, SEND_FILES_TO_SERVER, CLEAR_UPLOADED_FILES, TOGGLE_SIDEBAR } from "../../../common/state/StatesConstants";
 
 export const uploadFiles = (files) => ({
   type: UPLOAD_FILES,
@@ -11,4 +11,8 @@ export const sendFilesToServer = () => ({
 
 export const clearUploadedFiles = () => ({
   type: CLEAR_UPLOADED_FILES
+});
+
+export const toggleSidebarClick = () => ({
+  type: TOGGLE_SIDEBAR
 });

@@ -4,7 +4,7 @@
     border-right: 0.5px solid var(--secondary-black-color);
     background-color: var( --bg-black-color);
     /* ------ HERE ----- */
-    width: 15%;
+    width: 50%;
 }
 
 .SidebarDev label {
@@ -94,7 +94,6 @@
 
     .SidebarDev {
         display: none;
-
     }
 
     label#sendServerLabel {
@@ -120,11 +119,6 @@
     .sidebar-button {
         padding: 15px;
         margin: 15px;
-    }
-
-    .SidebarDev {
-        margin: 0;
-        padding: 0px;
     }
 
     #uploadLabel {
@@ -264,7 +258,7 @@
 
 
 /* Media query for small screens (adjust the breakpoint as needed) */
-@media (max-width: 768px) {
+@media (max-width: 989px) {
 
     /* Stack the elements vertically on small screens */
     #listItem {
@@ -416,7 +410,7 @@
 #logoutButton {
     background-color: var( --lighter-bg-color);
     width: 15%;
-    padding: 5px 20px;
+    padding: 0.1px 20px;
     position: fixed;
     bottom: 0;
     left: 0;
@@ -435,6 +429,11 @@
 
 #logoutButton button {
     color: white;
+    padding: 10px 57%;
+}
+
+#SidebarDev, #logoutButton button {
+    width: 100%;
 }
 
 /* < 21/09/23 */
