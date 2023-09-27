@@ -8,7 +8,8 @@ import { watchToggleRequest } from "../../modules/Chatbot-RightBar/components/To
 import { watchSummarizeRequest } from "../../modules/Chatbot-RightBar/components/Summarize/Saga/SummarizeWatcher";
 import watchPdfSaga from "../../modules/Chatbot-SlideBar/components/FileView.js/Saga/ViewWatcher";
 import { watchSendFileAndData } from "../../modules/CategoryForm/saga/CategoryWatcher";
-import { watchGetCategory } from "../../modules/Category/saga/CategoryWatcher";
+import { watchGetCategory } from "../../modules/CategoryForm/SagaTable/CategoryWatcher";
+// import { watchGetCategory } from "../../modules/ListCategory/saga/CategoryWatcher";
 
 export default function* rootSaga() {
   yield all([
@@ -21,6 +22,7 @@ export default function* rootSaga() {
     watchSummarizeRequest(),
     watchPdfSaga(),
     watchSendFileAndData(),
+    watchGetCategory(),
     
   ]);
 }

@@ -1,7 +1,7 @@
 import React, { forwardRef, useState } from 'react'
 import "../style/category.css";
 import AddIcon from '@mui/icons-material/Add';
-import { Box, Button, Fade, IconButton, List, ListItem, ListItemIcon, ListItemText, Modal, TextField, styled, MenuItem, InputLabel, Select, FormControl } from '@mui/material';
+import { Box, Button, Fade, IconButton, List, ListItem, ListItemText, Modal, TextField, styled, MenuItem, InputLabel, Select, FormControl } from '@mui/material';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import LogoutIcon from '@mui/icons-material/Logout';
@@ -14,6 +14,9 @@ import { FormikProvider, useFormik } from 'formik';
 import * as Yup from "yup";
 import { useDispatch } from 'react-redux';
 import { sendFileAndData } from '../state/CategoryAction';
+import { getCategoryRequest } from '../StateTable/CategoryAction';
+import { useHistory } from 'react-router-dom';
+
 
 const listStyle = {
     minHeight: 50,
@@ -106,7 +109,7 @@ const VisuallyHiddenInput = styled('input')({
     whiteSpace: 'nowrap',
     width: 1,
 });
-const FormDialog = ({ history }) => {
+const FormDialog = () => {
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -170,14 +173,16 @@ const FormDialog = ({ history }) => {
             handleClose()
         },
     });
-    const { errors, touched, handleSubmit, handleChange, values, handleBlur, setFieldValue } = formik;
+
+    const { errors, touched, handleSubmit, handleChange, values, handleBlur } = formik;
+    const history = useHistory();
     return (
         <div className="form-dialogue">
             <div className="fd-buttons">
                 <Button onClick={() => setOpen(prev => !prev)} sx={newBtnStyle} variant="contained" size="large" startIcon={<AddIcon />}>
                     New
                 </Button>
-                <Button className='fd-btn' sx={normalBtnStyle} variant="outlined" size="large" startIcon={<RefreshIcon />}>
+                <Button className='fd-btn' onClick={() =>dispatch(getCategoryRequest())} sx={normalBtnStyle} variant="outlined" size="large" startIcon={<RefreshIcon />}>
                     Refresh
                 </Button>
                 <Button className='fd-btn' sx={normalBtnStyle} variant="outlined" size="large" startIcon={<FileDownloadIcon />}>
@@ -206,7 +211,7 @@ const FormDialog = ({ history }) => {
                                 <div className="fdmf-top">
                                     <div className="fdmf-right">
                                         <TextField
-                                            InputLabelProps={{ style: { backgroundColor: "white", padding: "5px", borderRadius: "5px", color: "black" } }}
+                                            InputLabelProps={{ style: { backgroundColor: "#212229", padding: "5px", borderRadius: "5px", color: "white" } }}
                                             label="name of tender"
                                             variant="outlined"
                                             sx={inputStyle}
@@ -227,7 +232,7 @@ const FormDialog = ({ history }) => {
                                             InputLabelProps={{ shrink: true }} // This is often needed for date inputs to ensure the label doesn't overlap the placeholder
                                         />
                                         <TextField
-                                            InputLabelProps={{ style: { backgroundColor: "white", padding: "5px", borderRadius: "5px", color: "black" } }}
+                                            InputLabelProps={{ style: { backgroundColor: "#212229", padding: "5px", borderRadius: "5px", color: "white" } }}
                                             label="client"
                                             variant="outlined"
                                             sx={inputStyle}
@@ -239,7 +244,7 @@ const FormDialog = ({ history }) => {
                                             helperText={touched.client && errors.client}
                                         />
                                         <TextField
-                                            InputLabelProps={{ style: { backgroundColor: "white", padding: "5px", borderRadius: "5px", color: "black" } }}
+                                            InputLabelProps={{ style: { backgroundColor: "#212229", padding: "5px", borderRadius: "5px", color: "white" } }}
                                             label="contract type"
                                             variant="outlined"
                                             sx={inputStyle}
