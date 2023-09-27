@@ -1,0 +1,314 @@
+/* Keyframe Animations */
+@keyframes wave {
+    0%, 60%, 100% { transform: initial; }
+    30% { transform: translateY(-10px); }
+}
+
+@keyframes fadeInEffect {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Spinner styles */
+.wave-spinner {
+    display: flex;
+    /* justify-content: center; TAHA */
+    justify-content: left;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.wave-spinner .dot {
+    width: 6px;
+    height: 6px;
+    background-color: #666666;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 0 2.5px;
+    animation: wave 0.8s infinite;
+    opacity: 0.7;
+}
+
+.wave-spinner .dot:nth-child(2) { animation-delay: -0.2s; }
+.wave-spinner .dot:nth-child(3) { animation-delay: -0.4s; }
+
+/* Chat Container */
+.chat-container {
+    position: relative;
+    bottom: 0;
+    max-width: 50%;
+    width:50%;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    flex-direction: column;
+    
+    /* MOUAD */
+    
+    background-color: #3B74BF; /* ------ HERE ----- */
+    /*border: 1px solid #3a3a3a;*/
+
+    /*border-radius: 10px;*/
+
+    /* END */
+}
+
+.chat-container1 {
+    margin-left:0px;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    bottom: 0;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    flex-direction: column;
+    background-color: #3b3d49;
+    justify-content:space-between;
+}
+
+/* Messages */
+.messages {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+    gap: 12px;
+    width:99%;
+
+    margin: 1px auto;
+}
+
+.message1 {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+    border-bottom: 1px solid #e0e0e0;
+    gap: 12px;
+}
+
+
+.messages::-webkit-scrollbar {
+    width: 8px;
+}
+
+.messages::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 4px;
+}
+
+.messages::-webkit-scrollbar-thumb:hover {
+    background: #888;
+}
+
+.messages::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.fade-in { animation: fadeInEffect 0.5s; }
+
+#root > div > div > div > div.chat-container.MuiBox-root.css-1guk29 > div > div{
+    color: #aaa;
+}
+
+#root > div > div > div > div.chat-container1.MuiBox-root.css-1m04nb5 > form > div > button {
+    opacity: 0.75;
+}
+
+#root > div > div > div > div.chat-container1.MuiBox-root.css-1m04nb5 > form > div > button:hover {
+    opacity: 1;
+}
+
+input[id^="mui-"]{
+    background-color: #212229; 
+    border-radius: 5px;
+    color: #eee;
+    margin: 10px;
+}
+
+/* Message Styles */
+.message-wrapper { display: flex; align-items: center; margin-bottom: 10px;flex-direction: row-reverse; word-wrap: break-word;}
+
+.bot, .user {
+    display: flex;
+    margin: 5px auto;
+    padding: 5px;
+    border-radius: 5px; /* --------- HERE ------------ */
+    transition: background-color 0.3s ease;
+}
+
+.bot {
+    justify-content: flex-start;
+    align-items: left;
+    background-color: #6698D988; /* --------- HERE ------------ */
+    &:hover { background-color: #6698D9; } /* OR 272830 */ /* --------- HERE ------------ */
+}
+
+.user {
+    justify-content: flex-end;
+    align-items: end;
+
+    background-color: #6f7588; /* --------- HERE ------------ */
+    &:hover { background-color: #636c8b; } /* --------- HERE ------------ */
+    flex-direction: row-reverse;
+}
+
+.message-bubble {
+    padding: 10px 15px;
+    margin: 0 10px;
+    text-align: center;
+    font-size: 0.9em;
+    width: 90%;
+    word-wrap: break-word;
+        overflow: hidden;
+        overflow-wrap: break-word;
+    
+}
+
+.bot .message-bubble {
+    order: 2;
+    align-self: flex-end;
+    color: #ffffff; /* --------- HERE ------------ */
+    text-align: justify;
+    margin-bottom: 8px
+}
+
+.user .message-bubble {
+    display: flex;
+    order: 2;
+    align-self: flex-end;
+    color: white; /* --------- HERE ------------ */
+    padding: 10px 15px;
+    margin: 0 10px;
+    font-size: 0.9em;
+    width: 90%;
+    text-align: justify;        margin-bottom: 8px;
+    margin-left:-4px
+}
+
+/* Timestamp and Avatar */
+.timestamp {
+    font-size: 10px;
+    width: 50px;
+    order: 0;
+    text-align: right;
+}
+
+.user .timestamp { order: 1; }
+.timestamp.timestamp-bot { align-self: flex-end; color: #BDD4F2;}
+.timestamp.timestamp-user { align-self: flex-end; color: #212229; }
+.user img.message-logo { order: 3; }
+
+.bot .timestamp { order: 3; }
+
+
+img.message-logo {
+    border-radius: 50%;
+    width: 44px;
+    margin: 0 10px;
+    border: 3px solid #3B74BF;
+}
+
+form {
+    /* border-top: 1px solid #BDD4F2; */
+    background-color: transparent; /* --------- HERE ------------ */
+    padding: 0;
+    margin: 0;
+    border: none !important;
+}
+
+
+form > div > div div{
+    background-color: #6698D9;
+    border-radius: 25px;
+    margin-bottom: 10px;
+    border: none !important;
+}
+
+form #textFieldd {
+    background-color: #6698D9; /* --------- HERE ------------ */
+    color:#3B74BF;
+    padding: 0;
+    border: none !important;
+}
+
+textarea.MuiInputBase-input.MuiOutlinedInput-input.MuiInputBase-inputMultiline.css-1sqnrkk-MuiInputBase-input-MuiOutlinedInput-input
+{
+    /* min-height: 20px!important; */
+    padding:  5px;
+}
+form #textFieldd::placeholder {
+    color: #F2F2F2;
+}
+
+form #submitButton {
+    opacity: 0.75;
+    margin-bottom: 10px;
+}
+
+form #submitButton:hover {
+    opacity: 1;
+}
+
+.send-button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: url('/src/assets/images/send-icon.png') no-repeat center;
+    background-size: contain;
+    color: transparent;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+    overflow: hidden;
+    margin-left: 10px;
+    background-color: transparent !important;
+    border: none !important;
+    text-transform: none !important;
+    box-shadow: none !important;
+
+    opacity: 0.7;
+}
+
+.send-button:hover {
+    opacity: 1;    
+}
+
+#root > div > div > div > div.chat-container.MuiBox-root.css-1guk29 > div{
+    margin: 0 auto;
+}
+
+#root > div > div > div > div.chat-container.MuiBox-root.css-1guk29 > div > div > span{
+    max-width: 80%;
+    word-wrap: break-word;
+}
+
+/* Mouad Doadi - 21-09-23 */
+
+#root > div > div > main > div > main > div > div.chat-container.MuiBox-root.css-1guk29 > div > div{
+    color: #aaa;
+}
+
+.message-loading {
+    display: flex;
+    align-items: center; /* This will vertically align the items in case they have different heights */
+    gap: 10px; /* Optional: this adds space between the items */
+    justify-content: right;
+}
+
+.langImg{
+    opacity: 0.75;
+    margin-bottom: 10px;
+}
+
+.langImg:hover{
+    opacity: 1;
+}
+
+/* */
+
+.chat-container.MuiBox-root.css-1guk29 > form > div > div.MuiFormControl-root.MuiFormControl-fullWidth.MuiTextField-root.css-wb57ya-MuiFormControl-root-MuiTextField-root > div{
+    border-radius: 33px;
+}
+
+/* .chat-container{
+    width: 75%;
+} */

@@ -1,0 +1,353 @@
+.SidebarDev label {
+    padding: 10px;
+    padding-bottom: 12px;
+    border-radius: 5px;
+    /* margin-top: 50px; */
+    border: 1px solid #3B74BF;
+    border-radius: 4px;
+
+    /* Mouad Doadi - 27/09/23 > */
+
+    border: 1px solid #3B74BF;
+
+    /* < 27/09/23*/
+}
+
+.SidebarDev label:hover {
+    background-color: #343e8b;
+    color: #121212;
+}
+
+.sidebar-button {
+    width: 90%;
+    margin: 0 auto;
+    display: block;
+    padding: 25px 0px;
+}
+
+.text {
+    color: #3B74BF;
+    background-color: transparent;
+}
+
+.text:hover {
+    background-color: transparent;
+}
+
+#sendBtn.text:hover {
+    background-color: transparent;
+}
+
+#uploadLabel {
+    background-color: #4B7DBF;
+}
+
+#uploadLabel:hover {
+    background-color: #3B74BF;
+}
+
+#uploadLabel button {
+    width: 100%;
+    height: 150%;
+    margin: 0 auto;
+}
+
+#sendServerLabel {
+    background-color: #3B74BF;
+}
+
+#sendServerLabel button {
+    width: 90%;
+    margin: 0 auto;
+}
+
+#sendServerLabel:hover {
+    background-color: #202970;
+}
+
+#listItem {
+    border-bottom: 1px solid #3B74BF;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* background-color: #BDD4F2; */
+}
+
+#listItem:hover {
+    background-color: #BDD4F225;
+}
+
+#listItemSecondaryAction > span{
+    color: #3B74BF;
+    font-weight: bold;
+}
+
+#deleteIcon {
+    opacity: 0.7;
+}
+
+#deleteIcon:hover {
+    opacity: 1;
+}
+
+.file-list-container {
+    max-height: 30%;
+    overflow-y: auto;
+    overflow-x: auto;
+    white-space: wrap;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    border: 1px solid #343e8b;
+    background-color: #1f1f2f;
+    border-radius: 5px;
+    /* padding: 7.5px; */
+    width: 92%;
+
+    /* Mouad Doadi - 27/09/23 > */
+
+    background-color: #FFF;
+
+    /* < 27/09/23 */
+
+
+}
+
+.file-list-container ul {
+    padding: 0;
+
+}
+
+.second-list.file-list-container {
+    border: 1px solid #3B74BF;
+    border-radius: 5px;
+    padding: 7.5px;
+    background-color: #1f1f2f;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    min-height: 200px;
+
+    /* Mouad Doadi - 27/09/23 > */
+
+    /* background-color: #07338C; */
+    background-color: #FFF;
+
+    /* < 27/09/23 */
+}
+
+
+#listItem {
+    display: flex;
+    align-items: center;
+}
+
+#listItemPrimaryText {
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Style for checkbox and delete icon */
+#listItemSecondaryAction {
+    /* Add your desired styles for checkbox and delete icon */
+    /* Example styles, you can adjust these as needed */
+    display: flex;
+    align-items: center;
+    margin-right: -90%;
+    display: flex;
+    gap: 8px;
+}
+
+/* setting panel style */
+.uploaded-item-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 5px;
+    margin-bottom: 10px;
+    background: #212229;
+    border-radius: 8px;
+    /* Radial gradient from black to gray */
+    box-shadow:   0 2px 5px #000;
+    /* Dark drop shadow */
+}
+
+.settings-panel {
+    position: fixed;
+    width: fit-content;
+    display: none;
+    top: 35px;
+    /* Adjust as needed */
+    right: 0px;
+    /* Adjust as needed */
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    z-index: 500000;
+    border-radius: 5px;
+}
+
+.settings-panel.open {
+    display: flex;
+    flex-direction: column;
+}
+
+.settings-panel.close {
+    display: none;
+}
+
+.setting-items:hover {
+    cursor: pointer;
+    background: lightgray;
+    border-radius: 3px;
+}
+
+/* Mouad Doadi - 21/09/23 > */
+
+#summarizeIcon {
+    color: white;
+    opacity: 0.5;
+}
+
+#summarizeIcon:hover {
+    opacity: 1;
+}
+
+#viewIcon {
+    color: white;
+    opacity: 0.5;
+}
+
+#viewIcon:hover {
+    opacity: 1;
+}
+
+.li-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* this ensures vertical alignment */
+    width: 100%;
+    /* or set a fixed width if preferred */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.icon-container {
+    display: flex;
+    gap: 1px;
+    /* or any preferred gap between icons */
+}
+
+
+#logoutButton {
+    background-color: #343e8b;
+    width: 15%;
+    padding: 0.1px 20px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    border-radius: 0 5px 0 0;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    margin: 0 auto;
+    display: flex;
+
+    /* Mouad Doadi - 27/09/23 > */
+
+    /* background-color: #07338C; */
+    background-color: #3B74BF;
+
+    /* < 27/09/23*/
+}
+
+#logoutButton:hover {
+    background-color: #337bda;
+    cursor: pointer;
+}
+
+#logoutButton button {
+    color: white;
+    padding: 16px 57%;
+}
+
+#SidebarDev, #logoutButton button {
+    width: 100%;
+}
+/* Mouad Doadi - 26/09/23 > */
+
+.SidebarDev {
+    color: white;
+    padding: 25px 0px;
+    border-right: 0.5px solid #3a3a3a;
+    background-color: #121212;
+    width: 50%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: space-evenly; */
+
+    /* Mouad Doadi - 27/09/23 > */
+
+    /* background-color: #E3EDF9; */
+    background-color: #F2F2F2;
+
+    /* < 27/09/23 */
+}
+
+#selectFilesLabel, 
+    .file-list-container, 
+    #uploadLabel, 
+    .second-list, 
+    #sendServerLabel{
+        width: 90%;
+        box-sizing: border-box;
+}
+
+#selectFilesLabel, #uploadLabel, #sendServerLabel{
+    display: flex;          /* Turn this into a flex container */
+    justify-content: center; /* Center the child items horizontally */
+    align-items: center; 
+}
+
+#logoutButton{
+    width: 50%;
+}
+
+@media (max-width: 900px) {
+    .SidebarDev, #logoutButton{
+        width: 100%;
+    }
+}
+
+/* 27/09/23 > */
+
+#selectFilesLabel:hover{
+    background-color: #BDD4F233;
+}
+
+#selectFilesLabel > span:hover{
+    background-color: transparent;
+}
+
+#selectFilesLabel > span{
+    width: 100%;
+    height: 150%;
+}
+
+/* < 27/09/23 */
+
+/* New Layout */
+
+/* .SidebarDev{
+    width: 25%;
+}
+
+#logoutButton{
+    width: 23%;
+} */
+
+/* Layout */

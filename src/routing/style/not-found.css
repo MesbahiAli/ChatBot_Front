@@ -1,0 +1,174 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap");
+
+.not-found{
+    height: 100vh;
+    width: 100vw;
+    box-sizing: border-box;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 500;
+}
+
+.nf {
+    background-color: #1f265c;
+    padding: 9rem 0 2rem;
+    height: 100vh;
+    display: grid;
+}
+
+.nf__container {
+    display: grid;
+    align-content: center;
+    row-gap: 2.5rem;
+    max-width: 1024px;
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+}
+
+.nf__data {
+    text-align: center;
+    color: white;
+}
+
+.nf__title {
+    font-size: 2.375rem;
+    margin: .75rem 0;
+}
+
+.nf__button {
+    margin-top: 2rem;
+    display: inline-block;
+    background-color: #5687ff;
+    color: #fff;
+    padding: .80rem 1.5rem;
+    border-radius: 3rem;
+    transition: .4s;
+    text-decoration: none;
+
+}
+
+.nf__button:hover {
+    box-shadow: 0 4px 12px hsl(0, 0%, 0%);
+    cursor: pointer;
+    scale: 1.2;
+}
+
+.nf__img img {
+    width: 230px;
+    animation: floaty 1.8s infinite alternate;
+    max-width: 100%;
+    height: auto;
+}
+
+.nf__img {
+    justify-self: center;
+}
+
+.nf__shadow {
+    width: 130px;
+    height: 24px;
+    background-color: hsl(0, 0%, 0%);
+    margin: 0 auto;
+    border-radius: 50%;
+    filter: blur(7px);
+    animation: shadow 1.8s infinite alternate;
+}
+
+.nf__footer {
+    display: flex;
+    justify-content: center;
+    column-gap: .5rem;
+    font-size: .75rem;
+    align-self: flex-end;
+    color: white;
+}
+
+/* Animate ghost */
+@keyframes floaty {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(15px);
+    }
+}
+
+@keyframes shadow {
+    0% {
+        transform: scale(1, 1);
+    }
+
+    100% {
+        transform: scale(.85, .85);
+    }
+}
+
+/*=============== BREAKPOINTS ===============*/
+/* For small devices */
+@media screen and (max-width: 320px) {
+    .nf {
+        padding-top: 7rem;
+    }
+}
+
+
+
+/* For large devices */
+@media screen and (min-width: 1024px) {
+    .nf__container {
+        grid-template-columns: repeat(2, 1fr);
+        align-items: center;
+        column-gap: 2rem;
+    }
+
+    .nf__data {
+        text-align: initial;
+    }
+
+    .nf__img img {
+        width: 400px;
+    }
+
+    .nf__shadow {
+        width: 250px;
+        height: 40px;
+    }
+    .nf__title{
+        font-size: 5rem;
+    }
+    .nf__footer{
+        font-size: .813;
+    }
+}
+
+@media screen and (min-width: 1048px) {
+    .nf__container {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+/* For 2K resolutions (2048 x 1152, 2048 x 1536) */
+@media screen and (min-width: 2048px) {
+    body .not-found{
+        zoom: 1.7;
+    }
+
+    .nf {
+        height: initial;
+        row-gap: 4rem;
+    }
+}
+
+/* For 4K resolutions (3840 x 2160, 4096 x 2160) */
+@media screen and (min-width: 3840px) {
+    body .not-found{
+        zoom: 3.1;
+    }
+}
+/* For 4K resolutions (3840 x 2160, 4096 x 2160) */
+@media screen and (min-width: 4096px) {
+    body .not-found{
+        zoom: 4.65;
+    }
+}
