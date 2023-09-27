@@ -9,7 +9,7 @@
 }
 
 .nf {
-    background-color: #1f265c;
+    background-color: var(--dark-bg-color);
     padding: 9rem 0 2rem;
     height: 100vh;
     display: grid;

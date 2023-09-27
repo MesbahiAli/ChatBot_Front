@@ -10,6 +10,7 @@ import pdfReducer from "../../modules/Chatbot-SlideBar/components/FileView.js/St
 import { SendFileReducer } from "../../modules/CategoryForm/state/CategoryReducer";
 import { categoryReducer } from "../../modules/CategoryForm/StateTable/CategoryReducer";
 
+import homeReducer from "../../modules/Home/state/ReducerHome";
 
 const rootReducer = combineReducers({
   Auth: AuthReducer,
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
   Togle:toggleReducer,
   Summarize:summarizeReducer,
   Pdf:pdfReducer,
+  home:homeReducer,
   FilCategory:SendFileReducer,
   FilCategory:fileReducer,
   

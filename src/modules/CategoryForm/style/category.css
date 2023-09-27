@@ -1,7 +1,7 @@
 .category-container{
     min-height: 100vh;
     width: 100vw;
-    background: #212229;
+    background: var(--bg-category-color);
     color: white;
     display: block;
     flex-direction: column;
@@ -12,25 +12,67 @@
     align-items: center;
     justify-content: space-between;
     height: 80px;
-    border-bottom: 1px solid white;
+    /* border-bottom: 1px solid var(--text-black-color); */
     padding: 0 20px;
+    /* background: #bccded; */
+    box-shadow: var(--box-shadow-bottom);
 }
 .fd-buttons{
     display: flex;
     align-items: center;
     gap: 20px;
+
 }
-.css-1fzxgu2-MuiButtonBase-root-MuiButton-root.fd-btn:hover{
-    border-color: #343e8b;
-    color: #343e8b;
+.fd-contained-btn.MuiButtonBase-root{
+    background: var(--lighter-bg-color);
+    color: var(--text-black-color);
+    width: 150px;
+    box-shadow: var(--box-shadow);
+
+}
+.fd-contained-btn.MuiButtonBase-root:hover{
+    background: var(--lighter-bg-color);
+    color: var(--text-black-color);
+    width: 150px;
+    box-shadow: var(--box-shadow);
+
+}
+.css-1ouwf98-MuiButtonBase-root-MuiButton-root.fd-btn{
+    border-color: var(--button-category-color);
+    color: var(--button-category-color);
+    box-shadow: var(--box-shadow);
+}
+.css-1ouwf98-MuiButtonBase-root-MuiButton-root.fd-btn:hover{
+    border-color: var(--button-category-color);
+    color: var(--button-category-color);
 }
 
 .fd-table-container{
     flex: 1;
-    padding: 20px;
+    padding: 10px;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+}
+.sg-input{
+    width: 400px;
+    color: var(--text-black-color)!important;
+    border-color: var(--button-category-color)!important;
+}
+
+.sg-input .MuiOutlinedInput-root fieldset{
+    color: var(--text-black-color)!important;
+    border-color: var(--button-category-color)!important;
+    box-shadow: var(--box-shadow);
+
+}
+.sg-input .MuiOutlinedInput-root:hover fieldset{
+    border-width: 2px;
+}
+
+
+.sg-input-icon{
+    color: var(--text-black-color);
 }
 
 .fdm-header{
@@ -75,6 +117,25 @@
     flex-direction: column; 
     gap: 20px;
 }
+
+.fd-tc-box{
+    height: 787px;
+    width: 100%;
+    /* background-color: var( --grid-bg-color); */
+    background: white;
+    border-radius: 4px;
+    color: var(--text-category-black-color);
+    box-shadow: var(--box-shadow);
+    overflow: hidden;
+}
+
+.fd-tc-b-header{
+    background: var(--lighter-bg-color);
+    font-size: 24px;
+    font-weight: bolder;
+    color: var(--text-black-color);
+}
+
 
 @media screen and (max-width:820px) {
     .fdmf-top{

@@ -1,5 +1,38 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600;800&display=swap');
 
+/* variables */
+body.dark{
+  --dark-bg-color:#1f265c;
+  --lighter-bg-color:#343e8b;
+  --secondary-black-color:#212229;
+  --text-black-color:white;
+  --text-white-color:#121212;
+  --bg-black-color:#121212;
+  --bg-category-color:#212229;
+  --dark-category-color:rgba(255, 255, 255, 0.61);
+  --grid-bg-color:rgba(255, 255, 255, 0.61);
+  --button-category-color:white;
+  --text-category-black-color:#121212;
+  --box-shadow: 0px 0px 7px 5px rgba(255, 255, 255, 0.1);
+  --box-shadow-bottom: 0px 0px 7px 5px rgba(255, 255, 255, 0.1);
+
+}
+body{
+  --dark-bg-color:#1e4186;
+  --lighter-bg-color:#3464c4;
+  --secondary-black-color:#1e4186;
+  --text-white-color:white;
+  --bg-black-color:  #f4f5f8;
+  --dark-category-color:#3464c4;
+  
+  --text-black-color:#121212;
+  --grid-bg-color:#bccded;
+  --bg-category-color:#f4f5f8;
+  --button-category-color:#1e4186;
+  --text-category-black-color:#121212;
+  --box-shadow: 0px 0px 7px 5px rgba(0,0,0,0.1);
+  --box-shadow-bottom: 0px 0px 7px 5px rgba(0,0,0,0.1);
+}
 
 body {
   margin: 0;

@@ -210,7 +210,7 @@ const UploadComponent = () => {
         <div className="file-list-container">
           <List>
             {filesUpload.map((file, index) => (
-              <ListItem id='listItem' style={docStyle} key={index}>
+              <ListItem id='listItem'  key={index}>
                 <ListItemText primary={file.name} id='listItemSecondaryAction' style={listItemStyle}>
                 </ListItemText>
                 {/* <ListItemText primary={file.name} id='listItemPrimaryText'/> */}
@@ -229,7 +229,7 @@ const UploadComponent = () => {
 
         { /* CHILD #04 */ }
         <List  className="second-list file-list-container"> {files?.map(el => (
-          <div key={el} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '5px 3px', paddingLeft: '5px', marginBottom: '10px', backgroundColor: '#212229', borderRadius: '8px', }} className='uploaded-item-container'>
+          <div key={el} className='uploaded-item-container'>
             {el}
 
             <div className='icon-container'>

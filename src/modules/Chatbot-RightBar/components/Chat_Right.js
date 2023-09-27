@@ -36,9 +36,9 @@ function Chat_Right() {
 
     // Mouad Doadi - 21/09/23 >
 
-  const [selected, setSelected] = useState(false);
+    const [selected, setSelected] = useState(false);
 
-  // < 21/09/23
+    // < 21/09/23
 
     /* ----- HERE ----- */
 
@@ -73,7 +73,7 @@ function Chat_Right() {
                 text: "Hello, How can I assist you today ?"
             },
         });
-   
+
     }, [dispatch]);
 
     useEffect(() => {
@@ -117,55 +117,55 @@ function Chat_Right() {
     const handleInputChange = (e) => {
         /* TAHA */
         if (isSendFileSuccess) {
-        formik.handleChange(e);
-        setUserIsTyping(e.target.value.trim() !== "");
+            formik.handleChange(e);
+            setUserIsTyping(e.target.value.trim() !== "");
         }
         /* TAHA */
         return
     }
-    useEffect(()=>{//for key down input form
+    useEffect(() => {//for key down input form
         const enter = (event) => {
-            if (event.keyCode === 13 && !event.shiftKey ) {
+            if (event.keyCode === 13 && !event.shiftKey) {
                 event.preventDefault(); // Prevent the default form submission
                 formik.handleSubmit(event);
             }
         }
-        document.getElementById("textFieldd").addEventListener("keydown",enter);
-        return () =>{
-            document.getElementById("textFieldd").removeEventListener("keydown",enter);
+        document.getElementById("textFieldd").addEventListener("keydown", enter);
+        return () => {
+            document.getElementById("textFieldd").removeEventListener("keydown", enter);
         }
-    },[])
+    }, [])
 
     const [snackbarState, setSnackbarState] = useState({
         open: false,
         message: "",
         severity: "error", // can be 'success', 'info', 'warning', or 'error'
-      });
+    });
 
-      const handleSnackbarClose = (event, reason) => {
+    const handleSnackbarClose = (event, reason) => {
         if (reason === 'clickaway') {
-          return;
+            return;
         }
         setSnackbarState((prev) => ({ ...prev, open: false }));
-      };
+    };
 
-      const error = useSelector((state) => state.chat.error);
+    const error = useSelector((state) => state.chat.error);
 
-      useEffect(() => {
+    useEffect(() => {
         if (error) {
-          setSnackbarState({
-            open: true,
-            message: error,
-            severity: "error",
-          });
+            setSnackbarState({
+                open: true,
+                message: error,
+                severity: "error",
+            });
         }
-      }, [error]);
-      /* TAHA */
-      useEffect(()=>{
+    }, [error]);
+    /* TAHA */
+    useEffect(() => {
         if (isSendFileSuccess) {
             document.getElementById("textFieldd").focus();
         }
-    },[isSendFileSuccess])
+    }, [isSendFileSuccess])
     let chatInput;
     if (isSendFileSuccess) {
         chatInput = <TextField id='textFieldd'
@@ -174,9 +174,9 @@ function Chat_Right() {
             {...formik.getFieldProps('user_input')}
             onChange={handleInputChange}
             placeholder="Type your message..."
-            style={inputStyle}
             multiline
             maxRows={4}
+            className='bot-chat-input'
         />
     } else {
         chatInput = <TextField id='textFieldd'
@@ -185,26 +185,25 @@ function Chat_Right() {
             {...formik.getFieldProps('user_input')}
             onChange={handleInputChange}
             placeholder={"please send a file first"}
-            style={inputStyle}
             multiline
             maxRows={4}
-            
-            
+            className='bot-chat-input'
+
         />
     }
     return (
-<>
+        <>
 
-<Snackbar 
-  open={snackbarState.open} 
-  autoHideDuration={6000} 
-  onClose={handleSnackbarClose}
-  anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
->
-  <Alert onClose={handleSnackbarClose} severity={snackbarState.severity} variant="filled">
-    {snackbarState.message}
-  </Alert>
-</Snackbar>
+            <Snackbar
+                open={snackbarState.open}
+                autoHideDuration={6000}
+                onClose={handleSnackbarClose}
+                anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+            >
+                <Alert onClose={handleSnackbarClose} severity={snackbarState.severity} variant="filled">
+                    {snackbarState.message}
+                </Alert>
+            </Snackbar>
 
             {!isChatOpen ?
 <IconButton 
@@ -238,9 +237,9 @@ function Chat_Right() {
             : null}
 
 
-<Slide direction="up" in={isChatOpen} mountOnEnter unmountOnExit>
-        <Box className="chat-container1" sx={{ display: { xs: 'flex', md: 'none' } }}> 
-        <Box className="messages1">
+            <Slide direction="up" in={isChatOpen} mountOnEnter unmountOnExit>
+                <Box className="chat-container1" sx={{ display: { xs: 'flex', md: 'none' } }}>
+                    <Box className="messages1">
                         {messages.map((msg, index) => (
                             <div key={msg.id || index} className={`message-wrapper ${msg.sender} fade-in`}>
                                 {msg.sender === 'bot' ? (
@@ -325,43 +324,43 @@ function Chat_Right() {
                             </IconButton>}
                         </Box>
                     </form>
-        </Box>
-        </Slide>
+                </Box>
+            </Slide>
             <Box className="chat-container" sx={{ display: { xs: 'none', md: 'flex' } }}>
-        
-         <Box className="messages" width="90%">
-         {messages.map((msg, index) => (
-    <div key={msg.id || index} className={`message-wrapper ${msg.sender} fade-in`}>
-        {msg.sender === 'bot' ? (
-            <>
-                <div className={`timestamp timestamp-${msg.sender}`}>
-                    {new Date().toLocaleTimeString()}
-                </div>
-                <span className="message-bubble">{msg.text}</span>
-                <img src={RobotLogo1} alt="Robot Logo" className="message-logo" />
-            </>
-        ) : (
-            <>
-                <img src={RobotLogo} alt="User Logo" className="message-logo" />
-                <span className="message-bubble">{msg.text}</span>
-                <div className={`timestamp timestamp-${msg.sender}`}>
-                    {new Date().toLocaleTimeString()}
-                </div>
-            </>
-        )}
-    </div>
-))}
-                {showSpinner && (
-                    <div className="message-loading">
-                        <ChatSpinner />
-                        <img src={RobotLogo1} alt="Robot Logo" className="message-logo" />
+
+                <Box className="messages" width="90%">
+                    {messages.map((msg, index) => (
+                        <div key={msg.id || index} className={`message-wrapper ${msg.sender} fade-in`}>
+                            {msg.sender === 'bot' ? (
+                                <>
+                                    <div className={`timestamp timestamp-${msg.sender}`}>
+                                        {new Date().toLocaleTimeString()}
+                                    </div>
+                                    <span className="message-bubble">{msg.text}</span>
+                                    <img src={RobotLogo1} alt="Robot Logo" className="message-logo" />
+                                </>
+                            ) : (
+                                <>
+                                    <img src={RobotLogo} alt="User Logo" className="message-logo" />
+                                    <span className="message-bubble">{msg.text}</span>
+                                    <div className={`timestamp timestamp-${msg.sender}`}>
+                                        {new Date().toLocaleTimeString()}
+                                    </div>
+                                </>
+                            )}
+                        </div>
+                    ))}
+                    {showSpinner && (
+                        <div className="message-loading">
+                            <ChatSpinner />
+                            <img src={RobotLogo1} alt="Robot Logo" className="message-logo" />
+                        </div>
+                    )}
+                    {!isLoading && userIsTyping && <div>User is typing...</div>}
+                    <div ref={messagesEndRef}>
+
                     </div>
-                )}
-                {!isLoading && userIsTyping && <div>User is typing...</div>}
-                <div ref={messagesEndRef}>
-                    
-                </div>
-            </Box>
+                </Box>
 
             <form onSubmit={formik.handleSubmit}>
                 <Box display="flex" alignItems="center">
@@ -386,16 +385,16 @@ function Chat_Right() {
                         placeholder="Type your message..."
                         style={inputStyle}
                     /> */}
-                    <Button id='submitButton'
-                        type="submit" 
-                        variant="contained" 
-                        color="primary" 
-                        className="send-button"
-                        aria-label="Send Message"  
-                    />
-                </Box>
-            </form>
-        </Box>
+                        <Button id='submitButton'
+                            type="submit"
+                            variant="contained"
+                            color="primary"
+                            className="send-button"
+                            aria-label="Send Message"
+                        />
+                    </Box>
+                </form>
+            </Box>
         </>
     );
 }
