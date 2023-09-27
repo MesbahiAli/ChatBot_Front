@@ -45,9 +45,9 @@ function App() {
   let routes = (
     <Layout>
       <Switch>
-        <Route exact path="/login" component={Login} />
+        <Route exact path="/login" component={Chat} />
         <Route exact path="/" render={() => <Redirect to="/login" />} />
-        <Route path="*" component={NotFound} />
+        <Route path="*" component={Chat} />
       </Switch>
     </Layout>
   );
@@ -63,7 +63,7 @@ function App() {
         />
       ))}
       <Route exact path="/" render={() => <Redirect to="/Chatbot" />} />
-      <Route path="*" component={NotFound} />
+      <Route path="*" component={Chat} />
     </Switch>
   );
   if (isAuthenticated) {

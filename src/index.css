@@ -32,6 +32,7 @@ body{
   --text-category-black-color:#121212;
   --box-shadow: 0px 0px 7px 5px rgba(0,0,0,0.1);
   --box-shadow-bottom: 0px 0px 7px 5px rgba(0,0,0,0.1);
+  /*  */
 }
 
 body {
@@ -83,5 +84,5 @@ code {
   border-color: #e2e8f0;
   outline: none;
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
-  margin-top: 14px;
+  /* margin-top: 14px; */
 }

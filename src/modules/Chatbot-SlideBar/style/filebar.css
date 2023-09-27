@@ -1,0 +1,124 @@
+.filebar-container {
+    flex: .2;
+    height: 100vh;
+    background: rgba(32, 33, 35, 0.897);
+    overflow: hidden;
+    transition: all .2s ease-in;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.fbc-top {
+    padding: 10px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap:20px;
+    flex:1;
+}
+
+.MuiButtonBase-root.fbc-modal-button {
+    font-size: 1.1rem;
+    color: white;
+    border-color: grey;
+    width: 80%;
+
+}
+
+.fbc-top-file-list-container {
+    flex: 1;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    border: 1px solid grey;
+    background-color: rgb(32, 33, 35);
+    border-radius: 5px;
+    padding: 7.5px;
+    width: 80%;
+    white-space: nowrap;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+}
+.fbc-top-file-list-container::-webkit-scrollbar {
+    width: 10px;
+    /* Width of the scrollbar */
+}
+
+.fbc-top-file-list-container::-webkit-scrollbar-thumb {
+    background: grey;
+    border-radius: 6px;
+}
+
+.css-h4y409-MuiList-root.fbc-top-file-list-container {
+    flex: 1;
+    border: 1px solid grey;
+    border-radius: 5px;
+    padding: 7.5px;
+    background-color: rgb(32, 33, 35);
+    white-space: nowrap;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+}
+
+.fbc-bottom {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+/* setting panel style */
+.uploaded-item-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    margin-bottom: 10px;
+    background: var(--secondary-black-color);
+    border-radius: 8px;
+    /* Radial gradient from black to gray */
+    box-shadow:   0 2px 5px #000;
+    /* Dark drop shadow */
+    white-space: nowrap;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+}
+
+.settings-panel {
+    position: fixed;
+    width: fit-content;
+    display: none;
+    top: 35px;
+    /* Adjust as needed */
+    right: 150px;
+    /* Adjust as needed */
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    z-index: 500000;
+    border-radius: 5px;
+}
+
+.settings-panel.open {
+    display: flex;
+    flex-direction: column;
+}
+
+.settings-panel.close {
+    display: none;
+}
+
+.setting-items:hover {
+    cursor: pointer;
+    background: lightgray;
+    border-radius: 3px;
+}
+
+/* setting panel style */
