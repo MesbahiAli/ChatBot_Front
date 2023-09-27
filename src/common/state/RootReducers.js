@@ -24,7 +24,7 @@ const rootReducer = combineReducers({
   home:homeReducer,
   FilCategory:SendFileReducer,
   FilCategory:fileReducer,
-  
+  Category:categoryReducer
 
   
 });
