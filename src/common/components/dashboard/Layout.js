@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { frFR } from "@mui/material/locale";
-import config from "../Config";
+import config from "../../Config";
 
 class Layout extends Component {
   render() {

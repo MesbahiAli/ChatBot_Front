@@ -181,8 +181,8 @@ const UploadComponent = () => {
   };
   return (
     <>
-      <IconButton style={{ color: '#000', backgroundColor: '#343e8f', margin: 0, padding: '5px', borderRadius: 0 }} onClick={toggleSidebar} className="hamburger-icon" sx={{ display: { xs: 'flex', md: 'none', xl: 'none' } }}>
-        <MenuIcon style={{ color: '#aaa', margin: 0, padding: 0 }} />
+      <IconButton  className="hamburger-icon" sx={{ display: { xs: 'flex', md: 'none', xl: 'none' } }}>
+        <MenuIcon className='hg-icon'  />
       </IconButton>
       <div className={isSidebarOpen ? "SidebarDev open" : "SidebarDev closed"} sx={{ display: { xs: 'none', sm: 'block' } }}>
         <input
@@ -193,7 +193,7 @@ const UploadComponent = () => {
           onChange={handleFileChange}
         />
         <label id='uploadLabel' htmlFor="file-input">
-          <Button className="sidebar-button" component="span" startIcon={<CloudDoneIcon />} style={buttonStyle} >
+          <Button className="sidebar-button" component="span" startIcon={<CloudDoneIcon />}  >
             <span className="text">Select Files</span>
           </Button>
         </label>
@@ -202,7 +202,7 @@ const UploadComponent = () => {
           <List>
 
             {filesUpload.map((file, index) => (
-              <ListItem id='listItem' style={docStyle} key={index}>
+              <ListItem id='listItem'  key={index}>
                 <ListItemText primary={file.name} id='listItemSecondaryAction' style={listItemStyle}>
                 </ListItemText>
                 {/* <ListItemText primary={file.name} id='listItemPrimaryText'/> */}
@@ -236,7 +236,7 @@ const UploadComponent = () => {
 
         {/* <Button onClick={()=>dispatch(requestToggle())}>Change language</Button> */}
         <List  className="second-list file-list-container"> {files?.map(el => (
-          <div key={el} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '5px 3px', paddingLeft: '5px', marginBottom: '10px', backgroundColor: '#212229', borderRadius: '8px', }} className='uploaded-item-container'>
+          <div key={el} className='uploaded-item-container'>
             {el}
 
             <div className='icon-container'>

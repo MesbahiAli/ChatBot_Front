@@ -1,4 +1,4 @@
-import React, { forwardRef, useState } from 'react'
+import React, { forwardRef, useEffect, useState } from 'react'
 import "../style/category.css";
 import AddIcon from '@mui/icons-material/Add';
 import { Box, Button, Fade, IconButton, List, ListItem, ListItemIcon, ListItemText, Modal, TextField, styled } from '@mui/material';
@@ -12,6 +12,8 @@ import CheckIcon from '@mui/icons-material/Check';
 import PropTypes from 'prop-types';
 import { FormikProvider, useFormik } from 'formik';
 import * as Yup from "yup";
+import ModeNightIcon from '@mui/icons-material/ModeNight';
+import LightModeIcon from '@mui/icons-material/LightMode';
 import { useDispatch } from 'react-redux';
 import BasicDatePicker from './BasicDatePicker';
 import BasicSelectField from './BasicSelectField';
@@ -45,11 +47,7 @@ const newBtnStyle = {
     color: "white",
     width: "150px"
 }
-const normalBtnStyle = {
-    color: "white",
-    borderColor: "white",
 
-}
 const inputStyle = {
     color: "black",
     backgroundColor: "white",
@@ -107,8 +105,10 @@ const VisuallyHiddenInput = styled('input')({
     whiteSpace: 'nowrap',
     width: 1,
 });
+
 const FormDialog = ({ history }) => {
     const [open, setOpen] = useState(false);
+    const [light, setLight] = useState(true);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     const [selectedFile, setSelectedFile] = useState(null);
@@ -183,27 +183,37 @@ const FormDialog = ({ history }) => {
             //do other stuff
         },
     });
+    useEffect(() => {
+        if (light) {
+            document.body.classList.remove("dark");
+        }else{
+            document.body.classList.add("dark");
+        }
+    },[light])
     // Destructure properties from the formik object for use in the component
     const { errors, touched, handleSubmit, handleChange, values } = formik;
     return (
         <div className="form-dialogue">
             <div className="fd-buttons">
-                <Button onClick={() => setOpen(prev => !prev)} sx={newBtnStyle} variant="contained" size="large" startIcon={<AddIcon />}>
+                <Button onClick={handleOpen}  className='fd-contained-btn' variant="contained" size="large" startIcon={<AddIcon />}>
                     New
                 </Button>
-                <Button className='fd-btn' sx={normalBtnStyle} variant="outlined" size="large" startIcon={<RefreshIcon />}>
+                <Button className='fd-btn'  variant="outlined" size="large" startIcon={<RefreshIcon />}>
                     Refresh
                 </Button>
-                <Button className='fd-btn' sx={normalBtnStyle} variant="outlined" size="large" startIcon={<FileDownloadIcon />}>
+                <Button className='fd-btn'  variant="outlined" size="large" startIcon={<FileDownloadIcon />}>
                     Export
                 </Button>
             </div>
             <div className="fd-buttons">
-                <Button sx={newBtnStyle} variant="contained" size="large" startIcon={<LogoutIcon />}>
+                <Button  className='fd-contained-btn' variant="contained" size="large" startIcon={<LogoutIcon />}>
                     Logout
                 </Button>
-                <Button onClick={() => { history.push("/chatbot") }} className='fd-btn' sx={normalBtnStyle} variant="outlined" size="large" startIcon={<ChatOutlinedIcon />}>
+                <Button onClick={() => { history.push("/") }} className='fd-btn'  variant="outlined" size="large" startIcon={<ChatOutlinedIcon />}>
                     ChatBot
+                </Button>
+                <Button onClick={() => { setLight(prev=>!prev) }} className='fd-btn'  variant="outlined" size="large" startIcon={light ? <ModeNightIcon /> : <LightModeIcon/>}>
+                    {light ? "Dark Mode" : "Light Mode"}
                 </Button>
             </div>
             <StyledModal
@@ -220,7 +230,7 @@ const FormDialog = ({ history }) => {
                                 <div className="fdmf-top">
                                     <div className="fdmf-right">
                                         <TextField InputLabelProps={{ style: { backgroundColor: "white", padding: "5px", borderRadius: "5px", color: "black" } }} label="name of tender" variant="outlined" sx={inputStyle} />
-                                        <BasicDatePicker label="submission date" sx={inputStyle} />
+                                        <BasicDatePicker label="submission date" sx={inputStyle}  />
                                         <TextField InputLabelProps={{ style: { backgroundColor: "white", padding: "5px", borderRadius: "5px", color: "black" } }} label="client" variant="outlined" sx={inputStyle} />
                                         <TextField InputLabelProps={{ style: { backgroundColor: "white", padding: "5px", borderRadius: "5px", color: "black" } }} label="contract type" variant="outlined" sx={inputStyle} />
                                     </div>
