@@ -13,7 +13,7 @@ const config = {
 
   // config for local backend
 
-    url: "https://flasktest-vkre.onrender.com",
+    url: "http://127.0.0.1:5000",
     appVersion: "1.0.0",
     primaryColor: "#232A56",
     secondaryColor: "#575756",

@@ -4,14 +4,12 @@ import {
   SEND_FILE_AND_DATA_SUCCESS,
 } from '../../../common/state/StatesConstants';
 
-
-export const sendFileAndData = (data, file) => {
+export const sendFileAndData = (data) => {
   return {
     type: SEND_FILE_AND_DATA_REQUEST,
-    payload: { data, file },
+    payload: data,
   };
 };
-
 
 export const sendFileAndDataSuccess = (response) => {
   return {

@@ -215,7 +215,7 @@ function Chat_Right() {
         width: '60px',
         height: '60px',
         position: 'fixed',
-        bottom: '20px',    
+        bottom: '50px',    
         right: '20px',     
         zIndex: 1000,
         color: '#FFF',
@@ -271,8 +271,21 @@ function Chat_Right() {
 
                     <form onSubmit={formik.handleSubmit} >
                     <Box display="flex" alignItems="center" justifyContent="space-between" style={{ position: 'relative' }}>
+
+                    <ToggleButtonGroupd
+                    value={selected}
+                    exclusive
+                    onChange={() => setSelected(!selected)}
+                    onClick={()=>dispatch(requestToggle())}
+                    aria-label="toggle button"
+                >
+                    <ToggleButtond value={true} aria-label="summarize" style={{ color: 'white'}}>
+                        {selected ? <img className='langImg' src="https://www.svgrepo.com/show/248851/united-states.svg" alt="EN" width="30" /> : <img className='langImg' src="https://www.svgrepo.com/show/248840/netherlands.svg" alt="Dutch" width="30" />}
+                    </ToggleButtond>
+                </ToggleButtonGroupd>
+
                     <TextField
-                        style={{ width: "100%" }}
+                        style={{ width: "100%"}}
                         variant="outlined"
                         {...formik.getFieldProps('user_input')}
                         onChange={handleInputChange}
@@ -289,6 +302,7 @@ function Chat_Right() {
                                <IconButton 
                                onClick={() => setIsChatOpen(!isChatOpen)}
                                sx={{
+                                    marginRight: '5px',
                                    display: { xs: 'flex', md: 'none' },
                                    width: '40px',
                                    height: '40px',
@@ -353,16 +367,16 @@ function Chat_Right() {
                 <Box display="flex" alignItems="center">
                 {/* TAHA */}
                 <ToggleButtonGroupd
-            value={selected}
-            exclusive
-            onChange={() => setSelected(!selected)}
-            onClick={()=>dispatch(requestToggle())}
-            aria-label="toggle button"
-          >
-            <ToggleButtond value={true} aria-label="summarize" style={{ color: 'white'}}>
-              {selected ? <img className='langImg' src="https://www.svgrepo.com/show/248851/united-states.svg" alt="EN" width="30" /> : <img className='langImg' src="https://www.svgrepo.com/show/248840/netherlands.svg" alt="Dutch" width="30" />}
-            </ToggleButtond>
-          </ToggleButtonGroupd>
+                    value={selected}
+                    exclusive
+                    onChange={() => setSelected(!selected)}
+                    onClick={()=>dispatch(requestToggle())}
+                    aria-label="toggle button"
+                >
+                    <ToggleButtond value={true} aria-label="summarize" style={{ color: 'white'}}>
+                        {selected ? <img className='langImg' src="https://www.svgrepo.com/show/248851/united-states.svg" alt="EN" width="30" /> : <img className='langImg' src="https://www.svgrepo.com/show/248840/netherlands.svg" alt="Dutch" width="30" />}
+                    </ToggleButtond>
+                </ToggleButtonGroupd>
                 {chatInput}
                     {/* <TextField id='textFieldd'
                         fullWidth

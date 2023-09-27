@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Box } from "@mui/material";
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchPdfRequest } from '../../Chatbot-SlideBar/components/FileView.js/State/ViewActions';
 
 const Feed = () => {
+  
   const dispatch = useDispatch();
   const summarize = useSelector((state) => state.Summarize.data);
   const pdfData = useSelector(state => state.Pdf.pdf);
@@ -28,7 +29,7 @@ const Feed = () => {
             title="application/pdf"
             style={{ width: '100%', height: '600px', border: 'none' }} 
           ></iframe>
-        }
+          }
       </div>
     </Box>
   );

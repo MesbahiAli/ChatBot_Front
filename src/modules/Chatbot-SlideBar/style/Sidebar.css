@@ -1,17 +1,33 @@
-.SidebarDev {
+/* --------- RIGHT HERE -------------- */
+/* .SidebarDev {
     color: white;
     padding: 25px 20px;
     border-right: 0.5px solid #3a3a3a;
     background-color: #121212;
-    /* ------ HERE ----- */
     width: 50%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
+
+#selectFilesLabel, 
+    .file-list-container, 
+    #uploadLabel, 
+    .second-list, 
+    #sendServerLabel, 
+    #logoutButton {
+        width: 90%;
+        box-sizing: border-box;
+} */
+
+/* ----------------------------------- */
 
 .SidebarDev label {
     padding: 10px;
     padding-bottom: 12px;
     border-radius: 5px;
-    margin-top: 50px;
+    /* margin-top: 50px; */
     border: 1px solid #343e8b;
     border-radius: 4px;
 }
@@ -29,6 +45,15 @@
 
 }
 
+#uploadLabel {
+    background-color: #343e8b;
+}
+
+#uploadLabel button {
+    width: 90%;
+    margin: 0 auto;
+}
+
 #sendServerLabel {
     background-color: #343e8b;
 }
@@ -36,9 +61,12 @@
 #sendServerLabel button {
     width: 90%;
     margin: 0 auto;
-
 }
 
+
+#uploadLabel:hover {
+    background-color: #202970;
+}
 
 #sendServerLabel:hover {
     background-color: #202970;
@@ -63,16 +91,14 @@
     opacity: 1;
 }
 
-@media (max-width: 1250px) {
+/* @media (max-width: 1250px) {
 
     #sendBtn>span.text {
         display: none;
-        /* Hide the text on small screens */
     }
 
     .sidebar-button .text {
         display: none;
-        /* Hide the text on small screens */
     }
 
     #sendBtn>span {
@@ -80,16 +106,16 @@
         padding: 0;
     }
 
-    #uploadLabel {
+    #selectFilesLabel {
         margin: 0;
     }
 
-    #uploadLabel>span>span {
+    #selectFilesLabel>span>span {
         margin: 0;
     }
-}
+} */
 
-@media (max-width: 900px) {
+/* @media (max-width: 900px) {
 
     .SidebarDev {
         display: none;
@@ -102,15 +128,14 @@
 
     .sidebar-button .text {
         display: none;
-        /* Hide the text on small screens */
     }
 
-    #uploadLabel>span {
+    #selectFilesLabel>span {
         padding: 20px;
         margin: 0 4.4%;
     }
 
-    #uploadLabel {
+    #selectFilesLabel {
         background-color: transparent;
     }
 
@@ -120,7 +145,7 @@
         margin: 15px;
     }
 
-    #uploadLabel {
+    #selectFilesLabel {
         margin: 0 auto;
         padding: 0;
         border: none;
@@ -135,16 +160,12 @@
         background-color: none;
         border: none;
     }
-}
+} */
 
 .file-list-container {
-    /* max-height: 800px;   TAHA */
     max-height: 30%;
-    /* Adjust the maximum height as needed */
     overflow-y: auto;
-    /* Enable vertical scrolling when content exceeds the height */
     overflow-x: auto;
-    /* Enable horizontal scrolling when content overflows */
     white-space: wrap;
     margin-bottom: 15px;
     margin-top: 15px;
@@ -165,23 +186,17 @@
     min-height: 200px;
 }
 
-/* styles.css or your preferred stylesheet */
 
-/* Default styles for list items */
 #listItem {
     display: flex;
     align-items: center;
 }
 
-/* Style for file name */
 #listItemPrimaryText {
     flex: 1;
-    /* Allow the file name to take up all available space */
     white-space: nowrap;
-    /* Prevent text from wrapping to the next line */
     overflow: hidden;
     text-overflow: ellipsis;
-    /* Display ellipsis (...) for truncated text */
 }
 
 /* Style for checkbox and delete icon */
@@ -253,25 +268,21 @@
 
 
 /* Media query for small screens (adjust the breakpoint as needed) */
-@media (max-width: 989px) {
+/* @media (max-width: 989px) {
 
-    /* Stack the elements vertically on small screens */
     #listItem {
         flex-direction: column;
         align-items: flex-start;
     }
 
-    /* Reset file name styles to wrap text */
     #listItemPrimaryText {
         white-space: normal;
         overflow: visible;
         text-overflow: inherit;
     }
 
-    /* Adjust spacing as needed */
     #listItemSecondaryAction {
         margin-top: 4px;
-        /* Add spacing between the file name and checkbox/delete icon */
         margin-right: -90%;
 
     }
@@ -289,36 +300,27 @@
 
     .hamburger-icon {
         display: none;
-        /* Hide by default */
         color: white;
-        /* Color to match your theme */
     }
 
     .SidebarDev.closed {
         width: 0;
-        /* Or display: none, but using width allows for animation */
         overflow: hidden;
     }
 
-    /* Breakpoint for the hamburger menu */
     @media (max-width: 900px) {
 
-        /* Show the hamburger icon on smaller screens */
         .hamburger-icon {
             display: block;
         }
 
-        /* By default, set the sidebar to closed on smaller screens */
         .SidebarDev {
             display: none;
         }
 
-        /* Show the sidebar when it's in open state */
         .SidebarDev.open {
             display: block;
-
             width: 100%;
-            /* Restore the original width or set your preferred width */
         }
 
         .file-list-container {
@@ -357,8 +359,7 @@
         }
     }
 
-    /* ---- 20/09/23 */
-}
+} */
 
 /* Mouad Doadi - 21/09/23 > */
 
@@ -428,3 +429,95 @@
 }
 
 /* < 21/09/23 */
+
+/* Mouad Doadi - 25/09/23 > */
+
+/* @media (max-width: 768px) {
+
+    .SidebarDev{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+    }
+    
+    .file-list-container{
+        margin: 10px auto;
+    }
+
+    
+} */
+
+/* @media (max-width: 768px) {
+    .SidebarDev {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #selectFilesLabel, 
+    .file-list-container, 
+    #uploadLabel, 
+    .second-list, 
+    #sendServerLabel, 
+    #logoutButton {
+        width: 90%;
+        box-sizing: border-box;
+    }
+
+
+    #selectFilesLabel, #uploadLabel, #sendServerLabel{
+        width: 90%;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+} */
+
+/* Mouad Doadi - 26/09/23 > */
+
+.SidebarDev {
+    color: white;
+    padding: 25px 20px;
+    border-right: 0.5px solid #3a3a3a;
+    background-color: #121212;
+    width: 50%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: space-evenly; */
+}
+
+#selectFilesLabel, 
+    .file-list-container, 
+    #uploadLabel, 
+    .second-list, 
+    #sendServerLabel{
+        width: 90%;
+        box-sizing: border-box;
+}
+
+#selectFilesLabel, #uploadLabel, #sendServerLabel{
+    display: flex;          /* Turn this into a flex container */
+    justify-content: center; /* Center the child items horizontally */
+    align-items: center; 
+}
+
+#logoutButton{
+    width: 50%;
+}
+
+@media (max-width: 900px) {
+    .SidebarDev, #logoutButton{
+        width: 100%;
+    }
+
+
+
+}
+
+
+/* < */
