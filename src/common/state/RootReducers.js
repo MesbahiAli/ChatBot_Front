@@ -21,7 +21,8 @@ const rootReducer = combineReducers({
   Summarize:summarizeReducer,
   Pdf:pdfReducer,
   FilCategory:SendFileReducer,
-  Category:categoryReducer
+  FilCategory:fileReducer,
+  
 
   
 });
