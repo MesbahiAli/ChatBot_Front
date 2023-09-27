@@ -7,7 +7,7 @@ import { getCategoryRequest } from '../StateTable/CategoryAction'
 
 const Table = () => {
     const dispatch = useDispatch();
-    const categoryData = useSelector(state => state.Category.data);
+    const categoryData = useSelector(state => state.Category?.data);
 console.log(categoryData)
     useEffect(() => {
         dispatch(getCategoryRequest());

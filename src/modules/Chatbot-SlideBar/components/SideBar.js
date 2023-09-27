@@ -189,73 +189,75 @@ const UploadComponent = () => {
         <MenuIcon style={{ color: '#aaa', margin: 0, padding: 0 }} />
       </IconButton> */}
 
-      { /* PARENT */ }
+      { /* PARENT */}
       <div className="SidebarDev">
-        <input
-          style={{ display: 'none' }}
-          id="file-input"
-          multiple
-          type="file"
-          onChange={handleFileChange}
-        />
+        <div className='sbd-top'>
+          <input
+            style={{ display: 'none' }}
+            id="file-input"
+            multiple
+            type="file"
+            onChange={handleFileChange}
+          />
 
-        { /* CHILD #01 */ }
-        <label id='selectFilesLabel' htmlFor="file-input">
-          <Button className="sidebar-button" component="span" startIcon={<CloudDoneIcon />} style={buttonStyle} >
-            <span className="text">Select Files</span>
-          </Button>
-        </label>
+          { /* CHILD #01 */}
+          <label id='selectFilesLabel' htmlFor="file-input">
+            <Button className="sidebar-button" component="span" startIcon={<CloudDoneIcon />} style={buttonStyle} >
+              <span className="text">Select Files</span>
+            </Button>
+          </label>
 
-        { /* CHILD #02 */ }
-        <div className="file-list-container">
-          <List>
-            {filesUpload.map((file, index) => (
-              <ListItem id='listItem'  key={index}>
-                <ListItemText primary={file.name} id='listItemSecondaryAction' style={listItemStyle}>
-                </ListItemText>
-                {/* <ListItemText primary={file.name} id='listItemPrimaryText'/> */}
-              </ListItem>
-            ))}
+          { /* CHILD #02 */}
+          <div className="file-list-container">
+            <List>
+              {filesUpload.map((file, index) => (
+                <ListItem id='listItem' key={index}>
+                  <ListItemText primary={file.name} id='listItemSecondaryAction' style={listItemStyle}>
+                  </ListItemText>
+                  {/* <ListItemText primary={file.name} id='listItemPrimaryText'/> */}
+                </ListItem>
+              ))}
+            </List>
+          </div>
+
+          { /* CHILD #03 */}
+          <label id='uploadLabel' style={isUploaded ? sendServerButton : disabledButton}>
+            {/* <Button onClick={handleUploadButtonClick} id='sendBtn' style={sendServerButton} endIcon={<CloudUploadIcon />}>  TAHA */}
+            <Button onClick={handleUploadButtonClick} id='sendBtn' disabled={isUploaded ? false : true} style={isUploaded ? sendServerButton : disabledButton} endIcon={<CloudUploadIcon />}>
+              <span className="text">Upload</span>
+            </Button>
+          </label>
+
+          { /* CHILD #04 */}
+          <List className="second-list file-list-container"> {files?.map(el => (
+            <div key={el} className='uploaded-item-container'>
+              {el}
+
+              <div className='icon-container'>
+                <Checkbox
+                  style={checkStyle}
+                  edge="start"
+                  checked={selectedFilesFromServer.includes(el)}
+                  onChange={() => handleServerFileSelect(el)}
+                />
+                <SettingsPanel el={el} />
+              </div>
+
+            </div>
+          ))}
           </List>
+
+
+          { /* CHILD #05 */}
+          <label id='sendServerLabel' style={isSelected ? sendServerButton : disabledButton}>
+            <Button onClick={handleSendSelectedFilesFromServer} id='sendBtn' disabled={isSelected ? false : true} style={isSelected ? sendServerButton : disabledButton} endIcon={<SendIcon />} >
+              <span className="text">Send selected files</span>
+            </Button>
+          </label>
         </div>
 
-        { /* CHILD #03 */ }
-        <label id='uploadLabel' style={isUploaded ? sendServerButton : disabledButton}>
-          {/* <Button onClick={handleUploadButtonClick} id='sendBtn' style={sendServerButton} endIcon={<CloudUploadIcon />}>  TAHA */}
-          <Button onClick={handleUploadButtonClick} id='sendBtn' disabled={isUploaded ? false : true} style={isUploaded ? sendServerButton : disabledButton} endIcon={<CloudUploadIcon />}>
-            <span className="text">Upload</span>
-          </Button>
-        </label>
-
-        { /* CHILD #04 */ }
-        <List  className="second-list file-list-container"> {files?.map(el => (
-          <div key={el} className='uploaded-item-container'>
-            {el}
-
-            <div className='icon-container'>
-              <Checkbox
-                style={checkStyle}
-                edge="start"
-                checked={selectedFilesFromServer.includes(el)}
-                onChange={() => handleServerFileSelect(el)}
-              />
-              <SettingsPanel el={el} />
-            </div>
-
-          </div>
-        ))}
-        </List>
-
-
-        { /* CHILD #05 */ }
-        <label id='sendServerLabel' style={isSelected ? sendServerButton : disabledButton}>
-          <Button onClick={handleSendSelectedFilesFromServer} id='sendBtn' disabled={isSelected ? false : true} style={isSelected ? sendServerButton : disabledButton} endIcon={<SendIcon />} >
-            <span className="text">Send selected files</span>
-          </Button>
-        </label>
-
-        { /* LOGOUT */ }
-        <div id='logoutButton'>
+        { /* LOGOUT */}
+        <div id='logoutButton' className='logout-btn'>
           {JwtUtils.isActif() ? <Button onClick={handleLogout}><LogoutIcon style={{ color: 'white' }} /> Logout</Button> : null}
         </div>
 
