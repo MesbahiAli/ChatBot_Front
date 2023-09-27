@@ -7,7 +7,8 @@ import { fileReducer } from "../../modules/Chatbot-SlideBar/SlectedFile/State/Re
 import { toggleReducer } from "../../modules/Chatbot-RightBar/components/Togle/State/TogleReducer";
 import { summarizeReducer } from "../../modules/Chatbot-RightBar/components/Summarize/State/SummarizeReducers";
 import pdfReducer from "../../modules/Chatbot-SlideBar/components/FileView.js/State/ViewReducer";
-import { categoryReducer } from "../../modules/Category/state/CategoryReducer";
+import { SendFileReducer } from "../../modules/CategoryForm/state/CategoryReducer";
+import { categoryReducer } from "../../modules/CategoryForm/StateTable/CategoryReducer";
 
 import homeReducer from "../../modules/Home/state/ReducerHome";
 
@@ -21,8 +22,9 @@ const rootReducer = combineReducers({
   Summarize:summarizeReducer,
   Pdf:pdfReducer,
   home:homeReducer,
+  FilCategory:SendFileReducer,
   FilCategory:fileReducer,
-  Category:categoryReducer
+  
 
   
 });

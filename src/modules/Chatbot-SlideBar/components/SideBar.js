@@ -73,13 +73,13 @@ const UploadComponent = () => {
     cursor: ""
   };
 
-  const sendServerLabel = {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '100%',  // Take full width of its parent.
-    height: '100%', // Take full height of its parent.
-  };
+  // const sendServerLabel = {
+  //   display: 'flex',
+  //   justifyContent: 'center',
+  //   alignItems: 'center',
+  //   width: '100%',
+  //   height: '100%',
+  // };
 
 
   const docStyle = {
@@ -108,10 +108,10 @@ const UploadComponent = () => {
 
   const [isSidebarOpen, setIsSidebarOpen] = React.useState(true);
 
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-    dispatch(toggleSidebarClick())
-  };
+  // const toggleSidebar = () => {
+  //   setIsSidebarOpen(!isSidebarOpen);
+  //   dispatch(toggleSidebarClick())
+  // };
 
   useEffect(() => {
     const handleResize = () => {
@@ -185,10 +185,12 @@ const UploadComponent = () => {
 
   return (
     <>
-      <IconButton  className="hamburger-icon" sx={{ display: { xs: 'flex', md: 'none', xl: 'none' } }}>
-        <MenuIcon className='hg-icon'  />
-      </IconButton>
-      <div className={isSidebarOpened ? "SidebarDev open" : "SidebarDev closed"}>
+      {/* <IconButton style={{ color: '#000', backgroundColor: '#343e8f', margin: 0, padding: '5px', borderRadius: 0 }} onClick={toggleSidebar} className="hamburger-icon" sx={{ display: { xs: 'flex', md: 'none', xl: 'none' } }}>
+        <MenuIcon style={{ color: '#aaa', margin: 0, padding: 0 }} />
+      </IconButton> */}
+
+      { /* PARENT */ }
+      <div className="SidebarDev">
         <input
           style={{ display: 'none' }}
           id="file-input"
@@ -196,15 +198,17 @@ const UploadComponent = () => {
           type="file"
           onChange={handleFileChange}
         />
-        <label id='uploadLabel' htmlFor="file-input">
-          <Button className="sidebar-button" component="span" startIcon={<CloudDoneIcon />}  >
+
+        { /* CHILD #01 */ }
+        <label id='selectFilesLabel' htmlFor="file-input">
+          <Button className="sidebar-button" component="span" startIcon={<CloudDoneIcon />} style={buttonStyle} >
             <span className="text">Select Files</span>
           </Button>
         </label>
 
+        { /* CHILD #02 */ }
         <div className="file-list-container">
           <List>
-
             {filesUpload.map((file, index) => (
               <ListItem id='listItem'  key={index}>
                 <ListItemText primary={file.name} id='listItemSecondaryAction' style={listItemStyle}>
@@ -215,30 +219,15 @@ const UploadComponent = () => {
           </List>
         </div>
 
-        <label id='sendServerLabel' style={isUploaded ? sendServerButton : disabledButton}>
+        { /* CHILD #03 */ }
+        <label id='uploadLabel' style={isUploaded ? sendServerButton : disabledButton}>
           {/* <Button onClick={handleUploadButtonClick} id='sendBtn' style={sendServerButton} endIcon={<CloudUploadIcon />}>  TAHA */}
           <Button onClick={handleUploadButtonClick} id='sendBtn' disabled={isUploaded ? false : true} style={isUploaded ? sendServerButton : disabledButton} endIcon={<CloudUploadIcon />}>
             <span className="text">Upload</span>
           </Button>
         </label>
 
-
-
-        {/* <br />
-          <hr style={ { height: '1px', border: 'none' } }/>
-    
-          
-
-          <List className="second-list file-list-container"> {files?.map(el => (
-            <div key={el} style={{ display: 'flex' }} className='li-container'>
-                    {el} */}
-        {/* <label id='sendServerLabel'>
-        <Button  onClick={handleSendSelectedFilesFromServer} id='sendBtn' disabled={isSelected ? false : true} style={isSelected ? sendServerButton : disabledButton} endIcon={<SendIcon />} >
-          <span className="text">Send selected files</span>
-        </Button>
-      </label> */}
-
-        {/* <Button onClick={()=>dispatch(requestToggle())}>Change language</Button> */}
+        { /* CHILD #04 */ }
         <List  className="second-list file-list-container"> {files?.map(el => (
           <div key={el} className='uploaded-item-container'>
             {el}
@@ -251,12 +240,6 @@ const UploadComponent = () => {
                 onChange={() => handleServerFileSelect(el)}
               />
               <SettingsPanel el={el} />
-
-              {/* <IconButton style={checkStyle} edge="end" onClick={() => handleDelete(el)} id='deleteIcon'>
-              <DeleteIcon />
-              </IconButton>
-              <Button onClick={()=>dispatch(requestSummarize(el))} id='summarizeIcon' title="Summarize the document"><SummarizeIcon/></Button>
-            <Button onClick={()=>dispatch(fetchPdfRequest(el))} id='viewIcon' title="View the document"><VisibilityIcon /></Button> */}
             </div>
 
           </div>
@@ -264,13 +247,14 @@ const UploadComponent = () => {
         </List>
 
 
-
+        { /* CHILD #05 */ }
         <label id='sendServerLabel' style={isSelected ? sendServerButton : disabledButton}>
-
           <Button onClick={handleSendSelectedFilesFromServer} id='sendBtn' disabled={isSelected ? false : true} style={isSelected ? sendServerButton : disabledButton} endIcon={<SendIcon />} >
             <span className="text">Send selected files</span>
           </Button>
         </label>
+
+        { /* LOGOUT */ }
         <div id='logoutButton'>
           {JwtUtils.isActif() ? <Button onClick={handleLogout}><LogoutIcon style={{ color: 'white' }} /> Logout</Button> : null}
         </div>

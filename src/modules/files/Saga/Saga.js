@@ -5,6 +5,7 @@ import { FileApi } from '../../../common/services/FileService';
 function* fetchData() {
   try {
     const response = yield call(FileApi);
+    console.log(response.data)
     yield put(fetchDataSuccess(response.data));
   } catch (error) {
     yield put(fetchDataFailure(error.message));

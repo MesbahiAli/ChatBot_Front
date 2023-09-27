@@ -10,7 +10,7 @@ const initialState = {
   success: false,
 };
 
-export const fileReducer = (state = initialState, action) => {
+export const SendFileReducer = (state = initialState, action) => {
   switch (action.type) {
     case SEND_FILE_AND_DATA_REQUEST:
       return { loading: true, error: null, success: false };
