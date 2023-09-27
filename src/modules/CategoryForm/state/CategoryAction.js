@@ -5,6 +5,7 @@ import {
 } from '../../../common/state/StatesConstants';
 
 export const sendFileAndData = (data) => {
+  console.log(data,"action"); 
   return {
     type: SEND_FILE_AND_DATA_REQUEST,
     payload: data,
@@ -24,3 +25,5 @@ export const sendFileAndDataFailure = (error) => {
     payload: error,
   };
 };
+
+

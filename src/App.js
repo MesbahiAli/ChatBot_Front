@@ -11,19 +11,14 @@ import Dashboard from "./common/components/dashboard/ui/Dashboard";
 import Login from './modules/Authentification/components/Login';
 import NotFound from "./routing/NotFound";
 import Home from './modules/Home/components/Home';
-
-import Categorie from './modules/CategoryForm/components/Categorie';
 import CategoryUi from './modules/CategoryForm/ui/Category';
-// import CategoryComponent from './modules/ListCategory/components/Categorie';
 // import CategoryComponent from './modules/Category/components/Categorie';
 // import Categorie from '../modules/Category/ui/Category.jsx';
 
 const protectedRoutes = {
   chatbot: { path: "/chatbot", requiredRoles: [], component: Chat },
   home: { path: "/home", requiredRoles: [], component: Home },
-  Category: { path: "/category", requiredRoles: [], component: CategoryUi },
-  // CategoryComponent: { path: "/CategoryComponent", requiredRoles: [], component: CategoryComponent },
-
+  Category: { path: "/category", requiredRoles: [], component: CategoryUi},
 };
 
 

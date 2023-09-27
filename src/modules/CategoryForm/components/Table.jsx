@@ -8,12 +8,11 @@ import { getCategoryRequest } from '../StateTable/CategoryAction'
 const Table = () => {
     const dispatch = useDispatch();
     const categoryData = useSelector(state => state.Category.data);
-console.log(categoryData)
     useEffect(() => {
         dispatch(getCategoryRequest());
     }, []);
 
-    const rows = categoryData.map((item, index) => ({
+    const rows = categoryData?.map((item, index) => ({
         id: index,
         ...item
     }));

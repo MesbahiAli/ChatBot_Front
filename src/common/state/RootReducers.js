@@ -23,10 +23,7 @@ const rootReducer = combineReducers({
   Pdf:pdfReducer,
   home:homeReducer,
   FilCategory:SendFileReducer,
-  FilCategory:fileReducer,
-  
-
-  
+  Category:categoryReducer,
 });
 
 export default rootReducer;
