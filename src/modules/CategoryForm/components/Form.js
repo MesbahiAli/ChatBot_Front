@@ -53,7 +53,11 @@ const style = {
     padding: '16px 32px 24px 32px',
     backgroundColor: '#0A1929',
     display: "flex",
-    flexDirection: "column"
+    flexDirection: "column",
+
+    /* Mouad Doadi - 29/09/23 >*/
+    backgroundColor: '#3B74BF',
+    /* < 29/09/23 */
 };
 
 const VisuallyHiddenInput = styled('input')({
@@ -206,7 +210,7 @@ const StyledFormModal = ({ handleClose, handleUploadCancel }) => {
 
                             <Button
                                 className='fd-btn'
-                                style={{ backgroundColor: "#343e8b", color: "white", fontSize: 20, height: 55 }}
+                                style={{ backgroundColor: "#3B74BF", border: "1px solid #F2F2F2", color: "white", fontSize: 20, height: 55 }}
                                 component="label"
                                 variant="contained"
                                 endIcon={<CloudUploadOutlinedIcon sx={{ height: 26, width: 26 }} />}

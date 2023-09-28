@@ -16,7 +16,7 @@ import Alert from '@mui/material/Alert';
 import { requestToggle } from './Togle/State/TogleAction';
 import { ToggleButton, ToggleButtonGroup } from '@mui/material';
 
-
+import DropUpMenu from './DropupMenu';
 
 // 21/09/23
 
@@ -364,8 +364,8 @@ function Chat_Right() {
 
             <form onSubmit={formik.handleSubmit}>
                 <Box display="flex" alignItems="center">
-                {/* TAHA */}
-                <ToggleButtonGroupd
+                    <DropUpMenu />
+                {/* <ToggleButtonGroupd
                     value={selected}
                     exclusive
                     onChange={() => setSelected(!selected)}
@@ -375,16 +375,8 @@ function Chat_Right() {
                     <ToggleButtond value={true} aria-label="summarize" style={{ color: 'white'}}>
                         {selected ? <img className='langImg' src="https://www.svgrepo.com/show/248851/united-states.svg" alt="EN" width="30" /> : <img className='langImg' src="https://www.svgrepo.com/show/248840/netherlands.svg" alt="Dutch" width="30" />}
                     </ToggleButtond>
-                </ToggleButtonGroupd>
+                </ToggleButtonGroupd> */}
                 {chatInput}
-                    {/* <TextField id='textFieldd'
-                        fullWidth
-                        variant="outlined"
-                        {...formik.getFieldProps('user_input')}
-                        onChange={handleInputChange}
-                        placeholder="Type your message..."
-                        style={inputStyle}
-                    /> */}
                         <Button id='submitButton'
                             type="submit"
                             variant="contained"

@@ -173,7 +173,7 @@
     align-self: flex-end;
     color: #ffffff; /* --------- HERE ------------ */
     text-align: justify;
-    margin-bottom: 8px
+    margin-bottom: 8px;
 }
 
 .user .message-bubble {
@@ -185,8 +185,9 @@
     margin: 0 10px;
     font-size: 0.9em;
     width: 90%;
-    text-align: justify;        margin-bottom: 8px;
-    margin-left:-4px
+    text-align: justify;
+    margin-bottom: 8px;
+    margin-left:-4px;
 }
 
 /* Timestamp and Avatar */
@@ -308,5 +309,3 @@ form > div > div.MuiFormControl-root.MuiFormControl-fullWidth.MuiTextField-root.
 .langImg:hover{
     opacity: 1;
 }
-
-/* */

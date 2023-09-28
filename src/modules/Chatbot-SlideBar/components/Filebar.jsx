@@ -21,7 +21,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import {fetchConversationsRequest} from "../../Home/components/StateListe/ListeAction"
 import { fetchMessagesRequest } from '../../Home/components/StateMessage/MessageAction';
 
-  
+import CategoryIcon from '@mui/icons-material/Category';
 
 // Mouad Doadi - 21/09/23 >
 
@@ -65,6 +65,9 @@ const Filebar = () => {
 
     // 19/09/23
 
+    const iconsStyle = {
+        marginRight: '5px'
+    };
     const buttonStyle = {
         color: '#fff'
     };
@@ -78,7 +81,7 @@ const Filebar = () => {
     };
 
     const sendServerButton = {
-        color: '#fff'
+        color: '#3B74BF'
     };
 
     /* TAHA */
@@ -236,7 +239,7 @@ justify-content: center;
         <div className="filebar-container">
             <div className='fbc-top'>
                 <Button onClick={() => setOpen(prev => !prev)} variant='outlined' className='fbc-modal-button'>
-                    Upload New File
+                    <CloudUploadIcon style={iconsStyle}/> Upload New File
                 </Button>
                 <List className="fbc-top-file-list-container"> {files?.map(el => (
                     <div key={el} className='uploaded-item-container'>
@@ -256,15 +259,18 @@ justify-content: center;
                 ))}
                 </List>
                 <Button style={isSelected ? sendServerButton : disabledButton} onClick={handleSendSelectedFilesFromServer} variant='outlined' className='fbc-modal-button'>
+                    <SendIcon style={iconsStyle}/>
                     Send selected files
                 </Button>
 
             </div>
             <div className='fbc-bottom'>
                 <Button onClick={handleSendSelectedFilesFromServer} variant='outlined' className='fbc-modal-button'>
+                    <CategoryIcon style={iconsStyle}/>
                     Categorie                </Button>
 
                 {JwtUtils.isActif() ? <Button onClick={handleLogout} variant='outlined' className='fbc-modal-button'>
+                    <LogoutIcon style={iconsStyle}/>
                     Logout
                 </Button> : null}
             </div>

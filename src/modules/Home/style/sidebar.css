@@ -14,6 +14,12 @@
     padding: 10px;
     gap: 10px;
 
+    /* Mouad Doadi - 28/09/23 >*/
+
+    background-color: var(--sidebar-background-color, red);
+
+    /* < 28/09/23 */
+
 }
 
 
@@ -44,6 +50,10 @@
     font-size: 1.1rem;
     color: white;
     border-color: grey;
+
+    /* Mouad Doadi - 28/09/23 > */
+    border: var(--sc-headers-border);
+    /* < 28/09/23 */
 }
 
 .MuiButtonBase-root.sc-headers-iconButton {
@@ -51,7 +61,23 @@
     border-radius: 4px;
     color: white;
     transition: all .5s ease-in;
+
+    /* Mouad Doadi - 28/09/23 > */
+    border: var(--sc-headers-border);
+    /* < 28/09/23 */
 }
+
+/* Mouad Doadi - 28/09/23 > */
+.MuiButtonBase-root.sc-headers-button:hover {
+    background-color: var(--sc-headers-background-color-hover);
+    border: var(--sc-headers-border-hover);
+}
+
+.MuiButtonBase-root.sc-headers-iconButton:hover {
+    background-color: var(--sc-headers-background-color-hover);
+    border: var(--sc-headers-border-hover);
+}
+/* < Mouad Doadi - 28/09/23 */
 
 .sc-main {
     flex: .98;
@@ -92,6 +118,10 @@
 }
 .MuiListItemButton-root.sc-main-list-item.active {
     background: rgb(32, 33, 35);
+
+    /* Mouad Doadi - 28/09/23 > */
+        background: var(--sidebar-background-color);
+    /* < 28/09/23 */
 }
 
 .MuiListItemIcon-root.sc-main-list-item-icon {

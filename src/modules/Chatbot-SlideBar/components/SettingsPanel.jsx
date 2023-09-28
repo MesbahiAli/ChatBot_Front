@@ -94,9 +94,9 @@ const SettingsPanel = ({ el }) => {
     <IconButton style={checkStyle}   >
       <MoreVertIcon ref={settingsButtonsRef} />
       <div ref={settingsPanelRef} className={open ? "settings-panel open" : "settings-panel close"}>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', color: "black", fontSize: "16px", padding: '5px', marginBottom: '5px' }} className='setting-items' onClick={() => { dispatch(requestSummarize(el)); }}  ><SummarizeIcon sx={{ mr: '5px' }} />Summarize</div>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', color: "black", fontSize: "16px", padding: '5px', marginBottom: '5px' }} className='setting-items' onClick={() => { dispatch(fetchPdfRequest(el)); }}  ><VisibilityIcon sx={{ mr: '5px' }} />View</div>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', color: "black", fontSize: "16px", padding: '5px' }} className='setting-items' onClick={() => { handleDelete(el) }}  ><DeleteIcon sx={{ mr: '5px' }} />Delete</div>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', color: "#3B74FF", fontSize: "16px", padding: '5px', marginBottom: '5px' }} className='setting-items' onClick={() => { dispatch(requestSummarize(el)); }}  ><SummarizeIcon sx={{ mr: '5px' }} />Summarize</div>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', color: "#3B74FF", fontSize: "16px", padding: '5px', marginBottom: '5px' }} className='setting-items' onClick={() => { dispatch(fetchPdfRequest(el)); }}  ><VisibilityIcon sx={{ mr: '5px' }} />View</div>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', color: "#3B74FF", fontSize: "16px", padding: '5px' }} className='setting-items' onClick={() => { handleDelete(el) }}  ><DeleteIcon sx={{ mr: '5px' }} />Delete</div>
       </div>
     </IconButton>
   )

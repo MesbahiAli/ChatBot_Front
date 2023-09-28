@@ -8,6 +8,10 @@
     align-items: center;
     flex-direction: column;
     justify-content: space-between;
+
+    /* Mouad Doadi - 28/09/23 > */
+    background: var(--filebar-container-background-color);
+    /* < 28/09/23 */
 }
 
 .fbc-top {
@@ -18,15 +22,38 @@
     flex-direction: column;
     gap:20px;
     flex:1;
+
+    /* Mouad Doadi - 28/09/23 > */
+    padding-bottom: 0px;
+    /* < 28/09/23 */
 }
 
 .MuiButtonBase-root.fbc-modal-button {
     font-size: 1.1rem;
-    color: white;
+    color: red;
     border-color: grey;
     width: 80%;
 
+    /* Mouad Doadi - 28/09/23 > */
+
+    background: var(--fbc-modal-button-background-color);
+    color: var(--fbc-modal-button-text-color);
+    border: var(--fbc-modal-button-border);
+    padding: var(--fbc-modal-button-padding);
+    font-weight: var(--fbc-modal-button-font-weight);
+    
+    /* < 28/09/23 */
 }
+
+/* Mouad Doadi - 28/09/23 > */
+
+.MuiButtonBase-root.fbc-modal-button:hover {
+    background-color: var(--fbc-modal-button-background-color-hover);
+    border: var(--fbc-modal-button-border-hover);
+    margin: var(--fbc-modal-button-margin-hover);
+}
+
+/* < 28/09/23 */
 
 .fbc-top-file-list-container {
     flex: 1;
@@ -62,6 +89,10 @@
     white-space: nowrap;
     overflow-x: hidden;
     text-overflow: ellipsis;
+
+    /* Mouad Doadi - 28/09/23 > */
+    background: var(--fbc-top-file-list-container-background-color);
+    /* < 28/09/23 */
 }
 
 .fbc-bottom {
@@ -88,6 +119,12 @@
     white-space: nowrap;
     overflow-x: hidden;
     text-overflow: ellipsis;
+
+    /* Mouad Doadi - 28/09/23 > */
+    background: var(--uploaded-item-container-background-color);
+    color: var(--uploaded-item-container-text-color);
+    padding: var(--uploaded-item-container-padding);
+    /* < 28/09/23 */
 }
 
 .settings-panel {

@@ -19,7 +19,7 @@ body.dark{
 }
 body{
   --dark-bg-color:#1e4186;
-  --lighter-bg-color:#3464c4;
+  --lighter-bg-color:#c43447;
   --secondary-black-color:#1e4186;
   --text-white-color:white;
   --bg-black-color:  #f4f5f8;
@@ -86,3 +86,48 @@ code {
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
   /* margin-top: 14px; */
 }
+
+/* Mouad Doadi - 28/09/23 >*/
+
+  .sidebar-container{
+    --sidebar-background-color: #3B74BF;
+  }
+
+  .sc-headers{
+    --sc-headers-border: 1px solid #F2F2F2;
+    --sc-headers-border-hover: 1px solid #BDD4F2;
+    --sc-headers-background-color-hover: #4B7DCF;
+  }
+
+  .sc-main-list-item.active{
+    --sidebar-background-color: #3B74FF;
+  }
+
+  .filebar-container{
+    --filebar-container-background-color: #3B74BF;
+  }
+
+  .fbc-top-file-list-container{
+    --fbc-top-file-list-container-background-color: #DEF;
+  }
+
+  .fbc-modal-button {
+    --fbc-modal-button-background-color: #F0F0FF;
+    --fbc-modal-button-text-color: #3B74BF;
+    --fbc-modal-button-border: none;
+    --fbc-modal-button-padding: 10px 5px;
+    --fbc-modal-button-font-weight: bold;
+
+    /* HOVER */
+    --fbc-modal-button-background-color-hover: #DEF;
+    --fbc-modal-button-border-hover: 1px solid #3B74FF;
+    --fbc-modal-button-margin-hover: 0;
+  }
+
+  .uploaded-item-container{
+    --uploaded-item-container-background-color: #3B74FF;
+    --uploaded-item-container-text-color: #F2F2F2;
+    --uploaded-item-container-padding: 15px;
+  }
+
+/* < 28/09/23 */

@@ -15,7 +15,7 @@ export default function Chat() {
       {/* <Feed/>  */}
       {/* <Auth/> */}
       <GBTbar />
-      {/* <ChatRight /> */}
+      <ChatRight />
       {/* <Sidebar /> */}
       <Filebar/>
     </div>
