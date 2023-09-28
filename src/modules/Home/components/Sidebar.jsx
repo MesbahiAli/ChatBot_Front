@@ -8,6 +8,7 @@ import ChatListItem from './ChatListItem';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
+import JwtUtils from '../../../routing/JwtUtils';
 const Sidebar = () => {
     const [bool, setBool] = useState(false)
     const matches = useMediaQuery("(max-width:820px)");
@@ -30,8 +31,9 @@ const Sidebar = () => {
         }
     },[matches])
 
+
     const conversations = useSelector((state) => state.listItem.conversations.conversations)
-    console.log(conversations)
+const username=localStorage.username
     return (
         <div className={bool ? "sidebar-container close" : "sidebar-container "}>
             <div className="sc-headers">
@@ -62,9 +64,9 @@ const Sidebar = () => {
                 >
                     <ListItemButton className='sc-main-list-item'>
                         <ListItem className='sc-footer-list-item-img'>
-                            TB
+                            Ad
                         </ListItem>
-                        <ListItemText primary="this is a chat title" />
+                        {JwtUtils.isActif() ? (<ListItemText primary={username} />):null}
                     </ListItemButton>
                 </List>
             </div>

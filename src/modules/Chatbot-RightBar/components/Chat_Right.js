@@ -104,7 +104,6 @@ function Chat_Right() {
                     payload: {
                         sender: 'user',
                         text: values.user_input,
-                        image: '/path-to-user-image.jpg',
                     },
                 });
 

@@ -4,7 +4,7 @@ import person from "../../../assets/images/person1.jpg"
 
 import ContentCopyOutlinedIcon from '@mui/icons-material/ContentCopyOutlined';
 import TimeAgo from 'react-timeago';
-const MessageUser = () => {
+const MessageUser = ({item,key}) => {
     return (
         <div className="cbc-message-user">
             <div className="cbc-mu-image">
@@ -12,8 +12,8 @@ const MessageUser = () => {
             </div>
             <div className="cbc-mu-text">
                 <p className="cbc-mu-text-item">
-                    This code will give your div a 50px by 50px size with a background image that is scaled down or up to fit perfectly within that container while maintaining its aspect ratio.
-                </p>
+                {item}              
+                  </p>
                 <div className="cbc-mu-actions">
                     <div className="cbc-mu-action">
                         <ContentCopyOutlinedIcon />

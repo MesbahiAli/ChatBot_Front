@@ -15,13 +15,9 @@ export default function Chat() {
     <div style={{display:"flex",height:"100vh",width:"100vw",justifyContent:"space-between"}}>
       {/* <Feed/>  */}
       {/* <Auth/> */}
-// <<<<<<< addingResolution
-//       {/* <GBTbar /> */}
-//       {/* <ChatRight /> */}
-// =======
-//       <GBTbar />
-//       <ChatRight />
-// >>>>>>> handlingError
+     {/* <GBTbar /> */}
+      {/* <ChatRight /> */}
+
       {/* <Sidebar /> */}
       <ChatArea />
       {/* <Filebar/> */}

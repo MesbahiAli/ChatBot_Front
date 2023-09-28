@@ -1,6 +1,7 @@
 import React from 'react'
 import "../style/chatarea.css"
 import { TextField } from '@mui/material'
+import { useDispatch, useSelector } from 'react-redux';
 import Sidebar from './Sidebar'
 import Filebar from '../../Chatbot-SlideBar/components/Filebar'
 import person from "../../../assets/images/person1.jpg"
@@ -11,16 +12,18 @@ import MessageBot from './MessageBot'
 import MessageUser from './MessageUser'
 
 const ChatArea = () => {
+    const messages = ['bot',"2",'bot',"4"]
+    console.log(messages)
     return (
         <div className="chatbot-container">
-            {/* <div className="cbc-left"></div> */}
             <Sidebar />
             <div className="cbc-main">
                 <div className="cbc-messages-container">
-                    {[1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1].map((item,index)=>{
-                        if (item % 2 === 0) return (<MessageUser item={item} key={index}/>)
+                    {messages.map((msg,index)=>{
+                        if (msg === 'bot' ) return (
+                        <MessageUser item={msg} key={index}/>)
                         return (
-                            <MessageBot item={item} key={index} />
+                            <MessageBot item={msg} key={index} />
                         )
                     })}
                 </div>

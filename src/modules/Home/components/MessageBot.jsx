@@ -6,7 +6,7 @@ import TimeAgo from 'react-timeago';
 import Typist from 'react-typist';
 import { useState } from 'react';
 import { useRef } from 'react';
-const MessageBot = () => {
+const MessageBot = ({item,key}) => {
     const [hover,setHover] = useState(false);
     const textRef = useRef(null);
 
@@ -27,7 +27,7 @@ const MessageBot = () => {
             </div>
             <div className="cbc-mb-text">
                 <Typist ref={textRef} className="cbc-mb-text-item">
-                    This code will give your div a 50px by 50px size with a background image that is scaled down or up to fit perfectly within that container while maintaining its aspect ratio.
+                    {item}               
                 </Typist>
                 <div className="cbc-mb-actions">
                     <div className={hover ? "cbc-mb-action " : "cbc-mb-action hidden"} onClick={handleCopy}>

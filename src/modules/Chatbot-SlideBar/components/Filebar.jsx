@@ -294,7 +294,7 @@ justify-content: center;
 
             </div>
             <div className='fbc-bottom'>
-                <Button onClick={handleSendSelectedFilesFromServer} variant='outlined' className='fbc-modal-button'>
+                <Button href='/category' variant='outlined' className='fbc-modal-button'>
                     Categorie                </Button>
 
                 {JwtUtils.isActif() ? <Button onClick={handleLogout} variant='outlined' className='fbc-modal-button'>
