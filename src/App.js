@@ -29,7 +29,7 @@ function App() {
   const state = useSelector(state => state);
 
   const isLoading = useSelector(state => state.Summarize.loading);
-  // const uploading = useSelector(state => state);
+  const isLoadingChat = useSelector(state => state.chat.isLoading);
 
   let loadingProps;
   let reducerHasLoading = _.pickBy(state, (value, key) => {
@@ -86,7 +86,7 @@ function App() {
       ) : (
         <></>
       )}
-      {isLoading ? <Spinner /> : null}
+      {isLoading || isLoadingChat ? <Spinner /> : null}
       {routes}
     </div>
   );

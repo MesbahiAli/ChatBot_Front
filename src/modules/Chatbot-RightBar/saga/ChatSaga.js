@@ -1,6 +1,7 @@
 import { call, put ,select } from 'redux-saga/effects';
 import * as actions from '../satate/ChatActions';
 import { ChatApi } from "../../../common/services/ChatService";
+import { fetchConversationsRequest } from '../../Home/components/StateListe/ListeAction';
 
 export function* sendMessageSaga(action) {
   try {
@@ -11,6 +12,8 @@ export function* sendMessageSaga(action) {
     const botMessage = response.response;
 
     yield put(actions.sendMessageSuccess({ sender: 'bot', text: botMessage, conversationId: response.conv }));
+    yield put(fetchConversationsRequest())
+
   } catch (error) {
     const errorMessage = error.message || "An unknown error occurred.";
     yield put(actions.sendMessageFailure(errorMessage));

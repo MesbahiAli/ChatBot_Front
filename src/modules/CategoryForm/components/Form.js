@@ -1,7 +1,4 @@
-// StyledFormModal.js
-
-import React,{useState} from 'react';
-import { useFormik, FormikProvider } from 'formik';
+import React, { useState } from 'react';
 import {
     TextField, FormControl, InputLabel, Select, MenuItem,
     Button, Box, List, ListItem, ListItemText, IconButton, styled
@@ -12,38 +9,10 @@ import CheckIcon from '@mui/icons-material/Check';
 import * as Yup from "yup";
 import { useDispatch } from 'react-redux';
 import { sendFileAndData } from '../state/CategoryAction';
-import { selectFile } from '../../Home/state/ActionsHome';
+import { useFormik } from 'formik';
 
-const listStyle = {
-    minHeight: 50,
-    borderRadius: 2,
-    flex: 1,
-    border: "1px solid black",
-    backgroundColor: "#1f1f1f"
-}
-const docStyle = {
-    color: 'white',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: "space-between",
-    height: 50,
-    border: "none"
-};
-const listItemStyle = {
-    padding: 0,
-    margin: 0,
-    height: 50,
-    fontSize: 25
-    // marginRight: '-80%',
-};
 
-const inputStyle = {
-    color: "black",
-    backgroundColor: "white",
-    borderRadius: 1,
-};
-
-const style = {
+const StyledBox = styled(Box)(({ theme }) => ({
     position: 'absolute',
     top: '50%',
     left: '50%',
@@ -54,6 +23,60 @@ const style = {
     backgroundColor: '#0A1929',
     display: "flex",
     flexDirection: "column"
+}));
+
+const StyledInput = styled(TextField)(({ theme }) => ({
+    color: "black",
+    backgroundColor: "white",
+    borderRadius: 1,
+}));
+
+const StyledList = styled(List)(({ theme }) => ({
+    minHeight: 50,
+    borderRadius: 2,
+    flex: 1,
+    border: "1px solid black",
+    backgroundColor: "#1f1f1f"
+}));
+
+const StyledListItem = styled(ListItem)(({ theme }) => ({
+    color: 'white',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: "space-between",
+    height: 50,
+    border: "none"
+}));
+
+
+const inputStyle = {
+    color: "black",
+    backgroundColor: "white",
+    borderRadius: 1,
+};
+
+const listStyle = {
+    minHeight: 50,
+    borderRadius: 2,
+    flex: 1,
+    border: "1px solid black",
+    backgroundColor: "#1f1f1f"
+};
+
+const docStyle = {
+    color: 'white',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: "space-between",
+    height: 50,
+    border: "none"
+};
+
+const listItemStyle = {
+    padding: 0,
+    margin: 0,
+    height: 50,
+    fontSize: 25
 };
 
 const VisuallyHiddenInput = styled('input')({
@@ -72,11 +95,7 @@ const StyledFormModal = ({ handleClose, handleUploadCancel }) => {
     const dispatch = useDispatch();
 
     const [selectedFile, setSelectedFile] = useState(null);
-    const handleFileChange = (e) => {
-        const file = e.target.files[0];
-        setSelectedFile(file);
-    };
-    
+
     const formik = useFormik({
         initialValues: {
             name_of_tender: "",
@@ -94,16 +113,16 @@ const StyledFormModal = ({ handleClose, handleUploadCancel }) => {
         onSubmit: (values) => {
             dispatch(sendFileAndData(values));
             formik.resetForm();
-            handleClose()
+            handleClose();
         },
     });
+    
     const { errors, touched, handleSubmit, values, handleBlur, handleChange } = formik;
 
     return (
-        <Box sx={style}>
+        <StyledBox>
             <h2 className='fdm-header'>Add New Record</h2>
-            <FormikProvider value={formik}>
-                <form className='fdm-form' onSubmit={handleSubmit}>
+            <form className='fdm-form' onSubmit={handleSubmit}>
                     <div className="fdmf-top">
                         <div className="fdmf-right">
                             <TextField
@@ -245,9 +264,8 @@ const StyledFormModal = ({ handleClose, handleUploadCancel }) => {
                             Submit
                         </Button>
                     </div>
-                </form>
-            </FormikProvider>
-        </Box>
+                    </form>
+        </StyledBox>
     );
 };
 

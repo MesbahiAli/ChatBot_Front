@@ -198,10 +198,10 @@ const FormDialog = ({ history }) => {
                 <Button onClick={handleOpen}  className='fd-contained-btn' variant="contained" size="large" startIcon={<AddIcon />}>
                     New
                 </Button>
-                <Button className='fd-btn'  variant="outlined" size="large" startIcon={<RefreshIcon />}>
+                <Button   className='fd-contained-btn' variant="contained" size="large" startIcon={<RefreshIcon />}>
                     Refresh
                 </Button>
-                <Button className='fd-btn'  variant="outlined" size="large" startIcon={<FileDownloadIcon />}>
+                <Button  className='fd-contained-btn' variant="contained" size="large" startIcon={<FileDownloadIcon />}>
                     Export
                 </Button>
             </div>
@@ -209,10 +209,10 @@ const FormDialog = ({ history }) => {
                 <Button  className='fd-contained-btn' variant="contained" size="large" startIcon={<LogoutIcon />}>
                     Logout
                 </Button>
-                <Button onClick={() => { history.push("/") }} className='fd-btn'  variant="outlined" size="large" startIcon={<ChatOutlinedIcon />}>
+                <Button onClick={() => { history.push("/") }} className='fd-btn'  variant="contained" size="large" startIcon={<ChatOutlinedIcon />}>
                     ChatBot
                 </Button>
-                <Button onClick={() => { setLight(prev=>!prev) }} className='fd-btn'  variant="outlined" size="large" startIcon={light ? <ModeNightIcon /> : <LightModeIcon/>}>
+                <Button onClick={() => { setLight(prev=>!prev) }} className='fd-btn'  variant="contained" size="large" startIcon={light ? <ModeNightIcon /> : <LightModeIcon/>}>
                     {light ? "Dark Mode" : "Light Mode"}
                 </Button>
             </div>

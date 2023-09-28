@@ -1,7 +1,8 @@
 import { TOGGLE_FAILURE, TOGGLE_REQUEST, TOGGLE_SUCCESS } from "../../../../../common/state/StatesConstants";
 
-export const requestToggle = () => ({
-    type: TOGGLE_REQUEST
+export const requestToggle = (language) => ({  // <-- Pass in language as an argument
+    type: TOGGLE_REQUEST,
+    language 
 });
 
 export const toggleSuccess = (data) => ({

@@ -42,7 +42,6 @@ import ToggleButtonGroup from '@mui/lab/ToggleButtonGroup';
 import MenuIcon from '@mui/icons-material/Menu';
 import JwtUtils from '../../../routing/JwtUtils'; /* TAHA */
 import SettingsPanel from './SettingsPanel';
-import { LOAD_CONVERSATION } from '../../../common/state/StatesConstants';
 const Filebar = () => {
     const [selectedFile, setSelectedFile] = useState(null);
     const handleClose = () => setOpen(false);
@@ -155,11 +154,6 @@ justify-content: center;
     // };
 
     const messages = useSelector((state) => state.chat.messages);
-    const dataRedux=useSelector((state) => state)
-    console.log(dataRedux)
-    console.log(messages)
-
-
 
     useEffect(() => {
         const handleResize = () => {
@@ -182,6 +176,7 @@ justify-content: center;
     const dispatch = useDispatch();
     const filesUpload = useSelector(state => state.upload.files);
     const files = useSelector(state => state.Files.data);
+
 
     /* TAHA */
 
@@ -284,8 +279,9 @@ justify-content: center;
                 <Button style={isSelected ? sendServerButton : disabledButton} onClick={handleSendSelectedFilesFromServer} variant='outlined' className='fbc-modal-button'>
                     Send selected files
                 </Button>
-
+                
             </div>
+            
             <div className='fbc-bottom'>
                 <Button href='/category' variant='outlined' className='fbc-modal-button'>
                     Categorie                </Button>

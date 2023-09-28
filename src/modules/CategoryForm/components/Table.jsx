@@ -1,19 +1,32 @@
-import React,{useEffect} from 'react'
+import React, { useEffect, useState } from 'react';
 import "../style/category.css";
 import { DataGrid } from '@mui/x-data-grid';
 import { Box } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCategoryRequest } from '../StateTable/CategoryAction'
+import { getCategoryRequest } from '../StateTable/CategoryAction';
+import SearchBar from './SearchBar';
 
 const Table = () => {
     const dispatch = useDispatch();
     const categoryData = useSelector(state => state.Category?.data);
-console.log(categoryData)
+    
+    const [search, setSearch] = useState(""); // Define search state
+
+    // Define handleChange function
+    const handleChange = (e) => {
+        setSearch(e.target.value);
+    };
+
     useEffect(() => {
         dispatch(getCategoryRequest());
     }, []);
 
-    const rows = categoryData?.map((item, index) => ({
+    // Filter the rows based on the search value
+    const rows = categoryData?.filter(row => 
+        Object.values(row).some(value => 
+            String(value).toLowerCase().includes(search.toLowerCase())
+        )
+    ).map((item, index) => ({
         id: index,
         ...item
     }));
@@ -29,9 +42,16 @@ console.log(categoryData)
     
     return (
         <div className="fd-table-container">
-            <Box sx={{ height: 780, width: '100%',bgcolor:"rgba(255, 255, 255, 0.61)",borderRadius:4,color:"black" }}>
+            <Box sx={{ height: 780, width: '100%', bgcolor: "rgba(255, 255, 255, 0.61)", borderRadius: 4, color: "black" }}>
+                <div className="search-Grid">
+                    <SearchBar 
+                        value={search} 
+                        onChange={handleChange} 
+                        placeholder='Search In All Rows Here ...' 
+                    />
+                </div>
                 <DataGrid
-                    style={{border:"none"}}
+                    style={{ border: "none" }}
                     rows={rows}
                     columns={columns}
                     initialState={{
@@ -47,7 +67,7 @@ console.log(categoryData)
                 />
             </Box>
         </div>
-    )
+    );
 }
 
 export default Table;
