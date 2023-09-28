@@ -42,6 +42,7 @@ import ToggleButtonGroup from '@mui/lab/ToggleButtonGroup';
 import MenuIcon from '@mui/icons-material/Menu';
 import JwtUtils from '../../../routing/JwtUtils'; /* TAHA */
 import SettingsPanel from './SettingsPanel';
+import { LOAD_CONVERSATION } from '../../../common/state/StatesConstants';
 const Filebar = () => {
     const [selectedFile, setSelectedFile] = useState(null);
     const handleClose = () => setOpen(false);
@@ -153,6 +154,13 @@ justify-content: center;
     //   dispatch(toggleSidebarClick())
     // };
 
+    const messages = useSelector((state) => state.chat.messages);
+    const dataRedux=useSelector((state) => state)
+    console.log(dataRedux)
+    console.log(messages)
+
+
+
     useEffect(() => {
         const handleResize = () => {
             if (window.innerWidth > 768) {  // 768px is the breakpoint you mentioned before
@@ -168,21 +176,6 @@ justify-content: center;
             window.removeEventListener('resize', handleResize);
         };
     }, []);
-
-    //
-
-    const handleButtonClick = () => {
-        dispatch(fetchConversationsRequest());
-
-        // dispatch(fetchMessagesRequest(4));
-      };
-
-
-
-
-
-
-
 
     // < 21/09/23
 
@@ -314,7 +307,6 @@ justify-content: center;
           />
 
         </StyledModal>
-        <Button onClick={handleButtonClick}>click me plz</Button>
         </div>
     )
 }

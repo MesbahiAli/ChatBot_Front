@@ -21,6 +21,7 @@ const ChatListItem = ({item,index}) => {
     const handleClick = () => {
         dispatch(selectChat({chat:item,index:index}))
         dispatch(fetchMessagesRequest(index));
+
     }
     useEffect(() => {
         setActive(stateIndex === index);

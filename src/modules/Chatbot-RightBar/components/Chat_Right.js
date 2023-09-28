@@ -55,9 +55,12 @@ function Chat_Right() {
     };
 
     const dispatch = useDispatch();
-    const messages = useSelector((state) => state.chat.messages);
     const isLoading = useSelector((state) => state.chat.isLoading);
-    const isSendFileSuccess = useSelector(state => state.Selected.isSuccess); 
+    const isSendFileSuccess = useSelector(state => state.Selected.isSuccess);
+    const messages = useSelector((state) => state.chat.messages);
+    const dataRedux=useSelector((state) => state)
+    console.log(dataRedux)
+    console.log(messages)
 
     const [isChatOpen, setIsChatOpen] = useState(false);
 
