@@ -1,7 +1,8 @@
 const initialState = {
-  messages: [],
-  error: null,
-  isLoading: false,
+    messages: [],
+    error: null,
+    isLoading: false,
+    conversationId: "", 
 };
 
 const chatReducer = (state = initialState, action) => {
@@ -13,15 +14,15 @@ const chatReducer = (state = initialState, action) => {
       };
       case 'SEND_MESSAGE_SUCCESS':
         return {
-            ...state,
-            messages: [
-                ...state.messages,
-                action.payload,
-            ],
-            isLoading: false,
-            error: null,
-        };
-      
+          ...state,
+          messages: [
+            ...state.messages,
+            action.payload,
+          ],
+          isLoading: false,
+          error: null,
+          conversationId: action.payload.conversationId || state.conversationId,
+        }
     case 'SEND_MESSAGE_FAILURE':
           return {
             ...state,

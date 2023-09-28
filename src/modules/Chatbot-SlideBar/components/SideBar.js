@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, forwardRef } from 'react';
 import { Button, IconButton, List, ListItem, ListItemText, ListItemSecondaryAction } from '@mui/material';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -14,8 +14,10 @@ import { deleteFileApi } from '../../../common/services/DeleteService';
 import { requestSummarize } from '../../Chatbot-RightBar/components/Summarize/State/SummarizeActions';
 import { fetchPdfRequest } from './FileView.js/State/ViewActions';
 import CloudDoneIcon from '@mui/icons-material/CloudDone';
+import { Box, Fade, Modal, styled } from '@mui/material';
 
-import MoreVertIcon from '@mui/icons-material/MoreVert';
+import StyledFormModal from '../../CategoryForm/components/Form'
+// import MoreVertIcon from '@mui/icons-material/MoreVert';
 
 import LogoutIcon from '@mui/icons-material/Logout';
 
@@ -40,13 +42,25 @@ import MenuIcon from '@mui/icons-material/Menu';
 import JwtUtils from '../../../routing/JwtUtils'; /* TAHA */
 import SettingsPanel from './SettingsPanel';
 
-const UploadComponent = () => {
 
+const Backdrop = forwardRef((props, ref) => {
+  const { open, ...other } = props;
+  return (
+    <Fade in={open}>
+      <div ref={ref} {...other} />
+    </Fade>
+  );
+});
+
+
+const UploadComponent = () => {
   const [selectedFilesFromServer, setSelectedFilesFromServer] = useState([]);
-  const handleFileChange = (e) => {
-    const selectedFiles = Array.from(e.target.files);
-    dispatch(uploadFiles(selectedFiles));
-  };
+  const [selectedFile, setSelectedFile] = useState(null);
+  const handleClose = () => setOpen(false);
+  const handleUploadCancel = () => {
+    setSelectedFile(null);
+  }
+
 
   // 19/09/23
 
@@ -72,6 +86,7 @@ const UploadComponent = () => {
     backgroundColor: "grey",
     cursor: ""
   };
+
 
   // const sendServerLabel = {
   //   display: 'flex',
@@ -137,7 +152,7 @@ const UploadComponent = () => {
 
   const dispatch = useDispatch();
   const filesUpload = useSelector(state => state.upload.files);
-  const files = useSelector(state => state.Files.data);
+  // const files = useSelector(state => state.Files.data);
 
   /* TAHA */
 
@@ -145,8 +160,25 @@ const UploadComponent = () => {
   const isSelected = selectedFilesFromServer?.length !== 0;
 
   useEffect(() => {
-    dispatch(fetchDataRequest());
-  }, []);
+    let isMounted = true;  // flag to track the component's mount status
+
+    const fetchDataFromServer = async () => {
+      try {
+        const response = await fetchDataRequest();
+        if (isMounted) {
+          dispatch(response);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchDataFromServer();
+
+    return () => {
+      isMounted = false;
+    };
+  }, [dispatch]);
 
   const handleUploadButtonClick = () => {
     if (filesUpload.length > 0) {
@@ -183,6 +215,29 @@ const UploadComponent = () => {
 
   const isSidebarOpened = useSelector(state => state.upload.isSidebarOpened);
 
+  const StyledBackdrop = styled(Backdrop)`
+z-index: -1;
+position: fixed;
+inset: 0;
+background-color: rgb(0 0 0 / 0.5);
+-webkit-tap-highlight-color: transparent;
+`;
+
+  const StyledModal = styled(Modal)`
+position: fixed;
+z-index: 1300;
+inset: 0;
+display: flex;
+align-items: center;
+justify-content: center;
+`;
+
+  const newBtnStyle = {
+    backgroundColor: "#343e8b",
+    color: "white",
+    width: "150px"
+  }
+
   return (
     <>
       {/* <IconButton style={{ color: '#000', backgroundColor: '#343e8f', margin: 0, padding: '5px', borderRadius: 0 }} onClick={toggleSidebar} className="hamburger-icon" sx={{ display: { xs: 'flex', md: 'none', xl: 'none' } }}>
@@ -191,76 +246,56 @@ const UploadComponent = () => {
 
       { /* PARENT */}
       <div className="SidebarDev">
-        <div className='sbd-top'>
-          <input
-            style={{ display: 'none' }}
-            id="file-input"
-            multiple
-            type="file"
-            onChange={handleFileChange}
-          />
+        { /* CHILD #01 */}
+        <label id='uploadLabel' style={sendServerButton}>
+          <Button onClick={() => setOpen(prev => !prev)} className="sidebar-button" component="span" startIcon={<CloudDoneIcon />} style={buttonStyle} >
+            <span className="text">New</span>
+          </Button>
+        </label>
+        { /* CHILD #04 */}
+        {/* <List  className="second-list file-list-container"> {files?.map(el => (
+          <div key={el} className='uploaded-item-container'>
+            {el}
 
-          { /* CHILD #01 */}
-          <label id='selectFilesLabel' htmlFor="file-input">
-            <Button className="sidebar-button" component="span" startIcon={<CloudDoneIcon />} style={buttonStyle} >
-              <span className="text">Select Files</span>
-            </Button>
-          </label>
-
-          { /* CHILD #02 */}
-          <div className="file-list-container">
-            <List>
-              {filesUpload.map((file, index) => (
-                <ListItem id='listItem' key={index}>
-                  <ListItemText primary={file.name} id='listItemSecondaryAction' style={listItemStyle}>
-                  </ListItemText>
-                  {/* <ListItemText primary={file.name} id='listItemPrimaryText'/> */}
-                </ListItem>
-              ))}
-            </List>
-          </div>
-
-          { /* CHILD #03 */}
-          <label id='uploadLabel' style={isUploaded ? sendServerButton : disabledButton}>
-            {/* <Button onClick={handleUploadButtonClick} id='sendBtn' style={sendServerButton} endIcon={<CloudUploadIcon />}>  TAHA */}
-            <Button onClick={handleUploadButtonClick} id='sendBtn' disabled={isUploaded ? false : true} style={isUploaded ? sendServerButton : disabledButton} endIcon={<CloudUploadIcon />}>
-              <span className="text">Upload</span>
-            </Button>
-          </label>
-
-          { /* CHILD #04 */}
-          <List className="second-list file-list-container"> {files?.map(el => (
-            <div key={el} className='uploaded-item-container'>
-              {el}
-
-              <div className='icon-container'>
-                <Checkbox
-                  style={checkStyle}
-                  edge="start"
-                  checked={selectedFilesFromServer.includes(el)}
-                  onChange={() => handleServerFileSelect(el)}
-                />
-                <SettingsPanel el={el} />
-              </div>
-
+            <div className='icon-container'>
+              <Checkbox
+                style={checkStyle}
+                edge="start"
+                checked={selectedFilesFromServer.includes(el)}
+                onChange={() => handleServerFileSelect(el)}
+              />
+              <SettingsPanel el={el} />
             </div>
-          ))}
-          </List>
+
+          </div>
+        ))}
+        </List> */}
 
 
-          { /* CHILD #05 */}
-          <label id='sendServerLabel' style={isSelected ? sendServerButton : disabledButton}>
-            <Button onClick={handleSendSelectedFilesFromServer} id='sendBtn' disabled={isSelected ? false : true} style={isSelected ? sendServerButton : disabledButton} endIcon={<SendIcon />} >
-              <span className="text">Send selected files</span>
-            </Button>
-          </label>
-        </div>
+        { /* CHILD #05 */}
+        <label id='sendServerLabel' style={isSelected ? sendServerButton : disabledButton}>
+          <Button onClick={handleSendSelectedFilesFromServer} id='sendBtn' disabled={isSelected ? false : true} style={isSelected ? sendServerButton : disabledButton} endIcon={<SendIcon />} >
+            <span className="text">Send selected files</span>
+          </Button>
+        </label>
 
         { /* LOGOUT */}
-        <div id='logoutButton' className='logout-btn'>
+        <div id='logoutButton'>
           {JwtUtils.isActif() ? <Button onClick={handleLogout}><LogoutIcon style={{ color: 'white' }} /> Logout</Button> : null}
         </div>
+        <StyledModal
+          open={open}
+          onClose={handleClose}
+          closeAfterTransition
+          slots={{ backdrop: StyledBackdrop }}
+        >
+          <StyledFormModal
+            handleClose={handleClose}
+            selectedFile={selectedFile}
+            handleUploadCancel={handleUploadCancel}
+          />
 
+        </StyledModal>
       </div>
     </>
   );

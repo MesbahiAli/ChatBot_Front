@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import "../style/Sidebar.css";
+import "../style/filebar.css";
 import { fetchDataRequest } from '../../files/State/ActionsFile';
 import { fetchPdfRequest } from './FileView.js/State/ViewActions';
 import { requestSummarize } from '../../Chatbot-RightBar/components/Summarize/State/SummarizeActions';
@@ -32,12 +32,12 @@ const SettingsPanel = ({ el }) => {
       const scrollY = window.scrollY || window.pageYOffset;
 
       // Calculate the position
-      let left = buttonRect.right + 10; // Adjust as needed
-      let top = buttonRect.top + scrollY;
+      let left = buttonRect.left -100; // Adjust as needed
+      let top = buttonRect.top + scrollY + 30;
 
       // Apply the position to the panel
       if (matches) {
-        left = left - 150;
+        left = left -150;
         top = top + 30;
       }
       settingsPanelRef.current.style.left = `${left}px`;
