@@ -5,6 +5,7 @@ import {
 } from '../../../common/state/StatesConstants';
 import { sendFileAndDataApi } from '../../../common/services/CategoryService';
 import { getCategoryRequest } from '../StateTable/CategoryAction';
+import { fetchDataRequest } from '../../files/State/ActionsFile';
 
 function* sendFileAndDataSaga(action) {
   console.log(action.payload);
@@ -19,6 +20,7 @@ function* sendFileAndDataSaga(action) {
     const response = yield call(sendFileAndDataApi, formData);
     yield put({ type: SEND_FILE_AND_DATA_SUCCESS, payload: response.data });
     yield put(getCategoryRequest())
+    yield put(fetchDataRequest())
   } catch (error) {
     yield put({ type: SEND_FILE_AND_DATA_FAILURE, payload: error.message });
   }

@@ -9,7 +9,8 @@ import { watchSummarizeRequest } from "../../modules/Chatbot-RightBar/components
 import watchPdfSaga from "../../modules/Chatbot-SlideBar/components/FileView.js/Saga/ViewWatcher";
 import { watchSendFileAndData } from "../../modules/CategoryForm/saga/CategoryWatcher";
 import { watchGetCategory } from "../../modules/CategoryForm/SagaTable/CategoryWatcher";
-// import { watchGetCategory } from "../../modules/ListCategory/saga/CategoryWatcher";
+import { conversationSaga } from "../../modules/Home/components/SagaListe/WatcherList";
+import { messageSaga } from "../../modules/Home/components/SagaMessage/Messagewatcher";
 
 export default function* rootSaga() {
   yield all([
@@ -23,6 +24,8 @@ export default function* rootSaga() {
     watchPdfSaga(),
     watchSendFileAndData(),
     watchGetCategory(),
+    conversationSaga(),
+    messageSaga(),
     
   ]);
 }

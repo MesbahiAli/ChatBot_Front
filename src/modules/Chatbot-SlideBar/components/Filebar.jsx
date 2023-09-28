@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, forwardRef } from 'react';
 import "../style/filebar.css";
 import WindowRoundedIcon from '@mui/icons-material/WindowRounded';
 
@@ -16,13 +16,14 @@ import { deleteFileApi } from '../../../common/services/DeleteService';
 import { requestSummarize } from '../../Chatbot-RightBar/components/Summarize/State/SummarizeActions';
 import { fetchPdfRequest } from './FileView.js/State/ViewActions';
 import CloudDoneIcon from '@mui/icons-material/CloudDone';
-
+import { Box, Fade, Modal, styled } from '@mui/material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-
+import StyledFormModal from '../../CategoryForm/components/Form'
 import LogoutIcon from '@mui/icons-material/Logout';
+import {fetchConversationsRequest} from "../../Home/components/StateListe/ListeAction"
+import { fetchMessagesRequest } from '../../Home/components/StateMessage/MessageAction';
 
-// 20/09/23
-
+  
 
 // Mouad Doadi - 21/09/23 >
 
@@ -42,6 +43,22 @@ import MenuIcon from '@mui/icons-material/Menu';
 import JwtUtils from '../../../routing/JwtUtils'; /* TAHA */
 import SettingsPanel from './SettingsPanel';
 const Filebar = () => {
+    const [selectedFile, setSelectedFile] = useState(null);
+    const handleClose = () => setOpen(false);
+    const handleUploadCancel = () => {
+        setSelectedFile(null);
+      }    
+
+
+    const Backdrop = forwardRef((props, ref) => {
+        const { open, ...other } = props;
+        return (
+          <Fade in={open}>
+            <div ref={ref} {...other} />
+          </Fade>
+        );
+      });
+      
     const [selectedFilesFromServer, setSelectedFilesFromServer] = useState([]);
     const handleFileChange = (e) => {
         const selectedFiles = Array.from(e.target.files);
@@ -81,6 +98,29 @@ const Filebar = () => {
     //   height: '100%',
     // };
 
+
+    const StyledBackdrop = styled(Backdrop)`
+z-index: -1;
+position: fixed;
+inset: 0;
+background-color: rgb(0 0 0 / 0.5);
+-webkit-tap-highlight-color: transparent;
+`;
+
+  const StyledModal = styled(Modal)`
+position: fixed;
+z-index: 1300;
+inset: 0;
+display: flex;
+align-items: center;
+justify-content: center;
+`;
+
+  const newBtnStyle = {
+    backgroundColor: "#343e8b",
+    color: "white",
+    width: "150px"
+  }
 
     const docStyle = {
         color: 'white',
@@ -131,7 +171,18 @@ const Filebar = () => {
 
     //
 
-    // Mouad Doadi - 21/09/23 >
+    const handleButtonClick = () => {
+        dispatch(fetchConversationsRequest());
+
+        // dispatch(fetchMessagesRequest(4));
+      };
+
+
+
+
+
+
+
 
     // < 21/09/23
 
@@ -146,6 +197,8 @@ const Filebar = () => {
 
     useEffect(() => {
         dispatch(fetchDataRequest());
+        dispatch(fetchConversationsRequest());
+
     }, []);
 
     const handleUploadButtonClick = () => {
@@ -212,7 +265,10 @@ const Filebar = () => {
                 <Button onClick={sidebarTrigger} variant='outlined' className='fbc-modal-button'>
                     Toggle Rightbar
                 </Button>
-                <Button variant='outlined' className='fbc-modal-button'>
+
+
+                <Button onClick={() => setOpen(prev => !prev)} variant='outlined' className='fbc-modal-button'>
+
                     Upload New File
                 </Button>
                 <List className="fbc-top-file-list-container"> {files?.map(el => (
@@ -232,18 +288,33 @@ const Filebar = () => {
                     </div>
                 ))}
                 </List>
-                <Button variant='outlined' className='fbc-modal-button'>
-                    Send Selected Files
+                <Button style={isSelected ? sendServerButton : disabledButton} onClick={handleSendSelectedFilesFromServer} variant='outlined' className='fbc-modal-button'>
+                    Send selected files
                 </Button>
+
             </div>
             <div className='fbc-bottom'>
-                <Button variant='outlined' className='fbc-modal-button'>
-                    Category
-                </Button>
-                <Button variant='outlined' className='fbc-modal-button'>
+                <Button onClick={handleSendSelectedFilesFromServer} variant='outlined' className='fbc-modal-button'>
+                    Categorie                </Button>
+
+                {JwtUtils.isActif() ? <Button onClick={handleLogout} variant='outlined' className='fbc-modal-button'>
                     Logout
-                </Button>
+                </Button> : null}
             </div>
+            <StyledModal
+          open={open}
+          onClose={handleClose}
+          closeAfterTransition
+          slots={{ backdrop: StyledBackdrop }}
+        >
+          <StyledFormModal
+            handleClose={handleClose}
+            selectedFile={selectedFile}
+            handleUploadCancel={handleUploadCancel}
+          />
+
+        </StyledModal>
+        <Button onClick={handleButtonClick}>click me plz</Button>
         </div>
     )
 }

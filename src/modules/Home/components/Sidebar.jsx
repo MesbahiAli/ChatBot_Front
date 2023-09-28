@@ -5,6 +5,8 @@ import { Button, IconButton, List, ListItem, ListItemButton, ListItemIcon, ListI
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
 import { useState } from 'react';
 import ChatListItem from './ChatListItem';
+
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 const Sidebar = () => {
     const [bool, setBool] = useState(false)
@@ -27,6 +29,9 @@ const Sidebar = () => {
             sidebarTrigger()
         }
     },[matches])
+
+    const conversations = useSelector((state) => state.listItem.conversations.conversations)
+    console.log(conversations)
     return (
         <div className={bool ? "sidebar-container close" : "sidebar-container "}>
             <div className="sc-headers">
@@ -43,9 +48,9 @@ const Sidebar = () => {
                     className='sc-main-list'
                 >
                     {
-                        [0,1,2,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3].map((item,index) => {
+                        conversations?.map((item,index) => {
                             return (
-                                <ChatListItem index={index} item={item} key={index} />
+                                <ChatListItem index={item.id} item={item.title} key={item.id} />
                             )
                         })
                     }

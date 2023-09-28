@@ -92,14 +92,12 @@
     border-radius: 6px;
 }
 
-.fbc-top-file-list-container {
+.css-h4y409-MuiList-root.fbc-top-file-list-container {
     flex: 1;
     border: 1px solid grey;
     border-radius: 5px;
     padding: 7.5px;
     background-color: rgb(32, 33, 35);
-    margin-bottom: 15px;
-    margin-top: 15px;
     white-space: nowrap;
     overflow-x: hidden;
     text-overflow: ellipsis;
@@ -126,7 +124,9 @@
     /* Radial gradient from black to gray */
     box-shadow:   0 2px 5px #000;
     /* Dark drop shadow */
-
+    white-space: nowrap;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
 }
 
 .settings-panel {
@@ -135,7 +135,7 @@
     display: none;
     top: 35px;
     /* Adjust as needed */
-    right: 0px;
+    right: 150px;
     /* Adjust as needed */
     background-color: white;
     border: 1px solid #ccc;

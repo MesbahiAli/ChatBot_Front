@@ -11,6 +11,8 @@ import { SendFileReducer } from "../../modules/CategoryForm/state/CategoryReduce
 import { categoryReducer } from "../../modules/CategoryForm/StateTable/CategoryReducer";
 
 import homeReducer from "../../modules/Home/state/ReducerHome";
+import conversationReducer from "../../modules/Home/components/StateListe/ListeReducers";
+import messageReducer from "../../modules/Home/components/StateMessage/MessageReducer";
 
 const rootReducer = combineReducers({
   Auth: AuthReducer,
@@ -24,8 +26,10 @@ const rootReducer = combineReducers({
   home:homeReducer,
   FilCategory:SendFileReducer,
   FilCategory:fileReducer,
-  Category:categoryReducer
-
+  Category:categoryReducer,
+  listItem:conversationReducer,
+  MessageList:messageReducer,
+  
   
 });
 

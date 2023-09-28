@@ -14,7 +14,7 @@ const BasicSelectField = ({items,title}) => {
                 sx={{color: "black",backgroundColor: "white",borderRadius: 1}}
                 onChange={(e)=>setValue(e.target.value)}
             >
-                {items.map((item,index)=>{
+                {items?.map((item,index)=>{
                     return (
                         <MenuItem value={item} key={index}>{item}</MenuItem>
                     )

@@ -13,7 +13,7 @@ console.log(categoryData)
         dispatch(getCategoryRequest());
     }, []);
 
-    const rows = categoryData.map((item, index) => ({
+    const rows = categoryData?.map((item, index) => ({
         id: index,
         ...item
     }));
