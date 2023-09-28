@@ -6,6 +6,10 @@ import Filebar from '../../Chatbot-SlideBar/components/Filebar'
 import person from "../../../assets/images/person1.jpg"
 import bot from "../../../assets/images/bot.jpg"
 import ContentCopyOutlinedIcon from '@mui/icons-material/ContentCopyOutlined';
+import TimeAgo from 'react-timeago';
+import MessageBot from './MessageBot'
+import MessageUser from './MessageUser'
+
 const ChatArea = () => {
     return (
         <div className="chatbot-container">
@@ -13,112 +17,12 @@ const ChatArea = () => {
             <Sidebar />
             <div className="cbc-main">
                 <div className="cbc-messages-container">
-                    <div className="cbc-message-user">
-                        <div className="cbc-mu-image">
-                            <img src={person} alt="" className='cbc-mu-image-item'/>
-                        </div>
-                        <div className="cbc-mu-text">
-                            <p className="cbc-mu-text-item">
-                                This code will give your div a 50px by 50px size with a background image that is scaled down or up to fit perfectly within that container while maintaining its aspect ratio.
-                            </p>
-                        </div>
-                    </div>
-                    <div className="cbc-message-bot">
-                        <div className="cbc-mb-image">
-                            <img src={bot} alt="" className='cbc-mu-image-item'/>
-                        </div>
-                        <div className="cbc-mb-text">
-                            <p className="cbc-mb-text-item">
-                                This code will give your div a 50px by 50px size with a background image that is scaled down or up to fit perfectly within that container while maintaining its aspect ratio.
-                            </p>
-                            <div className="cbc-mb-actions">
-                                <div className="cbc-mb-action">
-                                    <ContentCopyOutlinedIcon />
-                                </div>
-                                <div className="cbc-mb-time"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="cbc-message-user">
-                        <div className="cbc-mu-image">
-                            <img src={person} alt="" className='cbc-mu-image-item'/>
-                        </div>
-                        <div className="cbc-mu-text">
-                            <p className="cbc-mu-text-item">
-                                This code will give your div a 50px by 50px size with a background image that is scaled down or up to fit perfectly within that container while maintaining its aspect ratio.
-                            </p>
-                        </div>
-                    </div>
-                    <div className="cbc-message-bot">
-                        <div className="cbc-mb-image">
-                            <img src={bot} alt="" className='cbc-mu-image-item'/>
-                        </div>
-                        <div className="cbc-mb-text">
-                            <p className="cbc-mb-text-item">
-                                This code will give your div a 50px by 50px size with a background image that is scaled down or up to fit perfectly within that container while maintaining its aspect ratio.
-                            </p>
-                        </div>
-                    </div>
-                    <div className="cbc-message-user">
-                        <div className="cbc-mu-image">
-                            <img src={person} alt="" className='cbc-mu-image-item'/>
-                        </div>
-                        <div className="cbc-mu-text">
-                            <p className="cbc-mu-text-item">
-                                This code will give your div a 50px by 50px size with a background image that is scaled down or up to fit perfectly within that container while maintaining its aspect ratio.
-                            </p>
-                        </div>
-                    </div>
-                    <div className="cbc-message-bot">
-                        <div className="cbc-mb-image">
-                            <img src={bot} alt="" className='cbc-mu-image-item'/>
-                        </div>
-                        <div className="cbc-mb-text">
-                            <p className="cbc-mb-text-item">
-                                This code will give your div a 50px by 50px size with a background image that is scaled down or up to fit perfectly within that container while maintaining its aspect ratio.
-                            </p>
-                        </div>
-                    </div>
-                    <div className="cbc-message-user">
-                        <div className="cbc-mu-image">
-                            <img src={bot} alt="" className='cbc-mu-image-item'/>
-                        </div>
-                        <div className="cbc-mu-text">
-                            <p className="cbc-mu-text-item">
-                                This code will give your div a 50px by 50px size with a background image that is scaled down or up to fit perfectly within that container while maintaining its aspect ratio.
-                            </p>
-                        </div>
-                    </div>
-                    <div className="cbc-message-bot">
-                        <div className="cbc-mb-image">
-                            <img src={person} alt="" className='cbc-mu-image-item'/>
-                        </div>
-                        <div className="cbc-mb-text">
-                            <p className="cbc-mb-text-item">
-                                This code will give your div a 50px by 50px size with a background image that is scaled down or up to fit perfectly within that container while maintaining its aspect ratio.
-                            </p>
-                        </div>
-                    </div>
-                    <div className="cbc-message-user">
-                        <div className="cbc-mu-image">
-                            <img src={bot} alt="" className='cbc-mu-image-item'/>
-                        </div>
-                        <div className="cbc-mu-text">
-                            <p className="cbc-mu-text-item">
-                                This code will give your div a 50px by 50px size with a background image that is scaled down or up to fit perfectly within that container while maintaining its aspect ratio.
-                            </p>
-                        </div>
-                    </div>
-                    <div className="cbc-message-bot">
-                        <div className="cbc-mb-image">
-                            <img src={person} alt="" className='cbc-mu-image-item'/>
-                        </div>
-                        <div className="cbc-mb-text">
-                            <p className="cbc-mb-text-item">
-                                This code will give your div a 50px by 50px size with a background image that is scaled down or up to fit perfectly within that container while maintaining its aspect ratio.
-                            </p>
-                        </div>
-                    </div>
+                    {[1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1].map((item,index)=>{
+                        if (item % 2 === 0) return (<MessageUser item={item} key={index}/>)
+                        return (
+                            <MessageBot item={item} key={index} />
+                        )
+                    })}
                 </div>
                 <div className="cbc-form">
                     <TextField

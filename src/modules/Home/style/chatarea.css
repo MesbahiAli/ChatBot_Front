@@ -35,7 +35,7 @@
 
 .cbc-message-user,.cbc-message-bot{
     display: flex;
-    padding: 40px 20px;
+    padding:  20px;
     gap: 20px;
 }
 .cbc-message-user{
@@ -88,8 +88,42 @@
     justify-content: space-between;
     color:#343541;
 }
+.cbc-mb-time,.cbc-mu-time{
+    color:#343541;
+    font-size: 0.8em;
 
+}
+.cbc-mb-action{
+    border-radius: 4px;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+    box-shadow: var(--box-shadow);
+    cursor: pointer;
+    height: 1rem;
+    width: 1rem;
+    font-size: 1rem;
+}
+.cbc-mb-action.hidden{
+    visibility: hidden;
+    user-select: none;
+    pointer-events: none;
+}
 
+.cbc-mu-action{
+    border-radius: 4px;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden;
+    background: #ffffff;
+    box-shadow: var(--box-shadow);
+    user-select: none;
+    pointer-events: none;
+}
 
 
 
@@ -133,3 +167,18 @@
         padding: 40px 5vw;
     }
 }
+
+/* typist styling */
+
+
+.Typist .Cursor {
+    display: inline-block;
+    opacity: 1;
+    animation: blink 1s infinite;
+  }
+  
+  @keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+  }
