@@ -13,12 +13,13 @@ import NotFound from "./routing/NotFound";
 import Home from './modules/Home/components/Home';
 
 import CategoryUi from './modules/CategoryForm/ui/Category';
+import ChatArea from './modules/Home/components/ChatArea';
 // import CategoryComponent from './modules/ListCategory/components/Categorie';
 // import CategoryComponent from './modules/Category/components/Categorie';
 // import Categorie from '../modules/Category/ui/Category.jsx';
 
 const protectedRoutes = {
-  chatbot: { path: "/chatbot", requiredRoles: [], component: Chat },
+  chatbot: { path: "/chatbot", requiredRoles: [], component: ChatArea },
   home: { path: "/home", requiredRoles: [], component: Home },
   Category: { path: "/category", requiredRoles: [], component: CategoryUi },
   // CategoryComponent: { path: "/CategoryComponent", requiredRoles: [], component: CategoryComponent },
