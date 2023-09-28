@@ -70,11 +70,13 @@
     object-fit   : cover;
 }
 .cbc-mu-text,.cbc-mb-text{
+flex: 1;
     display: flex;
     flex-direction: column;
     gap: 5px;
 }
 .cbc-mu-text-item,.cbc-mb-text-item{
+    flex: 1;
     margin: 0;
     text-align: justify;
     line-height: 1.5;
@@ -83,6 +85,7 @@
 }
 
 .cbc-mb-actions,.cbc-mu-actions{
+    flex: 1;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -145,6 +148,24 @@
     background: #ffffff;
 
 }
+
+
+.MuiIconButton-root.cbc-form-icon-button{
+    height: 60px;
+    width: 60px;
+    margin-left: 10px;
+    border-radius: 8px;
+    background: #19c37d;
+    color: #f7f7f8;
+    cursor: pointer;
+}
+
+.MuiIconButton-root.cbc-form-icon-button.inactive{
+    background: transparent;
+    color: #343541;
+}
+
+
 
 
 @media screen and (max-width:1320px) {

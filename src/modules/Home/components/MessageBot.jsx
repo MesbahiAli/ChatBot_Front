@@ -26,9 +26,10 @@ const MessageBot = ({item,key}) => {
                 <img src={bot} alt="" className='cbc-mu-image-item' />
             </div>
             <div className="cbc-mb-text">
-                <Typist ref={textRef} className="cbc-mb-text-item">
-                    {item}               
-                </Typist>
+                <p ref={textRef} className="cbc-mb-text-item">
+                    {/* {item}                */}
+                    Of course! Here are some 
+                </p>
                 <div className="cbc-mb-actions">
                     <div className={hover ? "cbc-mb-action " : "cbc-mb-action hidden"} onClick={handleCopy}>
                         <ContentCopyOutlinedIcon style={{fontSize:"1rem"}} />
