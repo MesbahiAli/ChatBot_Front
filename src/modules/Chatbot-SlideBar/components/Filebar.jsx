@@ -244,6 +244,12 @@ justify-content: center;
 
         }
     },[matches])
+
+    const formatFileName = (fileName) => {
+        const fileExtension = fileName.split('.').pop();
+        return `${fileName.substring(0, 6)}... .${fileExtension}`;
+      }
+      
     return (
         <div className={bool ? "filebar-container close" : "filebar-container"}>
             <IconButton style={{ display: bool ? "block" : "none" }} className='fbc-headers-iconButton abs' onClick={sidebarTrigger}>
@@ -259,23 +265,24 @@ justify-content: center;
 
                     Upload New File
                 </Button>
-                <List className="fbc-top-file-list-container"> {files?.map(el => (
-                    <div key={el} className='uploaded-item-container'>
-                        {el}
+                <List className="fbc-top-file-list-container"> 
+    {files?.map(el => (
+        <div key={el} className='uploaded-item-container'>
+            {formatFileName(el)}
 
-                        <div className='icon-container'>
-                            <Checkbox
-                                style={checkStyle}
-                                edge="start"
-                                checked={selectedFilesFromServer.includes(el)}
-                                onChange={() => handleServerFileSelect(el)}
-                            />
-                            <SettingsPanel el={el} />
-                        </div>
+            <div className='icon-container'>
+                <Checkbox
+                    style={checkStyle}
+                    edge="start"
+                    checked={selectedFilesFromServer.includes(el)}
+                    onChange={() => handleServerFileSelect(el)}
+                />
+                <SettingsPanel el={el} />
+            </div>
+        </div>
+    ))}
+</List>
 
-                    </div>
-                ))}
-                </List>
                 <Button style={isSelected ? sendServerButton : disabledButton} onClick={handleSendSelectedFilesFromServer} variant='outlined' className='fbc-modal-button'>
                     Send selected files
                 </Button>
