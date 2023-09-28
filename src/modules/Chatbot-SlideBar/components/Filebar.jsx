@@ -1,6 +1,8 @@
 import React, { useState, useEffect, forwardRef } from 'react';
 import "../style/filebar.css";
-import { Button, IconButton, List, ListItem, ListItemText, ListItemSecondaryAction } from '@mui/material';
+import WindowRoundedIcon from '@mui/icons-material/WindowRounded';
+
+import { Button, IconButton, List, ListItem, ListItemText, ListItemSecondaryAction, useMediaQuery } from '@mui/material';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import DeleteIcon from '@mui/icons-material/Delete';
 import SendIcon from '@mui/icons-material/Send';
@@ -233,11 +235,40 @@ justify-content: center;
     };
 
     const isSidebarOpened = useSelector(state => state.upload.isSidebarOpened);
+    const [bool, setBool] = useState(false)
+    const matches = useMediaQuery("(max-width:820px)");
+    const sidebarTrigger = () => {
+        setBool(prev => !prev)
+        const main = document.querySelector(".fbc-top");
+        const footer = document.querySelector(".fbc-bottom");
+        // const navbar = document.querySelector(".navbar-container");
+        // navbar.classList.toggle("no-sidebar")
+        setTimeout(() => {
+            main.classList.toggle("none")
+            footer.classList.toggle("none")
+        }, 100)
+        
+    }
+    useEffect(()=>{
+        console.log(matches)
+        if (matches) {
+            sidebarTrigger()
 
+        }
+    },[matches])
     return (
-        <div className="filebar-container">
+        <div className={bool ? "filebar-container close" : "filebar-container"}>
+            <IconButton style={{ display: bool ? "block" : "none" }} className='fbc-headers-iconButton abs' onClick={sidebarTrigger}>
+                <WindowRoundedIcon />
+            </IconButton>
             <div className='fbc-top'>
+                <Button onClick={sidebarTrigger} variant='outlined' className='fbc-modal-button'>
+                    Toggle Rightbar
+                </Button>
+
+
                 <Button onClick={() => setOpen(prev => !prev)} variant='outlined' className='fbc-modal-button'>
+
                     Upload New File
                 </Button>
                 <List className="fbc-top-file-list-container"> {files?.map(el => (

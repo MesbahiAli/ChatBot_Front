@@ -8,16 +8,23 @@ import Sidebar from "../../Chatbot-SlideBar/components/SideBar"
 import Auth from "../../Authentification/ui/Auth";
 import GBTbar from "../../Home/components/Sidebar";
 import Filebar from "../../Chatbot-SlideBar/components/Filebar";
+import ChatArea from "../../Home/components/ChatArea";
 export default function Chat() {
 
   return (
     <div style={{display:"flex",height:"100vh",width:"100vw",justifyContent:"space-between"}}>
       {/* <Feed/>  */}
       {/* <Auth/> */}
-      <GBTbar />
-      <ChatRight />
+// <<<<<<< addingResolution
+//       {/* <GBTbar /> */}
+//       {/* <ChatRight /> */}
+// =======
+//       <GBTbar />
+//       <ChatRight />
+// >>>>>>> handlingError
       {/* <Sidebar /> */}
-      <Filebar/>
+      <ChatArea />
+      {/* <Filebar/> */}
     </div>
   );
 }
