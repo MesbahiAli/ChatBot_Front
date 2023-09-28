@@ -12,7 +12,8 @@ const MessageUser = ({item,key}) => {
             </div>
             <div className="cbc-mu-text">
                 <p className="cbc-mu-text-item">
-                {item}              
+                {/* {item}               */}
+                Help me pick a birthday gift for my mom who likes gardening. But don't give me gardening tools – she already has all of them!
                   </p>
                 <div className="cbc-mu-actions">
                     <div className="cbc-mu-action">
