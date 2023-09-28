@@ -55,6 +55,9 @@ const ChatArea = () => {
         }
     };
 
+
+ 
+    
     useEffect(() => {
         const enter = (event) => {
             if (event.keyCode === 13 && !event.shiftKey) {
@@ -74,16 +77,35 @@ const ChatArea = () => {
         }
     }, [isSendFileSuccess]);
 
-    const messagesChat = useSelector(state => state.chat.messages);
-    const messages = useSelector(state => state.MessageList.messages.messages);
+    const rawMessagesChat = useSelector(state => state.chat.messages);
+    const messagesFromApi = [
+        { 
+        "sender": "username",
+        "response" : "answer_bot",
+        "time": "time",
+        },
+        { 
+        "sender": "bot",
+        "response" : "answer_bot",
+        "time": "time",
+        },
+        
+      ]
+    // useSelector(state => state.MessageList.messages.messages);
 
-    const data = messages && messages.length > 0 ? messages : messagesChat;
+    const transformedMessagesFromApi = messagesFromApi.map(message => ({
+        sender: message.sender, 
+        text: message.response,
+        timestamp: message.time  // changed from 'time' to 'timestamp'
+    }));
+    
+    const data = [...(transformedMessagesFromApi || []), ...(rawMessagesChat || [])];
 
     useEffect(() => {
         if (messagesEndRef.current) {
             messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
         }
-    }, [data]);  // <-- Changed from [messages] to [data] since that's what's being rendered.
+    }, [transformedMessagesFromApi]);  // <-- Changed from [messages] to [data] since that's what's being rendered.
 
     useEffect(() => {
         if (error) {
