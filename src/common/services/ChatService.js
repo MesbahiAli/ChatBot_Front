@@ -21,10 +21,15 @@ import { instance } from "../Axios";
 export const ChatApi = (payload) => {
   const formData = new FormData();
   formData.append('user_input', payload.user_input);
-    formData.append('conversationId', payload.conversationId || "");
+    formData.append('conv', payload.conversationId || "");
   return instance
-    .post("/get_response.js", formData)
+    .post("/response", formData)
     .then((response) => {
       return response.data;
     });
 };
+
+
+
+
+ 

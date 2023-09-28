@@ -10,7 +10,7 @@ export function* sendMessageSaga(action) {
 
     const botMessage = response.response;
 
-    yield put(actions.sendMessageSuccess({ sender: 'bot', text: botMessage, conversationId: response.conversationId }));
+    yield put(actions.sendMessageSuccess({ sender: 'bot', text: botMessage, conversationId: response.conv }));
   } catch (error) {
     const errorMessage = error.message || "An unknown error occurred.";
     yield put(actions.sendMessageFailure(errorMessage));

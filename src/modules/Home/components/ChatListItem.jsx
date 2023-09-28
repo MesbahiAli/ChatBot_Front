@@ -10,6 +10,8 @@ import { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectCurrentChat, selectCurrentIndex } from '../state/ReducerHome';
 import { selectChat } from '../state/ActionsHome';
+import { fetchConversationsRequest } from './StateListe/ListeAction';
+import { fetchMessagesRequest } from './StateMessage/MessageAction';
 
 const ChatListItem = ({item,index}) => {
     const dispatch = useDispatch();
@@ -18,9 +20,11 @@ const ChatListItem = ({item,index}) => {
     const [active, setActive] = useState(stateIndex === index);
     const handleClick = () => {
         dispatch(selectChat({chat:item,index:index}))
+        dispatch(fetchMessagesRequest(index));
     }
     useEffect(() => {
         setActive(stateIndex === index);
+
     },[stateIndex,index]);
 
     return (
@@ -28,7 +32,7 @@ const ChatListItem = ({item,index}) => {
             <ListItemIcon className='sc-main-list-item-icon'>
                 <ChatBubbleOutlineOutlinedIcon className='sc-main-list-icon' />
             </ListItemIcon>
-            <ListItemText className='sc-main-list-item-text' primary="this is a chat title" />
+            <ListItemText className='sc-main-list-item-text' primary={item} />
             {active ?
                 <ListItemIcon className='sc-main-list-item-icon'>
                     <DriveFileRenameOutlineOutlinedIcon className='sc-main-list-icon' />

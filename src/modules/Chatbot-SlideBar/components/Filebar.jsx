@@ -172,7 +172,7 @@ justify-content: center;
     const handleButtonClick = () => {
         dispatch(fetchConversationsRequest());
 
-        // dispatch(fetchMessagesRequest(1));
+        // dispatch(fetchMessagesRequest(4));
       };
 
 
@@ -195,6 +195,8 @@ justify-content: center;
 
     useEffect(() => {
         dispatch(fetchDataRequest());
+        dispatch(fetchConversationsRequest());
+
     }, []);
 
     const handleUploadButtonClick = () => {
