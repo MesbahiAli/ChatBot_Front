@@ -170,9 +170,9 @@ justify-content: center;
     //
 
     const handleButtonClick = () => {
-        // dispatch(fetchConversationsRequest());
+        dispatch(fetchConversationsRequest());
 
-        dispatch(fetchMessagesRequest(1));
+        // dispatch(fetchMessagesRequest(1));
       };
 
 
