@@ -77,29 +77,16 @@ const ChatArea = () => {
         }
     }, [isSendFileSuccess]);
 
-    const rawMessagesChat = useSelector(state => state.chat.messages);
-    const messagesFromApi = [
-        { 
-        "sender": "username",
-        "response" : "answer_bot",
-        "time": "time",
-        },
-        { 
-        "sender": "bot",
-        "response" : "answer_bot",
-        "time": "time",
-        },
-        
-      ]
-    // useSelector(state => state.MessageList.messages.messages);
-
-    const transformedMessagesFromApi = messagesFromApi.map(message => ({
+    const rawMessagesChat = useSelector(state => state?.chat?.messages);
+    const messagesFromApi = useSelector(state => state?.MessageList?.messages?.messages);
+    const transformedMessagesFromApi = messagesFromApi?.map(message => ({
         sender: message.sender, 
         text: message.response,
-        timestamp: message.time  // changed from 'time' to 'timestamp'
-    }));
+        timestamp: message.time  
+})) || [];
+
     
-    const data = [...(transformedMessagesFromApi || []), ...(rawMessagesChat || [])];
+    const data = [...(transformedMessagesFromApi ), ...(rawMessagesChat)];
 
     useEffect(() => {
         if (messagesEndRef.current) {
@@ -119,7 +106,7 @@ const ChatArea = () => {
             <Sidebar />
             <div className="cbc-main">
                 <div className="cbc-messages-container">
-                    {data.map((msg, index) => {
+                    {data?.map((msg, index) => {
                         if (msg.sender === 'bot') return <MessageBot item={msg} index={index} />;
                         return <MessageUser item={msg} index={index} />;
                     })}
