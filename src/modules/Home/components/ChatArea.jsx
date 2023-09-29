@@ -61,7 +61,7 @@ const ChatArea = () => {
     useEffect(() => {
         const enter = (event) => {
             if (event.keyCode === 13 && !event.shiftKey) {
-                event.preventDefault(); // Prevent the default form submission
+                event.preventDefault();
                 handleSendClick();
             }
         }
@@ -92,7 +92,7 @@ const ChatArea = () => {
         if (messagesEndRef.current) {
             messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
         }
-    }, [transformedMessagesFromApi]);  // <-- Changed from [messages] to [data] since that's what's being rendered.
+    }, [transformedMessagesFromApi]); 
 
     useEffect(() => {
         if (error) {
