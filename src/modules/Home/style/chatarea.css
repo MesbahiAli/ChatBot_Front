@@ -160,6 +160,16 @@ flex: 1;
     cursor: pointer;
 }
 
+.MuiIconButton-root.cbc-form-icon-button-right{
+    height: 60px;
+    width: 60px;
+    margin-right: 10px;
+    border-radius: 8px;
+    color: #343541;
+    background: transparent;
+    cursor: pointer;
+}
+
 .MuiIconButton-root.cbc-form-icon-button.inactive{
     background: transparent;
     color: #343541;

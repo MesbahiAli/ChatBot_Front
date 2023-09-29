@@ -65,7 +65,7 @@ const username=localStorage.username
                 >
                     <ListItemButton className='sc-main-list-item'>
                         <ListItem className='sc-footer-list-item-img'>
-                            Ad
+                        {username.substring(0,2)}
                         </ListItem>
                         {JwtUtils.isActif() ? (<ListItemText primary={username} />):null}
                     </ListItemButton>

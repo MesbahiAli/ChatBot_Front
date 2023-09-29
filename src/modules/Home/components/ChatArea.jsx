@@ -9,7 +9,7 @@ import MessageUser from './MessageUser';
 import SendIcon from '@mui/icons-material/Send';
 import { SEND_MESSAGE_REQUEST, SEND_MESSAGE_SUCCESS } from '../../../common/state/StatesConstants';
 import { requestToggle } from '../../Chatbot-RightBar/components/Togle/State/TogleAction';
-import LanguageIcon from '@mui/icons-material/Language'; 
+import LanguageIcon from '@mui/icons-material/Language';
 
 const ChatArea = () => {
     const dispatch = useDispatch();
@@ -30,8 +30,8 @@ const ChatArea = () => {
     };
 
     const handleLanguageChange = (language) => {
-        dispatch(requestToggle(language)); 
-        handleLanguageMenuClose(); 
+        dispatch(requestToggle(language));
+        handleLanguageMenuClose();
     };
 
     const [message, setMessage] = useState("");
@@ -56,8 +56,8 @@ const ChatArea = () => {
     };
 
 
- 
-    
+
+
     useEffect(() => {
         const enter = (event) => {
             if (event.keyCode === 13 && !event.shiftKey) {
@@ -80,19 +80,29 @@ const ChatArea = () => {
     const rawMessagesChat = useSelector(state => state?.chat?.messages);
     const messagesFromApi = useSelector(state => state?.MessageList?.messages?.messages);
     const transformedMessagesFromApi = messagesFromApi?.map(message => ({
-        sender: message.sender, 
+        sender: message.sender,
         text: message.response,
-        timestamp: message.time  
-})) || [];
+        timestamp: message.time
+    })) || [];
 
-    
-    const data = [...(transformedMessagesFromApi ), ...(rawMessagesChat)];
+
+    let data;
+    if (messagesFromApi && messagesFromApi.length > 0) {
+        const transformedMessagesFromApi = messagesFromApi.map(message => ({
+            sender: message.sender,
+            text: message.response,
+            timestamp: message.time
+        }));
+        data = transformedMessagesFromApi;
+    } else {
+        data = rawMessagesChat;
+    }
 
     useEffect(() => {
         if (messagesEndRef.current && document.querySelector('.cbc-messages-container').offsetHeight > '80vh') {
             messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
         }
-    }, [transformedMessagesFromApi]); 
+    }, [transformedMessagesFromApi]);
 
     useEffect(() => {
         if (error) {
@@ -113,7 +123,7 @@ const ChatArea = () => {
                     <div ref={messagesEndRef}></div>
                 </div>
                 <div className="cbc-form">
-                    <IconButton onClick={handleLanguageMenuClick}>
+                    <IconButton onClick={handleLanguageMenuClick} className='cbc-form-icon-button-right'>
                         <LanguageIcon />
                     </IconButton>
                     <Menu
