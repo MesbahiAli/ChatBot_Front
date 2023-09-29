@@ -62,7 +62,7 @@ const ChatArea = () => {
         const enter = (event) => {
             if (event.keyCode === 13 && !event.shiftKey) {
                 event.preventDefault(); // Prevent the default form submission
-                handleSendClick();
+                handleSendClick(); 
             }
         }
         document.getElementById("cbc-form-input").addEventListener("keydown", enter);
@@ -89,7 +89,7 @@ const ChatArea = () => {
     const data = [...(transformedMessagesFromApi ), ...(rawMessagesChat)];
 
     useEffect(() => {
-        if (messagesEndRef.current) {
+        if (messagesEndRef.current && document.querySelector('.cbc-messages-container').offsetHeight > '80vh') {
             messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
         }
     }, [transformedMessagesFromApi]);  // <-- Changed from [messages] to [data] since that's what's being rendered.

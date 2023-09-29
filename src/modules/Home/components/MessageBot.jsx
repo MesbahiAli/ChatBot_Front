@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import "../style/chatarea.css";
-import bot from "../../../assets/images/bot.jpg";
+import bot from "../../../assets/images/pngegg (2).png";
 import ContentCopyOutlinedIcon from '@mui/icons-material/ContentCopyOutlined';
 import TimeAgo from 'react-timeago';
 import DoneIcon from '@mui/icons-material/Done';
