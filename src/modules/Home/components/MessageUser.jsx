@@ -1,6 +1,6 @@
 import React from 'react';
 import "../style/chatarea.css";
-import person from "../../../assets/images/person1.jpg";
+import person from "../../../assets/images/pngegg.png";
 import ContentCopyOutlinedIcon from '@mui/icons-material/ContentCopyOutlined';
 import TimeAgo from 'react-timeago';
 

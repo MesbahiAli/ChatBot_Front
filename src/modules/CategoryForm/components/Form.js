@@ -10,7 +10,7 @@ import * as Yup from "yup";
 import { useDispatch } from 'react-redux';
 import { sendFileAndData } from '../state/CategoryAction';
 import { useFormik } from 'formik';
-
+import BasicDatePicker from "./BasicDatePicker"
 
 const StyledBox = styled(Box)(({ theme }) => ({
     position: 'absolute',
@@ -126,7 +126,7 @@ const StyledFormModal = ({ handleClose, handleUploadCancel }) => {
                     <div className="fdmf-top">
                         <div className="fdmf-right">
                             <TextField
-                                InputLabelProps={{ style: { backgroundColor: "#212229", padding: "5px", borderRadius: "5px", color: "white" } }}
+                                InputLabelProps={{ style: { backgroundColor: "white", padding: "5px", borderRadius: "5px", color: "black" } }}
                                 label="name of tender"
                                 variant="outlined"
                                 sx={inputStyle}
@@ -143,11 +143,12 @@ const StyledFormModal = ({ handleClose, handleUploadCancel }) => {
                                 value={formik.values.submission_date}
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
+                                sx={inputStyle}
                                 variant="outlined"  // This gives it the Material UI outlined style
-                                InputLabelProps={{ shrink: true }} // This is often needed for date inputs to ensure the label doesn't overlap the placeholder
                             />
+                            {/* <BasicDatePicker changeHandler={formik.handleChange} value={formik.values.submission_date} onBlur={formik.handleBlur} name="submission_date"/> */}
                             <TextField
-                                InputLabelProps={{ style: { backgroundColor: "#212229", padding: "5px", borderRadius: "5px", color: "white" } }}
+                                InputLabelProps={{ style: { backgroundColor: "white", padding: "5px", borderRadius: "5px", color: "black" } }}
                                 label="client"
                                 variant="outlined"
                                 sx={inputStyle}
@@ -159,7 +160,7 @@ const StyledFormModal = ({ handleClose, handleUploadCancel }) => {
                                 helperText={touched.client && errors.client}
                             />
                             <TextField
-                                InputLabelProps={{ style: { backgroundColor: "#212229", padding: "5px", borderRadius: "5px", color: "white" } }}
+                                InputLabelProps={{ style: { backgroundColor: "white", paddingTop: "5px", borderRadius: "5px", color: "black" } }}
                                 label="contract type"
                                 variant="outlined"
                                 sx={inputStyle}
@@ -173,14 +174,14 @@ const StyledFormModal = ({ handleClose, handleUploadCancel }) => {
                         </div>
                         <div className="fdmf-left">
                             <FormControl variant="outlined" sx={inputStyle}>
-                                <InputLabel>status</InputLabel>
+                                <InputLabel style={{ backgroundColor: "white", paddingTop: "5px", borderRadius: "5px", color: "black"} }>status</InputLabel>
                                 <Select
                                     label="status"
                                     name="Status"
                                     value={values.Status}
                                     onChange={handleChange}
                                     onBlur={handleBlur}
-                                    error={touched.status && Boolean(errors.status)}
+                                    error={touched.Status && Boolean(errors.Status)}
                                 >
                                     <MenuItem value="Tender Phase">Tender Phase</MenuItem>
                                     <MenuItem value="Submitted">Submitted</MenuItem>
@@ -194,7 +195,7 @@ const StyledFormModal = ({ handleClose, handleUploadCancel }) => {
                             </FormControl>
 
                             <FormControl variant="outlined" sx={inputStyle}>
-                                <InputLabel>Results</InputLabel>
+                                <InputLabel style={{ backgroundColor: "white", paddingTop: "5px", borderRadius: "5px", color: "black"} }>Results</InputLabel>
                                 <Select
                                     label="Results"
                                     name="results"
@@ -208,7 +209,7 @@ const StyledFormModal = ({ handleClose, handleUploadCancel }) => {
                                 </Select>
                             </FormControl>
                             <FormControl variant="outlined" sx={inputStyle}>
-                                <InputLabel>Category</InputLabel>
+                                <InputLabel style={{ backgroundColor: "white", paddingTop: "5px", borderRadius: "5px", color: "black"} }>Category</InputLabel>
                                 <Select
                                     label="Category"
                                     name="category"
