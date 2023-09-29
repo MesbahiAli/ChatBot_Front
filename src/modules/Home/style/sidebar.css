@@ -114,7 +114,7 @@
     border-radius: 6px;
 }
 .MuiListItemButton-root.sc-main-list-item.active {
-    background: rgb(32, 33, 35);
+    background: #343541;
 }
 
 .MuiListItemIcon-root.sc-main-list-item-icon {

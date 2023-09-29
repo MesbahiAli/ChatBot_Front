@@ -89,7 +89,7 @@ const ChatArea = () => {
     const data = [...(transformedMessagesFromApi ), ...(rawMessagesChat)];
 
     useEffect(() => {
-        if (messagesEndRef.current) {
+        if (messagesEndRef.current && document.querySelector('.cbc-messages-container').offsetHeight > '80vh') {
             messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
         }
     }, [transformedMessagesFromApi]); 

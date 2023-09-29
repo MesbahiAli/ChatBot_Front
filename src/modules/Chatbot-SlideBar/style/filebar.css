@@ -119,10 +119,10 @@
     justify-content: space-between;
     padding: 5px;
     margin-bottom: 10px;
-    background: var(--secondary-black-color);
+    background: #343541;
     border-radius: 8px;
     /* Radial gradient from black to gray */
-    box-shadow:   0 2px 5px #000;
+    box-shadow:   var(--box-shadow);
     /* Dark drop shadow */
     white-space: nowrap;
     overflow-x: hidden;
