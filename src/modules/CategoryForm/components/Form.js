@@ -91,11 +91,13 @@ const VisuallyHiddenInput = styled('input')({
     width: 1,
 });
 
-const StyledFormModal = ({ handleClose, handleUploadCancel }) => {
+const StyledFormModal = ({ handleClose  }) => {
     const dispatch = useDispatch();
 
     const [selectedFile, setSelectedFile] = useState(null);
-
+    const handleUploadCancel = () => {
+        setSelectedFile(null);
+    };
     const formik = useFormik({
         initialValues: {
             name_of_tender: "",
@@ -263,6 +265,14 @@ const StyledFormModal = ({ handleClose, handleUploadCancel }) => {
                             endIcon={<CheckIcon sx={{ height: 26, width: 26 }} />}
                         >
                             Submit
+                        </Button>
+                        <Button
+                        onClick={handleClose}
+                            className='fd-btn'
+                            style={{ backgroundColor: "#343e8b", color: "white", fontSize: 20 }}
+                            endIcon={<CloseIcon sx={{ height: 26, width: 26 }} />}
+                        >
+                            Cancel
                         </Button>
                     </div>
                     </form>
