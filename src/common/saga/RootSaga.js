@@ -11,7 +11,7 @@ import { watchSendFileAndData } from "../../modules/CategoryForm/saga/CategoryWa
 import { watchGetCategory } from "../../modules/CategoryForm/SagaTable/CategoryWatcher";
 import { conversationSaga } from "../../modules/Home/components/SagaListe/WatcherList";
 import { messageSaga } from "../../modules/Home/components/SagaMessage/Messagewatcher";
-import { watchUpdateChatTitle } from "../../modules/Home/components/SagaListe/ListItemSaga";
+import { watchUpdateChatTitle } from "../../modules/UpdateSidebar/Saga/Watcher";
 
 export default function* rootSaga() {
   yield all([

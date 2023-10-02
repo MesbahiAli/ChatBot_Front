@@ -9,7 +9,8 @@ import { useEffect } from 'react';
 import { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectCurrentChat, selectCurrentIndex } from '../state/ReducerHome';
-import { selectChat, updateChatTitle } from '../state/ActionsHome';
+import { updateChatTitle } from '../../UpdateSidebar/State/ActionFile';
+import { selectChat } from '../state/ActionsHome';
 import { fetchConversationsRequest } from './StateListe/ListeAction';
 import { fetchMessagesRequest } from './StateMessage/MessageAction';
 
@@ -62,7 +63,7 @@ const ChatListItem = ({item,index}) => {
                     value={editedText} 
                     onChange={handleTextChange}
                     // onBlur={handleEditToggle} // optional: exit edit mode when input is blurred
-                    onBlur={handleEditSubmit} // optional: exit edit mode when input is blurred
+                    onBlur={handleEditSubmit}
                     className='sc-main-list-item-input' 
                 />
             ) : (

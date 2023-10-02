@@ -13,6 +13,7 @@ import { categoryReducer } from "../../modules/CategoryForm/StateTable/CategoryR
 import homeReducer from "../../modules/Home/state/ReducerHome";
 import conversationReducer from "../../modules/Home/components/StateListe/ListeReducers";
 import messageReducer from "../../modules/Home/components/StateMessage/MessageReducer";
+import updateTitleReducer from "../../modules/UpdateSidebar/State/ReducerFile";
 
 const rootReducer = combineReducers({
   Auth: AuthReducer,
@@ -29,7 +30,7 @@ const rootReducer = combineReducers({
   Category:categoryReducer,
   listItem:conversationReducer,
   MessageList:messageReducer,
-  
+  updateTitle: updateTitleReducer,
   
 });
 
