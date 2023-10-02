@@ -1,60 +1,62 @@
 import React from 'react'
+import { forwardRef } from 'react';
+import { Button, Fade, Modal, Box, styled } from '@mui/material';
+import { useState } from 'react';
+import StyledFormModal from './Form';
+import { useEffect } from 'react';
+const Backdrop = forwardRef((props, ref) => {
+    const { open, ...other } = props;
+    return (
+        <Fade in={open}>
+            <div ref={ref} {...other} />
+        </Fade>
+    );
+});
 
-const Modal = () => {
-    const Backdrop = forwardRef((props, ref) => {
-        const { open, ...other } = props;
-        return (
-            <Fade in={open}>
-                <div ref={ref} {...other} />
-            </Fade>
-        );
-    });
-    
-    Backdrop.propTypes = {
-        open: PropTypes.bool,
-    };
-    const StyledBackdrop = styled(Backdrop)`
+
+const StyledBackdrop = styled((props) => (
+    <Fade {...props}>
+        <div {...props} />
+    </Fade>
+))`
     z-index: -1;
     position: fixed;
     inset: 0;
     background-color: rgb(0 0 0 / 0.5);
     -webkit-tap-highlight-color: transparent;
-    `;
-    const StyledModal = styled(Modal)`
+  `;
+
+const StyledModal = styled(Modal)`
     position: fixed;
     z-index: 1300;
     inset: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    `;
-    const style = (theme) => ({
-        position: 'absolute',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-        width: "60vw",
-        borderRadius: '12px',
-        padding: '16px 32px 24px 32px',
-        backgroundColor: '#0A1929',
-        boxShadow: `0px 2px 24px '#000' `,
-        display: "flex",
-        flexDirection: "column"
-    });
-    const VisuallyHiddenInput = styled('input')({
-        clip: 'rect(0 0 0 0)',
-        clipPath: 'inset(50%)',
-        height: 1,
-        overflow: 'hidden',
-        position: 'absolute',
-        bottom: 0,
-        left: 0,
-        whiteSpace: 'nowrap',
-        width: 1,
-    });
-  return (
-    <div>Modal</div>
-  )
+  `;
+const ModalComp = ({ open, setOpen }) => {
+
+
+
+    const handleClose = () => setOpen(false);
+    
+
+    
+    return (
+        <StyledModal
+            open={open}
+            onClose={handleClose}
+            closeAfterTransition
+            slots={{ backdrop: StyledBackdrop }}
+            id='model'
+            style={{display:open?"flex" : "none"}}
+            onBlur={(e)=>setOpen(false)}
+        >
+            <StyledFormModal
+                handleClose={handleClose}
+            />
+        </StyledModal>
+    )
 }
 
-export default Modal
+export default ModalComp

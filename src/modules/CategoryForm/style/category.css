@@ -54,6 +54,25 @@
     flex-direction: column;
     gap: 10px;
 }
+
+.search-Grid{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.sg-buttons{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.MuiButton-root.sg-buttons-btn{
+    background: #343e8b;
+    color: white;
+    width: 150px;
+}
+
 .sg-input{
     width: 400px;
     color: var(--text-black-color)!important;

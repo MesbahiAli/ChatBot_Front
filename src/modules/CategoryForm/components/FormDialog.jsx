@@ -10,6 +10,7 @@ import StyledFormModal from './Form';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { getCategoryRequest } from '../StateTable/CategoryAction';
+import ModalComp from "./Modal"
 
 const StyledBackdrop = styled((props) => (
   <Fade {...props}>
@@ -87,19 +88,7 @@ const FormDialog = () => {
         Night Mode
         </Button>
       </div>
-      <StyledModal
-        open={open}
-        onClose={handleClose}
-        closeAfterTransition
-        BackdropComponent={StyledBackdrop}
-      >
-        <StyledFormModal
-          handleClose={handleClose}
-          handleFileChange={handleFileChange}
-          selectedFile={selectedFile}
-          handleUploadCancel={handleUploadCancel}
-        />
-      </StyledModal>
+      <ModalComp />
     </div>
   );
 }
