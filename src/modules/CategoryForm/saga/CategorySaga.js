@@ -8,14 +8,10 @@ import { getCategoryRequest } from '../StateTable/CategoryAction';
 import { fetchDataRequest } from '../../files/State/ActionsFile';
 
 function* sendFileAndDataSaga(action) {
-  console.log(action.payload);
   try {
     const formData = new FormData();
     for (const key in action.payload) {
       formData.append(key, action.payload[key]);
-    }
-    for (let [key, value] of formData.entries()) {
-      console.log(key, value);
     }
     const response = yield call(sendFileAndDataApi, formData);
     yield put({ type: SEND_FILE_AND_DATA_SUCCESS, payload: response.data });

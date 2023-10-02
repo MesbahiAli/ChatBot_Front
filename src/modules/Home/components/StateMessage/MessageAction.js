@@ -14,3 +14,7 @@ export const fetchMessagesFailure = error => ({
     type: FETCH_MESSAGES_FAILURE,
     payload: error
 });
+
+export const reset = ()=>({
+    type: "RESET",
+});

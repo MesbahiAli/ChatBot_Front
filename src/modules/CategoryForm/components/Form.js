@@ -10,7 +10,6 @@ import * as Yup from "yup";
 import { useDispatch } from 'react-redux';
 import { sendFileAndData } from '../state/CategoryAction';
 import { useFormik } from 'formik';
-import BasicDatePicker from "./BasicDatePicker"
 
 const StyledBox = styled(Box)(({ theme }) => ({
     position: 'absolute',
@@ -24,7 +23,6 @@ const StyledBox = styled(Box)(({ theme }) => ({
     display: "flex",
     flexDirection: "column"
 }));
-
 const StyledInput = styled(TextField)(({ theme }) => ({
     color: "black",
     backgroundColor: "white",
@@ -47,8 +45,6 @@ const StyledListItem = styled(ListItem)(({ theme }) => ({
     height: 50,
     border: "none"
 }));
-
-
 const inputStyle = {
     color: "black",
     backgroundColor: "white",

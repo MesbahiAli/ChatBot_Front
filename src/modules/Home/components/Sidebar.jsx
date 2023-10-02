@@ -9,10 +9,11 @@ import ChatListItem from './ChatListItem';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import JwtUtils from '../../../routing/JwtUtils';
+import { reset } from './StateMessage/MessageAction';
 const Sidebar = () => {
     const [bool, setBool] = useState(false)
     const matches = useMediaQuery("(max-width:820px)");
-    
+    const dispatch=useDispatch()
     const sidebarTrigger = () => {
         setBool(prev=>!prev)
         const main = document.querySelector(".sc-main");
@@ -38,7 +39,7 @@ const username=localStorage.username
     return (
         <div className={bool ? "sidebar-container close" : "sidebar-container "}>
             <div className="sc-headers">
-                <Button variant="outlined" className='sc-headers-button' startIcon={<AddRoundedIcon className='sc-headers-icon' />}>New Chat</Button>
+                <Button variant="outlined"  onClick={()=>dispatch(reset())} className='sc-headers-button' startIcon={<AddRoundedIcon className='sc-headers-icon' />}>New Chat</Button>
                 <IconButton className='sc-headers-iconButton' onClick={sidebarTrigger}>
                     <WindowRoundedIcon />
                 </IconButton>

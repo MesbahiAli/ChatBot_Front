@@ -20,10 +20,11 @@ import { Box, Fade, Modal, styled } from '@mui/material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import StyledFormModal from '../../CategoryForm/components/Form'
 import LogoutIcon from '@mui/icons-material/Logout';
-import {fetchConversationsRequest} from "../../Home/components/StateListe/ListeAction"
+import { fetchConversationsRequest } from "../../Home/components/StateListe/ListeAction"
 import { fetchMessagesRequest } from '../../Home/components/StateMessage/MessageAction';
+import { useHistory } from 'react-router-dom';
 
-  
+
 
 // Mouad Doadi - 21/09/23 >
 
@@ -43,22 +44,25 @@ import MenuIcon from '@mui/icons-material/Menu';
 import JwtUtils from '../../../routing/JwtUtils'; /* TAHA */
 import SettingsPanel from './SettingsPanel';
 const Filebar = () => {
+
+    const history = useHistory();
+
     const [selectedFile, setSelectedFile] = useState(null);
     const handleClose = () => setOpen(false);
     const handleUploadCancel = () => {
         setSelectedFile(null);
-      }    
+    }
 
 
     const Backdrop = forwardRef((props, ref) => {
         const { open, ...other } = props;
         return (
-          <Fade in={open}>
-            <div ref={ref} {...other} />
-          </Fade>
+            <Fade in={open}>
+                <div ref={ref} {...other} />
+            </Fade>
         );
-      });
-      
+    });
+
     const [selectedFilesFromServer, setSelectedFilesFromServer] = useState([]);
     const handleFileChange = (e) => {
         const selectedFiles = Array.from(e.target.files);
@@ -107,7 +111,7 @@ background-color: rgb(0 0 0 / 0.5);
 -webkit-tap-highlight-color: transparent;
 `;
 
-  const StyledModal = styled(Modal)`
+    const StyledModal = styled(Modal)`
 position: fixed;
 z-index: 1300;
 inset: 0;
@@ -116,11 +120,11 @@ align-items: center;
 justify-content: center;
 `;
 
-  const newBtnStyle = {
-    backgroundColor: "#343e8b",
-    color: "white",
-    width: "150px"
-  }
+    const newBtnStyle = {
+        backgroundColor: "#343e8b",
+        color: "white",
+        width: "150px"
+    }
 
     const docStyle = {
         color: 'white',
@@ -235,21 +239,26 @@ justify-content: center;
             main.classList.toggle("none")
             footer.classList.toggle("none")
         }, 100)
-        
+
     }
-    useEffect(()=>{
-        console.log(matches)
+    useEffect(() => {
         if (matches) {
             sidebarTrigger()
 
         }
-    },[matches])
+    }, [matches])
 
     const formatFileName = (fileName) => {
         const fileExtension = fileName.split('.').pop();
         return `${fileName.substring(0, 6)}... .${fileExtension}`;
-      }
-      
+    }
+
+
+
+    const handleButtonClick = () => {
+        history.push('/category');
+    };
+
     return (
         <div className={bool ? "filebar-container close" : "filebar-container"}>
             <IconButton style={{ display: bool ? "block" : "none" }} className='fbc-headers-iconButton abs' onClick={sidebarTrigger}>
@@ -265,51 +274,51 @@ justify-content: center;
 
                     Upload New File
                 </Button>
-                <List className="fbc-top-file-list-container"> 
-    {files?.map(el => (
-        <div key={el} className='uploaded-item-container'>
-            {formatFileName(el)}
+                <List className="fbc-top-file-list-container">
+                    {files?.map(el => (
+                        <div key={el} className='uploaded-item-container'>
+                            {formatFileName(el)}
 
-            <div className='icon-container'>
-                <Checkbox
-                    style={checkStyle}
-                    edge="start"
-                    checked={selectedFilesFromServer.includes(el)}
-                    onChange={() => handleServerFileSelect(el)}
-                />
-                <SettingsPanel el={el} />
-            </div>
-        </div>
-    ))}
-</List>
+                            <div className='icon-container'>
+                                <Checkbox
+                                    style={checkStyle}
+                                    edge="start"
+                                    checked={selectedFilesFromServer.includes(el)}
+                                    onChange={() => handleServerFileSelect(el)}
+                                />
+                                <SettingsPanel el={el} />
+                            </div>
+                        </div>
+                    ))}
+                </List>
 
                 <Button style={isSelected ? sendServerButton : disabledButton} onClick={handleSendSelectedFilesFromServer} variant='outlined' className='fbc-modal-button'>
                     Send selected files
                 </Button>
-                
-            </div>
-            
-            <div className='fbc-bottom'>
-                <Button href='/category' variant='outlined' className='fbc-modal-button'>
-                    Categorie                </Button>
 
+            </div>
+
+            <div className='fbc-bottom'>
+                <Button variant="outlined" className="fbc-modal-button" onClick={handleButtonClick}>
+                    Category
+                </Button>
                 {JwtUtils.isActif() ? <Button onClick={handleLogout} variant='outlined' className='fbc-modal-button'>
                     Logout
                 </Button> : null}
             </div>
             <StyledModal
-          open={open}
-          onClose={handleClose}
-          closeAfterTransition
-          slots={{ backdrop: StyledBackdrop }}
-        >
-          <StyledFormModal
-            handleClose={handleClose}
-            selectedFile={selectedFile}
-            handleUploadCancel={handleUploadCancel}
-          />
+                open={open}
+                onClose={handleClose}
+                closeAfterTransition
+                slots={{ backdrop: StyledBackdrop }}
+            >
+                <StyledFormModal
+                    handleClose={handleClose}
+                    selectedFile={selectedFile}
+                    handleUploadCancel={handleUploadCancel}
+                />
 
-        </StyledModal>
+            </StyledModal>
         </div>
     )
 }

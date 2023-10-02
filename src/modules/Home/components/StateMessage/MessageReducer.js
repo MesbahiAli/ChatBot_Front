@@ -28,6 +28,8 @@ const messageReducer = (state = initialState, action) => {
                 loading: false,
                 error: action.payload
             };
+        case "RESET":
+            return {messages:[]};
 
         default:
             return state;

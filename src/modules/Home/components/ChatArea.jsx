@@ -12,6 +12,8 @@ import { requestToggle } from '../../Chatbot-RightBar/components/Togle/State/Tog
 import LanguageIcon from '@mui/icons-material/Language';
 
 const ChatArea = () => {
+    const inputRef = useRef(null);
+
     const dispatch = useDispatch();
 
     const [snackbarOpen, setSnackbarOpen] = useState(false);
@@ -57,19 +59,24 @@ const ChatArea = () => {
 
 
 
+useEffect(() => {
+    const enter = (event) => {
+        if (event.keyCode === 13 && !event.shiftKey) {
+            event.preventDefault();
+            handleSendClick();
+        }
+    }
+    
+    if (inputRef.current) {
+        inputRef.current.addEventListener("keydown", enter);
+    }
 
-    useEffect(() => {
-        const enter = (event) => {
-            if (event.keyCode === 13 && !event.shiftKey) {
-                event.preventDefault();
-                handleSendClick();
-            }
+    return () => {
+        if (inputRef.current) {
+            inputRef.current.removeEventListener("keydown", enter);
         }
-        document.getElementById("cbc-form-input").addEventListener("keydown", enter);
-        return () => {
-            document.getElementById("cbc-form-input").removeEventListener("keydown", enter);
-        }
-    }, [handleSendClick]);
+    }
+}, [handleSendClick]);
 
     useEffect(() => {
         if (isSendFileSuccess) {
@@ -117,8 +124,8 @@ const ChatArea = () => {
             <div className="cbc-main">
                 <div className="cbc-messages-container">
                     {data?.map((msg, index) => {
-                        if (msg.sender === 'bot') return <MessageBot item={msg} index={index} />;
-                        return <MessageUser item={msg} index={index} />;
+                        if (msg.sender === 'bot') return <MessageBot item={msg} index={index} key={index} />;
+                        return <MessageUser item={msg} index={index} key={index} />;
                     })}
                     <div ref={messagesEndRef}></div>
                 </div>
@@ -147,6 +154,7 @@ const ChatArea = () => {
                         multiline
                         maxRows={4}
                         fullWidth
+                        ref={inputRef}
                         id='cbc-form-input'
                         onChange={handleMessageChange}
                         value={message}

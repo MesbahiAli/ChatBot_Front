@@ -4,7 +4,12 @@ import logo from "../../../assets/images/logo .png";
 import { Button } from '@mui/material';
 import LogoutIcon from '@mui/icons-material/Logout';
 import ChatOutlinedIcon from '@mui/icons-material/ChatOutlined';
+import { Link } from 'react-router-dom';
+import JwtUtils from '../../../routing/JwtUtils'; 
 
+  const handleLogout = () => {
+    JwtUtils.logOut();
+};
 
 const Navbar = () => {
 
@@ -14,13 +19,13 @@ const Navbar = () => {
         <img src={logo} alt="" className='nc-lc-logo' />
       </div>
       <div className="nc-buttons-container">
-        <Button variant="contained" className='nc-bc-button'  startIcon={<ChatOutlinedIcon />}>
+      <Link to="/Chatbot">
+          <Button variant="contained" className='nc-bc-button'  startIcon={<ChatOutlinedIcon />}>
           Chatbot
         </Button>
-        <Button  variant="contained" className='nc-bc-button'  startIcon={<LogoutIcon />}>
-          Logout
-        </Button>
-      </div>
+        </Link>
+        {JwtUtils.isActif() ?  <Button onClick={handleLogout} variant="contained" className='nc-bc-button'  startIcon={<LogoutIcon />}> Logout</Button> : null}
+                      </div>
     </div>
   )
 }
