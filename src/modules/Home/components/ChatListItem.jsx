@@ -14,6 +14,8 @@ import { fetchConversationsRequest } from './StateListe/ListeAction';
 import { fetchMessagesRequest } from './StateMessage/MessageAction';
 
 const ChatListItem = ({item,index}) => {
+    // ... (rest of your states and effects)
+
     const dispatch = useDispatch();
     const chat = useSelector(selectCurrentChat);
     const stateIndex = useSelector(selectCurrentIndex);
@@ -28,28 +30,50 @@ const ChatListItem = ({item,index}) => {
 
     },[stateIndex,index]);
 
+    // State to manage edit mode
+    const [isEditing, setIsEditing] = useState(false);
+    const [editedText, setEditedText] = useState(item);
+
+    // Function to toggle edit mode
+    const handleEditToggle = () => {
+        setIsEditing(!isEditing);
+    };
+
+    // Function to handle text change
+    const handleTextChange = (e) => {
+        setEditedText(e.target.value);
+    };
+
     return (
         <ListItemButton onClick={handleClick} className={active ? 'sc-main-list-item active' : 'sc-main-list-item '}>
             <ListItemIcon className='sc-main-list-item-icon'>
                 <ChatBubbleOutlineOutlinedIcon className='sc-main-list-icon' />
             </ListItemIcon>
-            <ListItemText className='sc-main-list-item-text' primary={item} />
-            {active ?
-                <ListItemIcon className='sc-main-list-item-icon'>
+
+            {/* Conditionally render input field or text based on editing mode */}
+            {isEditing ? (
+                <input 
+                    value={editedText} 
+                    onChange={handleTextChange}
+                    onBlur={handleEditToggle} // optional: exit edit mode when input is blurred
+                    className='sc-main-list-item-input' 
+                />
+            ) : (
+                <ListItemText className='sc-main-list-item-text' primary={editedText} />
+            )}
+
+            {active && (
+                <ListItemIcon className='sc-main-list-item-icon' onClick={handleEditToggle}>
                     <DriveFileRenameOutlineOutlinedIcon className='sc-main-list-icon' />
                 </ListItemIcon>
-                :
-                null
-            }
-            {active ?
+            )}
+            {active && (
                 <ListItemIcon className='sc-main-list-item-icon'>
                     <DeleteOutlinedIcon className='sc-main-list-icon' />
                 </ListItemIcon>
-                :
-                null
-            }
+            )}
         </ListItemButton>
     )
 }
 
-export default ChatListItem
+export default ChatListItem;
