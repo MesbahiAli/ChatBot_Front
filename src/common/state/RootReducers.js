@@ -25,7 +25,7 @@ const rootReducer = combineReducers({
   Pdf:pdfReducer,
   home:homeReducer,
   FilCategory:SendFileReducer,
-  FilCategory:fileReducer,
+  // FilCategory:fileReducer,
   Category:categoryReducer,
   listItem:conversationReducer,
   MessageList:messageReducer,

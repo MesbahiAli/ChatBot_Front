@@ -4,27 +4,29 @@ import { Button, Fade, Modal, Box, styled } from '@mui/material';
 import { useState } from 'react';
 import StyledFormModal from './Form';
 import { useEffect } from 'react';
-const Backdrop = forwardRef((props, ref) => {
-    const { open, ...other } = props;
-    return (
-        <Fade in={open}>
-            <div ref={ref} {...other} />
-        </Fade>
-    );
-});
+import { useDispatch, useSelector } from 'react-redux';
+import { modal } from '../state/CategoryAction';
+// const Backdrop = forwardRef((props, ref) => {
+//     const { open, ...other } = props;
+//     return (
+//         <Fade in={open}>
+//             <div ref={ref} {...other} />
+//         </Fade>
+//     );
+// });
 
 
-const StyledBackdrop = styled((props) => (
-    <Fade {...props}>
-        <div {...props} />
-    </Fade>
-))`
-    z-index: -1;
-    position: fixed;
-    inset: 0;
-    background-color: rgb(0 0 0 / 0.5);
-    -webkit-tap-highlight-color: transparent;
-  `;
+// const StyledBackdrop = styled((props) => (
+//     <Fade {...props}>
+//         <div {...props} />
+//     </Fade>
+// ))`
+//     z-index: -1;
+//     position: fixed;
+//     inset: 0;
+//     background-color: rgb(0 0 0 / 0.5);
+//     -webkit-tap-highlight-color: transparent;
+//   `;
 
 const StyledModal = styled(Modal)`
     position: fixed;
@@ -35,22 +37,20 @@ const StyledModal = styled(Modal)`
     justify-content: center;
   `;
 const ModalComp = ({ open, setOpen }) => {
+    const dispatch = useDispatch()
+    const isModal = useSelector(state => state.FilCategory?.modal);
 
-
-
-    const handleClose = () => setOpen(false);
+    const handleClose = () => dispatch(modal(false));
     
 
     
     return (
         <StyledModal
-            open={open}
+            open={isModal}
             onClose={handleClose}
             closeAfterTransition
-            slots={{ backdrop: StyledBackdrop }}
+            // slots={{ backdrop: StyledBackdrop }}
             id='model'
-            style={{display:open?"flex" : "none"}}
-            onBlur={(e)=>setOpen(false)}
         >
             <StyledFormModal
                 handleClose={handleClose}

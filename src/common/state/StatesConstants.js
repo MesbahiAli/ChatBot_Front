@@ -76,3 +76,4 @@ export const FETCH_MESSAGES_FAILURE = 'FETCH_MESSAGES_FAILURE';
 // StatesConstants.js
 
 export const LOAD_CONVERSATION = 'LOAD_CONVERSATION';
+export const MODAL = 'MODAL';

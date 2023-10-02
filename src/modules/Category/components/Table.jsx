@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getCategoryRequest } from '../../CategoryForm/StateTable/CategoryAction';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import ModalComp from '../../CategoryForm/components/Modal';
+import { modal } from '../../CategoryForm/state/CategoryAction';
 const newBtnStyle = {
     backgroundColor: "#343e8b",
     color: "white",
@@ -18,10 +19,10 @@ const newBtnStyle = {
 const Table = () => {
     const dispatch = useDispatch();
     const categoryData = useSelector(state => state.Category?.data);
+    const isModal = useSelector(state => state.FilCategory?.modal);
     const [search, setSearch] = useState("");
     const [filteredData, setFilteredData] = useState([]);
     const [open, setOpen] = useState(false);
-    const handleClose = () => setOpen(false);
     const history = useHistory();
     // Define handleChange function
     const handleChange = (e) => {
@@ -76,7 +77,7 @@ console.log(open)
                     }}
                 />
                 <div className="sg-buttons">
-                    <Button className='sg-buttons-btn' onClick={() => setOpen(true)} variant="contained" startIcon={<AddIcon />}>
+                    <Button className='sg-buttons-btn' onClick={() => dispatch(modal(true))} variant="contained" startIcon={<AddIcon />}>
                         New
                     </Button>
                     <Button className='sg-buttons-btn' onClick={() => dispatch(getCategoryRequest())} variant="contained" startIcon={<RefreshIcon />}>
