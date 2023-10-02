@@ -151,12 +151,23 @@ const ChatArea = () => {
                         onChange={handleMessageChange}
                         value={message}
                     />
-                    <IconButton
-                        onClick={handleSendClick}
-                        className={isSendFileSuccess ? 'cbc-form-icon-button' : 'cbc-form-icon-button inactive'}
-                    >
-                        <SendIcon />
-                    </IconButton>
+                        <IconButton
+                            onClick={handleSendClick}
+                            className={isSendFileSuccess ? 'cbc-form-icon-button' : 'cbc-form-icon-button inactive'}
+                        >
+                              {isLoading ?
+                        <div className="typingDots">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        :   
+                            <SendIcon />
+                        }
+                        </IconButton>
+                
+
+
                 </div>
             </div>
             <Filebar />
