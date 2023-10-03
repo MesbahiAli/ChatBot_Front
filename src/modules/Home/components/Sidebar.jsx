@@ -14,6 +14,7 @@ import FilebarTab from '../../Chatbot-SlideBar/components/FilebarTab';
 import { sidebarTrigger } from '../state/ActionsHome';
 import { selectSidebarOpen } from '../state/ReducerHome';
 import { reset } from './StateMessage/MessageAction';
+import { resetChat } from '../../Chatbot-RightBar/satate/ChatActions';
 const Sidebar = () => {
     const matches = useMediaQuery("(max-width:820px)");
     const dispatch = useDispatch();
@@ -37,6 +38,13 @@ const Sidebar = () => {
     }, [matches])
 
 
+    const handleReset = () => {
+        dispatch(reset());
+        dispatch(resetChat());
+        
+    };
+
+
     const conversations = useSelector((state) => state.listItem.conversations.conversations);
     const [value, setValue] = useState("1")
     const handleChange = (e, newVal) => {
@@ -46,7 +54,7 @@ const Sidebar = () => {
     return (
         <div className={isSidebarOpen ? "sidebar-container " : "sidebar-container close"}>
             <div className="sc-headers">
-                <Button onClick={()=>dispatch(reset())} variant="outlined" className='sc-headers-button' startIcon={<AddRoundedIcon className='sc-headers-icon' />}>New Chat</Button>
+                <Button onClick={handleReset} variant="outlined" className='sc-headers-button' startIcon={<AddRoundedIcon className='sc-headers-icon' />}>New Chat</Button>
                 <IconButton className='sc-headers-iconButton' onClick={sidebarTriggerer}>
                     <WindowRoundedIcon />
                 </IconButton>

@@ -244,7 +244,7 @@ justify-content: center;
                 </List>
 
                 <Button style={isSelected ? sendServerButton : disabledButton} onClick={handleSendSelectedFilesFromServer} variant='outlined' className='fbc-modal-button'>
-                    Send selected files
+                    Confirme
                 </Button>
 
             </div>

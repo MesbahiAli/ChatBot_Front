@@ -1,6 +1,7 @@
 import { call, put } from 'redux-saga/effects';
 import { getCategoryApi } from '../../../common/services/GetCategoryService';
-import { getCategoryFailure, getCategoryRequest, getCategorySuccess } from '../StateTable/CategoryAction';
+import { getCategoryFailure, getCategorySuccess } from '../StateTable/CategoryAction';
+import { fetchCategoriesRequest } from '../../Home/components/StateFetchCategoryForm/ActionFetchCategoryForm';
 
 function* getCategorySaga() {
   try {

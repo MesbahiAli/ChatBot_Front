@@ -15,6 +15,7 @@ import { IconButton } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ModalEdit from './ModalEdit';
+import { fetchCategoriesRequest } from '../../Home/components/StateFetchCategoryForm/ActionFetchCategoryForm';
 
 
 const Table = () => {
@@ -32,6 +33,8 @@ const Table = () => {
 
     useEffect(() => {
         dispatch(getCategoryRequest());
+        dispatch(fetchCategoriesRequest())
+
     }, []);
 
     useEffect(() => {
@@ -50,11 +53,8 @@ const Table = () => {
         id: index,
         ...item
     }));
-
+    
     const columns = [
-        { field: 'Status', headerName: 'Status', width: 130 },
-        { field: 'client', headerName: 'Client', width: 130 },
-        { field: 'contract_type', headerName: 'Contract Type', width: 160 },
         {
             field: 'filename',
             headerName: 'File Name',
@@ -62,7 +62,7 @@ const Table = () => {
             renderCell: (params) => {
                 const basePath = "https://google.com/";
                 const pdfUrl = `${basePath}${params.value}`;
-
+    
                 return (
                     <a href={pdfUrl} target="_blank" rel="noopener noreferrer" className="filename-link">
                         {params.value}
@@ -71,6 +71,9 @@ const Table = () => {
             }
         }
         ,
+        { field: 'Status', headerName: 'Status', width: 130 },
+        { field: 'client', headerName: 'Client', width: 130 },
+        { field: 'contract_type', headerName: 'Contract Type', width: 160 },
         { field: 'name_of_tender', headerName: 'Name of Tender', width: 150 },
         { field: 'submission_date', headerName: 'Submission Date', width: 200 },
         {
