@@ -4,6 +4,11 @@ import logo from "../../../assets/images/logo .png";
 import { Button } from '@mui/material';
 import LogoutIcon from '@mui/icons-material/Logout';
 import ChatOutlinedIcon from '@mui/icons-material/ChatOutlined';
+import { useLocation } from "react-router-dom";
+import { useEffect } from 'react';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { selectSidebarOpen } from '../state/ReducerHome';
 import { Link } from 'react-router-dom';
 import JwtUtils from '../../../routing/JwtUtils'; 
 
@@ -12,10 +17,13 @@ import JwtUtils from '../../../routing/JwtUtils';
 };
 
 const Navbar = () => {
+  const location = useLocation();
+  const isSidebarOpen = useSelector(selectSidebarOpen);
+
 
   return (
     <div className="navbar-container">
-      <div className="nc-logo-container">
+      <div className={location.pathname === "/Chatbot" ? (isSidebarOpen ? "nc-logo-container open" : "nc-logo-container ml-80") : "nc-logo-container"}>
         <img src={logo} alt="" className='nc-lc-logo' />
       </div>
       <div className="nc-buttons-container">
