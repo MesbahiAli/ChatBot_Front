@@ -1,8 +1,8 @@
 .chatbot-container{
     height: calc(100vh -60px);
     width: 100vw;
-    overflow-y: scroll;
-    background: #000;
+    overflow-y: hidden;
+    background: #f7f7f8;
     margin: 0;
     padding: 0;
     display: flex;
@@ -12,8 +12,8 @@
 .cbc-main
 {
     margin-top: 20px;
-    min-height: calc(100vh - 80px);
-    height: max-content;
+    height: calc(100vh - 80px);
+    /* height: max-content; */
     flex: 1;
     /* width: 70vw; */
     background: #f7f7f8;
@@ -21,13 +21,14 @@
     align-items: center;
     flex-direction: column;
     padding: 80px 5vw 40px 17vw ;
+    overflow-y: scroll;
     transition: all .3s ease;
 }
 .cbc-main.open
 {
     margin-top: 20px;
-    min-height: calc(100vh - 80px);
-    height: max-content;
+    height: calc(100vh - 80px);
+    /* height: max-content; */
     flex: 1;
     /* width: 70vw; */
     background: #f7f7f8;
@@ -35,6 +36,7 @@
     align-items: center;
     flex-direction: column;
     padding: 80px 5vw 40px 5vw ;
+    overflow-y: scroll;
 
 }
 

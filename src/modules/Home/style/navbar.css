@@ -11,6 +11,10 @@
     /* background: #bccded; */
     box-shadow: var(--box-shadow-bottom);
     background: #202123;
+    transition: top .3s ease;
+}
+.navbar-container.hidden{
+top: -120px;
 }
 
 .nc-logo-container{
