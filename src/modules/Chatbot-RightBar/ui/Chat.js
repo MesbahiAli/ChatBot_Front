@@ -6,17 +6,21 @@ import Feed from "../../Chatbot-Feed/components/Feed";
 import ChatRight from './../components/Chat_Right';
 import Sidebar from "../../Chatbot-SlideBar/components/SideBar"
 import Auth from "../../Authentification/ui/Auth";
-
+import GBTbar from "../../Home/components/Sidebar";
+import Filebar from "../../Chatbot-SlideBar/components/Filebar";
+import ChatArea from "../../Home/components/ChatArea";
 export default function Chat() {
-  
+
   return (
-    <>
-    <Stack direction="row" justifyContent="space-between" alignItems="stretch" height="100vh">
-          <Sidebar/> 
-          {/* <Feed/>  */}
-          {/* <Auth/> */}
-          <ChatRight />
-    </Stack>
-  </>      
+    <div style={{display:"flex",height:"100vh",width:"100vw",justifyContent:"space-between"}}>
+      {/* <Feed/>  */}
+      {/* <Auth/> */}
+     {/* <GBTbar /> */}
+      {/* <ChatRight /> */}
+
+      {/* <Sidebar /> */}
+      <ChatArea />
+      {/* <Filebar/> */}
+    </div>
   );
 }

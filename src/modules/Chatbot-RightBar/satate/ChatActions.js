@@ -15,3 +15,8 @@
     type: ActionsTypes.SEND_MESSAGE_FAILURE,
     error
   });
+
+export const loadConversation = (conversation) => ({
+  type: ActionsTypes.LOAD_CONVERSATION,
+  payload: conversation
+});

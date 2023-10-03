@@ -10,6 +10,11 @@ import pdfReducer from "../../modules/Chatbot-SlideBar/components/FileView.js/St
 import { SendFileReducer } from "../../modules/CategoryForm/state/CategoryReducer";
 import { categoryReducer } from "../../modules/CategoryForm/StateTable/CategoryReducer";
 
+import homeReducer from "../../modules/Home/state/ReducerHome";
+import conversationReducer from "../../modules/Home/components/StateListe/ListeReducers";
+import messageReducer from "../../modules/Home/components/StateMessage/MessageReducer";
+import deleteReducer from "../../modules/Home/components/StateDeleteList/DeleteReducer";
+import editReducer from "../../modules/Home/components/StateEditList/EditeReducer";
 
 const rootReducer = combineReducers({
   Auth: AuthReducer,
@@ -20,10 +25,15 @@ const rootReducer = combineReducers({
   Togle:toggleReducer,
   Summarize:summarizeReducer,
   Pdf:pdfReducer,
+  home:homeReducer,
   FilCategory:SendFileReducer,
-  FilCategory:fileReducer,
+  // FilCategory:fileReducer,
+  Category:categoryReducer,
+  listItem:conversationReducer,
+  MessageList:messageReducer,
+  editConversation: editReducer,
+  deleteConversation: deleteReducer,
   
-
   
 });
 

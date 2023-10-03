@@ -1,0 +1,46 @@
+.navbar-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+    /* border-bottom: 1px solid var(--text-black-color); */
+    padding: 10px 20px;
+    /* background: #bccded; */
+    box-shadow: var(--box-shadow-bottom);
+    background: #202123;
+}
+
+.nc-logo-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.nc-lc-logo{
+    height: 80px ;
+    transform: scale(2);
+}
+
+.nc-buttons-container{
+    display: flex;
+    align-items: center;
+    gap:20px;
+}
+
+.MuiButton-root.nc-bc-button{
+    background: #343e8b;
+    color: white;
+    width: 150px;
+}
+
+
+@media screen and (max-width:540px) {
+    .nc-lc-logo{
+        transform: scale(1.4);
+    }
+    .MuiButton-root.nc-bc-button{
+        width: 120px;
+        padding: 5px;
+    }
+}

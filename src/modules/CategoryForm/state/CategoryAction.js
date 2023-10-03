@@ -1,4 +1,5 @@
 import {
+  MODAL,
   SEND_FILE_AND_DATA_FAILURE,
   SEND_FILE_AND_DATA_REQUEST,
   SEND_FILE_AND_DATA_SUCCESS,
@@ -24,3 +25,11 @@ export const sendFileAndDataFailure = (error) => {
     payload: error,
   };
 };
+
+export const modal = (bool) => {
+  return {
+    type: MODAL,
+    payload:bool
+  };
+};
+

@@ -1,13 +1,13 @@
 import { instance } from "../Axios";
 
-export const TogleApi = () => {
+export const setLanguageApi = (language) => {
   return instance
-    .get("/toggle")
+    .get(`/set_language/${language}`)
     .then((response) => {
       return response.data;
     })
     .catch((error) => {
-      // Handle the error here if needed
+console.log(error+"togle")
       throw error;
     });
 };

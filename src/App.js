@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import './App.css';
-import Layout from "./common/components/Layout";
+import Layout from "./common/components/dashboard/Layout";
 import ProtectedRoute from './routing/ProtectedRoute';
 import _ from "lodash";
 import Spinner from "./common/components/SpinnerCustomized";
@@ -10,16 +10,17 @@ import Chat from './modules/Chatbot-RightBar/ui/Chat';
 import Dashboard from "./common/components/dashboard/ui/Dashboard";
 import Login from './modules/Authentification/components/Login';
 import NotFound from "./routing/NotFound";
+import Home from './modules/Home/components/Home';
 import CategoryUi from './modules/CategoryForm/ui/Category';
-// import CategoryComponent from './modules/ListCategory/components/Categorie';
+import ChatArea from './modules/Home/components/ChatArea';
+
 // import CategoryComponent from './modules/Category/components/Categorie';
 // import Categorie from '../modules/Category/ui/Category.jsx';
 
 const protectedRoutes = {
-  chatbot: { path: "/chatbot", requiredRoles: [], component: Chat },
-  Category: { path: "/category", requiredRoles: [], component: CategoryUi },
-  // CategoryComponent: { path: "/CategoryComponent", requiredRoles: [], component: CategoryComponent },
-
+  chatbot: { path: "/chatbot", requiredRoles: [], component: ChatArea },
+  home: { path: "/home", requiredRoles: [], component: Home },
+  Category: { path: "/category", requiredRoles: [], component: CategoryUi},
 };
 
 
@@ -28,7 +29,6 @@ function App() {
   const state = useSelector(state => state);
 
   const isLoading = useSelector(state => state.Summarize.loading);
-  // const uploading = useSelector(state => state);
 
   let loadingProps;
   let reducerHasLoading = _.pickBy(state, (value, key) => {
@@ -52,7 +52,6 @@ function App() {
       </Switch>
     </Layout>
   );
-
   //After login
   let content = (
     <Switch>

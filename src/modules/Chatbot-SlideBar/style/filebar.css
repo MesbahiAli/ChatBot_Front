@@ -1,0 +1,231 @@
+.filebar-container {
+    width: 15vw;
+    background: #202123;
+    height    : 100vh;
+    position  : fixed;
+    z-index: 50;
+    right     : 0;
+    top       : 0;
+    overflow: hidden;
+    transition: all .2s ease-in;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.filebar-container.close{
+    position: fixed;
+    top: 0;
+    left: -16vw;
+    background: transparent;
+}
+
+.filebar-container.close .MuiButtonBase-root.fbc-headers-iconButton {
+    background: #ffffff;
+    color: #202123;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.filebar-container.close .MuiButtonBase-root.fbc-headers-iconButton {
+    border: 1px solid grey;
+    border-radius: 4px;
+    color: white;
+    transition: all .5s ease-in;
+}
+.filebar-container.close .MuiButtonBase-root.fbc-headers-iconButton.abs {
+    box-shadow: var(--box-shadow);
+    background: #ffffff;
+    color: #202123;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 10px;
+    right: 20px;
+}
+
+.fbc-top {
+    padding: 10px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap:20px;
+    flex:1;
+}
+
+.MuiButtonBase-root.fbc-modal-button {
+    font-size: 1.1rem;
+    color: white;
+    border-color: grey;
+    width: 80%;
+
+}
+
+.fbc-top-file-list-container {
+    flex: 1;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    border: 1px solid grey;
+    background-color: rgb(32, 33, 35);
+    border-radius: 5px;
+    padding: 7.5px;
+    width: 80%;
+    white-space: nowrap;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+}
+.fbc-top-file-list-container::-webkit-scrollbar {
+    width: 10px;
+    /* Width of the scrollbar */
+}
+
+.fbc-top-file-list-container::-webkit-scrollbar-thumb {
+    background: grey;
+    border-radius: 6px;
+}
+
+.css-h4y409-MuiList-root.fbc-top-file-list-container {
+    flex: 1;
+    border: 1px solid grey;
+    border-radius: 5px;
+    padding: 7.5px;
+    background-color: rgb(32, 33, 35);
+    white-space: nowrap;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+}
+
+.fbc-bottom {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+/* setting panel style */
+.uploaded-item-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    margin-bottom: 10px;
+    background: #343541;
+    border-radius: 8px;
+    /* Radial gradient from black to gray */
+    box-shadow:   var(--box-shadow);
+    /* Dark drop shadow */
+    white-space: nowrap;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    color: #ffffff;
+}
+
+.settings-panel {
+    position: fixed;
+    width: fit-content;
+    display: none;
+    top: 35px;
+    /* Adjust as needed */
+    right: 150px;
+    /* Adjust as needed */
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    z-index: 500000;
+    border-radius: 5px;
+}
+
+.settings-panel.open {
+    display: flex;
+    flex-direction: column;
+}
+
+.settings-panel.close {
+    display: none;
+}
+
+.setting-items:hover {
+    cursor: pointer;
+    background: lightgray;
+    border-radius: 3px;
+}
+
+/* setting panel style */
+
+
+@media screen and (max-width:1320px) {
+    .filebar-container {
+        width: 20vw;
+    }
+
+    .filebar-container.close {
+        left: -25vw;
+    }
+}
+@media screen and (max-width:1024px) {
+    .filebar-container {
+        width: 20vw;
+    }
+    .MuiButtonBase-root.fbc-modal-button {
+        font-size: .8rem;
+
+    
+    }
+    .filebar-container.close {
+        left: -25vw;
+    }
+}
+@media screen and (max-width:860px) {
+    .filebar-container {
+        width: 23vw;
+    }
+
+    .filebar-container.close {
+        left: -30vw;
+    }
+}
+@media screen and (max-width:820px) {
+    .filebar-container {
+        width: 30vw;
+    }
+
+    .filebar-container.close {
+        left: -35vw;
+    }
+}
+
+
+@media screen and (max-width:680px) {
+    .filebar-container {
+        width: 40vw;
+    }
+    .MuiButtonBase-root.fbc-modal-button {
+        font-size: .6rem;
+
+    
+    }
+    .filebar-container.close {
+        left: -45vw;
+    }
+}
+
+@media screen and (max-width:420px) {
+    .filebar-container {
+        width: 60vw;
+    }
+
+    .filebar-container.close {
+        left: -65vw;
+    }
+}

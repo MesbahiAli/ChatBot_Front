@@ -36,19 +36,25 @@
 .chat-container {
     position: relative;
     bottom: 0;
-    max-width: 50%;
-    width:50%;
+    /* max-width: 50%; */
+    /* width:50%; */
+    display: flex;
+    flex: 1;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
     flex-direction: column;
     
     /* MOUAD */
     
-    background-color: #121212; /* ------ HERE ----- */
+    background-color: var(--bg-black-color); /* ------ HERE ----- */
     /*border: 1px solid #3a3a3a;*/
 
     /*border-radius: 10px;*/
 
     /* END */
+}
+
+.bot-chat-input .MuiTextField-root{
+    background: var(--grid-bg-color);
 }
 
 .chat-container1 {
@@ -115,8 +121,8 @@
     opacity: 1;
 }
 
-input[id^="mui-"]{
-    background-color: #212229; 
+/* input[id^="mui-"]{
+    background-color: var(--secondary-black-color); 
     border-radius: 5px; 
     color: #eee;
     margin: 10px;
@@ -136,19 +142,20 @@ input[id^="mui-"]{
 .bot {
     justify-content: flex-start;
     align-items: left;
-    background-color: #212229; /* --------- HERE ------------ */
-    &:hover { background-color: #000; } /* OR 272830 */ /* --------- HERE ------------ */
+    background-color: var(--secondary-black-color); /* --------- HERE ------------ */
+    /* &:hover { background-color: #000; }  */
 }
+.bot:hover { background-color: #000; }
 
 .user {
     justify-content: flex-end;
     align-items: end;
 
     background-color: #6f7588; /* --------- HERE ------------ */
-    &:hover { background-color: #636c8b; } /* --------- HERE ------------ */
+    
     flex-direction: row-reverse;
 }
-
+.user:hover { background-color: #636c8b; }
 .message-bubble {
     padding: 10px 15px;
     margin: 0 10px;
@@ -192,7 +199,7 @@ input[id^="mui-"]{
 
 .user .timestamp { order: 1; }
 .timestamp.timestamp-bot { align-self: flex-end; color: #aaa;}
-.timestamp.timestamp-user { align-self: flex-end; color: #212229; }
+.timestamp.timestamp-user { align-self: flex-end; color: var(--secondary-black-color); }
 .user img.message-logo { order: 3; }
 
 .bot .timestamp { order: 3; }
@@ -202,21 +209,29 @@ img.message-logo {
     border-radius: 50%;
     width: 44px;
     margin: 0 10px;
-    border: 3px solid #343e8b;
+    border: 3px solid var(--lighter-bg-color);
 }
 
 form {
-    border-top: 1px solid #212229; /* --------- HERE ------------ */
-    background-color: #121212; /* --------- HERE ------------ */
+    border-top: 1px solid var(--secondary-black-color); /* --------- HERE ------------ */
+    background-color: var(--bg-black-color); /* --------- HERE ------------ */
     padding: 0;
     margin: 0;
 }
 
 form #textFieldd {
-    background-color: #212229; /* --------- HERE ------------ */
+    background-color: var(--grid-bg-color);
+    /* --------- HERE ------------ */
     border-radius: 3px; /* --------- HERE ------------ */
     color: #eee;
     padding: 0;
+}
+textarea #textFieldd::placeholder{
+    color: black;
+}
+.chat-bot-input-container{
+    background-color: #1e4186;
+
 }
 
 textarea.MuiInputBase-input.MuiOutlinedInput-input.MuiInputBase-inputMultiline.css-1sqnrkk-MuiInputBase-input-MuiOutlinedInput-input
@@ -283,7 +298,7 @@ form #submitButton:hover {
   }  
 
 form > div > div.MuiFormControl-root.MuiFormControl-fullWidth.MuiTextField-root.css-wb57ya-MuiFormControl-root-MuiTextField-root > div{
-    background-color: #212229;
+    background-color: var(--grid-bg-color);
 }
 
 .langImg{
