@@ -184,6 +184,7 @@ useEffect(() => {
                 </div>
                 {/* <Filebar /> */}
             </div>
+            </div>
         </>
     );
 }

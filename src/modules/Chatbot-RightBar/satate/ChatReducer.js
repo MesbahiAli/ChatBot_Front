@@ -46,6 +46,10 @@ const chatReducer = (state = initialState, action) => {
         ...state,
         messages: action.payload
       };
+      case "RESET":
+      return {
+        messages: []
+      };
 
     default:
       return state;

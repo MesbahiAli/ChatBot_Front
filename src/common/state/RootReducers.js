@@ -15,6 +15,7 @@ import conversationReducer from "../../modules/Home/components/StateListe/ListeR
 import messageReducer from "../../modules/Home/components/StateMessage/MessageReducer";
 import deleteReducer from "../../modules/Home/components/StateDeleteList/DeleteReducer";
 import editReducer from "../../modules/Home/components/StateEditList/EditeReducer";
+import categoriesReducer from "../../modules/Home/components/StateFetchCategoryForm/ReducerFetchCategoryForm";
 
 const rootReducer = combineReducers({
   Auth: AuthReducer,
@@ -33,7 +34,7 @@ const rootReducer = combineReducers({
   MessageList:messageReducer,
   editConversation: editReducer,
   deleteConversation: deleteReducer,
-  
+  FormCategory:categoriesReducer,
   
 });
 

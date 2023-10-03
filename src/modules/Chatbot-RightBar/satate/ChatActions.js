@@ -20,3 +20,8 @@ export const loadConversation = (conversation) => ({
   type: ActionsTypes.LOAD_CONVERSATION,
   payload: conversation
 });
+
+
+export const resetChat= ()=>({
+  type: "RESET",
+});
