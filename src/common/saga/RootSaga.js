@@ -11,6 +11,8 @@ import { watchSendFileAndData } from "../../modules/CategoryForm/saga/CategoryWa
 import { watchGetCategory } from "../../modules/CategoryForm/SagaTable/CategoryWatcher";
 import { conversationSaga } from "../../modules/Home/components/SagaListe/WatcherList";
 import { messageSaga } from "../../modules/Home/components/SagaMessage/Messagewatcher";
+import { watchDeleteConversations } from "../../modules/Home/components/SagaListDelete/DeleteWatcher";
+import { watchEditConversations } from "../../modules/Home/components/SagaEditList/EditeWatcher";
 
 export default function* rootSaga() {
   yield all([
@@ -26,6 +28,10 @@ export default function* rootSaga() {
     watchGetCategory(),
     conversationSaga(),
     messageSaga(),
+    watchDeleteConversations(),
+    watchEditConversations(),
+    
+
     
   ]);
 }

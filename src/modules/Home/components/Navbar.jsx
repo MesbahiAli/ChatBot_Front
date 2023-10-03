@@ -9,7 +9,12 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { selectSidebarOpen } from '../state/ReducerHome';
+import { Link } from 'react-router-dom';
+import JwtUtils from '../../../routing/JwtUtils'; 
 
+  const handleLogout = () => {
+    JwtUtils.logOut();
+};
 
 const Navbar = () => {
   const location = useLocation();
@@ -22,13 +27,13 @@ const Navbar = () => {
         <img src={logo} alt="" className='nc-lc-logo' />
       </div>
       <div className="nc-buttons-container">
-        <Button variant="contained" className='nc-bc-button' startIcon={<ChatOutlinedIcon />}>
+      <Link to="/Chatbot">
+          <Button variant="contained" className='nc-bc-button'  startIcon={<ChatOutlinedIcon />}>
           Chatbot
         </Button>
-        <Button variant="contained" className='nc-bc-button' startIcon={<LogoutIcon />}>
-          Logout
-        </Button>
-      </div>
+        </Link>
+        {JwtUtils.isActif() ?  <Button onClick={handleLogout} variant="contained" className='nc-bc-button'  startIcon={<LogoutIcon />}> Logout</Button> : null}
+                      </div>
     </div>
   )
 }

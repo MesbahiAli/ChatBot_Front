@@ -13,6 +13,7 @@ import { TabContext, TabList, TabPanel } from '@mui/lab';
 import FilebarTab from '../../Chatbot-SlideBar/components/FilebarTab';
 import { sidebarTrigger } from '../state/ActionsHome';
 import { selectSidebarOpen } from '../state/ReducerHome';
+import { reset } from './StateMessage/MessageAction';
 const Sidebar = () => {
     const matches = useMediaQuery("(max-width:820px)");
     const dispatch = useDispatch();
@@ -45,7 +46,7 @@ const Sidebar = () => {
     return (
         <div className={isSidebarOpen ? "sidebar-container " : "sidebar-container close"}>
             <div className="sc-headers">
-                <Button variant="outlined" className='sc-headers-button' startIcon={<AddRoundedIcon className='sc-headers-icon' />}>New Chat</Button>
+                <Button onClick={()=>dispatch(reset())} variant="outlined" className='sc-headers-button' startIcon={<AddRoundedIcon className='sc-headers-icon' />}>New Chat</Button>
                 <IconButton className='sc-headers-iconButton' onClick={sidebarTriggerer}>
                     <WindowRoundedIcon />
                 </IconButton>
@@ -88,7 +89,8 @@ const Sidebar = () => {
                         <ListItem className='sc-footer-list-item-img'>
                             {username.substring(0, 2)}
                         </ListItem>
-                        {JwtUtils.isActif() ? (<ListItemText primary={username} />) : null}
+
+                        {JwtUtils.isActif() ? (<ListItemText sx={{color:"white"}} primary={username} />):null}
                     </ListItemButton>
                 </List>
             </div>

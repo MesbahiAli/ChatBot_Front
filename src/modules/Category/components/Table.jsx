@@ -11,11 +11,11 @@ import { getCategoryRequest } from '../../CategoryForm/StateTable/CategoryAction
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import ModalComp from '../../CategoryForm/components/Modal';
 import { modal } from '../../CategoryForm/state/CategoryAction';
-const newBtnStyle = {
-    backgroundColor: "#343e8b",
-    color: "white",
-    width: "150px",
-};
+import { IconButton } from '@mui/material';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
+
+
 const Table = () => {
     const dispatch = useDispatch();
     const categoryData = useSelector(state => state.Category?.data);
@@ -24,7 +24,6 @@ const Table = () => {
     const [filteredData, setFilteredData] = useState([]);
     const [open, setOpen] = useState(false);
     const history = useHistory();
-    // Define handleChange function
     const handleChange = (e) => {
         setSearch(e.target.value);
     };
@@ -54,11 +53,62 @@ const Table = () => {
         { field: 'Status', headerName: 'Status', width: 130 },
         { field: 'client', headerName: 'Client', width: 130 },
         { field: 'contract_type', headerName: 'Contract Type', width: 160 },
-        { field: 'filename', headerName: 'File Name', width: 200 },
+        {
+            field: 'filename',
+            headerName: 'File Name',
+            width: 200,
+            renderCell: (params) => {
+                const basePath = "https://google.com/";
+                const pdfUrl = `${basePath}${params.value}`;
+
+                return (
+                    <a href={pdfUrl} target="_blank" rel="noopener noreferrer" className="filename-link">
+                        {params.value}
+                    </a>
+                );
+            }
+        }
+        ,
         { field: 'name_of_tender', headerName: 'Name of Tender', width: 150 },
-        { field: 'submission_date', headerName: 'Submission Date', width: 200 }
+        { field: 'submission_date', headerName: 'Submission Date', width: 200 },
+        {
+            field: 'actions',
+            headerName: 'Actions',
+            width: 150,
+            renderCell: (params) => (
+                <>
+                    <IconButton
+                        onClick={() => handleEdit(params.row.id)}
+                        color="primary"
+                        aria-label="edit button"
+                        className="edit-button"
+                    >
+                        <EditIcon className="edit-icon" />
+                    </IconButton>
+                    <IconButton
+                        onClick={() => handleDelete(params.row.id)}
+                        color="primary"
+                        aria-label="delete button"
+                        className="delete-button"
+                    >
+                        <DeleteIcon className="delete-icon" />
+                    </IconButton>
+
+                </>
+            ),
+        },
+
     ];
-console.log(open)
+
+
+    const handleEdit = (id) => {
+        console.log('Edit:', id);
+    };
+
+    const handleDelete = (id) => {
+        console.log('Delete:', id);
+    }
+
     return (
         <div className="fd-table-container">
             <div className="search-Grid">
@@ -83,6 +133,7 @@ console.log(open)
                     <Button className='sg-buttons-btn' onClick={() => dispatch(getCategoryRequest())} variant="contained" startIcon={<RefreshIcon />}>
                         Refresh
                     </Button>
+                  
                     <Button className='sg-buttons-btn' variant="contained" startIcon={<FileDownloadIcon />}>
                         Export
                     </Button>
@@ -103,11 +154,11 @@ console.log(open)
                         }}
                         pageSizeOptions={[5]}
                         checkboxSelection
-                        disableRowSelectionOnClick
+                        disableRowSelectionOnClick={true}
                     />
                 </Box>
             </div>
-            <ModalComp open={open} setOpen={setOpen}/>
+            <ModalComp open={open} setOpen={setOpen} />
         </div>
     );
 }

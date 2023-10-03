@@ -167,3 +167,35 @@
         flex: 1;
     }
 }
+
+
+/* delete button */
+.delete-icon {
+    color: #f44336;  
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+
+.MuiIconButton-root:hover {
+    background-color: transparent;
+}
+
+
+/* Edit */
+.edit-icon {
+    color: rgb(52, 62, 139);  
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+
+
+/* Style for the filename link to match the table text */
+.filename-link {
+    color: inherit; 
+    text-decoration: none;
+    cursor: pointer;      
+}
+
+.filename-link:hover {
+    text-decoration: underline;
+}
