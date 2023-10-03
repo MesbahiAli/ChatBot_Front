@@ -60,4 +60,26 @@ margin-left: 80px;
         width: 120px;
         padding: 5px;
     }
+    .nc-logo-container.ml-80{
+        margin-left: 30px;
+    }
+}
+@media screen and (max-width:460px) {
+    .nc-lc-logo{
+        transform: scale(1.4);
+    }
+    .MuiButton-root.nc-bc-button{
+        width: 120px;
+        padding: 5px;
+    }
+    .nc-logo-container.ml-80{
+        display: none;
+    }
+    .nc-buttons-container{
+        width: 100%;
+        margin: 0 40px;
+        justify-content: space-around;
+        gap: 5px;
+        
+    }
 }

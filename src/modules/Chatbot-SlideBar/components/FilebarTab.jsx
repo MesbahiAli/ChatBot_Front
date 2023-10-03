@@ -204,10 +204,7 @@ justify-content: center;
         const footer = document.querySelector(".fbc-bottom");
         // const navbar = document.querySelector(".navbar-container");
         // navbar.classList.toggle("no-sidebar")
-        setTimeout(() => {
-            main.classList.toggle("none")
-            footer.classList.toggle("none")
-        }, 100)
+
 
     }
     useEffect(() => {
