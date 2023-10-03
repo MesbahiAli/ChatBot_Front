@@ -40,7 +40,6 @@
     border-color: var(--button-category-color);
     color: var(--button-category-color);
     box-shadow: var(--box-shadow);
-    
 }
 .css-1ouwf98-MuiButtonBase-root-MuiButton-root.fd-btn:hover{
     border-color: var(--button-category-color);
@@ -113,6 +112,7 @@
 }
 .fdmf-top{
     display: flex;
+    flex: 1;
     /* align-items: center; */
     /* justify-content: space-around; */
     gap: 20px;
@@ -134,9 +134,19 @@
 }
 
 .fdmf-buttons{
+    
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
     gap: 20px;
+    flex: 1;
+}
+.fdmf-buttons.edit{
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.fdmf-buttons.edit .fd-btn{
+    flex: 1;
 }
 
 .fd-tc-box{
