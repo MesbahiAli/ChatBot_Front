@@ -22,6 +22,7 @@ import StyledFormModal from '../../CategoryForm/components/Form'
 import LogoutIcon from '@mui/icons-material/Logout';
 import { fetchConversationsRequest } from "../../Home/components/StateListe/ListeAction"
 import { fetchMessagesRequest } from '../../Home/components/StateMessage/MessageAction';
+import { useHistory } from 'react-router-dom';
 
 
 
@@ -43,6 +44,9 @@ import MenuIcon from '@mui/icons-material/Menu';
 import JwtUtils from '../../../routing/JwtUtils'; /* TAHA */
 import SettingsPanel from './SettingsPanel';
 const Filebar = () => {
+
+    const history = useHistory();
+
     const [selectedFile, setSelectedFile] = useState(null);
     const handleClose = () => setOpen(false);
     const handleUploadCancel = () => {
@@ -238,7 +242,6 @@ justify-content: center;
 
     }
     useEffect(() => {
-        console.log(matches)
         if (matches) {
             sidebarTrigger()
 
@@ -250,6 +253,9 @@ justify-content: center;
         return `${fileName.substring(0, 6)}... .${fileExtension}`;
     }
 
+    const handleButtonClick = () => {
+        history.push('/category');
+    };
     return (
         <div className={bool ? "filebar-container close" : "filebar-container"}>
             <IconButton style={{ display: bool ? "block" : "none" }} className='fbc-headers-iconButton abs' onClick={sidebarTrigger}>
@@ -287,6 +293,15 @@ justify-content: center;
                     Send selected files
                 </Button>
 
+            </div>
+
+            <div className='fbc-bottom'>
+                <Button variant="outlined" className="fbc-modal-button" onClick={handleButtonClick}>
+                    Category
+                </Button>
+                {JwtUtils.isActif() ? <Button onClick={handleLogout} variant='outlined' className='fbc-modal-button'>
+                    Logout
+                </Button> : null}
             </div>
 
 

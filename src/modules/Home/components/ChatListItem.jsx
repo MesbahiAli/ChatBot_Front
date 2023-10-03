@@ -12,6 +12,8 @@ import { selectCurrentChat, selectCurrentIndex } from '../state/ReducerHome';
 import { selectChat } from '../state/ActionsHome';
 import { fetchConversationsRequest } from './StateListe/ListeAction';
 import { fetchMessagesRequest } from './StateMessage/MessageAction';
+import { editConversationRequest } from './StateEditList/EditeActions';
+import { deleteConversationRequest } from './StateDeleteList/DeleteAction';
 
 const ChatListItem = ({item,index}) => {
     const dispatch = useDispatch();
@@ -28,27 +30,37 @@ const ChatListItem = ({item,index}) => {
 
     },[stateIndex,index]);
 
+
+    const handleEdit = () => {
+        const newTitle = prompt("Enter the new title for the chat", item);
+        if (newTitle) {
+            dispatch(editConversationRequest({ id: index, title: newTitle }));
+        }
+    };
+
+    const handleDelete = () => {
+        if (window.confirm("Are you sure you want to delete this chat?")) {
+            dispatch(deleteConversationRequest(index));
+        }
+    };
+
     return (
         <ListItemButton onClick={handleClick} className={active ? 'sc-main-list-item active' : 'sc-main-list-item '}>
-            <ListItemIcon className='sc-main-list-item-icon'>
-                <ChatBubbleOutlineOutlinedIcon className='sc-main-list-icon' />
-            </ListItemIcon>
-            <ListItemText className='sc-main-list-item-text' primary={item} />
-            {active ?
-                <ListItemIcon className='sc-main-list-item-icon'>
+        <ListItemIcon className='sc-main-list-item-icon'>
+            <ChatBubbleOutlineOutlinedIcon className='sc-main-list-icon' />
+        </ListItemIcon>
+        <ListItemText className='sc-main-list-item-text' primary={item} />
+        {active ? (
+            <>
+                <ListItemIcon className='sc-main-list-item-icon' onClick={handleEdit}>
                     <DriveFileRenameOutlineOutlinedIcon className='sc-main-list-icon' />
                 </ListItemIcon>
-                :
-                null
-            }
-            {active ?
-                <ListItemIcon className='sc-main-list-item-icon'>
+                <ListItemIcon className='sc-main-list-item-icon' onClick={handleDelete}>
                     <DeleteOutlinedIcon className='sc-main-list-icon' />
                 </ListItemIcon>
-                :
-                null
-            }
-        </ListItemButton>
+            </>
+        ) : null}
+    </ListItemButton>
     )
 }
 
