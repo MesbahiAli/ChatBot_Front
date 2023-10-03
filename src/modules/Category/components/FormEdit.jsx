@@ -1,19 +1,16 @@
 import React, { useState } from 'react';
+import "../../CategoryForm/style/category.css"
 import {
     TextField, FormControl, InputLabel, Select, MenuItem,
-    Button, Box, List, ListItem, ListItemText, IconButton, styled, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions
+    Button, Box, List, ListItem, ListItemText, IconButton, styled
 } from '@mui/material';
 import CloudUploadOutlinedIcon from '@mui/icons-material/CloudUploadOutlined';
 import CloseIcon from '@mui/icons-material/Close';
 import CheckIcon from '@mui/icons-material/Check';
 import * as Yup from "yup";
-import { sendFileAndData } from '../state/CategoryAction';
+import { useDispatch } from 'react-redux';
+import { sendFileAndData } from '../../CategoryForm/state/CategoryAction';
 import { useFormik } from 'formik';
-import "../../CategoryForm/style/category.css"
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
-
-
 
 const StyledBox = styled(Box)(({ theme }) => ({
     position: 'absolute',
@@ -91,11 +88,9 @@ const VisuallyHiddenInput = styled('input')({
     width: 1,
 });
 
-const StyledFormModal = ({ handleClose }) => {
+const FormEdit = ({ handleClose }) => {
     const dispatch = useDispatch();
-    const categories = useSelector(state => state.FormCategory.categories.categories);
-    console.log(categories)
-    const [selectedCats,setSelectedCats] = useState(categories||[])
+
     const [selectedFile, setSelectedFile] = useState(null);
     const handleUploadCancel = () => {
         setSelectedFile(null);
@@ -108,7 +103,7 @@ const StyledFormModal = ({ handleClose }) => {
             contract_type: "",
             Status: "",
             results: "",
-            categories: "",
+            category: "",
             file: null
         },
         validationSchema: Yup.object().shape({
@@ -120,24 +115,7 @@ const StyledFormModal = ({ handleClose }) => {
             handleClose();
         },
     });
-    const [isDialog,setIsDialog] = useState(false)
-    const [isDialogAdded,setIsDialogAdded] = useState(false)
-    const [newCat,setNewCat] = useState("")
-    const handleClick=() =>{
-        setIsDialog(true)
-    }
-    const handleCloseDialog = (bool) => {
-        setIsDialog(false);
-        setIsDialogAdded(bool)
-    }
-    useEffect(()=>{
-        if (isDialogAdded) {
-            setSelectedCats(prev=>[...prev,{category:newCat,id:"e5e5"}]);
-        }else{
-            
-            setSelectedCats(categories);
-        }
-    },[isDialogAdded])
+
     const { errors, touched, handleSubmit, values, handleBlur, handleChange } = formik;
 
     return (
@@ -233,58 +211,35 @@ const StyledFormModal = ({ handleClose }) => {
                             <InputLabel style={{ backgroundColor: "white", paddingTop: "5px", borderRadius: "5px", color: "black" }}>Category</InputLabel>
                             <Select
                                 label="Category"
-                                name="categories"
-                                value={values.categories}
+                                name="category"
+                                value={values.category}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
-                                error={touched.categories && Boolean(errors.categories)}
+                                error={touched.category && Boolean(errors.category)}
                             >
-                                <MenuItem onClick={handleClick}>
-                                    Add new category
-                                </MenuItem>
-                                {selectedCats.map((category) => (
-                                    <MenuItem key={category.id} value={category.category}>
-                                        {category.category}
-                                    </MenuItem>
-                                ))}
+                                <MenuItem value="Infrastructure">Infrastructure</MenuItem>
+                                <MenuItem value="Landscaping">Landscaping</MenuItem>
+                                <MenuItem value="Public Works">Public Works</MenuItem>
                             </Select>
                         </FormControl>
+                        <List sx={listStyle}>
+                            {selectedFile &&
+                                <ListItem id='listItem' style={docStyle} >
+                                    <IconButton onClick={handleUploadCancel} sx={{ display: "flex", alignItems: "center", justifyContent: "center", color: 'white' }}>
+                                        <CloseIcon />
+                                    </IconButton>
+                                    <ListItemText primary={selectedFile?.name} id='listItemSecondaryAction' style={listItemStyle} />
+                                </ListItem>
+                            }
+                        </List>
 
-                        <Button
-                            className='fd-btn'
-                            style={{ backgroundColor: "#343e8b", color: "white", fontSize: 20, height: 55 }}
-                            component="label"
-                            variant="contained"
-                            endIcon={<CloudUploadOutlinedIcon sx={{ height: 26, width: 26 }} />}
-                        >
-                            Upload file
-                            <VisuallyHiddenInput
-                                type="file"
-                                name="file"
-                                onChange={(event) => {
-                                    const file = event.currentTarget.files[0];
-                                    setSelectedFile(file);
-                                    formik.setFieldValue("file", file);
-                                }}
-                            />
-
-                        </Button>
                     </div>
                 </div>
-                <div className="fdmf-buttons">
-                    <List sx={listStyle}>
-                        {selectedFile &&
-                            <ListItem id='listItem' style={docStyle} >
-                                <IconButton onClick={handleUploadCancel} sx={{ display: "flex", alignItems: "center", justifyContent: "center", color: 'white' }}>
-                                    <CloseIcon />
-                                </IconButton>
-                                <ListItemText primary={selectedFile?.name} id='listItemSecondaryAction' style={listItemStyle} />
-                            </ListItem>
-                        }
-                    </List>
+                <div className="fdmf-buttons edit">
+
                     <Button
                         type='submit'
-                        className='fd-btn'
+                        className='fd-btn '
                         style={{ backgroundColor: "#343e8b", color: "white", fontSize: 20 }}
                         endIcon={<CheckIcon sx={{ height: 26, width: 26 }} />}
                     >
@@ -300,33 +255,8 @@ const StyledFormModal = ({ handleClose }) => {
                     </Button>
                 </div>
             </form>
-            <Dialog open={isDialog} onClose={handleCloseDialog}>
-                <DialogTitle>Edit Conversation Title</DialogTitle>
-                <DialogContent>
-                    <DialogContentText>
-                        Please enter a new title for the Conversation.
-                    </DialogContentText>
-                    <TextField
-                        autoFocus
-                        margin="dense"
-                        label="Conversation Title"
-                        type="text"
-                        fullWidth
-                        value={newCat}
-                        onChange={e => setNewCat(e.target.value)}
-                    />
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={() => handleCloseDialog(false)} color="primary">
-                        Cancel
-                    </Button>
-                    <Button onClick={() => handleCloseDialog(true)} color="primary">
-                        Confirm
-                    </Button>
-                </DialogActions>
-            </Dialog>
         </StyledBox>
     );
 };
 
-export default StyledFormModal;
+export default FormEdit;

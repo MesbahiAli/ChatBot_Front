@@ -28,7 +28,6 @@
     color: var(--text-black-color);
     width: 150px;
     box-shadow: var(--box-shadow);
-
 }
 .fd-contained-btn.MuiButtonBase-root:hover{
     background: var(--lighter-bg-color);
@@ -48,6 +47,7 @@
 }
 
 .fd-table-container{
+    margin-top: 80px;
     flex: 1;
     padding: 10px;
     display: flex;
@@ -71,6 +71,7 @@
     background: #343e8b;
     color: white;
     width: 150px;
+    font-family: var(--font-family);
 }
 
 .sg-input{
@@ -111,6 +112,7 @@
 }
 .fdmf-top{
     display: flex;
+    flex: 1;
     /* align-items: center; */
     /* justify-content: space-around; */
     gap: 20px;
@@ -132,9 +134,19 @@
 }
 
 .fdmf-buttons{
+    
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
     gap: 20px;
+    flex: 1;
+}
+.fdmf-buttons.edit{
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.fdmf-buttons.edit .fd-btn{
+    flex: 1;
 }
 
 .fd-tc-box{

@@ -1,52 +1,21 @@
 import React, { useState, useEffect, forwardRef } from 'react';
 import "../style/filebar.css";
-import WindowRoundedIcon from '@mui/icons-material/WindowRounded';
-
-import { Button, IconButton, List, ListItem, ListItemText, ListItemSecondaryAction, useMediaQuery } from '@mui/material';
-import CloudUploadIcon from '@mui/icons-material/CloudUpload';
-import DeleteIcon from '@mui/icons-material/Delete';
-import SendIcon from '@mui/icons-material/Send';
+import JwtUtils from '../../../routing/JwtUtils'; /* TAHA */
+import SettingsPanel from './SettingsPanel';
+import { fetchConversationsRequest } from "../../Home/components/StateListe/ListeAction"
+import StyledFormModal from '../../CategoryForm/components/Form'
+import { Box, Fade, Modal, styled } from '@mui/material';
+import { deleteFileApi } from '../../../common/services/DeleteService';
+import Checkbox from '@mui/material/Checkbox';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchDataRequest } from '../../files/State/ActionsFile';
 import { uploadFiles, sendFilesToServer, clearUploadedFiles, toggleSidebarClick } from '../state/UploadActions';
 import { sendFileNamesRequest } from '../SlectedFile/State/actionSlect';
-import Checkbox from '@mui/material/Checkbox';
-import { requestToggle } from '../../Chatbot-RightBar/components/Togle/State/TogleAction';
-import { deleteFileApi } from '../../../common/services/DeleteService';
-import { requestSummarize } from '../../Chatbot-RightBar/components/Summarize/State/SummarizeActions';
-import { fetchPdfRequest } from './FileView.js/State/ViewActions';
-import CloudDoneIcon from '@mui/icons-material/CloudDone';
-import { Box, Fade, Modal, styled } from '@mui/material';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
-import StyledFormModal from '../../CategoryForm/components/Form'
-import LogoutIcon from '@mui/icons-material/Logout';
-import { fetchConversationsRequest } from "../../Home/components/StateListe/ListeAction"
-import { fetchMessagesRequest } from '../../Home/components/StateMessage/MessageAction';
-import { useHistory } from 'react-router-dom';
+import { Button, IconButton, List, ListItem, ListItemText, ListItemSecondaryAction, useMediaQuery } from '@mui/material';
+import WindowRoundedIcon from '@mui/icons-material/WindowRounded';
 
 
-
-// Mouad Doadi - 21/09/23 >
-
-import SummarizeIcon from '@mui/icons-material/Summarize';
-import VisibilityIcon from '@mui/icons-material/Visibility';
-
-// toggle >
-
-import ToggleButton from '@mui/lab/ToggleButton';
-import ToggleButtonGroup from '@mui/lab/ToggleButtonGroup';
-
-// < toggle
-
-// < 21/09/23
-
-import MenuIcon from '@mui/icons-material/Menu';
-import JwtUtils from '../../../routing/JwtUtils'; /* TAHA */
-import SettingsPanel from './SettingsPanel';
-const Filebar = () => {
-
-    const history = useHistory();
-
+const FilebarTab = () => {
     const [selectedFile, setSelectedFile] = useState(null);
     const handleClose = () => setOpen(false);
     const handleUploadCancel = () => {
@@ -242,6 +211,7 @@ justify-content: center;
 
     }
     useEffect(() => {
+        console.log(matches)
         if (matches) {
             sidebarTrigger()
 
@@ -252,26 +222,13 @@ justify-content: center;
         const fileExtension = fileName.split('.').pop();
         return `${fileName.substring(0, 6)}... .${fileExtension}`;
     }
-
-    const handleButtonClick = () => {
-        history.push('/category');
-    };
     return (
-        <div className={bool ? "filebar-container close" : "filebar-container"}>
-            <IconButton style={{ display: bool ? "block" : "none" }} className='fbc-headers-iconButton abs' onClick={sidebarTrigger}>
-                <WindowRoundedIcon />
-            </IconButton>
+        <>
             <div className='fbc-top'>
-                <Button onClick={sidebarTrigger} variant='outlined' className='fbc-modal-button'>
-                    Toggle Rightbar
-                </Button>
-
-
                 <Button onClick={() => setOpen(prev => !prev)} variant='outlined' className='fbc-modal-button'>
-
                     Upload New File
                 </Button>
-                <List className="fbc-top-file-list-container">
+                <List style={{flex:1}} className="fbc-top-file-list-container">
                     {files?.map(el => (
                         <div key={el} className='uploaded-item-container'>
                             {formatFileName(el)}
@@ -290,18 +247,9 @@ justify-content: center;
                 </List>
 
                 <Button style={isSelected ? sendServerButton : disabledButton} onClick={handleSendSelectedFilesFromServer} variant='outlined' className='fbc-modal-button'>
-                    Send selected files
+                    Confirme
                 </Button>
 
-            </div>
-
-            <div className='fbc-bottom'>
-                <Button variant="outlined" className="fbc-modal-button" onClick={handleButtonClick}>
-                    Category
-                </Button>
-                {JwtUtils.isActif() ? <Button onClick={handleLogout} variant='outlined' className='fbc-modal-button'>
-                    Logout
-                </Button> : null}
             </div>
 
 
@@ -318,8 +266,8 @@ justify-content: center;
                 />
 
             </StyledModal>
-        </div>
+        </>
     )
 }
 
-export default Filebar
+export default FilebarTab
