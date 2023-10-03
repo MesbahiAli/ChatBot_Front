@@ -11,7 +11,8 @@
 
 .cbc-main
 {
-    min-height: 100vh;
+    margin-top: 20px;
+    min-height: calc(100vh - 80px);
     height: max-content;
     flex: 1;
     /* width: 70vw; */
@@ -19,12 +20,13 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    padding: 40px 5vw 40px 17vw ;
-transition: all .3s ease;
+    padding: 80px 5vw 40px 17vw ;
+    transition: all .3s ease;
 }
 .cbc-main.open
 {
-    min-height: 100vh;
+    margin-top: 20px;
+    min-height: calc(100vh - 80px);
     height: max-content;
     flex: 1;
     /* width: 70vw; */
@@ -32,7 +34,7 @@ transition: all .3s ease;
     display: flex;
     align-items: center;
     flex-direction: column;
-    padding: 40px 5vw 40px 5vw ;
+    padding: 80px 5vw 40px 5vw ;
 
 }
 
