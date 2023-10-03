@@ -14,6 +14,7 @@ import { modal } from '../../CategoryForm/state/CategoryAction';
 import { IconButton } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+import ModalEdit from './ModalEdit';
 
 
 const Table = () => {
@@ -23,6 +24,7 @@ const Table = () => {
     const [search, setSearch] = useState("");
     const [filteredData, setFilteredData] = useState([]);
     const [open, setOpen] = useState(false);
+    const [edit, setEdit] = useState(false);
     const history = useHistory();
     const handleChange = (e) => {
         setSearch(e.target.value);
@@ -103,6 +105,7 @@ const Table = () => {
 
     const handleEdit = (id) => {
         console.log('Edit:', id);
+        setEdit(true);
     };
 
     const handleDelete = (id) => {
@@ -159,6 +162,7 @@ const Table = () => {
                 </Box>
             </div>
             <ModalComp open={open} setOpen={setOpen} />
+            <ModalEdit open={edit} setOpen={setEdit} />
         </div>
     );
 }
