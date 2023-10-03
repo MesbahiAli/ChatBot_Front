@@ -61,24 +61,24 @@ const ChatArea = () => {
 
 
 
-useEffect(() => {
-    const enter = (event) => {
-        if (event.keyCode === 13 && !event.shiftKey) {
-            event.preventDefault();
-            handleSendClick();
+    useEffect(() => {
+        const enter = (event) => {
+            if (event.keyCode === 13 && !event.shiftKey) {
+                event.preventDefault();
+                handleSendClick();
+            }
         }
-    }
-    
-    if (inputRef.current) {
-        inputRef.current.addEventListener("keydown", enter);
-    }
 
-    return () => {
         if (inputRef.current) {
-            inputRef.current.removeEventListener("keydown", enter);
+            inputRef.current.addEventListener("keydown", enter);
         }
-    }
-}, [handleSendClick]);
+
+        return () => {
+            if (inputRef.current) {
+                inputRef.current.removeEventListener("keydown", enter);
+            }
+        }
+    }, [handleSendClick]);
 
     useEffect(() => {
         if (isSendFileSuccess) {
@@ -120,17 +120,27 @@ useEffect(() => {
         }
     }, [error]);
     const isSidebarOpen = useSelector(selectSidebarOpen);
+    const [scrollIndicator,setScrollIndicator] = useState(1);
+    const scrollHandler = (event) =>{
+        
+        if (event.currentTarget.scrollTop >= scrollIndicator) {
+            setScrollIndicator(event.currentTarget.scrollTop);
+            document.querySelector(".navbar-container").classList.add("hidden")
+        }else {
+            document.querySelector(".navbar-container").classList.remove("hidden")
 
+        }
+    }
     return (
         <>
             <Navbar />
             <Sidebar />
             <div className="chatbot-container">
 
-                <div className={isSidebarOpen ? "cbc-main " : "cbc-main open"}>
+                <div className={isSidebarOpen ? "cbc-main " : "cbc-main open"} onScroll={scrollHandler} >
                     <div className="cbc-messages-container">
                         {data?.map((msg, index) => {
-                            if (msg.sender === 'bot') return <MessageBot item={msg} index={index} />;
+                            if (msg.sender === 'bot') return <MessageBot item={msg} index={index} key={index}/>;
                             return <MessageUser item={msg} index={index} key={index} />;
                         })}
                         <div ref={messagesEndRef}></div>
@@ -157,6 +167,7 @@ useEffect(() => {
                         <TextField
                             label={isSendFileSuccess ? "Send a message ..." : "Send a file first"}
                             className='cbc-form-item-textField'
+                            ref={inputRef}
                             multiline
                             maxRows={4}
                             fullWidth
@@ -169,20 +180,21 @@ useEffect(() => {
                             onClick={handleSendClick}
                             className={isSendFileSuccess ? 'cbc-form-icon-button' : 'cbc-form-icon-button inactive'}
                         >
-                              {isLoading ?
-                        <div className="typingDots">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </div>
-                        :   
-                            <SendIcon />
-                        }
+                            {isLoading ?
+                                <div className="typingDots">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </div>
+                                :
+                                <SendIcon />
+                            }
                         </IconButton>
-         
 
+
+                    </div>
+                    {/* <Filebar /> */}
                 </div>
-                {/* <Filebar /> */}
             </div>
         </>
     );
