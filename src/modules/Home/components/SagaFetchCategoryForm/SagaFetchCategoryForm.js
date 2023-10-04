@@ -5,8 +5,7 @@ import { ApiFetchCategoryForm } from '../../../../common/services/ServiceFetchCa
 function* fetchCategories() {
   try {
     const response = yield call(ApiFetchCategoryForm);
-    const categories = yield response.json();
-    yield put(fetchCategoriesSuccess(categories));
+    yield put(fetchCategoriesSuccess(response));
   } catch (error) {
     yield put(fetchCategoriesFailure(error.message));
   }

@@ -16,6 +16,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ModalEdit from './ModalEdit';
 import { fetchCategoriesRequest } from '../../Home/components/StateFetchCategoryForm/ActionFetchCategoryForm';
+import { deleteFileApi } from '../../../common/services/DeleteService';
 
 
 const Table = () => {
@@ -76,6 +77,11 @@ const Table = () => {
         { field: 'contract_type', headerName: 'Contract Type', width: 160 },
         { field: 'name_of_tender', headerName: 'Name of Tender', width: 150 },
         { field: 'submission_date', headerName: 'Submission Date', width: 200 },
+        { field: 'Category', headerName: 'Category', width: 200,renderCell: (params) => (
+            <>
+            {params.row.categories[0]}
+            </>
+        ) },
         {
             field: 'actions',
             headerName: 'Actions',
@@ -83,7 +89,7 @@ const Table = () => {
             renderCell: (params) => (
                 <>
                     <IconButton
-                        onClick={() => handleEdit(params.row.id)}
+                        onClick={() => setEdit(true)}
                         color="primary"
                         aria-label="edit button"
                         className="edit-button"
@@ -91,7 +97,7 @@ const Table = () => {
                         <EditIcon className="edit-icon" />
                     </IconButton>
                     <IconButton
-                        onClick={() => handleDelete(params.row.id)}
+                        onClick={() => handleDelete(params.row.filename)}
                         color="primary"
                         aria-label="delete button"
                         className="delete-button"
@@ -111,8 +117,8 @@ const Table = () => {
         setEdit(true);
     };
 
-    const handleDelete = (id) => {
-        console.log('Delete:', id);
+    const handleDelete = (params) => {
+        deleteFileApi(params)
     }
 
     return (
