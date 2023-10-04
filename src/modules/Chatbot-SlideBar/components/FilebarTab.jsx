@@ -4,7 +4,7 @@ import JwtUtils from '../../../routing/JwtUtils'; /* TAHA */
 import SettingsPanel from './SettingsPanel';
 import { fetchConversationsRequest } from "../../Home/components/StateListe/ListeAction"
 import StyledFormModal from '../../CategoryForm/components/Form'
-import { Box, Fade, Modal, styled } from '@mui/material';
+import { Box, Fade, ListSubheader, Modal, styled } from '@mui/material';
 import { deleteFileApi } from '../../../common/services/DeleteService';
 import Checkbox from '@mui/material/Checkbox';
 import { useDispatch, useSelector } from 'react-redux';
@@ -149,7 +149,8 @@ justify-content: center;
     const dispatch = useDispatch();
     const filesUpload = useSelector(state => state.upload.files);
     const files = useSelector(state => state.Files.data);
-
+    const categoryData = useSelector(state => state.Category?.data);
+console.log(categoryData)
 
     /* TAHA */
 
@@ -225,7 +226,10 @@ justify-content: center;
                 <Button onClick={() => setOpen(prev => !prev)} variant='outlined' className='fbc-modal-button'>
                     Upload New File
                 </Button>
-                <List style={{flex:1}} className="fbc-top-file-list-container">
+                <List style={{ flex: 1 }} className="fbc-top-file-list-container">
+                    <ListSubheader component="span" style={{fontSize:"10px",color:"white",background:"transparent",padding:0,margin:0}} >
+                        Nested List Items
+                    </ListSubheader>
                     {files?.map(el => (
                         <div key={el} className='uploaded-item-container'>
                             {formatFileName(el)}
