@@ -37,8 +37,7 @@ const StyledModal = styled(Modal)`
     align-items: center;
     justify-content: center;
   `;
-const ModalEdit = ({ open, setOpen }) => {
-
+  const ModalEdit = ({ open, setOpen, rowData }) => {
     const handleClose = () => setOpen(false);
     
 
@@ -51,9 +50,8 @@ const ModalEdit = ({ open, setOpen }) => {
             // slots={{ backdrop: StyledBackdrop }}
             id='model'
         >
-            <FormEdit
-                handleClose={handleClose}
-            />
+           <FormEdit handleClose={handleClose} defaultValues={rowData} />
+
         </StyledModal>
     )
 }

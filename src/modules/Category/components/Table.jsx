@@ -54,7 +54,7 @@ const Table = () => {
         id: index,
         ...item
     }));
-    
+
     const columns = [
         {
             field: 'filename',
@@ -63,7 +63,7 @@ const Table = () => {
             renderCell: (params) => {
                 const basePath = "https://google.com/";
                 const pdfUrl = `${basePath}${params.value}`;
-    
+
                 return (
                     <a href={pdfUrl} target="_blank" rel="noopener noreferrer" className="filename-link">
                         {params.value}
@@ -77,11 +77,15 @@ const Table = () => {
         { field: 'contract_type', headerName: 'Contract Type', width: 160 },
         { field: 'name_of_tender', headerName: 'Name of Tender', width: 150 },
         { field: 'submission_date', headerName: 'Submission Date', width: 200 },
-        { field: 'Category', headerName: 'Category', width: 200,renderCell: (params) => (
-            <>
-            {params.row.categories[0]}
-            </>
-        ) },
+        {
+            field: 'Category', headerName: 'Category', width: 200, renderCell: (params) => (
+                <>
+                    {params.row.categories[0]}
+                </>
+            )
+        },
+        { field: 'results', headerName: 'results', width: 200 },
+
         {
             field: 'actions',
             headerName: 'Actions',
@@ -110,16 +114,19 @@ const Table = () => {
         },
 
     ];
-
-
-    const handleEdit = (id) => {
-        console.log('Edit:', id);
-        setEdit(true);
-    };
-
     const handleDelete = (params) => {
         deleteFileApi(params)
+        dispatch(getCategoryRequest())
     }
+
+    const [selectedRowData, setSelectedRowData] = useState(null);
+
+    const handleRowClick = (dataFromClickedRow) => {
+        setSelectedRowData(dataFromClickedRow);
+        setEdit(true);
+    }
+
+
 
     return (
         <div className="fd-table-container">
@@ -145,7 +152,7 @@ const Table = () => {
                     <Button className='sg-buttons-btn' onClick={() => dispatch(getCategoryRequest())} variant="contained" startIcon={<RefreshIcon />}>
                         Refresh
                     </Button>
-                  
+
                     <Button className='sg-buttons-btn' variant="contained" startIcon={<FileDownloadIcon />}>
                         Export
                     </Button>
@@ -157,21 +164,22 @@ const Table = () => {
                         style={{ border: "none" }}
                         rows={rows}
                         columns={columns}
-                        initialState={{
-                            pagination: {
-                                paginationModel: {
-                                    pageSize: 10,
-                                },
-                            },
+                        onRowClick={(params) => {
+                            setSelectedRowData(params.row);
                         }}
+                        color="primary"
+                        aria-label="edit button"
+                        className="edit-button"
+                        pageSize={10} 
                         pageSizeOptions={[5]}
                         checkboxSelection
-                        disableRowSelectionOnClick={true}
+                        disableSelectionOnClick={true} 
                     />
+
                 </Box>
             </div>
             <ModalComp open={open} setOpen={setOpen} />
-            <ModalEdit open={edit} setOpen={setEdit} />
+            <ModalEdit open={edit} setOpen={setEdit} rowData={selectedRowData} />
         </div>
     );
 }

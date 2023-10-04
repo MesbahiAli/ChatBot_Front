@@ -14,6 +14,7 @@ import { messageSaga } from "../../modules/Home/components/SagaMessage/Messagewa
 import { watchDeleteConversations } from "../../modules/Home/components/SagaListDelete/DeleteWatcher";
 import { watchEditConversations } from "../../modules/Home/components/SagaEditList/EditeWatcher";
 import { watchFetchCategories } from "../../modules/Home/components/SagaFetchCategoryForm/watcherFetchCategoryForm";
+import watchEditCategory from "../../modules/Home/components/SagaEditCategory/WatcherEditCategory";
 
 export default function* rootSaga() {
   yield all([
@@ -32,6 +33,8 @@ export default function* rootSaga() {
     watchDeleteConversations(),
     watchEditConversations(),
     watchFetchCategories(),
+    watchEditCategory(),
+    
     
 
     
