@@ -196,7 +196,6 @@ const ChatArea = () => {
                     {/* <Filebar /> */}
                 </div>
             </div>
-            </div>
         </>
     );
 }
