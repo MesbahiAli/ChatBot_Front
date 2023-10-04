@@ -1,6 +1,6 @@
 import React from 'react'
 import "../style/sidebar.css";
-import { ListItemButton, ListItemIcon, ListItemText,Dialog,DialogTitle,DialogContent,TextField,Button,DialogActions,DialogContentText} from '@mui/material';
+import { ListItemButton, ListItemIcon, ListItemText, Dialog, DialogTitle, DialogContent, TextField, Button, DialogActions, DialogContentText } from '@mui/material';
 import ChatBubbleOutlineOutlinedIcon from '@mui/icons-material/ChatBubbleOutlineOutlined';
 import { useState } from 'react';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
@@ -16,7 +16,7 @@ import { editConversationRequest } from './StateEditList/EditeActions';
 import { deleteConversationRequest } from './StateDeleteList/DeleteAction';
 
 
-const ChatListItem = ({item,index}) => {
+const ChatListItem = ({ item, index }) => {
     const dispatch = useDispatch();
     const [openEditDialog, setOpenEditDialog] = useState(false);
     const [newTitle, setNewTitle] = useState("");
@@ -48,14 +48,14 @@ const ChatListItem = ({item,index}) => {
     const stateIndex = useSelector(selectCurrentIndex);
     const [active, setActive] = useState(stateIndex === index);
     const handleClick = () => {
-        dispatch(selectChat({chat:item,index:index}))
+        dispatch(selectChat({ chat: item, index: index }))
         dispatch(fetchMessagesRequest(index));
 
     }
     useEffect(() => {
         setActive(stateIndex === index);
 
-    },[stateIndex,index]);
+    }, [stateIndex, index]);
 
 
     const handleEdit = () => {
@@ -73,11 +73,11 @@ const ChatListItem = ({item,index}) => {
 
     return (
         <ListItemButton onClick={handleClick} className={active ? 'sc-main-list-item active' : 'sc-main-list-item '}>
-        <ListItemIcon className='sc-main-list-item-icon'>
-            <ChatBubbleOutlineOutlinedIcon className='sc-main-list-icon' />
-        </ListItemIcon>
-        <ListItemText className='sc-main-list-item-text' primary={item} />
-        {active ? (
+            <ListItemIcon className='sc-main-list-item-icon'>
+                <ChatBubbleOutlineOutlinedIcon className='sc-main-list-icon' />
+            </ListItemIcon>
+            <ListItemText className='sc-main-list-item-text' primary={item} />
+            {active ? (
                 <>
                     <ListItemIcon className='sc-main-list-item-icon' onClick={handleOpenEditDialog}>
                         <DriveFileRenameOutlineOutlinedIcon className='sc-main-list-icon' />
@@ -87,7 +87,7 @@ const ChatListItem = ({item,index}) => {
                     </ListItemIcon>
                 </>
             ) : null}
-        <Dialog open={openEditDialog} onClose={() => handleCloseEditDialog(false)}>
+            <Dialog open={openEditDialog} onClose={() => handleCloseEditDialog(false)}>
                 <DialogTitle>Edit Conversation Title</DialogTitle>
                 <DialogContent>
                     <DialogContentText>
@@ -129,7 +129,7 @@ const ChatListItem = ({item,index}) => {
                     </Button>
                 </DialogActions>
             </Dialog>
-    </ListItemButton>
+        </ListItemButton>
     )
 }
 
