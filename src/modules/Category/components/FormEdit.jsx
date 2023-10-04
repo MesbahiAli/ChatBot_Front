@@ -11,6 +11,9 @@ import * as Yup from "yup";
 import { useDispatch } from 'react-redux';
 import { sendFileAndData } from '../../CategoryForm/state/CategoryAction';
 import { useFormik } from 'formik';
+import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions } from '@mui/material';
+import { editCategory } from '../../Home/components/StateEditCategory/ActionsEditCategory';
+
 
 const StyledBox = styled(Box)(({ theme }) => ({
     position: 'absolute',
@@ -88,29 +91,65 @@ const VisuallyHiddenInput = styled('input')({
     width: 1,
 });
 
-const FormEdit = ({ handleClose }) => {
+const FormEdit = ({ handleClose, defaultValues }) => {
     const dispatch = useDispatch();
 
-    const [selectedFile, setSelectedFile] = useState(null);
+    const [selectedFile, setSelectedFile] = useState("null");
     const handleUploadCancel = () => {
         setSelectedFile(null);
     };
+
+
+
+
+
+    const [isDialog, setIsDialog] = useState(false);
+    const [newCat, setNewCat] = useState("");
+
+    const handleClick = () => {
+        setIsDialog(true);
+    }
+
+    const handleCloseDialog = (confirm) => {
+        setIsDialog(false);
+        if (confirm && newCat) {
+
+            defaultValues.categories.push(newCat);
+            setNewCat("");
+        }
+    }
+    
     const formik = useFormik({
         initialValues: {
-            name_of_tender: "",
-            submission_date: "",
-            client: "",
-            contract_type: "",
-            Status: "",
-            results: "",
-            category: "",
-            file: null
+            name_of_tender: defaultValues.name_of_tender,
+            submission_date: defaultValues.submission_date,
+            client: defaultValues.client,
+            contract_type: defaultValues.contract_type,
+            Status: defaultValues.Status,
+            results: defaultValues.results,
+            categories: defaultValues.category,
+            id:defaultValues.id,
         },
         validationSchema: Yup.object().shape({
             // Your validation schema if needed
         }),
         onSubmit: (values) => {
-            dispatch(sendFileAndData(values));
+            const transformedPayload = {
+                id: values.id,
+                edited_params: {
+                    name_of_tender: values.name_of_tender,
+                    categories: [values.categories],
+                    submission_date:values.submission_date,
+                    client:values.client,
+                    contract_type:values.contract_type,
+                    Status:values.Status,
+                    results:values.results,
+                }
+            };
+
+
+            dispatch(editCategory(transformedPayload))
+            console.log(transformedPayload)
             formik.resetForm();
             handleClose();
         },
@@ -143,7 +182,8 @@ const FormEdit = ({ handleClose }) => {
                             onChange={formik.handleChange}
                             onBlur={formik.handleBlur}
                             sx={inputStyle}
-                            variant="outlined"  // This gives it the Material UI outlined style
+                            variant="outlined"
+                            InputLabelProps={{ shrink: true }}
                         />
                         {/* <BasicDatePicker changeHandler={formik.handleChange} value={formik.values.submission_date} onBlur={formik.handleBlur} name="submission_date"/> */}
                         <TextField
@@ -211,28 +251,27 @@ const FormEdit = ({ handleClose }) => {
                             <InputLabel style={{ backgroundColor: "white", paddingTop: "5px", borderRadius: "5px", color: "black" }}>Category</InputLabel>
                             <Select
                                 label="Category"
-                                name="category"
-                                value={values.category}
+                                name="categories"
+                                value={values.categories}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
-                                error={touched.category && Boolean(errors.category)}
+                                error={touched.categories && Boolean(errors.categories)}
                             >
-                                <MenuItem value="Infrastructure">Infrastructure</MenuItem>
-                                <MenuItem value="Landscaping">Landscaping</MenuItem>
-                                <MenuItem value="Public Works">Public Works</MenuItem>
+                                {defaultValues.categories.map((category, index) => (
+                                    <MenuItem key={index} value={category}>
+                                        {category}
+                                    </MenuItem>
+                                ))}
+                                <MenuItem onClick={handleClick}>
+                                    Add new category
+                                </MenuItem>
                             </Select>
                         </FormControl>
                         <List sx={listStyle}>
-                            {selectedFile &&
                                 <ListItem id='listItem' style={docStyle} >
-                                    <IconButton onClick={handleUploadCancel} sx={{ display: "flex", alignItems: "center", justifyContent: "center", color: 'white' }}>
-                                        <CloseIcon />
-                                    </IconButton>
-                                    <ListItemText primary={selectedFile?.name} id='listItemSecondaryAction' style={listItemStyle} />
+                                    <ListItemText primary={defaultValues.filename} id='listItemSecondaryAction' style={listItemStyle} />
                                 </ListItem>
-                            }
                         </List>
-
                     </div>
                 </div>
                 <div className="fdmf-buttons edit">
@@ -255,6 +294,31 @@ const FormEdit = ({ handleClose }) => {
                     </Button>
                 </div>
             </form>
+            <Dialog open={isDialog} onClose={() => handleCloseDialog(false)}>
+                <DialogTitle>Add New Category</DialogTitle>
+                <DialogContent>
+                    <DialogContentText>
+                        Please enter a new category.
+                    </DialogContentText>
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        label="Category Name"
+                        type="text"
+                        fullWidth
+                        value={newCat}
+                        onChange={e => setNewCat(e.target.value)}
+                    />
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={() => handleCloseDialog(false)} color="primary">
+                        Cancel
+                    </Button>
+                    <Button onClick={() => handleCloseDialog(true)} color="primary">
+                        Add
+                    </Button>
+                </DialogActions>
+            </Dialog>
         </StyledBox>
     );
 };

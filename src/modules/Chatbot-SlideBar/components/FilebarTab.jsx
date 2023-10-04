@@ -4,7 +4,7 @@ import JwtUtils from '../../../routing/JwtUtils'; /* TAHA */
 import SettingsPanel from './SettingsPanel';
 import { fetchConversationsRequest } from "../../Home/components/StateListe/ListeAction"
 import StyledFormModal from '../../CategoryForm/components/Form'
-import { Box, Fade, Modal, styled } from '@mui/material';
+import { Box, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Fade, FormControl, InputLabel, ListSubheader, MenuItem, Modal, Select, TextField, styled } from '@mui/material';
 import { deleteFileApi } from '../../../common/services/DeleteService';
 import Checkbox from '@mui/material/Checkbox';
 import { useDispatch, useSelector } from 'react-redux';
@@ -13,6 +13,9 @@ import { uploadFiles, sendFilesToServer, clearUploadedFiles, toggleSidebarClick 
 import { sendFileNamesRequest } from '../SlectedFile/State/actionSlect';
 import { Button, IconButton, List, ListItem, ListItemText, ListItemSecondaryAction, useMediaQuery } from '@mui/material';
 import WindowRoundedIcon from '@mui/icons-material/WindowRounded';
+import { fetchCategoriesRequest } from '../../Home/components/StateFetchCategoryForm/ActionFetchCategoryForm';
+import { getCategoryRequest } from '../../CategoryForm/StateTable/CategoryAction';
+import { Close } from '@mui/icons-material';
 
 
 const FilebarTab = () => {
@@ -149,6 +152,33 @@ justify-content: center;
     const dispatch = useDispatch();
     const filesUpload = useSelector(state => state.upload.files);
     const files = useSelector(state => state.Files.data);
+    const [filteredCats, setFilteredCats] = useState([]);
+    useEffect(() => {
+        dispatch(getCategoryRequest());
+        dispatch(fetchCategoriesRequest())
+
+    }, []);
+    const [filter, setFilter] = useState("");
+    const [filtered, setFiltered] = useState(false);
+    const [openDialog, setOpenDialog] = useState(false);
+    const handleCloseDialog = (bool) => {
+        setOpenDialog(false);
+        setFiltered(bool);
+    }
+    const categoryData = useSelector(state => state.Category?.data);
+    const categories = useSelector(state => state.FormCategory.categories.categories);
+
+    useEffect(() => {
+        if (filter!=="") {
+            let filteredBycat = categories.filter(c => c.category !== filter);
+            let filteredby = categories.filter(c => c.category === filter);
+            filteredBycat.unshift(filteredby[0]);
+            setFilteredCats(filteredby);
+        } else {
+            setFilteredCats(categories);
+        }
+
+    }, [categoryData, filter, categories])
 
 
     /* TAHA */
@@ -204,14 +234,10 @@ justify-content: center;
         const footer = document.querySelector(".fbc-bottom");
         // const navbar = document.querySelector(".navbar-container");
         // navbar.classList.toggle("no-sidebar")
-        setTimeout(() => {
-            main.classList.toggle("none")
-            footer.classList.toggle("none")
-        }, 100)
+
 
     }
     useEffect(() => {
-        console.log(matches)
         if (matches) {
             sidebarTrigger()
 
@@ -222,28 +248,100 @@ justify-content: center;
         const fileExtension = fileName.split('.').pop();
         return `${fileName.substring(0, 6)}... .${fileExtension}`;
     }
+
     return (
         <>
             <div className='fbc-top'>
                 <Button onClick={() => setOpen(prev => !prev)} variant='outlined' className='fbc-modal-button'>
                     Upload New File
                 </Button>
-                <List style={{flex:1}} className="fbc-top-file-list-container">
-                    {files?.map(el => (
-                        <div key={el} className='uploaded-item-container'>
-                            {formatFileName(el)}
+                <div className="sc-headers">
+                    {/* <Button onClick={() => setOpenDialog(true)} variant="outlined" className='sc-headers-button' >{filtered ? "By " + filter : "Filter"}</Button> */}
+                    <FormControl variant="outlined" fullWidth>
+                        <InputLabel sx={{color:"white"}}>Category</InputLabel>
+                        <Select
+                            label="Category"
+                            name="categories"
+                            onChange={(e) => setFilter(e.target.value)}
+                            value={filter}
+                            fullWidth
+                        >
+                            {categories?.map((category) => (
+                                <MenuItem key={category.id} value={category.category}>
+                                    {category.category}
+                                </MenuItem>
+                            ))}
+                        </Select>
+                    </FormControl>
+                    {filter!=="" && <IconButton className='sc-headers-iconButton' onClick={() => {setFiltered(false);setFilter("")}}>
+                        <Close />
+                    </IconButton>}
+                </div>
+                
+                <List style={{ flex: 1 }} className="fbc-top-file-list-container">
 
-                            <div className='icon-container'>
-                                <Checkbox
-                                    style={checkStyle}
-                                    edge="start"
-                                    checked={selectedFilesFromServer.includes(el)}
-                                    onChange={() => handleServerFileSelect(el)}
-                                />
-                                <SettingsPanel el={el} />
-                            </div>
-                        </div>
-                    ))}
+
+
+                    {
+                        filteredCats?.map((cat, ind) => {
+                            if (categoryData?.filter(item => item.categories.includes(cat.category)).length !== 0) {
+                                return (
+                                    <div key={ind}>
+                                        <ListSubheader component="span" style={{ lineHeight: "28px",display:"block", fontSize: "18px", color: "white", background: "transparent", padding: 0, margin: 0,width:"100%",textAlign:'center' }} >
+                                            {cat.category}
+                                        </ListSubheader>
+                                        {
+                                            categoryData?.map((el, index) => {
+                                                if (el.categories.includes(cat.category)) {
+                                                    return (
+                                                        <div key={index} className='uploaded-item-container'>
+                                                            {formatFileName(el.filename)}
+
+                                                            <div className='icon-container'>
+                                                                <Checkbox
+                                                                    style={checkStyle}
+                                                                    edge="start"
+                                                                    checked={selectedFilesFromServer.includes(el.filename)}
+                                                                    onChange={() => handleServerFileSelect(el.filename)}
+                                                                />
+                                                                <SettingsPanel el={el.filename} />
+                                                            </div>
+                                                        </div>
+                                                    )
+                                                }
+                                                return null
+                                            })
+                                        }
+                                    </div>
+                                )
+                            }
+                            return null
+                        })
+                    }
+
+                    {categoryData?.some(item => item.categories.length === 0) && <ListSubheader component="span" style={{ lineHeight: "18px", fontSize: "10px", color: "white", background: "transparent", padding: 0, margin: 0 }} >
+                        Unset
+                    </ListSubheader>}
+                    {
+                        categoryData?.filter(item => item.categories.length === 0)?.map((it, ins) => {
+                            return (
+                                <div key={ins} className='uploaded-item-container'>
+                                    {formatFileName(it.filename)}
+
+                                    <div className='icon-container'>
+                                        <Checkbox
+                                            style={checkStyle}
+                                            edge="start"
+                                            checked={selectedFilesFromServer.includes(it.filename)}
+                                            onChange={() => handleServerFileSelect(it.filename)}
+                                        />
+                                        <SettingsPanel el={it.filename} />
+                                    </div>
+                                </div>
+                            )
+                        })
+                    }
+
                 </List>
 
                 <Button style={isSelected ? sendServerButton : disabledButton} onClick={handleSendSelectedFilesFromServer} variant='outlined' className='fbc-modal-button'>
@@ -266,6 +364,38 @@ justify-content: center;
                 />
 
             </StyledModal>
+            {/* <Dialog open={openDialog} onClose={() => handleCloseDialog(false)}>
+                <DialogTitle>Edit Conversation Title</DialogTitle>
+                <DialogContent>
+                    <DialogContentText>
+                        Please enter a new title for the Conversation.
+                    </DialogContentText>
+                    <FormControl variant="outlined" fullWidth>
+                        <InputLabel style={{ backgroundColor: "white", paddingTop: "5px", borderRadius: "5px", color: "black" }}>Category</InputLabel>
+                        <Select
+                            label="Category"
+                            name="categories"
+                            onChange={(e) => setFilter(e.target.value)}
+                            value={filter}
+                            fullWidth
+                        >
+                            {categories?.map((category) => (
+                                <MenuItem key={category.id} value={category.category}>
+                                    {category.category}
+                                </MenuItem>
+                            ))}
+                        </Select>
+                    </FormControl>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={() => handleCloseDialog(false)} color="primary">
+                        Cancel
+                    </Button>
+                    <Button onClick={() => handleCloseDialog(true)} color="primary">
+                        Confirm
+                    </Button>
+                </DialogActions>
+            </Dialog> */}
         </>
     )
 }

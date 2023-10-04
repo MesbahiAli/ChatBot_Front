@@ -28,7 +28,9 @@ const Navbar = () => {
   return (
     <div className={"navbar-container "} >
     <div className={location.pathname === "/Chatbot" ? (isSidebarOpen ? "nc-logo-container open" : "nc-logo-container ml-80") : "nc-logo-container"}>
-      <img src={logo} alt="" className='nc-lc-logo' />
+    <Link to="/">
+      <img src={logo}  alt="" className='nc-lc-logo' />
+      </Link>
     </div>
     <div className="nc-buttons-container">
       <Link to={buttonLink}>

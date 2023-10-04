@@ -19,7 +19,17 @@
     left: -16vw;
     background: transparent;
 }
-
+/* select in file bar */
+fieldset.css-1d3z3hw-MuiOutlinedInput-notchedOutline{
+    border-color: #ccc;
+}
+svg.css-hfutr2-MuiSvgIcon-root-MuiSelect-icon {
+    color: white;
+}
+.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input{
+    color: white;
+}
+/* select in file bar */
 .filebar-container.close .MuiButtonBase-root.fbc-headers-iconButton {
     background: #ffffff;
     color: #202123;
