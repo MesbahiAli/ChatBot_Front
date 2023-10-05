@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import "../../CategoryForm/style/category.css"
 import {
     TextField, FormControl, InputLabel, Select, MenuItem,
-    Button, Box, List, ListItem, ListItemText, IconButton, styled,Chip
+    Button, Box, List, ListItem, ListItemText, IconButton, styled, Chip
 } from '@mui/material';
 import CloudUploadOutlinedIcon from '@mui/icons-material/CloudUploadOutlined';
 import CloseIcon from '@mui/icons-material/Close';
@@ -111,18 +111,28 @@ const FormEdit = ({ handleClose, defaultValues }) => {
     const [isDialog, setIsDialog] = useState(false);
     const [newCat, setNewCat] = useState("");
 
-    const handleClick = () => {
+    const handleClick = (event) => {
+        event.stopPropagation()
         setIsDialog(true);
-    }
+    };
+
 
     const handleCloseDialog = (confirm) => {
         setIsDialog(false);
         if (confirm && newCat) {
             formik.setFieldValue("categories", [...formik.values.categories, newCat]);
+            setSelectedCats(prevCats => [...prevCats, { category: newCat, id: Math.random().toString() }]);
             setNewCat("");
         }
-    }
-    
+    };
+
+
+
+    const handleCategoryChange = (event) => {
+        const newCategories = event.target.value.filter(val => val !== "ADD_NEW_CATEGORY_PLACEHOLDER");
+        formik.setFieldValue("categories", newCategories);
+    };
+
 
     const formik = useFormik({
         initialValues: {
@@ -136,7 +146,7 @@ const FormEdit = ({ handleClose, defaultValues }) => {
             id: defaultValues.id,
         },
         validationSchema: Yup.object().shape({
-            // Your validation schema if needed
+            categories: Yup.array().of(Yup.string()).required("Categories are required"),
         }),
         onSubmit: (values) => {
             const transformedPayload = {
@@ -151,11 +161,11 @@ const FormEdit = ({ handleClose, defaultValues }) => {
                     results: values.results,
                 }
             };
-        
+
             dispatch(editCategory(transformedPayload))
             formik.resetForm();
             handleClose();
-        },        
+        },
     });
 
     const { errors, touched, handleSubmit, values, handleBlur, handleChange } = formik;
@@ -171,6 +181,8 @@ const FormEdit = ({ handleClose, defaultValues }) => {
         }
     }, [isDialogAdded])
 
+
+    
     return (
         <StyledBox>
             <h2 className='fdm-header'>Add New Record</h2>
@@ -262,13 +274,12 @@ const FormEdit = ({ handleClose, defaultValues }) => {
                             </Select>
                         </FormControl>
                         <FormControl variant="outlined" sx={inputStyle}>
-                            <InputLabel style={{ backgroundColor: "white", paddingTop: "5px", borderRadius: "5px", color: "black" }}>Category</InputLabel>
                             <Select
                                 multiple
                                 label="Category"
                                 name="categories"
                                 value={values.categories}
-                                onChange={handleChange}
+                                onChange={handleCategoryChange}
                                 onBlur={handleBlur}
                                 error={touched.categories && Boolean(errors.categories)}
                                 renderValue={(selected) => (
@@ -279,15 +290,20 @@ const FormEdit = ({ handleClose, defaultValues }) => {
                                     </Box>
                                 )}
                             >
-                                <MenuItem onClick={handleClick}>
+                                <MenuItem onClick={handleClick} value="ADD_NEW_CATEGORY_PLACEHOLDER">
                                     Add new category
                                 </MenuItem>
                                 {selectedCats.map((category) => (
-                                    <MenuItem key={category.id} value={category.category}>
+                                    <MenuItem
+                                        key={category.id}
+                                        value={category.category}
+                                    >
                                         {category.category}
                                     </MenuItem>
                                 ))}
+
                             </Select>
+
                         </FormControl>
 
                         <List sx={listStyle}>
