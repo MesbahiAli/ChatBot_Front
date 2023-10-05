@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import "../../CategoryForm/style/category.css"
 import {
     TextField, FormControl, InputLabel, Select, MenuItem,
-    Button, Box, List, ListItem, ListItemText, IconButton, styled
+    Button, Box, List, ListItem, ListItemText, IconButton, styled,Chip
 } from '@mui/material';
 import CloudUploadOutlinedIcon from '@mui/icons-material/CloudUploadOutlined';
 import CloseIcon from '@mui/icons-material/Close';
 import CheckIcon from '@mui/icons-material/Check';
 import * as Yup from "yup";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { sendFileAndData } from '../../CategoryForm/state/CategoryAction';
 import { useFormik } from 'formik';
 import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions } from '@mui/material';
@@ -92,9 +92,14 @@ const VisuallyHiddenInput = styled('input')({
 });
 
 const FormEdit = ({ handleClose, defaultValues }) => {
+    const categories = useSelector(state => state.FormCategory.categories.categories);
     const dispatch = useDispatch();
 
     const [selectedFile, setSelectedFile] = useState("null");
+    const [selectedCats, setSelectedCats] = useState(categories || [])
+    const [isDialogAdded, setIsDialogAdded] = useState(false)
+
+
     const handleUploadCancel = () => {
         setSelectedFile(null);
     };
@@ -118,7 +123,7 @@ const FormEdit = ({ handleClose, defaultValues }) => {
             setNewCat("");
         }
     }
-    
+
     const formik = useFormik({
         initialValues: {
             name_of_tender: defaultValues.name_of_tender,
@@ -127,8 +132,8 @@ const FormEdit = ({ handleClose, defaultValues }) => {
             contract_type: defaultValues.contract_type,
             Status: defaultValues.Status,
             results: defaultValues.results,
-            categories: defaultValues.category,
-            id:defaultValues.id,
+            categories: defaultValues.categories || [],
+            id: defaultValues.id,
         },
         validationSchema: Yup.object().shape({
             // Your validation schema if needed
@@ -138,24 +143,34 @@ const FormEdit = ({ handleClose, defaultValues }) => {
                 id: values.id,
                 edited_params: {
                     name_of_tender: values.name_of_tender,
-                    categories: [values.categories],
-                    submission_date:values.submission_date,
-                    client:values.client,
-                    contract_type:values.contract_type,
-                    Status:values.Status,
-                    results:values.results,
+                    categories: Yup.array(),
+                    submission_date: values.submission_date,
+                    client: values.client,
+                    contract_type: values.contract_type,
+                    Status: values.Status,
+                    results: values.results,
                 }
             };
 
 
             dispatch(editCategory(transformedPayload))
-            console.log(transformedPayload)
             formik.resetForm();
             handleClose();
         },
     });
 
     const { errors, touched, handleSubmit, values, handleBlur, handleChange } = formik;
+
+
+
+    useEffect(() => {
+        if (isDialogAdded) {
+            setSelectedCats(prev => [...prev, { category: newCat, id: "e5e5" }]);
+        } else {
+
+            setSelectedCats(categories);
+        }
+    }, [isDialogAdded])
 
     return (
         <StyledBox>
@@ -250,27 +265,36 @@ const FormEdit = ({ handleClose, defaultValues }) => {
                         <FormControl variant="outlined" sx={inputStyle}>
                             <InputLabel style={{ backgroundColor: "white", paddingTop: "5px", borderRadius: "5px", color: "black" }}>Category</InputLabel>
                             <Select
+                                multiple
                                 label="Category"
                                 name="categories"
                                 value={values.categories}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                                 error={touched.categories && Boolean(errors.categories)}
+                                renderValue={(selected) => (
+                                    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                                        {selected.map((value) => (
+                                            <Chip key={value} label={value} />
+                                        ))}
+                                    </Box>
+                                )}
                             >
-                                {defaultValues.categories.map((category, index) => (
-                                    <MenuItem key={index} value={category}>
-                                        {category}
-                                    </MenuItem>
-                                ))}
                                 <MenuItem onClick={handleClick}>
                                     Add new category
                                 </MenuItem>
+                                {selectedCats.map((category) => (
+                                    <MenuItem key={category.id} value={category.category}>
+                                        {category.category}
+                                    </MenuItem>
+                                ))}
                             </Select>
                         </FormControl>
+
                         <List sx={listStyle}>
-                                <ListItem id='listItem' style={docStyle} >
-                                    <ListItemText primary={defaultValues.filename} id='listItemSecondaryAction' style={listItemStyle} />
-                                </ListItem>
+                            <ListItem id='listItem' style={docStyle} >
+                                <ListItemText primary={defaultValues.filename} id='listItemSecondaryAction' style={listItemStyle} />
+                            </ListItem>
                         </List>
                     </div>
                 </div>

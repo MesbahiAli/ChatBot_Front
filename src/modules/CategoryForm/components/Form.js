@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {
     TextField, FormControl, InputLabel, Select, MenuItem,
-    Button, Box, List, ListItem, ListItemText, IconButton, styled, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions
+    Button, Box, List, ListItem, ListItemText, IconButton, styled, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions,Chip
 } from '@mui/material';
 import CloudUploadOutlinedIcon from '@mui/icons-material/CloudUploadOutlined';
 import CloseIcon from '@mui/icons-material/Close';
@@ -94,7 +94,6 @@ const VisuallyHiddenInput = styled('input')({
 const StyledFormModal = ({ handleClose }) => {
     const dispatch = useDispatch();
     const categories = useSelector(state => state.FormCategory.categories.categories);
-    console.log(categories)
     const [selectedCats,setSelectedCats] = useState(categories||[])
     const [selectedFile, setSelectedFile] = useState(null);
     const handleUploadCancel = () => {
@@ -108,7 +107,7 @@ const StyledFormModal = ({ handleClose }) => {
             contract_type: "",
             Status: "",
             results: "",
-            categories: "",
+            categories: [],
             file: null
         },
         validationSchema: Yup.object().shape({
@@ -218,7 +217,7 @@ const StyledFormModal = ({ handleClose }) => {
                         <FormControl variant="outlined" sx={inputStyle}>
                             <InputLabel style={{ backgroundColor: "white", paddingTop: "5px", borderRadius: "5px", color: "black" }}>Results</InputLabel>
                             <Select
-                                label="Results"
+                                label="results"
                                 name="results"
                                 value={values.results}
                                 onChange={handleChange}
@@ -230,14 +229,22 @@ const StyledFormModal = ({ handleClose }) => {
                             </Select>
                         </FormControl>
                         <FormControl variant="outlined" sx={inputStyle}>
-                            <InputLabel style={{ backgroundColor: "white", paddingTop: "5px", borderRadius: "5px", color: "black" }}>Category</InputLabel>
+                        <InputLabel style={{ backgroundColor: "white", paddingTop: "5px", borderRadius: "5px", color: "black" }}>Category</InputLabel>
                             <Select
+                                multiple
                                 label="Category"
                                 name="categories"
                                 value={values.categories}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                                 error={touched.categories && Boolean(errors.categories)}
+                                renderValue={(selected) => (
+                                    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                                        {selected.map((value) => (
+                                            <Chip key={value} label={value} />
+                                        ))}
+                                    </Box>
+                                )}
                             >
                                 <MenuItem onClick={handleClick}>
                                     Add new category

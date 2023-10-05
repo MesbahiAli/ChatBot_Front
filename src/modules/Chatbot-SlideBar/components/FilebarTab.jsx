@@ -262,6 +262,7 @@ justify-content: center;
                         <Select
                             label="Category"
                             name="categories"
+                            className='select-fbc-top-tab'
                             onChange={(e) => setFilter(e.target.value)}
                             value={filter}
                             fullWidth

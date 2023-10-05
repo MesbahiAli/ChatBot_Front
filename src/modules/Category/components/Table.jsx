@@ -4,7 +4,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import AddIcon from '@mui/icons-material/Add';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
-import { Box, Button, InputAdornment, TextField } from '@mui/material';
+import { Box, Button, InputAdornment, TextField,Tooltip } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCategoryRequest } from '../../CategoryForm/StateTable/CategoryAction';
@@ -78,11 +78,24 @@ const Table = () => {
         { field: 'name_of_tender', headerName: 'Name of Tender', width: 150 },
         { field: 'submission_date', headerName: 'Submission Date', width: 200 },
         {
-            field: 'Category', headerName: 'Category', width: 200, renderCell: (params) => (
-                <>
-                    {params.row.categories[0]}
-                </>
-            )
+            field: 'Category',
+            headerName: 'Category',
+            width: 200,
+            renderCell: (params) => {
+                if (Array.isArray(params.row.categories)) {
+                    
+                    const displayText = params.row.categories.length <= 2 
+                        ? params.row.categories.join(', ') 
+                        : `${params.row.categories.slice(0, 2).join(', ')} +${params.row.categories.length - 2} more`;
+                        
+                    return (
+                        <Tooltip title={params.row.categories.join(', ')} arrow>
+                            <span>{displayText}</span>
+                        </Tooltip>
+                    );
+                }
+                return null;
+            }
         },
         { field: 'results', headerName: 'results', width: 200 },
 
