@@ -118,11 +118,11 @@ const FormEdit = ({ handleClose, defaultValues }) => {
     const handleCloseDialog = (confirm) => {
         setIsDialog(false);
         if (confirm && newCat) {
-
-            defaultValues.categories.push(newCat);
+            formik.setFieldValue("categories", [...formik.values.categories, newCat]);
             setNewCat("");
         }
     }
+    
 
     const formik = useFormik({
         initialValues: {
@@ -143,7 +143,7 @@ const FormEdit = ({ handleClose, defaultValues }) => {
                 id: values.id,
                 edited_params: {
                     name_of_tender: values.name_of_tender,
-                    categories: Yup.array(),
+                    categories: values.categories,
                     submission_date: values.submission_date,
                     client: values.client,
                     contract_type: values.contract_type,
@@ -151,12 +151,11 @@ const FormEdit = ({ handleClose, defaultValues }) => {
                     results: values.results,
                 }
             };
-
-
+        
             dispatch(editCategory(transformedPayload))
             formik.resetForm();
             handleClose();
-        },
+        },        
     });
 
     const { errors, touched, handleSubmit, values, handleBlur, handleChange } = formik;
